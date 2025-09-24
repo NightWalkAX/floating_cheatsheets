@@ -1,0 +1,13 @@
+#!/bin/bash
+# Script postinstall - se ejecuta después de instalar el paquete
+
+set -e
+
+# Crear directorio de datos del usuario en el primer login
+# Esto se hace en el script de inicio de la aplicación
+
+echo "Floating CheatSheets instalado correctamente."
+echo "Se iniciará automáticamente en el próximo login."
+echo "Para iniciarlo ahora: floating-cheatsheets"
+
+exit 0

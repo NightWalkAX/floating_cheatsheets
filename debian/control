@@ -1,0 +1,21 @@
+Source: floating-cheatsheets
+Section: utils
+Priority: optional
+Maintainer: NightWalkAX <jymendev@gmail.com>
+Build-Depends: debhelper (>= 10)
+Standards-Version: 4.1.2
+
+Package: floating-cheatsheets
+Architecture: all
+Depends: python3, python3-tk, ${misc:Depends}
+Description: Widget flotante para acceso rápido a cheatsheets
+ Un widget circular flotante que permite acceso rápido a cheatsheets
+ organizadas por tags. Incluye funcionalidades de creación, edición
+ y eliminación de cheatsheets con formato específico.
+ .
+ Características:
+  - Widget circular ajustable y flotante
+  - Menú dial con paginación automática
+  - Organización por tags
+  - Editor integrado
+  - Inicio automático con el sistema

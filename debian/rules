@@ -1,0 +1,34 @@
+#!/usr/bin/make -f
+
+%:
+	dh $@
+
+override_dh_auto_install:
+	# Crear directorios
+	mkdir -p debian/floating-cheatsheets/usr/share/floating-cheatsheets
+	mkdir -p debian/floating-cheatsheets/usr/bin
+	mkdir -p debian/floating-cheatsheets/usr/share/pixmaps
+	mkdir -p debian/floating-cheatsheets/usr/share/applications
+	
+	# Copiar archivos de la aplicación
+	cp -r src/* debian/floating-cheatsheets/usr/share/floating-cheatsheets/
+	chmod +x debian/floating-cheatsheets/usr/share/floating-cheatsheets/main.py
+	
+	# Copiar datos de configuración y cheatsheets
+	cp -r data debian/floating-cheatsheets/usr/share/floating-cheatsheets/
+	
+	# Crear script ejecutable
+	echo '#!/bin/bash' > debian/floating-cheatsheets/usr/bin/floating-cheatsheets
+	echo 'cd /usr/share/floating-cheatsheets' >> debian/floating-cheatsheets/usr/bin/floating-cheatsheets
+	echo 'python3 main.py' >> debian/floating-cheatsheets/usr/bin/floating-cheatsheets
+	chmod +x debian/floating-cheatsheets/usr/bin/floating-cheatsheets
+	
+	# Copiar archivos de configuración
+	if [ -f assets/icon.png ]; then \
+		cp assets/icon.png debian/floating-cheatsheets/usr/share/pixmaps/floating-cheatsheets.png; \
+	fi
+	
+	cp setup/floating-cheatsheets.desktop debian/floating-cheatsheets/usr/share/applications/
+
+override_dh_auto_clean:
+	dh_auto_clean

@@ -1,0 +1,106 @@
+#!/bin/bash
+# Script postrm - se ejecuta después de remover el paquete
+
+set -e
+
+case "$1" in
+    remove|purge)
+        echo "Limpiando archivos residuales de Floating CheatSheets..."
+        
+        # Limpiar datos de usuario para cada usuario del sistema
+        for home_dir in /home/*; do
+            if [ -d "$home_dir" ]; then
+                user_data_dir="$home_dir/.local/share/floating-cheatsheets"
+                if [ -d "$user_data_dir" ]; then
+                    echo "Removiendo datos de usuario en $user_data_dir"
+                    rm -rf "$user_data_dir" || true
+                fi
+                
+                # Limpiar configuraciones si existen
+                user_config_dir="$home_dir/.config/floating-cheatsheets"
+                if [ -d "$user_config_dir" ]; then
+                    echo "Removiendo configuraciones de usuario en $user_config_dir"
+                    rm -rf "$user_config_dir" || true
+                fi
+            fi
+        done
+        
+        # Limpiar datos de root si existen
+        if [ -d "/root/.local/share/floating-cheatsheets" ]; then
+            echo "Removiendo datos de root"
+            rm -rf "/root/.local/share/floating-cheatsheets" || true
+        fi
+        
+        if [ -d "/root/.config/floating-cheatsheets" ]; then
+            echo "Removiendo configuraciones de root"
+            rm -rf "/root/.config/floating-cheatsheets" || true
+        fi
+        
+        # Limpiar archivos del sistema que puedan haber quedado
+        if [ -d "/etc/floating-cheatsheets" ]; then
+            echo "Removiendo configuraciones del sistema"
+            rm -rf "/etc/floating-cheatsheets" || true
+        fi
+        
+        # Limpiar cachés de Python que puedan haber quedado
+        if [ -d "/usr/share/floating-cheatsheets/__pycache__" ]; then
+            echo "Removiendo cachés de Python"
+            rm -rf "/usr/share/floating-cheatsheets/__pycache__" || true
+        fi
+        
+        # Asegurar que el archivo .desktop del sistema se ha eliminado
+        if [ -f "/usr/share/applications/floating-cheatsheets.desktop" ]; then
+            echo "Removiendo entrada de aplicación del sistema"
+            rm -f "/usr/share/applications/floating-cheatsheets.desktop" || true
+        fi
+        
+        # Limpiar posibles archivos de autostart que hayan quedado
+        echo "Verificando autostart en todos los usuarios..."
+        for home_dir in /home/*; do
+            if [ -d "$home_dir/.config/autostart" ]; then
+                rm -f "$home_dir/.config/autostart/floating-cheatsheets.desktop" >/dev/null 2>&1 || true
+            fi
+        done
+        rm -f "/root/.config/autostart/floating-cheatsheets.desktop" >/dev/null 2>&1 || true
+        
+        # Verificar que no queden procesos corriendo
+        remaining_processes=$(pgrep -f "floating-cheatsheets" 2>/dev/null || true)
+        if [ -n "$remaining_processes" ]; then
+            echo "Forzando cierre de procesos restantes..."
+            pkill -9 -f "floating-cheatsheets" >/dev/null 2>&1 || true
+            pkill -9 -f "python.*floating-cheatsheets" >/dev/null 2>&1 || true
+            pkill -9 -f "/usr/share/floating-cheatsheets" >/dev/null 2>&1 || true
+        fi
+        
+        # Limpiar registros del sistema de aplicaciones
+        echo "Actualizando registros del sistema..."
+        
+        # Actualizar base de datos de aplicaciones de escritorio
+        if command -v update-desktop-database >/dev/null 2>&1; then
+            update-desktop-database /usr/share/applications/ >/dev/null 2>&1 || true
+        fi
+        
+        # Actualizar caché de iconos del sistema
+        if command -v gtk-update-icon-cache >/dev/null 2>&1; then
+            gtk-update-icon-cache -f -t /usr/share/pixmaps/ >/dev/null 2>&1 || true
+        fi
+        
+        # Actualizar caché de aplicaciones (para algunos entornos de escritorio)
+        if command -v update-menus >/dev/null 2>&1; then
+            update-menus >/dev/null 2>&1 || true
+        fi
+        
+        # Limpiar posibles archivos temporales en /tmp
+        rm -f /tmp/*floating-cheatsheets* >/dev/null 2>&1 || true
+        rm -f /tmp/.*floating-cheatsheets* >/dev/null 2>&1 || true
+        
+        # Limpiar logs si existen
+        rm -f /var/log/*floating-cheatsheets* >/dev/null 2>&1 || true
+        
+        echo "Floating CheatSheets ha sido completamente desinstalado."
+        ;;
+    *)
+        ;;
+esac
+
+exit 0

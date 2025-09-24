@@ -1,0 +1,50 @@
+#!/bin/bash
+# Script prerm - se ejecuta antes de remover el paquete
+
+set -e
+
+case "$1" in
+    remove|deconfigure)
+        echo "Deteniendo Floating CheatSheets..."
+        
+        # Detener la aplicación si está corriendo para todos los usuarios
+        pkill -f "floating-cheatsheets" >/dev/null 2>&1 || true
+        pkill -f "main.py.*floating-cheatsheets" >/dev/null 2>&1 || true
+        pkill -f "/usr/share/floating-cheatsheets/main.py" >/dev/null 2>&1 || true
+        pkill -f "/usr/bin/floating-cheatsheets" >/dev/null 2>&1 || true
+        # También buscar procesos Python que ejecuten el script
+        pkill -f "python.*floating-cheatsheets" >/dev/null 2>&1 || true
+        pkill -f "python3.*floating-cheatsheets" >/dev/null 2>&1 || true
+        
+        # Esperar un momento para que terminen todos los procesos
+        sleep 3
+        
+        # Verificar si aún hay procesos corriendo y forzar cierre si es necesario
+        remaining_processes=$(pgrep -f "floating-cheatsheets\|/usr/share/floating-cheatsheets" 2>/dev/null || true)
+        if [ -n "$remaining_processes" ]; then
+            echo "Forzando cierre de procesos persistentes..."
+            pkill -9 -f "floating-cheatsheets" >/dev/null 2>&1 || true
+            pkill -9 -f "/usr/share/floating-cheatsheets" >/dev/null 2>&1 || true
+            pkill -9 -f "python.*floating-cheatsheets" >/dev/null 2>&1 || true
+            sleep 1
+        fi
+        
+        # Remover del autostart para todos los usuarios
+        echo "Removiendo autostart..."
+        for home_dir in /home/*; do
+            if [ -d "$home_dir" ] && [ -d "$home_dir/.config/autostart" ]; then
+                rm -f "$home_dir/.config/autostart/floating-cheatsheets.desktop" || true
+                echo "Removido autostart para usuario $(basename $home_dir)"
+            fi
+        done
+        
+        # También remover autostart del usuario root si existe
+        if [ -d "/root/.config/autostart" ]; then
+            rm -f "/root/.config/autostart/floating-cheatsheets.desktop" || true
+        fi
+        ;;
+    *)
+        ;;
+esac
+
+exit 0

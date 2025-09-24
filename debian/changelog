@@ -1,0 +1,11 @@
+floating-cheatsheets (1.0.0) unstable; urgency=low
+
+  * Versión inicial
+  * Widget flotante circular con menú dial
+  * Gestión de cheatsheets con formato específico
+  * Organización por tags
+  * Editor integrado
+  * Inicio automático del sistema
+  * Paginación dinámica del menú
+
+ -- NightWalkAX <jymendev@gmail.com>  Wed, 24 Sep 2025 12:00:00 +0000
