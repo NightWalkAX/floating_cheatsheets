@@ -1,0 +1,178 @@
+name: Build and Release
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+env:
+  APP_NAME: floating-cheatsheets
+  APP_VERSION: 1.0.0
+
+jobs:
+  build-linux:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    
+    - name: Install system dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y build-essential debhelper devscripts
+    
+    - name: Install Python dependencies
+      run: |
+        python -m pip install --upgrade pip
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    
+    - name: Build Debian package
+      run: |
+        chmod +x build_deb.sh
+        ./build_deb.sh
+    
+    - name: Upload Debian package
+      uses: actions/upload-artifact@v3
+      with:
+        name: debian-package
+        path: "*.deb"
+
+  build-windows:
+    runs-on: windows-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    
+    - name: Install Python dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pyinstaller
+        if (Test-Path requirements.txt) { pip install -r requirements.txt }
+    
+    - name: Convert icon to ICO format
+      run: |
+        # Use PowerShell to convert PNG to ICO
+        Add-Type -AssemblyName System.Drawing
+        $img = [System.Drawing.Image]::FromFile("$pwd\assets\icon.png")
+        $ico = [System.Drawing.Icon]::FromHandle(([System.Drawing.Bitmap]$img.GetThumbnailImage(256,256,$null,[System.IntPtr]::Zero)).GetHicon())
+        $file = New-Object System.IO.FileStream("$pwd\assets\icon.ico", [System.IO.FileMode]::Create)
+        $ico.Save($file)
+        $file.Close()
+        $img.Dispose()
+        $ico.Dispose()
+      shell: powershell
+    
+    - name: Build Windows executable
+      run: |
+        cd windows
+        pyinstaller build_windows.spec --clean --noconfirm
+        # Rename executable to have .exe extension on Windows
+        if [ -f "dist/floating-cheatsheets/floating-cheatsheets" ] && [ ! -f "dist/floating-cheatsheets/floating-cheatsheets.exe" ]; then
+          mv "dist/floating-cheatsheets/floating-cheatsheets" "dist/floating-cheatsheets/floating-cheatsheets.exe"
+        fi
+        cd ..
+    
+    - name: Install NSIS
+      uses: joncloud/makensis-action@v4
+    
+    - name: Create Windows installer
+      run: |
+        cd windows
+        makensis installer.nsi
+        cd ..
+    
+    - name: Upload Windows installer
+      uses: actions/upload-artifact@v3
+      with:
+        name: windows-installer
+        path: "windows/*.exe"
+
+  release:
+    needs: [build-linux, build-windows]
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Download all artifacts
+      uses: actions/download-artifact@v3
+    
+    - name: Display structure of downloaded files
+      run: ls -la
+    
+    - name: Delete existing latest release
+      continue-on-error: true
+      run: |
+        gh release delete latest --yes
+        git push --delete origin latest || true
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: latest
+        release_name: Release ${{ env.APP_VERSION }}
+        body: |
+          🚀 **Floating CheatSheets v${{ env.APP_VERSION }}**
+          
+          ## Downloads
+          - **Linux**: Download the `.deb` file for Debian/Ubuntu systems
+          - **Windows**: Download the `.exe` installer for Windows systems
+          
+          ## Installation
+          
+          ### Linux (Debian/Ubuntu)
+          ```bash
+          sudo dpkg -i floating-cheatsheets_${{ env.APP_VERSION }}_all.deb
+          ```
+          
+          ### Windows
+          Run the `.exe` installer and follow the installation wizard.
+          
+          ## What's New
+          - Cross-platform support (Linux and Windows)
+          - Floating cheatsheet widget
+          - Easy cheatsheet management
+          - Customizable interface
+          
+          ---
+          
+          **Full Changelog**: https://github.com/${{ github.repository }}/commits/main
+        draft: false
+        prerelease: false
+    
+    - name: Upload Debian Package
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: debian-package/floating-cheatsheets_${{ env.APP_VERSION }}_all.deb
+        asset_name: floating-cheatsheets_${{ env.APP_VERSION }}_all.deb
+        asset_content_type: application/vnd.debian.binary-package
+    
+    - name: Upload Windows Installer
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: windows-installer/floating-cheatsheets-${{ env.APP_VERSION }}-setup.exe
+        asset_name: floating-cheatsheets-${{ env.APP_VERSION }}-setup.exe
+        asset_content_type: application/octet-stream
