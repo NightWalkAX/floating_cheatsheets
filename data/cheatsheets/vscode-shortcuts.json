@@ -1,0 +1,158 @@
+{
+  "title": "VS Code Atajos",
+  "tags": ["vscode", "shortcuts", "productividad"],
+  "items": [
+    {
+      "code": "Ctrl+Shift+P",
+      "description": "Abrir paleta de comandos",
+      "example": "Acceso a todos los comandos de VS Code"
+    },
+    {
+      "code": "Ctrl+P",
+      "description": "Ir a archivo",
+      "example": "Búsqueda rápida de archivos en el proyecto"
+    },
+    {
+      "code": "Ctrl+G",
+      "description": "Ir a línea",
+      "example": "Saltar directamente a una línea específica"
+    },
+    {
+      "code": "Ctrl+F",
+      "description": "Buscar en archivo actual",
+      "example": "Buscar texto en el archivo abierto"
+    },
+    {
+      "code": "Ctrl+Shift+F",
+      "description": "Buscar en todo el proyecto",
+      "example": "Búsqueda global en todos los archivos"
+    },
+    {
+      "code": "Ctrl+H",
+      "description": "Buscar y reemplazar",
+      "example": "Reemplazar texto en el archivo actual"
+    },
+    {
+      "code": "Ctrl+Shift+H",
+      "description": "Buscar y reemplazar globalmente",
+      "example": "Reemplazar en todo el proyecto"
+    },
+    {
+      "code": "Ctrl+D",
+      "description": "Seleccionar siguiente coincidencia",
+      "example": "Selección múltiple de palabras iguales"
+    },
+    {
+      "code": "Ctrl+Shift+L",
+      "description": "Seleccionar todas las coincidencias",
+      "example": "Seleccionar todas las instancias de una palabra"
+    },
+    {
+      "code": "Alt+Click",
+      "description": "Múltiples cursores",
+      "example": "Hacer clic manteniendo Alt para múltiples cursores"
+    },
+    {
+      "code": "Ctrl+Shift+K",
+      "description": "Eliminar línea",
+      "example": "Borrar toda la línea actual"
+    },
+    {
+      "code": "Ctrl+Shift+Enter",
+      "description": "Insertar línea arriba",
+      "example": "Nueva línea arriba del cursor"
+    },
+    {
+      "code": "Ctrl+Enter",
+      "description": "Insertar línea abajo",
+      "example": "Nueva línea abajo del cursor"
+    },
+    {
+      "code": "Alt+↑/↓",
+      "description": "Mover línea arriba/abajo",
+      "example": "Mover la línea actual hacia arriba o abajo"
+    },
+    {
+      "code": "Shift+Alt+↑/↓",
+      "description": "Duplicar línea arriba/abajo",
+      "example": "Duplicar la línea actual"
+    },
+    {
+      "code": "Ctrl+/",
+      "description": "Comentar/descomentar línea",
+      "example": "Toggle comentario en la línea actual"
+    },
+    {
+      "code": "Shift+Alt+A",
+      "description": "Comentario de bloque",
+      "example": "Toggle comentario de bloque /* */"
+    },
+    {
+      "code": "Ctrl+K Ctrl+F",
+      "description": "Formatear selección",
+      "example": "Formatear código seleccionado"
+    },
+    {
+      "code": "Shift+Alt+F",
+      "description": "Formatear documento",
+      "example": "Formatear todo el archivo"
+    },
+    {
+      "code": "Ctrl+Space",
+      "description": "Activar autocompletado",
+      "example": "Mostrar sugerencias de código"
+    },
+    {
+      "code": "Ctrl+Shift+Space",
+      "description": "Mostrar ayuda de parámetros",
+      "example": "Información de parámetros de función"
+    },
+    {
+      "code": "F12",
+      "description": "Ir a definición",
+      "example": "Saltar a la definición de una función/variable"
+    },
+    {
+      "code": "Ctrl+K F12",
+      "description": "Abrir definición al lado",
+      "example": "Abrir definición en panel lateral"
+    },
+    {
+      "code": "Shift+F12",
+      "description": "Mostrar referencias",
+      "example": "Ver todos los usos de una función/variable"
+    },
+    {
+      "code": "F2",
+      "description": "Renombrar símbolo",
+      "example": "Renombrar variable/función en todo el proyecto"
+    },
+    {
+      "code": "Ctrl+`",
+      "description": "Abrir/cerrar terminal",
+      "example": "Toggle terminal integrado"
+    },
+    {
+      "code": "Ctrl+Shift+`",
+      "description": "Nuevo terminal",
+      "example": "Crear nueva instancia de terminal"
+    },
+    {
+      "code": "Ctrl+B",
+      "description": "Toggle sidebar",
+      "example": "Mostrar/ocultar panel lateral"
+    },
+    {
+      "code": "Ctrl+Shift+E",
+      "description": "Explorador de archivos",
+      "example": "Abrir panel de archivos"
+    },
+    {
+      "code": "Ctrl+Shift+G",
+      "description": "Control de versiones",
+      "example": "Abrir panel de Git"
+    }
+  ],
+  "created": "2025-09-24",
+  "updated": "2025-09-24"
+}

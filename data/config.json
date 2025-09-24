@@ -1,0 +1,14 @@
+{
+  "window": {
+    "x": 100,
+    "y": 100,
+    "size": 80,
+    "always_on_top": true
+  },
+  "data_path": "./data/cheatsheets",
+  "current_tag": "all",
+  "pagination": {
+    "items_per_page": 3,
+    "max_items_first_page": 3
+  }
+}

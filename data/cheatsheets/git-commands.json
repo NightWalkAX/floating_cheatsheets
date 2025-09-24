@@ -1,0 +1,108 @@
+{
+  "title": "Git Commands",
+  "tags": ["git", "version-control", "terminal"],
+  "items": [
+    {
+      "code": "git init",
+      "description": "Inicializar repositorio Git",
+      "example": "git init | git init --bare (repositorio desnudo)"
+    },
+    {
+      "code": "git clone",
+      "description": "Clonar repositorio remoto",
+      "example": "git clone https://github.com/user/repo.git"
+    },
+    {
+      "code": "git status",
+      "description": "Ver estado del repositorio",
+      "example": "git status | git status --short | git status --porcelain"
+    },
+    {
+      "code": "git add",
+      "description": "Agregar archivos al staging",
+      "example": "git add archivo.txt | git add . | git add -A"
+    },
+    {
+      "code": "git commit",
+      "description": "Crear commit",
+      "example": "git commit -m \"mensaje\" | git commit -am \"mensaje\" (add+commit)"
+    },
+    {
+      "code": "git push",
+      "description": "Subir cambios al remoto",
+      "example": "git push origin main | git push -u origin feature-branch"
+    },
+    {
+      "code": "git pull",
+      "description": "Descargar cambios del remoto",
+      "example": "git pull origin main | git pull --rebase"
+    },
+    {
+      "code": "git fetch",
+      "description": "Descargar cambios sin merge",
+      "example": "git fetch origin | git fetch --all"
+    },
+    {
+      "code": "git branch",
+      "description": "Gestionar ramas",
+      "example": "git branch | git branch nueva-rama | git branch -d rama"
+    },
+    {
+      "code": "git checkout",
+      "description": "Cambiar de rama o restaurar archivos",
+      "example": "git checkout main | git checkout -b nueva-rama"
+    },
+    {
+      "code": "git switch",
+      "description": "Cambiar de rama (comando moderno)",
+      "example": "git switch main | git switch -c nueva-rama"
+    },
+    {
+      "code": "git merge",
+      "description": "Fusionar ramas",
+      "example": "git merge feature-branch | git merge --no-ff feature-branch"
+    },
+    {
+      "code": "git rebase",
+      "description": "Reescribir historial de commits",
+      "example": "git rebase main | git rebase -i HEAD~3"
+    },
+    {
+      "code": "git log",
+      "description": "Ver historial de commits",
+      "example": "git log --oneline | git log --graph --all"
+    },
+    {
+      "code": "git diff",
+      "description": "Ver diferencias",
+      "example": "git diff | git diff --staged | git diff HEAD~1"
+    },
+    {
+      "code": "git stash",
+      "description": "Guardar cambios temporalmente",
+      "example": "git stash | git stash pop | git stash list"
+    },
+    {
+      "code": "git remote",
+      "description": "Gestionar repositorios remotos",
+      "example": "git remote -v | git remote add origin URL"
+    },
+    {
+      "code": "git reset",
+      "description": "Deshacer cambios",
+      "example": "git reset HEAD~1 | git reset --hard HEAD~1"
+    },
+    {
+      "code": "git tag",
+      "description": "Crear etiquetas",
+      "example": "git tag v1.0.0 | git tag -a v1.0.0 -m \"mensaje\""
+    },
+    {
+      "code": "git show",
+      "description": "Mostrar información de commit",
+      "example": "git show HEAD | git show v1.0.0"
+    }
+  ],
+  "created": "2025-09-24",
+  "updated": "2025-09-24"
+}

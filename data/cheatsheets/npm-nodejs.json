@@ -1,0 +1,118 @@
+{
+  "title": "NPM & Node.js",
+  "tags": ["npm", "nodejs", "javascript", "package-manager"],
+  "items": [
+    {
+      "code": "npm --version",
+      "description": "Ver versión de npm",
+      "example": "npm --version | npm -v"
+    },
+    {
+      "code": "node --version",
+      "description": "Ver versión de Node.js",
+      "example": "node --version | node -v"
+    },
+    {
+      "code": "npm init",
+      "description": "Crear package.json",
+      "example": "npm init | npm init -y (con valores por defecto)"
+    },
+    {
+      "code": "npm install",
+      "description": "Instalar dependencias",
+      "example": "npm install | npm install package-name | npm install -g package-name"
+    },
+    {
+      "code": "npm install --save-dev",
+      "description": "Instalar dependencias de desarrollo",
+      "example": "npm install --save-dev eslint | npm install -D prettier"
+    },
+    {
+      "code": "npm uninstall",
+      "description": "Desinstalar paquetes",
+      "example": "npm uninstall package-name | npm uninstall -g package-name"
+    },
+    {
+      "code": "npm list",
+      "description": "Listar paquetes instalados",
+      "example": "npm list | npm list -g | npm list --depth=0"
+    },
+    {
+      "code": "npm outdated",
+      "description": "Ver paquetes desactualizados",
+      "example": "npm outdated | npm outdated -g"
+    },
+    {
+      "code": "npm update",
+      "description": "Actualizar paquetes",
+      "example": "npm update | npm update package-name"
+    },
+    {
+      "code": "npm run",
+      "description": "Ejecutar scripts de package.json",
+      "example": "npm run start | npm run build | npm run test"
+    },
+    {
+      "code": "npm start",
+      "description": "Ejecutar script start",
+      "example": "npm start (equivale a npm run start)"
+    },
+    {
+      "code": "npm test",
+      "description": "Ejecutar tests",
+      "example": "npm test | npm t"
+    },
+    {
+      "code": "npm run build",
+      "description": "Construir proyecto",
+      "example": "npm run build"
+    },
+    {
+      "code": "npm publish",
+      "description": "Publicar paquete",
+      "example": "npm publish | npm publish --tag beta"
+    },
+    {
+      "code": "npm search",
+      "description": "Buscar paquetes",
+      "example": "npm search express | npm search react router"
+    },
+    {
+      "code": "npm info",
+      "description": "Información de paquete",
+      "example": "npm info express | npm info react versions --json"
+    },
+    {
+      "code": "npx",
+      "description": "Ejecutar paquetes sin instalar",
+      "example": "npx create-react-app mi-app | npx eslint archivo.js"
+    },
+    {
+      "code": "npm cache clean",
+      "description": "Limpiar caché de npm",
+      "example": "npm cache clean --force"
+    },
+    {
+      "code": "npm audit",
+      "description": "Auditar vulnerabilidades",
+      "example": "npm audit | npm audit fix"
+    },
+    {
+      "code": "node archivo.js",
+      "description": "Ejecutar archivo JavaScript",
+      "example": "node app.js | node --inspect app.js (debug)"
+    },
+    {
+      "code": "npm config",
+      "description": "Configuración de npm",
+      "example": "npm config list | npm config set registry https://registry.npmjs.org/"
+    },
+    {
+      "code": "package.json scripts",
+      "description": "Scripts personalizados",
+      "example": "\"scripts\": { \"dev\": \"node server.js\", \"build\": \"webpack\" }"
+    }
+  ],
+  "created": "2025-09-24",
+  "updated": "2025-09-24"
+}

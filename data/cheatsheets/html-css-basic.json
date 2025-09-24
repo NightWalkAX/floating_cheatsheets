@@ -1,0 +1,128 @@
+{
+  "title": "HTML & CSS Básico",
+  "tags": ["html", "css", "web", "frontend"],
+  "items": [
+    {
+      "code": "<!DOCTYPE html>",
+      "description": "Declaración de documento HTML5",
+      "example": "<!DOCTYPE html><html><head><title>Título</title></head><body></body></html>"
+    },
+    {
+      "code": "<head>",
+      "description": "Sección de metadatos",
+      "example": "<head><meta charset=\"UTF-8\"><title>Mi página</title></head>"
+    },
+    {
+      "code": "<meta>",
+      "description": "Metadatos del documento",
+      "example": "<meta charset=\"UTF-8\"> | <meta name=\"viewport\" content=\"width=device-width\">"
+    },
+    {
+      "code": "<h1> - <h6>",
+      "description": "Encabezados",
+      "example": "<h1>Título principal</h1> | <h2>Subtítulo</h2>"
+    },
+    {
+      "code": "<p>",
+      "description": "Párrafo",
+      "example": "<p>Este es un párrafo de texto.</p>"
+    },
+    {
+      "code": "<a>",
+      "description": "Enlaces",
+      "example": "<a href=\"https://example.com\">Enlace</a> | <a href=\"#seccion\">Enlace interno</a>"
+    },
+    {
+      "code": "<img>",
+      "description": "Imágenes",
+      "example": "<img src=\"imagen.jpg\" alt=\"Descripción\">"
+    },
+    {
+      "code": "<div>",
+      "description": "Contenedor genérico",
+      "example": "<div class=\"container\">Contenido</div>"
+    },
+    {
+      "code": "<span>",
+      "description": "Contenedor inline",
+      "example": "<span class=\"highlight\">Texto destacado</span>"
+    },
+    {
+      "code": "<ul>, <ol>, <li>",
+      "description": "Listas",
+      "example": "<ul><li>Item 1</li><li>Item 2</li></ul> | <ol><li>Primero</li></ol>"
+    },
+    {
+      "code": "<table>, <tr>, <td>",
+      "description": "Tablas",
+      "example": "<table><tr><td>Celda</td><td>Celda 2</td></tr></table>"
+    },
+    {
+      "code": "<form>, <input>",
+      "description": "Formularios",
+      "example": "<form><input type=\"text\" name=\"nombre\"><input type=\"submit\"></form>"
+    },
+    {
+      "code": "color",
+      "description": "Color de texto (CSS)",
+      "example": "color: red; | color: #ff0000; | color: rgb(255,0,0);"
+    },
+    {
+      "code": "background-color",
+      "description": "Color de fondo (CSS)",
+      "example": "background-color: blue; | background-color: #0000ff;"
+    },
+    {
+      "code": "font-size",
+      "description": "Tamaño de fuente (CSS)",
+      "example": "font-size: 16px; | font-size: 1.2em; | font-size: large;"
+    },
+    {
+      "code": "margin, padding",
+      "description": "Espaciado (CSS)",
+      "example": "margin: 10px; | padding: 5px 10px; | margin-top: 20px;"
+    },
+    {
+      "code": "width, height",
+      "description": "Dimensiones (CSS)",
+      "example": "width: 100px; | height: 200px; | width: 50%;"
+    },
+    {
+      "code": "display",
+      "description": "Tipo de display (CSS)",
+      "example": "display: block; | display: inline; | display: flex;"
+    },
+    {
+      "code": "position",
+      "description": "Posicionamiento (CSS)",
+      "example": "position: relative; | position: absolute; | position: fixed;"
+    },
+    {
+      "code": "text-align",
+      "description": "Alineación de texto (CSS)",
+      "example": "text-align: center; | text-align: left; | text-align: justify;"
+    },
+    {
+      "code": "border",
+      "description": "Bordes (CSS)",
+      "example": "border: 1px solid black; | border-radius: 5px;"
+    },
+    {
+      "code": "flex",
+      "description": "Flexbox (CSS)",
+      "example": "display: flex; justify-content: center; align-items: center;"
+    },
+    {
+      "code": "grid",
+      "description": "CSS Grid (CSS)",
+      "example": "display: grid; grid-template-columns: 1fr 1fr; gap: 10px;"
+    },
+    {
+      "code": "@media",
+      "description": "Media queries (CSS)",
+      "example": "@media (max-width: 768px) { /* estilos móvil */ }"
+    }
+  ],
+  "created": "2025-09-24",
+  "updated": "2025-09-24"
+}

@@ -1,0 +1,118 @@
+{
+  "title": "Linux Commands",
+  "tags": ["linux", "terminal", "bash"],
+  "items": [
+    {
+      "code": "ls",
+      "description": "Listar archivos y directorios",
+      "example": "ls -la (detallado) | ls -h (tamaños legibles)"
+    },
+    {
+      "code": "cd",
+      "description": "Cambiar directorio",
+      "example": "cd /path/to/dir | cd .. (subir) | cd ~ (home)"
+    },
+    {
+      "code": "pwd",
+      "description": "Mostrar directorio actual",
+      "example": "pwd"
+    },
+    {
+      "code": "mkdir",
+      "description": "Crear directorios",
+      "example": "mkdir nueva_carpeta | mkdir -p path/to/nested/dir"
+    },
+    {
+      "code": "rmdir",
+      "description": "Eliminar directorios vacíos",
+      "example": "rmdir carpeta_vacia"
+    },
+    {
+      "code": "rm", 
+      "description": "Eliminar archivos y directorios",
+      "example": "rm archivo.txt | rm -rf directorio/"
+    },
+    {
+      "code": "cp",
+      "description": "Copiar archivos y directorios",
+      "example": "cp archivo.txt copia.txt | cp -r directorio/ copia/"
+    },
+    {
+      "code": "mv",
+      "description": "Mover/renombrar archivos",
+      "example": "mv archivo.txt nuevo_nombre.txt | mv archivo.txt /otro/path/"
+    },
+    {
+      "code": "find",
+      "description": "Buscar archivos y directorios",
+      "example": "find . -name \"*.py\" | find /path -type f -size +100M"
+    },
+    {
+      "code": "grep",
+      "description": "Buscar texto en archivos",
+      "example": "grep -r \"function\" . | grep -i \"error\" archivo.log"
+    },
+    {
+      "code": "cat",
+      "description": "Mostrar contenido de archivo",
+      "example": "cat archivo.txt | cat -n archivo.txt (con números)"
+    },
+    {
+      "code": "less/more",
+      "description": "Ver archivo por páginas",
+      "example": "less archivo.txt | more archivo.txt"
+    },
+    {
+      "code": "head",
+      "description": "Mostrar primeras líneas",
+      "example": "head -n 10 archivo.txt"
+    },
+    {
+      "code": "tail",
+      "description": "Mostrar últimas líneas",
+      "example": "tail -n 10 archivo.txt | tail -f archivo.log (seguir)"
+    },
+    {
+      "code": "chmod",
+      "description": "Cambiar permisos de archivos",
+      "example": "chmod 755 script.sh | chmod +x archivo"
+    },
+    {
+      "code": "chown",
+      "description": "Cambiar propietario",
+      "example": "sudo chown usuario:grupo archivo.txt"
+    },
+    {
+      "code": "ps",
+      "description": "Ver procesos en ejecución",
+      "example": "ps aux | ps -ef"
+    },
+    {
+      "code": "kill",
+      "description": "Terminar procesos",
+      "example": "kill PID | kill -9 PID (forzar)"
+    },
+    {
+      "code": "df",
+      "description": "Espacio en disco",
+      "example": "df -h (legible) | df -i (inodos)"
+    },
+    {
+      "code": "du",
+      "description": "Tamaño de directorios",
+      "example": "du -sh directorio/ | du -h --max-depth=1"
+    },
+    {
+      "code": "tar",
+      "description": "Comprimir/descomprimir archivos",
+      "example": "tar -czf archivo.tar.gz directorio/ | tar -xzf archivo.tar.gz"
+    },
+    {
+      "code": "wget/curl",
+      "description": "Descargar archivos de internet",
+      "example": "wget https://example.com/file.zip | curl -O https://example.com/file.zip"
+    }
+  ],
+  "created": "2025-09-24",
+  "updated": "2025-09-24"
+}
