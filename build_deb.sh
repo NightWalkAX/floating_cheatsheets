@@ -11,6 +11,18 @@ if [ ! -f "src/main.py" ]; then
     exit 1
 fi
 
+# Importar utilidades de versión
+source "$(dirname "$0")/version_utils.sh"
+
+# Obtener información de versión dinámica
+PROJECT_VERSION=$(get_project_version)
+BUILD_TIMESTAMP=$(get_build_timestamp)
+GIT_HASH=$(get_git_hash)
+
+echo "Versión del proyecto: ${PROJECT_VERSION}"
+echo "Timestamp: ${BUILD_TIMESTAMP}"
+echo "Git hash: ${GIT_HASH}"
+
 # Limpiar builds anteriores
 rm -rf build/ dist/ *.deb
 
@@ -32,11 +44,21 @@ fi
 echo "Construyendo paquete..."
 dpkg-buildpackage -us -uc -b
 
-# Mover el .deb al directorio actual
-mv ../floating-cheatsheets_*.deb .
+# Generar nombre dinámico para el paquete
+DYNAMIC_PACKAGE_NAME=$(generate_package_name)
+
+# Mover y renombrar el .deb al directorio actual
+ORIGINAL_DEB=$(ls ../floating-cheatsheets_*.deb)
+mv "$ORIGINAL_DEB" "./$DYNAMIC_PACKAGE_NAME"
 
 echo "=== Paquete .deb creado exitosamente ==="
-echo "Archivo: $(ls *.deb)"
+echo "Archivo: ${DYNAMIC_PACKAGE_NAME}"
+echo "Versión: ${PROJECT_VERSION}"
+echo "Build: ${BUILD_TIMESTAMP}"
+echo "Git hash: ${GIT_HASH}"
 echo ""
 echo "Para instalar:"
-echo "sudo dpkg -i $(ls *.deb)"
+echo "sudo dpkg -i ${DYNAMIC_PACKAGE_NAME}"
+echo ""
+echo "Para instalar dependencias si faltan:"
+echo "sudo apt-get install -f"

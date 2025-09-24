@@ -14,6 +14,16 @@ if [ ! -f "src/main.py" ]; then
     exit 1
 fi
 
+# Importar utilidades de versión
+source "$(dirname "$0")/version_utils.sh"
+
+# Mostrar información de versión
+PROJECT_VERSION=$(get_project_version)
+echo "Versión del proyecto: ${PROJECT_VERSION}"
+echo "Timestamp de build: $(get_build_timestamp)"
+echo "Git hash: $(get_git_hash)"
+echo ""
+
 # Build Linux package
 echo "Building Linux package..."
 if [ -f "build_deb.sh" ]; then

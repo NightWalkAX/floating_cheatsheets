@@ -7,6 +7,18 @@ set -e
 
 echo "Building Floating CheatSheets for Windows..."
 
+# Importar utilidades de versión desde el directorio padre
+source "$(dirname "$0")/../version_utils.sh"
+
+# Obtener información de versión
+PROJECT_VERSION=$(get_project_version)
+BUILD_TIMESTAMP=$(get_build_timestamp)
+GIT_HASH=$(get_git_hash)
+
+echo "Versión del proyecto: ${PROJECT_VERSION}"
+echo "Build timestamp: ${BUILD_TIMESTAMP}"
+echo "Git hash: ${GIT_HASH}"
+
 # Create windows directory if it doesn't exist
 mkdir -p windows/dist
 
