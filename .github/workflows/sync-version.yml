@@ -1,0 +1,36 @@
+name: Sync Version to Docs
+
+on:
+  push:
+    paths:
+      - 'VERSION'
+    branches:
+      - main
+      - master
+  workflow_dispatch:
+
+jobs:
+  sync-version:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Sync version to docs
+        run: |
+          chmod +x ./docs/sync-version.sh
+          ./docs/sync-version.sh
+      
+      - name: Commit changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add docs/version.json
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "🔄 Auto-sync version to docs [skip ci]"
+            git push
+          fi
