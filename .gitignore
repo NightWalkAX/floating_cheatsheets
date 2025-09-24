@@ -156,12 +156,16 @@ debian/files
 debian/debhelper-build-stamp
 debian/*.substvars
 debian/*/
+debian/floating-cheatsheets/
+debian/.debhelper/
 
 # Windows build artifacts
 windows/build/
 windows/dist/
+windows/venv/
 windows/*.exe
 windows/floating-cheatsheets-*-setup.exe
+windows/floating-cheatsheets/
 
 # Log files
 *.log
