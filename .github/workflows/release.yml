@@ -38,7 +38,7 @@ jobs:
         ./build_deb.sh
     
     - name: Upload Debian package
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: debian-package
         path: "*.deb"
@@ -93,7 +93,7 @@ jobs:
         cd ..
     
     - name: Upload Windows installer
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: windows-installer
         path: "windows/*.exe"
