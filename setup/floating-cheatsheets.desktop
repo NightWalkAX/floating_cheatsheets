@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=Floating CheatSheets
+Comment=Widget flotante para acceso rápido a cheatsheets
+Exec=/usr/bin/floating-cheatsheets
+Icon=/usr/share/pixmaps/floating-cheatsheets.png
+Terminal=false
+Categories=Utility;Development;
+StartupNotify=false
+X-GNOME-Autostart-enabled=true
+Hidden=false
