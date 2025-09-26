@@ -75,13 +75,11 @@ jobs:
     
     - name: Build Windows executable
       run: |
-        cd windows
-        pyinstaller build_windows.spec --clean --noconfirm
+        pyinstaller windows/build_windows.spec --clean --noconfirm
         # Rename executable to have .exe extension on Windows
-        if (Test-Path "dist/floating-cheatsheets/floating-cheatsheets" -and -not (Test-Path "dist/floating-cheatsheets/floating-cheatsheets.exe")) {
-          Move-Item "dist/floating-cheatsheets/floating-cheatsheets" "dist/floating-cheatsheets/floating-cheatsheets.exe"
+        if ((Test-Path "windows/dist/floating-cheatsheets/floating-cheatsheets") -and (-not (Test-Path "windows/dist/floating-cheatsheets/floating-cheatsheets.exe"))) {
+          Move-Item "windows/dist/floating-cheatsheets/floating-cheatsheets" "windows/dist/floating-cheatsheets/floating-cheatsheets.exe"
         }
-        cd ..
       shell: powershell
     
     - name: Install NSIS
