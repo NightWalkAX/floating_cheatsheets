@@ -1,0 +1,48 @@
+{
+  "title": "SQL Cheatsheet",
+  "tags": ["sql", "database", "programming"],
+  "items": [
+    {
+      "code": "SELECT",
+      "description": "Extraer datos de una base de datos",
+      "example": "SELECT column1, column2 FROM table_name;"
+    },
+    {
+      "code": "WHERE",
+      "description": "Filtrar registros",
+      "example": "SELECT * FROM table_name WHERE condition;"
+    },
+    {
+      "code": "JOIN",
+      "description": "Combinar filas de dos o más tablas",
+      "example": "SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id;"
+    },
+    {
+      "code": "GROUP BY",
+      "description": "Agrupar filas que tienen los mismos valores",
+      "example": "SELECT COUNT(id), country FROM customers GROUP BY country;"
+    },
+    {
+      "code": "ORDER BY",
+      "description": "Ordenar el conjunto de resultados",
+      "example": "SELECT * FROM customers ORDER BY country ASC;"
+    },
+    {
+      "code": "INSERT INTO",
+      "description": "Insertar nuevos registros en una tabla",
+      "example": "INSERT INTO table (col1, col2) VALUES (val1, val2);"
+    },
+    {
+      "code": "UPDATE",
+      "description": "Modificar registros existentes en una tabla",
+      "example": "UPDATE table SET col1 = val1 WHERE condition;"
+    },
+    {
+      "code": "DELETE",
+      "description": "Eliminar registros de una tabla",
+      "example": "DELETE FROM table WHERE condition;"
+    }
+  ],
+  "created": "2025-09-26",
+  "updated": "2025-09-26"
+}

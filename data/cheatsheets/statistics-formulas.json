@@ -1,0 +1,43 @@
+{
+  "title": "Fórmulas de Estadística",
+  "tags": ["statistics", "formulas", "data-science"],
+  "items": [
+    {
+      "code": "Media (Promedio)",
+      "description": "Suma de los valores dividida por el número de valores",
+      "example": "μ = Σx / N"
+    },
+    {
+      "code": "Mediana",
+      "description": "Valor central en un conjunto de datos ordenado",
+      "example": "Ordenar datos y encontrar el valor del medio"
+    },
+    {
+      "code": "Moda",
+      "description": "Valor que aparece con más frecuencia",
+      "example": "Encontrar el valor más repetido en los datos"
+    },
+    {
+      "code": "Varianza",
+      "description": "Promedio de las diferencias al cuadrado con respecto a la media",
+      "example": "σ² = Σ(x - μ)² / N"
+    },
+    {
+      "code": "Desviación Estándar",
+      "description": "Raíz cuadrada de la varianza",
+      "example": "σ = sqrt(Σ(x - μ)² / N)"
+    },
+    {
+      "code": "Correlación (r)",
+      "description": "Mide la relación lineal entre dos variables",
+      "example": "r = Σ[(xi-x̄)(yi-ȳ)] / sqrt[Σ(xi-x̄)²Σ(yi-ȳ)²]"
+    },
+    {
+      "code": "Teorema de Bayes",
+      "description": "Probabilidad de un evento, basado en conocimiento previo",
+      "example": "P(A|B) = [P(B|A) * P(A)] / P(B)"
+    }
+  ],
+  "created": "2025-09-26",
+  "updated": "2025-09-26"
+}

@@ -1,0 +1,43 @@
+{
+  "title": "Fórmulas Financieras",
+  "tags": ["finance", "formulas", "business"],
+  "items": [
+    {
+      "code": "Interés Simple",
+      "description": "Cálculo de interés sobre el principal inicial",
+      "example": "I = P * r * t (Principal * Tasa * Tiempo)"
+    },
+    {
+      "code": "Interés Compuesto",
+      "description": "Cálculo de interés sobre el principal más el interés acumulado",
+      "example": "A = P(1 + r/n)^(nt)"
+    },
+    {
+      "code": "Valor Presente (VP)",
+      "description": "Valor actual de una suma de dinero futura",
+      "example": "VP = VF / (1 + r)^n"
+    },
+    {
+      "code": "Valor Futuro (VF)",
+      "description": "Valor de un activo en una fecha futura",
+      "example": "VF = VP * (1 + r)^n"
+    },
+    {
+      "code": "Retorno de la Inversión (ROI)",
+      "description": "Mide la rentabilidad de una inversión",
+      "example": "ROI = (Ganancia - Costo) / Costo"
+    },
+    {
+      "code": "Punto de Equilibrio",
+      "description": "Punto en el que los costos totales igualan a los ingresos totales",
+      "example": "Costos Fijos / (Precio de Venta - Costos Variables)"
+    },
+    {
+      "code": "Ratio Deuda/Capital",
+      "description": "Mide el apalancamiento financiero de una empresa",
+      "example": "Deuda Total / Capital Total"
+    }
+  ],
+  "created": "2025-09-26",
+  "updated": "2025-09-26"
+}
