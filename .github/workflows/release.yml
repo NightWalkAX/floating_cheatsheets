@@ -37,6 +37,13 @@ jobs:
         chmod +x build_deb.sh
         ./build_deb.sh
     
+    - name: List built files for debugging
+      run: |
+        echo "Files in root directory:"
+        ls -la *.deb || echo "No .deb files in root"
+        echo "All .deb files in project:"
+        find . -name "*.deb" -type f
+    
     - name: Upload Debian package
       uses: actions/upload-artifact@v4
       with:
@@ -171,7 +178,11 @@ jobs:
       uses: actions/download-artifact@v4
     
     - name: Display structure of downloaded files
-      run: ls -la
+      run: |
+        echo "Current directory structure:"
+        ls -la
+        echo "Looking for artifacts:"
+        find . -name "*.deb" -o -name "*.exe" | head -10
     
     - name: Delete existing latest release
       continue-on-error: true
@@ -183,6 +194,20 @@ jobs:
     
     - name: Create Release
       run: |
+        # Find the actual paths of the built files
+        DEB_FILE=$(find . -name "floating-cheatsheets_*.deb" | head -1)
+        EXE_FILE=$(find . -name "floating-cheatsheets-*-setup.exe" | head -1)
+        
+        echo "Found DEB file: $DEB_FILE"
+        echo "Found EXE file: $EXE_FILE"
+        
+        if [ -z "$DEB_FILE" ] || [ -z "$EXE_FILE" ]; then
+          echo "Error: Missing build artifacts"
+          echo "DEB file: $DEB_FILE"
+          echo "EXE file: $EXE_FILE"
+          exit 1
+        fi
+        
         gh release create latest \
           --title "Release ${{ env.APP_VERSION }}" \
           --notes "🚀 **Floating CheatSheets v${{ env.APP_VERSION }}**
@@ -210,8 +235,8 @@ jobs:
         ---
         
         **Full Changelog**: https://github.com/${{ github.repository }}/commits/main" \
-          debian-package/floating-cheatsheets_${{ env.APP_VERSION }}_all.deb \
-          windows-installer/floating-cheatsheets-${{ env.APP_VERSION }}-setup.exe
+          "$DEB_FILE" \
+          "$EXE_FILE"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     
