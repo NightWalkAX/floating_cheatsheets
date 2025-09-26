@@ -53,7 +53,7 @@ Section "Main Application" SecMain
     SetOutPath "$INSTDIR"
     
     ; Install main executable and dependencies
-    File /r "dist\floating-cheatsheets\*"
+    File /r "..\dist\floating-cheatsheets\*"
     
     ; Create shortcuts
     CreateDirectory "$SMPROGRAMS\${APP_NAME}"

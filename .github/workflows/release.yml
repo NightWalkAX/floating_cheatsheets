@@ -62,25 +62,60 @@ jobs:
     
     - name: Convert icon to ICO format
       run: |
+        # Check if icon.ico already exists
+        if (Test-Path "assets\icon.ico") {
+          Write-Host "Icon file already exists, skipping conversion"
+          exit 0
+        }
+        
+        # Check if PNG icon exists
+        if (-not (Test-Path "assets\icon.png")) {
+          Write-Error "Source icon file assets\icon.png not found"
+          exit 1
+        }
+        
         # Use PowerShell to convert PNG to ICO
-        Add-Type -AssemblyName System.Drawing
-        $img = [System.Drawing.Image]::FromFile("$pwd\assets\icon.png")
-        $ico = [System.Drawing.Icon]::FromHandle(([System.Drawing.Bitmap]$img.GetThumbnailImage(256,256,$null,[System.IntPtr]::Zero)).GetHicon())
-        $file = New-Object System.IO.FileStream("$pwd\assets\icon.ico", [System.IO.FileMode]::Create)
-        $ico.Save($file)
-        $file.Close()
-        $img.Dispose()
-        $ico.Dispose()
+        try {
+          Add-Type -AssemblyName System.Drawing
+          $img = [System.Drawing.Image]::FromFile("$pwd\assets\icon.png")
+          $ico = [System.Drawing.Icon]::FromHandle(([System.Drawing.Bitmap]$img.GetThumbnailImage(256,256,$null,[System.IntPtr]::Zero)).GetHicon())
+          $file = New-Object System.IO.FileStream("$pwd\assets\icon.ico", [System.IO.FileMode]::Create)
+          $ico.Save($file)
+          $file.Close()
+          $img.Dispose()
+          $ico.Dispose()
+          Write-Host "Icon conversion successful"
+        } catch {
+          Write-Error "Icon conversion failed: $_"
+          exit 1
+        }
       shell: powershell
     
     - name: Build Windows executable
       run: |
+        # Verify spec file exists
+        if (-not (Test-Path "windows/build_windows.spec")) {
+          Write-Error "Spec file not found at windows/build_windows.spec"
+          exit 1
+        }
+        
+        # Build with PyInstaller
         pyinstaller windows/build_windows.spec --clean --noconfirm
-        # Rename executable to have .exe extension on Windows
+        
+        # Verify build was successful
+        if (-not (Test-Path "dist/floating-cheatsheets")) {
+          Write-Error "Build failed - dist directory not created"
+          exit 1
+        }
+        
+        # Rename executable to have .exe extension on Windows if needed
         if ((Test-Path "dist/floating-cheatsheets/floating-cheatsheets") -and (-not (Test-Path "dist/floating-cheatsheets/floating-cheatsheets.exe"))) {
           Move-Item "dist/floating-cheatsheets/floating-cheatsheets" "dist/floating-cheatsheets/floating-cheatsheets.exe"
         }
-        Set-Location ..
+        
+        # List contents for debugging
+        Write-Host "Contents of dist/floating-cheatsheets:"
+        Get-ChildItem "dist/floating-cheatsheets" | ForEach-Object { Write-Host $_.Name }
       shell: powershell
     
     - name: Install NSIS
@@ -88,9 +123,32 @@ jobs:
     
     - name: Create Windows installer
       run: |
-        cd windows
+        # Verify the dist directory exists before creating installer
+        if (-not (Test-Path "dist/floating-cheatsheets")) {
+          Write-Error "dist/floating-cheatsheets directory not found"
+          exit 1
+        }
+        
+        # Change to windows directory and create installer
+        Set-Location windows
+        
+        # Verify installer script exists
+        if (-not (Test-Path "installer.nsi")) {
+          Write-Error "installer.nsi not found in windows directory"
+          exit 1
+        }
+        
+        # Create the installer
         makensis installer.nsi
-        cd ..
+        
+        # Verify installer was created
+        if (Test-Path "floating-cheatsheets-1.0.0-setup.exe") {
+          Write-Host "Installer created successfully: floating-cheatsheets-1.0.0-setup.exe"
+        } else {
+          Write-Error "Installer creation failed"
+          exit 1
+        }
+      shell: powershell
     
     - name: Upload Windows installer
       uses: actions/upload-artifact@v4
