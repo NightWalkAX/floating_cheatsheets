@@ -179,3 +179,5 @@ config_local.json
 *.temp
 *.bak
 *.orig
+install_act.sh
+bin/act
