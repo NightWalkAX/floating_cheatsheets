@@ -1,0 +1,296 @@
+{
+  "title": "JavaScript Básico",
+  "tags": ["javascript", "programming", "básico", "web"],
+  "items": [
+    {
+      "code": "console.log()",
+      "description": "Imprimir mensaje en consola",
+      "example": "console.log('Hola mundo')"
+    },
+    {
+      "code": "var",
+      "description": "Declarar variable (scope de función)",
+      "example": "var nombre = 'Juan'"
+    },
+    {
+      "code": "let",
+      "description": "Declarar variable (scope de bloque)",
+      "example": "let edad = 25"
+    },
+    {
+      "code": "const",
+      "description": "Declarar constante",
+      "example": "const PI = 3.14159"
+    },
+    {
+      "code": "if/else",
+      "description": "Estructura condicional",
+      "example": "if (edad >= 18) { console.log('Mayor'); } else { console.log('Menor'); }"
+    },
+    {
+      "code": "for",
+      "description": "Bucle for tradicional",
+      "example": "for (let i = 0; i < 5; i++) { console.log(i); }"
+    },
+    {
+      "code": "while",
+      "description": "Bucle while",
+      "example": "while (contador < 10) { contador++; }"
+    },
+    {
+      "code": "function",
+      "description": "Declarar función",
+      "example": "function saludar(nombre) { return 'Hola ' + nombre; }"
+    },
+    {
+      "code": "arrow function",
+      "description": "Función flecha",
+      "example": "const sumar = (a, b) => a + b"
+    },
+    {
+      "code": "array",
+      "description": "Crear array",
+      "example": "const frutas = ['manzana', 'banana', 'naranja']"
+    },
+    {
+      "code": "array.push()",
+      "description": "Agregar elemento al final",
+      "example": "frutas.push('uva')"
+    },
+    {
+      "code": "array.pop()",
+      "description": "Eliminar último elemento",
+      "example": "const ultimo = frutas.pop()"
+    },
+    {
+      "code": "array.length",
+      "description": "Obtener longitud del array",
+      "example": "console.log(frutas.length)"
+    },
+    {
+      "code": "array.forEach()",
+      "description": "Iterar sobre array",
+      "example": "frutas.forEach(fruta => console.log(fruta))"
+    },
+    {
+      "code": "array.map()",
+      "description": "Transformar array",
+      "example": "const numeros = [1, 2, 3].map(n => n * 2)"
+    },
+    {
+      "code": "array.filter()",
+      "description": "Filtrar array",
+      "example": "const pares = [1, 2, 3, 4].filter(n => n % 2 === 0)"
+    },
+    {
+      "code": "object",
+      "description": "Crear objeto",
+      "example": "const persona = { nombre: 'Ana', edad: 30 }"
+    },
+    {
+      "code": "object.property",
+      "description": "Acceder a propiedad",
+      "example": "console.log(persona.nombre)"
+    },
+    {
+      "code": "object['property']",
+      "description": "Acceder con corchetes",
+      "example": "console.log(persona['edad'])"
+    },
+    {
+      "code": "Object.keys()",
+      "description": "Obtener claves del objeto",
+      "example": "const claves = Object.keys(persona)"
+    },
+    {
+      "code": "Object.values()",
+      "description": "Obtener valores del objeto",
+      "example": "const valores = Object.values(persona)"
+    },
+    {
+      "code": "string.length",
+      "description": "Longitud de cadena",
+      "example": "const texto = 'Hola'; console.log(texto.length)"
+    },
+    {
+      "code": "string.toUpperCase()",
+      "description": "Convertir a mayúsculas",
+      "example": "const mayuscula = texto.toUpperCase()"
+    },
+    {
+      "code": "string.toLowerCase()",
+      "description": "Convertir a minúsculas",
+      "example": "const minuscula = texto.toLowerCase()"
+    },
+    {
+      "code": "string.substring()",
+      "description": "Extraer subcadena",
+      "example": "const sub = texto.substring(0, 2)"
+    },
+    {
+      "code": "string.split()",
+      "description": "Dividir cadena",
+      "example": "const palabras = 'uno dos tres'.split(' ')"
+    },
+    {
+      "code": "parseInt()",
+      "description": "Convertir a entero",
+      "example": "const numero = parseInt('123')"
+    },
+    {
+      "code": "parseFloat()",
+      "description": "Convertir a decimal",
+      "example": "const decimal = parseFloat('123.45')"
+    },
+    {
+      "code": "typeof",
+      "description": "Obtener tipo de variable",
+      "example": "console.log(typeof variable)"
+    },
+    {
+      "code": "Math.random()",
+      "description": "Número aleatorio",
+      "example": "const aleatorio = Math.random()"
+    },
+    {
+      "code": "Math.floor()",
+      "description": "Redondear hacia abajo",
+      "example": "const entero = Math.floor(4.7)"
+    },
+    {
+      "code": "Math.ceil()",
+      "description": "Redondear hacia arriba",
+      "example": "const entero = Math.ceil(4.2)"
+    },
+    {
+      "code": "Date()",
+      "description": "Crear fecha actual",
+      "example": "const ahora = new Date()"
+    },
+    {
+      "code": "Date.now()",
+      "description": "Timestamp actual",
+      "example": "const timestamp = Date.now()"
+    },
+    {
+      "code": "setTimeout()",
+      "description": "Ejecutar después de delay",
+      "example": "setTimeout(() => console.log('Hola'), 1000)"
+    },
+    {
+      "code": "setInterval()",
+      "description": "Ejecutar repetidamente",
+      "example": "const timer = setInterval(() => console.log('Tick'), 1000)"
+    },
+    {
+      "code": "JSON.stringify()",
+      "description": "Convertir objeto a JSON",
+      "example": "const json = JSON.stringify(persona)"
+    },
+    {
+      "code": "JSON.parse()",
+      "description": "Convertir JSON a objeto",
+      "example": "const objeto = JSON.parse(jsonString)"
+    },
+    {
+      "code": "try/catch",
+      "description": "Manejo de errores",
+      "example": "try { codigo(); } catch (error) { console.error(error); }"
+    },
+    {
+      "code": "addEventListener()",
+      "description": "Agregar event listener",
+      "example": "button.addEventListener('click', () => console.log('Clicked'))"
+    },
+    {
+      "code": "document.getElementById()",
+      "description": "Obtener elemento por ID",
+      "example": "const elemento = document.getElementById('miId')"
+    },
+    {
+      "code": "document.querySelector()",
+      "description": "Obtener primer elemento que coincida",
+      "example": "const elemento = document.querySelector('.miClase')"
+    },
+    {
+      "code": "document.querySelectorAll()",
+      "description": "Obtener todos los elementos que coincidan",
+      "example": "const elementos = document.querySelectorAll('div')"
+    },
+    {
+      "code": "element.innerHTML",
+      "description": "Obtener/establecer HTML interno",
+      "example": "elemento.innerHTML = '<p>Nuevo contenido</p>'"
+    },
+    {
+      "code": "element.textContent",
+      "description": "Obtener/establecer texto",
+      "example": "elemento.textContent = 'Nuevo texto'"
+    },
+    {
+      "code": "element.style",
+      "description": "Modificar estilos CSS",
+      "example": "elemento.style.color = 'red'"
+    },
+    {
+      "code": "element.classList.add()",
+      "description": "Agregar clase CSS",
+      "example": "elemento.classList.add('nuevaClase')"
+    },
+    {
+      "code": "element.classList.remove()",
+      "description": "Remover clase CSS",
+      "example": "elemento.classList.remove('viejaClase')"
+    },
+    {
+      "code": "fetch()",
+      "description": "Realizar petición HTTP",
+      "example": "fetch('/api/datos').then(response => response.json()).then(data => console.log(data))"
+    },
+    {
+      "code": "Promise",
+      "description": "Crear promesa",
+      "example": "const promesa = new Promise((resolve, reject) => { resolve('Éxito'); })"
+    },
+    {
+      "code": "async/await",
+      "description": "Funciones asíncronas",
+      "example": "async function obtenerDatos() { const data = await fetch('/api'); return data.json(); }"
+    },
+    {
+      "code": "localStorage.setItem()",
+      "description": "Guardar en almacenamiento local",
+      "example": "localStorage.setItem('clave', 'valor')"
+    },
+    {
+      "code": "localStorage.getItem()",
+      "description": "Obtener del almacenamiento local",
+      "example": "const valor = localStorage.getItem('clave')"
+    },
+    {
+      "code": "isNaN()",
+      "description": "Verificar si no es un número",
+      "example": "console.log(isNaN('abc'))"
+    },
+    {
+      "code": "Array.isArray()",
+      "description": "Verificar si es array",
+      "example": "console.log(Array.isArray([1, 2, 3]))"
+    },
+    {
+      "code": "String()",
+      "description": "Convertir a cadena",
+      "example": "const texto = String(123)"
+    },
+    {
+      "code": "Number()",
+      "description": "Convertir a número",
+      "example": "const numero = Number('123')"
+    },
+    {
+      "code": "Boolean()",
+      "description": "Convertir a booleano",
+      "example": "const bool = Boolean(1)"
+    }
+  ]
+}

@@ -1,0 +1,271 @@
+{
+  "title": "Python Intermedio",
+  "tags": ["python", "programming", "intermedio", "avanzado"],
+  "items": [
+    {
+      "code": "list comprehension",
+      "description": "Crear listas de forma concisa",
+      "example": "[x*2 for x in range(5)] | [x for x in range(10) if x % 2 == 0]"
+    },
+    {
+      "code": "dict comprehension",
+      "description": "Crear diccionarios de forma concisa",
+      "example": "{x: x**2 for x in range(5)} | {k: v.upper() for k, v in dict.items()}"
+    },
+    {
+      "code": "set comprehension",
+      "description": "Crear sets de forma concisa",
+      "example": "{x*2 for x in range(5)} | {len(word) for word in ['hello', 'world']}"
+    },
+    {
+      "code": "generator expression",
+      "description": "Expresiones generadoras para memoria eficiente",
+      "example": "(x*2 for x in range(1000000)) | sum(x for x in range(100))"
+    },
+    {
+      "code": "lambda",
+      "description": "Funciones anónimas",
+      "example": "lambda x: x*2 | sorted(lista, key=lambda x: x[1])"
+    },
+    {
+      "code": "map()",
+      "description": "Aplicar función a todos los elementos",
+      "example": "list(map(lambda x: x*2, [1,2,3])) | list(map(str.upper, ['a','b','c']))"
+    },
+    {
+      "code": "filter()",
+      "description": "Filtrar elementos que cumplan condición",
+      "example": "list(filter(lambda x: x % 2 == 0, range(10))) | list(filter(None, [0, 1, False, True]))"
+    },
+    {
+      "code": "reduce()",
+      "description": "Reducir lista a un solo valor",
+      "example": "from functools import reduce; reduce(lambda x, y: x + y, [1,2,3,4])"
+    },
+    {
+      "code": "zip()",
+      "description": "Combinar múltiples iterables",
+      "example": "list(zip([1,2,3], ['a','b','c'])) | dict(zip(keys, values))"
+    },
+    {
+      "code": "enumerate()",
+      "description": "Iterar con índices",
+      "example": "for i, value in enumerate(['a','b','c']): print(f\"{i}: {value}\")"
+    },
+    {
+      "code": "*args",
+      "description": "Argumentos variables",
+      "example": "def func(*args): return sum(args) | func(1, 2, 3, 4)"
+    },
+    {
+      "code": "**kwargs",
+      "description": "Argumentos con palabra clave variables",
+      "example": "def func(**kwargs): return kwargs | func(name='Juan', age=25)"
+    },
+    {
+      "code": "decorators",
+      "description": "Modificar comportamiento de funciones",
+      "example": "@property def nombre(self): return self._nombre"
+    },
+    {
+      "code": "@staticmethod",
+      "description": "Método que no requiere instancia",
+      "example": "@staticmethod def sumar(a, b): return a + b"
+    },
+    {
+      "code": "@classmethod",
+      "description": "Método que recibe la clase como primer argumento",
+      "example": "@classmethod def crear_desde_string(cls, data): return cls(**json.loads(data))"
+    },
+    {
+      "code": "property",
+      "description": "Convertir método en atributo",
+      "example": "@property def area(self): return self.width * self.height"
+    },
+    {
+      "code": "context managers",
+      "description": "Manejo automático de recursos",
+      "example": "with open('file.txt', 'r') as f: content = f.read()"
+    },
+    {
+      "code": "custom context manager",
+      "description": "Crear contexto personalizado",
+      "example": "from contextlib import contextmanager; @contextmanager def mi_contexto(): yield \"valor\""
+    },
+    {
+      "code": "try/except/else/finally",
+      "description": "Manejo completo de excepciones",
+      "example": "try: operacion() except ValueError: print(\"Error\") else: print(\"Éxito\") finally: cleanup()"
+    },
+    {
+      "code": "raise",
+      "description": "Lanzar excepciones personalizadas",
+      "example": "raise ValueError(\"Mensaje de error\") | raise Exception from e"
+    },
+    {
+      "code": "assert",
+      "description": "Verificaciones de desarrollo",
+      "example": "assert x > 0, \"x debe ser positivo\" | assert isinstance(obj, list)"
+    },
+    {
+      "code": "collections.defaultdict",
+      "description": "Diccionario con valores por defecto",
+      "example": "from collections import defaultdict; dd = defaultdict(list); dd['key'].append('value')"
+    },
+    {
+      "code": "collections.Counter",
+      "description": "Contador de elementos",
+      "example": "from collections import Counter; Counter(['a','b','a','c','b','a'])"
+    },
+    {
+      "code": "collections.namedtuple",
+      "description": "Tupla con nombres",
+      "example": "from collections import namedtuple; Point = namedtuple('Point', ['x', 'y'])"
+    },
+    {
+      "code": "itertools.chain",
+      "description": "Concatenar iterables",
+      "example": "from itertools import chain; list(chain([1,2], [3,4], [5,6]))"
+    },
+    {
+      "code": "itertools.combinations",
+      "description": "Combinaciones de elementos",
+      "example": "from itertools import combinations; list(combinations([1,2,3,4], 2))"
+    },
+    {
+      "code": "itertools.permutations",
+      "description": "Permutaciones de elementos",
+      "example": "from itertools import permutations; list(permutations([1,2,3]))"
+    },
+    {
+      "code": "functools.partial",
+      "description": "Aplicación parcial de funciones",
+      "example": "from functools import partial; multiply_by_2 = partial(multiply, 2)"
+    },
+    {
+      "code": "functools.lru_cache",
+      "description": "Cache para funciones",
+      "example": "from functools import lru_cache; @lru_cache(maxsize=128) def fibonacci(n): ..."
+    },
+    {
+      "code": "threading.Thread",
+      "description": "Hilos para paralelización",
+      "example": "import threading; t = threading.Thread(target=function, args=(arg1,))"
+    },
+    {
+      "code": "multiprocessing.Pool",
+      "description": "Pool de procesos",
+      "example": "from multiprocessing import Pool; with Pool() as p: results = p.map(func, data)"
+    },
+    {
+      "code": "asyncio",
+      "description": "Programación asíncrona",
+      "example": "import asyncio; async def main(): await async_function()"
+    },
+    {
+      "code": "async/await",
+      "description": "Funciones asíncronas",
+      "example": "async def fetch_data(): return await api_call()"
+    },
+    {
+      "code": "pathlib.Path",
+      "description": "Manejo moderno de rutas",
+      "example": "from pathlib import Path; p = Path('folder') / 'file.txt'"
+    },
+    {
+      "code": "json.loads/dumps",
+      "description": "Trabajar con JSON",
+      "example": "import json; data = json.loads(json_string); json_str = json.dumps(data)"
+    },
+    {
+      "code": "datetime",
+      "description": "Manejo de fechas",
+      "example": "from datetime import datetime, timedelta; now = datetime.now()"
+    },
+    {
+      "code": "re.search/findall",
+      "description": "Expresiones regulares",
+      "example": "import re; re.search(r'\\d+', text); re.findall(r'\\w+', text)"
+    },
+    {
+      "code": "os.path",
+      "description": "Operaciones con rutas",
+      "example": "import os; os.path.join('folder', 'file.txt'); os.path.exists(path)"
+    },
+    {
+      "code": "sys.argv",
+      "description": "Argumentos de línea de comandos",
+      "example": "import sys; script_name = sys.argv[0]; args = sys.argv[1:]"
+    },
+    {
+      "code": "logging",
+      "description": "Sistema de logging",
+      "example": "import logging; logging.basicConfig(level=logging.INFO); logging.info('mensaje')"
+    },
+    {
+      "code": "pickle",
+      "description": "Serialización de objetos Python",
+      "example": "import pickle; pickle.dump(obj, file); obj = pickle.load(file)"
+    },
+    {
+      "code": "csv.reader/writer",
+      "description": "Trabajar con archivos CSV",
+      "example": "import csv; with open('file.csv') as f: reader = csv.reader(f)"
+    },
+    {
+      "code": "urllib.request",
+      "description": "Realizar peticiones HTTP",
+      "example": "from urllib.request import urlopen; response = urlopen('http://example.com')"
+    },
+    {
+      "code": "dataclasses",
+      "description": "Clases de datos automáticas",
+      "example": "from dataclasses import dataclass; @dataclass class Person: name: str; age: int"
+    },
+    {
+      "code": "typing",
+      "description": "Anotaciones de tipos",
+      "example": "from typing import List, Dict, Optional; def func(items: List[str]) -> Optional[str]:"
+    },
+    {
+      "code": "__name__ == '__main__'",
+      "description": "Ejecutar solo si es script principal",
+      "example": "if __name__ == '__main__': main()"
+    },
+    {
+      "code": "super()",
+      "description": "Llamar métodos de la clase padre",
+      "example": "class Child(Parent): def __init__(self): super().__init__()"
+    },
+    {
+      "code": "hasattr/getattr/setattr",
+      "description": "Trabajar con atributos dinámicamente",
+      "example": "hasattr(obj, 'attr'); getattr(obj, 'attr', default); setattr(obj, 'attr', value)"
+    },
+    {
+      "code": "globals()/locals()",
+      "description": "Acceder a espacios de nombres",
+      "example": "globals()['variable'] = valor; local_vars = locals()"
+    },
+    {
+      "code": "eval()/exec()",
+      "description": "Ejecutar código dinámicamente",
+      "example": "result = eval('2 + 2'); exec('print(\"Hello\")')"
+    },
+    {
+      "code": "isinstance()",
+      "description": "Verificar tipo de objeto",
+      "example": "isinstance(obj, (list, tuple)); isinstance(x, int)"
+    },
+    {
+      "code": "issubclass()",
+      "description": "Verificar herencia de clases",
+      "example": "issubclass(ChildClass, ParentClass)"
+    },
+    {
+      "code": "__slots__",
+      "description": "Optimizar memoria en clases",
+      "example": "class Point: __slots__ = ['x', 'y']"
+    }
+  ]
+}
