@@ -1,0 +1,48 @@
+{
+  "title": "Python Avanzado",
+  "tags": ["python", "programming", "avanzado"],
+  "items": [
+    {
+      "code": "Decorators",
+      "description": "Modificar o extender funciones o métodos",
+      "example": "@my_decorator\\ndef my_func():\\n  pass"
+    },
+    {
+      "code": "Generators",
+      "description": "Funciones que devuelven un iterador perezoso",
+      "example": "def my_gen():\\n  for i in range(5):\\n    yield i"
+    },
+    {
+      "code": "Metaclasses",
+      "description": "Clases para crear clases",
+      "example": "class MyMeta(type):\\n  pass"
+    },
+    {
+      "code": "Concurrency (asyncio)",
+      "description": "Programación asíncrona con async/await",
+      "example": "import asyncio\\nasync def main():\\n  await asyncio.sleep(1)"
+    },
+    {
+      "code": "Context Managers",
+      "description": "Gestionar recursos con la declaración 'with'",
+      "example": "with open('file.txt') as f:\\n  content = f.read()"
+    },
+    {
+      "code": "Partial Functions",
+      "description": "Crear funciones con argumentos pre-fijados",
+      "example": "from functools import partial\\nadd_one = partial(add, 1)"
+    },
+    {
+      "code": "GIL (Global Interpreter Lock)",
+      "description": "Mutex que protege el acceso a objetos de Python",
+      "example": "Concepto: Limita el paralelismo de hilos en CPython"
+    },
+    {
+      "code": "Magic Methods (__init__)",
+      "description": "Métodos especiales con doble guion bajo",
+      "example": "class C:\\n  def __init__(self):\\n    pass"
+    }
+  ],
+  "created": "2025-09-26",
+  "updated": "2025-09-26"
+}

@@ -1,0 +1,48 @@
+{
+  "title": "NumPy Cheatsheet",
+  "tags": ["numpy", "python", "data-science", "library"],
+  "items": [
+    {
+      "code": "np.array()",
+      "description": "Crear un array de NumPy",
+      "example": "a = np.array([1, 2, 3])"
+    },
+    {
+      "code": "np.arange()",
+      "description": "Crear un array con un rango de valores",
+      "example": "np.arange(0, 10, 2)"
+    },
+    {
+      "code": "np.linspace()",
+      "description": "Crear un array con valores espaciados uniformemente",
+      "example": "np.linspace(0, 1, 5)"
+    },
+    {
+      "code": "a.shape, a.dtype",
+      "description": "Ver la forma y el tipo de datos del array",
+      "example": "print(a.shape) | print(a.dtype)"
+    },
+    {
+      "code": "a + b, np.add(a, b)",
+      "description": "Operaciones matemáticas elemento a elemento",
+      "example": "a = np.array([1,2])\\nb = np.array([3,4])\\nc = a + b"
+    },
+    {
+      "code": "a.dot(b), a @ b",
+      "description": "Producto punto de dos arrays",
+      "example": "np.dot(a, b)"
+    },
+    {
+      "code": "a.sum(), a.mean()",
+      "description": "Calcular la suma o la media",
+      "example": "a.sum(axis=0)"
+    },
+    {
+      "code": "a.reshape()",
+      "description": "Cambiar la forma de un array",
+      "example": "a.reshape(3, 2)"
+    }
+  ],
+  "created": "2025-09-26",
+  "updated": "2025-09-26"
+}

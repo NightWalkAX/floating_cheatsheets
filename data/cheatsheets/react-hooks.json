@@ -1,0 +1,43 @@
+{
+  "title": "React Hooks",
+  "tags": ["react", "javascript", "framework"],
+  "items": [
+    {
+      "code": "useState",
+      "description": "Añade estado a un componente funcional",
+      "example": "const [state, setState] = useState(initialState);"
+    },
+    {
+      "code": "useEffect",
+      "description": "Realiza efectos secundarios en componentes funcionales",
+      "example": "useEffect(() => { /* efecto */ return () => { /* limpieza */ }; }, [dependencies]);"
+    },
+    {
+      "code": "useContext",
+      "description": "Accede al valor de un React Context",
+      "example": "const value = useContext(MyContext);"
+    },
+    {
+      "code": "useReducer",
+      "description": "Alternativa a useState para lógica de estado compleja",
+      "example": "const [state, dispatch] = useReducer(reducer, initialState);"
+    },
+    {
+      "code": "useCallback",
+      "description": "Memoiza callbacks para evitar re-renders innecesarios",
+      "example": "const memoizedCallback = useCallback(() => { doSomething(a, b); }, [a, b]);"
+    },
+    {
+      "code": "useMemo",
+      "description": "Memoiza un valor calculado para evitar recalcularlo",
+      "example": "const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);"
+    },
+    {
+      "code": "useRef",
+      "description": "Crea una referencia mutable que no causa un re-render",
+      "example": "const inputEl = useRef(null);"
+    }
+  ],
+  "created": "2025-09-26",
+  "updated": "2025-09-26"
+}

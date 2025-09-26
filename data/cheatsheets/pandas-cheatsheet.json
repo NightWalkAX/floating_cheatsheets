@@ -1,0 +1,48 @@
+{
+  "title": "Pandas Cheatsheet",
+  "tags": ["pandas", "python", "data-science", "library"],
+  "items": [
+    {
+      "code": "pd.DataFrame()",
+      "description": "Crear un DataFrame",
+      "example": "df = pd.DataFrame({'col1': [1, 2], 'col2': [3, 4]})"
+    },
+    {
+      "code": "pd.read_csv()",
+      "description": "Leer datos desde un archivo CSV",
+      "example": "df = pd.read_csv('data.csv')"
+    },
+    {
+      "code": "df.head(), df.tail()",
+      "description": "Ver las primeras/últimas filas",
+      "example": "df.head(5)"
+    },
+    {
+      "code": "df.describe()",
+      "description": "Resumen estadístico de los datos",
+      "example": "df.describe()"
+    },
+    {
+      "code": "df['column']",
+      "description": "Seleccionar una columna",
+      "example": "df['my_column']"
+    },
+    {
+      "code": "df.loc[], df.iloc[]",
+      "description": "Seleccionar filas/columnas por etiqueta o posición",
+      "example": "df.loc[0, 'col1'] | df.iloc[0, 0]"
+    },
+    {
+      "code": "df.groupby()",
+      "description": "Agrupar datos",
+      "example": "df.groupby('country').mean()"
+    },
+    {
+      "code": "pd.merge()",
+      "description": "Unir DataFrames",
+      "example": "pd.merge(df1, df2, on='id')"
+    }
+  ],
+  "created": "2025-09-26",
+  "updated": "2025-09-26"
+}

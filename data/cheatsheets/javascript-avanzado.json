@@ -1,0 +1,48 @@
+{
+  "title": "JavaScript Avanzado",
+  "tags": ["javascript", "programming", "avanzado"],
+  "items": [
+    {
+      "code": "async/await",
+      "description": "Sintaxis para manejar promesas de forma más legible",
+      "example": "async function fetchData() { try { const data = await fetch(url); } catch (e) { console.error(e); } }"
+    },
+    {
+      "code": "Promise.all()",
+      "description": "Ejecuta múltiples promesas en paralelo",
+      "example": "Promise.all([p1, p2, p3]).then(values => { ... });"
+    },
+    {
+      "code": "Closures",
+      "description": "Función que recuerda el scope donde fue creada",
+      "example": "function externa() { let v = 'a'; return () => console.log(v); }"
+    },
+    {
+      "code": "Prototypes",
+      "description": "Mecanismo de herencia de JavaScript",
+      "example": "let obj = {}; let proto = Object.getPrototypeOf(obj);"
+    },
+    {
+      "code": "Destructuring",
+      "description": "Extraer datos de arrays u objetos",
+      "example": "const { a, b } = obj; const [x, y] = arr;"
+    },
+    {
+      "code": "Spread Operator (...)",
+      "description": "Expandir elementos de un iterable",
+      "example": "const arr2 = [...arr1]; const obj2 = { ...obj1 };"
+    },
+    {
+      "code": "Map, Set, WeakMap, WeakSet",
+      "description": "Colecciones de datos avanzadas",
+      "example": "let map = new Map(); let set = new Set();"
+    },
+    {
+      "code": "Event Loop",
+      "description": "Modelo de concurrencia de JavaScript",
+      "example": "Concepto: Pila de llamadas, Cola de tareas, APIs del navegador"
+    }
+  ],
+  "created": "2025-09-26",
+  "updated": "2025-09-26"
+}

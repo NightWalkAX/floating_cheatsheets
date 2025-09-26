@@ -1,0 +1,43 @@
+{
+  "title": "Fórmulas de Física",
+  "tags": ["physics", "formulas", "science"],
+  "items": [
+    {
+      "code": "Segunda Ley de Newton",
+      "description": "Relación entre fuerza, masa y aceleración",
+      "example": "F = ma"
+    },
+    {
+      "code": "Energía Cinética",
+      "description": "Energía del movimiento",
+      "example": "K = ½mv²"
+    },
+    {
+      "code": "Energía Potencial Gravitatoria",
+      "description": "Energía almacenada por la altura",
+      "example": "U = mgh"
+    },
+    {
+      "code": "Equivalencia Masa-Energía",
+      "description": "Famosa ecuación de Einstein",
+      "example": "E = mc²"
+    },
+    {
+      "code": "Ley de Ohm",
+      "description": "Relación en circuitos eléctricos",
+      "example": "V = IR (Voltaje = Corriente * Resistencia)"
+    },
+    {
+      "code": "Ley de la Gravitación Universal",
+      "description": "Fuerza de atracción entre dos masas",
+      "example": "F = G(m₁m₂/r²)"
+    },
+    {
+      "code": "Velocidad",
+      "description": "Tasa de cambio de la posición",
+      "example": "v = d/t (distancia/tiempo)"
+    }
+  ],
+  "created": "2025-09-26",
+  "updated": "2025-09-26"
+}
