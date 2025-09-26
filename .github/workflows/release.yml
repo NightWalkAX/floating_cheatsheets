@@ -78,10 +78,11 @@ jobs:
         cd windows
         pyinstaller build_windows.spec --clean --noconfirm
         # Rename executable to have .exe extension on Windows
-        if [ -f "dist/floating-cheatsheets/floating-cheatsheets" ] && [ ! -f "dist/floating-cheatsheets/floating-cheatsheets.exe" ]; then
-          mv "dist/floating-cheatsheets/floating-cheatsheets" "dist/floating-cheatsheets/floating-cheatsheets.exe"
-        fi
+        if (Test-Path "dist/floating-cheatsheets/floating-cheatsheets" -and -not (Test-Path "dist/floating-cheatsheets/floating-cheatsheets.exe")) {
+          Move-Item "dist/floating-cheatsheets/floating-cheatsheets" "dist/floating-cheatsheets/floating-cheatsheets.exe"
+        }
         cd ..
+      shell: powershell
     
     - name: Install NSIS
       uses: joncloud/makensis-action@v4
