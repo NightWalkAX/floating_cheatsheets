@@ -160,6 +160,9 @@ jobs:
     needs: [build-linux, build-windows]
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
+    permissions:
+      contents: write
+      actions: read
     
     steps:
     - uses: actions/checkout@v4
@@ -179,58 +182,36 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     
     - name: Create Release
-      id: create_release
-      uses: actions/create-release@v1
+      run: |
+        gh release create latest \
+          --title "Release ${{ env.APP_VERSION }}" \
+          --notes "🚀 **Floating CheatSheets v${{ env.APP_VERSION }}**
+        
+        ## Downloads
+        - **Linux**: Download the \`.deb\` file for Debian/Ubuntu systems
+        - **Windows**: Download the \`.exe\` installer for Windows systems
+        
+        ## Installation
+        
+        ### Linux (Debian/Ubuntu)
+        \`\`\`bash
+        sudo dpkg -i floating-cheatsheets_${{ env.APP_VERSION }}_all.deb
+        \`\`\`
+        
+        ### Windows
+        Run the \`.exe\` installer and follow the installation wizard.
+        
+        ## What's New
+        - Cross-platform support (Linux and Windows)
+        - Floating cheatsheet widget
+        - Easy cheatsheet management
+        - Customizable interface
+        
+        ---
+        
+        **Full Changelog**: https://github.com/${{ github.repository }}/commits/main" \
+          debian-package/floating-cheatsheets_${{ env.APP_VERSION }}_all.deb \
+          windows-installer/floating-cheatsheets-${{ env.APP_VERSION }}-setup.exe
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: latest
-        release_name: Release ${{ env.APP_VERSION }}
-        body: |
-          🚀 **Floating CheatSheets v${{ env.APP_VERSION }}**
-          
-          ## Downloads
-          - **Linux**: Download the `.deb` file for Debian/Ubuntu systems
-          - **Windows**: Download the `.exe` installer for Windows systems
-          
-          ## Installation
-          
-          ### Linux (Debian/Ubuntu)
-          ```bash
-          sudo dpkg -i floating-cheatsheets_${{ env.APP_VERSION }}_all.deb
-          ```
-          
-          ### Windows
-          Run the `.exe` installer and follow the installation wizard.
-          
-          ## What's New
-          - Cross-platform support (Linux and Windows)
-          - Floating cheatsheet widget
-          - Easy cheatsheet management
-          - Customizable interface
-          
-          ---
-          
-          **Full Changelog**: https://github.com/${{ github.repository }}/commits/main
-        draft: false
-        prerelease: false
     
-    - name: Upload Debian Package
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: debian-package/floating-cheatsheets_${{ env.APP_VERSION }}_all.deb
-        asset_name: floating-cheatsheets_${{ env.APP_VERSION }}_all.deb
-        asset_content_type: application/vnd.debian.binary-package
-    
-    - name: Upload Windows Installer
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: windows-installer/floating-cheatsheets-${{ env.APP_VERSION }}-setup.exe
-        asset_name: floating-cheatsheets-${{ env.APP_VERSION }}-setup.exe
-        asset_content_type: application/octet-stream
