@@ -189,11 +189,12 @@ jobs:
         
         # Verify required files exist
         Write-Host "Checking required files..."
-        @("assets\icon.ico", "LICENSE", "windows\installer.nsi") | ForEach-Object {
-          if (Test-Path $_) {
-            Write-Host "✓ Found: $_"
+        $requiredFiles = @("assets\icon.ico", "LICENSE", "windows\installer.nsi")
+        foreach ($file in $requiredFiles) {
+          if (Test-Path $file) {
+            Write-Host "Found: $file"
           } else {
-            Write-Host "✗ Missing: $_"
+            Write-Host "Missing: $file"
           }
         }
         
