@@ -1,0 +1,29 @@
+{
+  "title": "API de Documentos (Frappe)",
+  "language": "es",
+  "tags": ["document", "frappe", "python", "doctype", "database"],
+  "items": [
+    {
+      "code": "frappe.get_doc('Task', 'TASK00002')",
+      "description": "Obtiene un documento existente por tipo y nombre",
+      "example": "doc = frappe.get_doc('Task', 'TASK00002')"
+    },
+    {
+      "code": "frappe.get_doc('System Settings')",
+      "description": "Obtiene un DocType único",
+      "example": "doc = frappe.get_doc('System Settings')"
+    },
+    {
+      "code": "frappe.get_doc({ 'doctype': 'Task', 'title': 'Nueva tarea' })",
+      "description": "Crea un nuevo documento en memoria",
+      "example": "doc = frappe.get_doc({ ... }); doc.insert()"
+    },
+    {
+      "code": "frappe.get_last_doc('Task', filters={'status': 'Cancelled'}, order_by='timestamp desc')",
+      "description": "Obtiene el último documento creado con filtros y orden personalizado",
+      "example": "task = frappe.get_last_doc('Task', filters={...}, order_by='timestamp desc')"
+    }
+  ],
+  "created": "2025-09-27",
+  "updated": "2025-09-27"
+}

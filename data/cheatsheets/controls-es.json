@@ -1,0 +1,11 @@
+{
+  "title": "API de Controles",
+  "language": "es",
+  "tags": ["javascript", "api", "frappe", "controls"],
+  "cheats": [
+    { "description": "Crear un control para un campo de formulario", "code": "frappe.ui.form.make_control({ parent, df })" },
+    { "description": "Ejemplo: Control de campo tipo fecha", "code": "frappe.ui.form.make_control({ parent: $wrapper.find('.my-control'), df: { label: 'Fecha de vencimiento', fieldname: 'due_date', fieldtype: 'Date' }, render_input: true })" },
+    { "description": "Ejemplo: Campo de adjunto", "code": "{ label: 'Adjunto', fieldname: 'attachment', fieldtype: 'Attach' }" },
+    { "description": "Ejemplo: Campo de autocompletar", "code": "{ label: 'Seleccionar usuario', fieldtype: 'Autocomplete', options: ['faris@erpnext.com', 'suraj@erpnext.com'] }" }
+  ]
+}

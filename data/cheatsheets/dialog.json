@@ -1,0 +1,24 @@
+{
+  "title": "API de Diálogos (Frappe)",
+  "language": "es",
+  "tags": ["dialog", "frappe", "python", "ui", "message"],
+  "items": [
+    {
+      "code": "frappe.msgprint(msg, title, raise_exception, as_table, as_list, indicator, primary_action)",
+      "description": "Mostrar un mensaje al usuario en Desk",
+      "example": "frappe.msgprint(msg='Este archivo no existe', title='Error', raise_exception=FileNotFoundError)"
+    },
+    {
+      "code": "primary_action={ 'label': _('Acción'), 'server_action': 'ruta.servidor', 'client_action': 'ruta.cliente', 'args': args }",
+      "description": "Acción primaria en el diálogo",
+      "example": "frappe.msgprint(msg='...', primary_action={...})"
+    },
+    {
+      "code": "frappe.throw(msg, exc, title)",
+      "description": "Lanza una excepción y muestra mensaje",
+      "example": "frappe.throw(title='Error', msg='Este archivo no existe')"
+    }
+  ],
+  "created": "2025-09-27",
+  "updated": "2025-09-27"
+}

@@ -1,0 +1,10 @@
+{
+  "title": "API de Logging",
+  "language": "es",
+  "tags": ["javascript", "api", "frappe", "logging"],
+  "cheats": [
+    { "description": "Establecer el nivel de log dinámicamente", "code": "frappe.utils.logger.set_log_level(level)" },
+    { "description": "Obtener instancia de logger", "code": "frappe.logger(module, with_more_info, allow_site, filter, max_size, file_count)" },
+    { "description": "Registrar información de depuración", "code": "frappe.logger('frappe.web').debug({ site: 'frappeframework.com', remote_addr: '192.148.1.7', method: 'POST' })" }
+  ]
+}

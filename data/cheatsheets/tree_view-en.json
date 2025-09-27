@@ -1,0 +1,13 @@
+{
+  "title": "Tree View API",
+  "language": "en",
+  "tags": ["javascript", "api", "frappe", "tree_view"],
+  "cheats": [
+    { "description": "Set up Tree View settings for a DocType", "code": "frappe.treeview_settings['Account'] = { breadcrumb: 'Accounting', title: 'Chart of Accounts' }" },
+    { "description": "Add filters to Tree View", "code": "filters: [{ fieldname: 'company', fieldtype: 'Select', options: 'Company 1,Company 2', label: 'Company' }]" },
+    { "description": "Set method to get tree nodes", "code": "get_tree_nodes: 'path.to.whitelisted_method.get_children'" },
+    { "description": "Set method to add tree node", "code": "add_tree_node: 'path.to.whitelisted_method.handle_add_account'" },
+    { "description": "Add fields for new node", "code": "fields: [{ fieldtype: 'Data', fieldname: 'account_name', label: 'New Account Name', reqd: true }]" },
+    { "description": "Add custom menu item", "code": "menu_items: [{ label: 'New Company', action: function() { frappe.new_doc('Company', true) } }]" }
+  ]
+}

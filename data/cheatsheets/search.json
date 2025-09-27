@@ -1,0 +1,15 @@
+{
+  "title": "Búsqueda (Frappe)",
+  "language": "es",
+  "tags": ["search", "frappe", "python", "whoosh", "index"],
+  "items": [
+    { "code": "FullTextSearch", "description": "Clase base para búsqueda de texto completo", "example": "class BlogWrapper(FullTextSearch): ..." },
+    { "code": "build()", "description": "Construye el índice de búsqueda", "example": "build()" },
+    { "code": "search(text)", "description": "Realiza una búsqueda en el índice", "example": "search('texto')" },
+    { "code": "get_items_to_index()", "description": "Obtiene los documentos a indexar", "example": "get_items_to_index()" },
+    { "code": "get_document_to_index(name)", "description": "Obtiene el documento a indexar por nombre", "example": "get_document_to_index('nombre')" },
+    { "code": "parse_result(result)", "description": "Parsea los resultados de búsqueda", "example": "parse_result(result)" }
+  ],
+  "created": "2025-09-27",
+  "updated": "2025-09-27"
+}

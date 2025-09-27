@@ -1,0 +1,14 @@
+{
+  "title": "Jinja API (Frappe)",
+  "language": "en",
+  "tags": ["jinja", "frappe", "python", "template", "render"],
+  "cheats": [
+    { "description": "Format a raw value to presentable format", "code": "frappe.format(value, df, doc)" },
+    { "description": "Format date to long format", "code": "frappe.format_date(date_string)" },
+    { "description": "Get site URL", "code": "frappe.get_url()" },
+    { "description": "Get document by name", "code": "frappe.get_doc(doctype, name)" },
+    { "description": "Get all documents of a type", "code": "frappe.get_all(doctype, filters, fields, order_by, start, page_length, pluck)" }
+  ],
+  "created": "2025-09-27",
+  "updated": "2025-09-27"
+}

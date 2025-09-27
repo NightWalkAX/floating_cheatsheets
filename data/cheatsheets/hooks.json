@@ -1,0 +1,39 @@
+{
+  "title": "Hooks (Frappe)",
+  "language": "es",
+  "tags": ["hooks", "frappe", "python", "framework", "event"],
+  "items": [
+    {
+      "code": "hooks.py",
+      "description": "Archivo donde se definen los hooks de la app",
+      "example": "test_string = 'valor'\ntest_list = ['valor']\ntest_dict = {'key': 'valor'}"
+    },
+    {
+      "code": "frappe.get_hooks('test_string')",
+      "description": "Obtiene el valor de un hook definido",
+      "example": "frappe.get_hooks('test_string') # ['valor']"
+    },
+    {
+      "code": "frappe.get_hooks('test_dict')",
+      "description": "Obtiene un diccionario de hooks",
+      "example": "frappe.get_hooks('test_dict') # {'key': ['valor']}"
+    },
+    {
+      "code": "frappe.get_hooks('test_list')",
+      "description": "Obtiene una lista de hooks",
+      "example": "frappe.get_hooks('test_list') # ['valor']"
+    },
+    {
+      "code": "Resolución de conflictos",
+      "description": "El último valor instalado tiene prioridad ('last writer wins')",
+      "example": "..."
+    },
+    {
+      "code": "app_name, app_title, app_publisher, app_description, app_version",
+      "description": "Metadatos de la app definidos automáticamente",
+      "example": "..."
+    }
+  ],
+  "created": "2025-09-27",
+  "updated": "2025-09-27"
+}

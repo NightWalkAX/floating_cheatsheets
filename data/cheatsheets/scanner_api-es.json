@@ -1,0 +1,11 @@
+{
+  "title": "API de Escáner",
+  "language": "es",
+  "tags": ["javascript", "api", "frappe", "scanner_api"],
+  "cheats": [
+    { "description": "Crear una instancia de escáner", "code": "new frappe.ui.Scanner({ container, dialog, multiple, on_scan })" },
+    { "description": "Escanear un solo código de barras", "code": "new frappe.ui.Scanner({ dialog: true, multiple: false, on_scan(data) { console.log(data.decodedText); } })" },
+    { "description": "Escanear múltiples códigos de barras", "code": "const scanner = new frappe.ui.Scanner({ dialog: true, multiple: true, on_scan(data) { handle_scanned_barcode(data.decodedText); } })" },
+    { "description": "Detener el escaneo", "code": "scanner.stop_scan();" }
+  ]
+}

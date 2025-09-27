@@ -1,0 +1,14 @@
+{
+  "title": "REST API (Frappe)",
+  "language": "en",
+  "tags": ["rest", "api", "frappe", "python", "web"],
+  "cheats": [
+    { "description": "Token Based Authentication", "code": "Authorization: token api_key:api_secret" },
+    { "description": "Password Based Authentication", "code": "body: { usr: 'username', pwd: 'password' }" },
+    { "description": "Example request with token", "code": "fetch('http://<base-url>/api/method/frappe.auth.get_logged_user', { headers: { 'Authorization': 'token api_key:api_secret' } })" },
+    { "description": "Example login with username and password", "code": "fetch('http://<base-url>/api/method/login', { method: 'POST', headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }, body: JSON.stringify({ usr: 'username', pwd: 'password' }) })" },
+    { "description": "Example login with curl", "code": "curl --cookie-jar snowcookie --request POST ..." }
+  ],
+  "created": "2025-09-27",
+  "updated": "2025-09-27"
+}

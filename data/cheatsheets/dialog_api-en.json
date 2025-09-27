@@ -1,0 +1,10 @@
+{
+  "title": "Dialog API",
+  "language": "en",
+  "tags": ["javascript", "api", "frappe", "dialog_api"],
+  "cheats": [
+    { "description": "Create a dialog window", "code": "new frappe.ui.Dialog({ title, fields, primary_action })" },
+    { "description": "Show dialog", "code": "d.show();" },
+    { "description": "Show message in modal", "code": "frappe.msgprint('Document updated successfully');" }
+  ]
+}

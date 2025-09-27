@@ -1,0 +1,15 @@
+{
+  "title": "Language Resolution (Frappe)",
+  "language": "en",
+  "tags": ["language", "frappe", "python", "settings", "localization"],
+  "cheats": [
+    { "description": "Session language variable", "code": "frappe.lang" },
+    { "description": "Highest priority: Form Dict > _lang", "code": "?lang=en" },
+    { "description": "Cookie: preferred_language (guest only)", "code": "preferred_language=en" },
+    { "description": "Request Header: Accept-Language (guest only)", "code": "Accept-Language: en" },
+    { "description": "User document > language field", "code": "user.language = 'en'" },
+    { "description": "System Settings > language field", "code": "system_settings.language = 'en'" }
+  ],
+  "created": "2025-09-27",
+  "updated": "2025-09-27"
+}

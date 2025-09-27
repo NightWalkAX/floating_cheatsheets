@@ -1,0 +1,23 @@
+{
+  "title": "Chart API",
+  "language": "en",
+  "tags": ["javascript", "api", "frappe", "chart_api"],
+  "cheats": [
+    {
+      "description": "Create a RealtimeChart instance",
+      "code": "new frappe.ui.RealtimeChart(dom_element, event_name, max_label_count, data)"
+    },
+    {
+      "description": "Initialize chart with empty data",
+      "code": "const data = { datasets: [{ name: 'Some Data', values: [] }] };"
+    },
+    {
+      "description": "Start updating chart with socket event",
+      "code": "chart.start_updating();"
+    },
+    {
+      "description": "Publish realtime data from Python",
+      "code": "frappe.publish_realtime('test_event', { label: 1, points: [10] })"
+    }
+  ]
+}

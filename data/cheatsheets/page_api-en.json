@@ -1,0 +1,11 @@
+{
+  "title": "Page API",
+  "language": "en",
+  "tags": ["javascript", "api", "frappe", "page_api"],
+  "cheats": [
+    { "description": "Create a new page", "code": "let page = frappe.ui.make_app_page({ title: 'My Page', parent: wrapper, single_column: true })" },
+    { "description": "Set page title", "code": "page.set_title('My Page')" },
+    { "description": "Set indicator label and color", "code": "page.set_indicator('Pending', 'orange')" },
+    { "description": "Set primary action button", "code": "page.set_primary_action('New', () => create_new(), 'octicon octicon-plus')" }
+  ]
+}

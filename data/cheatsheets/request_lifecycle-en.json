@@ -1,0 +1,17 @@
+{
+  "title": "Request Lifecycle (Frappe)",
+  "language": "en",
+  "tags": ["request", "lifecycle", "frappe", "python", "web"],
+  "cheats": [
+    { "description": "API requests handled by REST API handler", "code": "/api/resource" },
+    { "description": "File downloads handled by specific handlers", "code": "/files/my_file.pdf" },
+    { "description": "Request pre-processing: recorder and rate limiter", "code": "..." },
+    { "description": "Path Resolver: resolves redirects and dynamic routes", "code": "..." },
+    { "description": "Renderer Selection: picks the right renderer for the route", "code": "..." },
+    { "description": "PageRenderer(BaseRenderer): custom web page renderer class", "code": "class PageRenderer(BaseRenderer): ..." },
+    { "description": "StaticPage: serves static files from public folder", "code": "..." },
+    { "description": "TemplatePage: renders HTML or Markdown from www/", "code": "..." }
+  ],
+  "created": "2025-09-27",
+  "updated": "2025-09-27"
+}

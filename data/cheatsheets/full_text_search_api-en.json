@@ -1,0 +1,14 @@
+{
+  "title": "Full Text Search API (Frappe)",
+  "language": "en",
+  "tags": ["search", "whoosh", "frappe", "python", "full text"],
+  "cheats": [
+    { "description": "Update search index for a document by name", "code": "update_index_by_name(doc_name)" },
+    { "description": "Remove a document from the search index", "code": "remove_document_from_index(doc_name)" },
+    { "description": "Update index for a given document", "code": "update_index(document)" },
+    { "description": "Build index for all parsed documents", "code": "build_index()" },
+    { "description": "Search the current index", "code": "search(text, scope=None, limit=20)" }
+  ],
+  "created": "2025-09-27",
+  "updated": "2025-09-27"
+}

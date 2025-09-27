@@ -1,0 +1,23 @@
+{
+  "title": "API de Gráficas",
+  "language": "es",
+  "tags": ["javascript", "api", "frappe", "chart_api"],
+  "cheats": [
+    {
+      "description": "Crear una instancia de RealtimeChart",
+      "code": "new frappe.ui.RealtimeChart(dom_element, event_name, max_label_count, data)"
+    },
+    {
+      "description": "Inicializar gráfica con datos vacíos",
+      "code": "const data = { datasets: [{ name: 'Algunos Datos', values: [] }] };"
+    },
+    {
+      "description": "Comenzar a actualizar la gráfica con evento de socket",
+      "code": "chart.start_updating();"
+    },
+    {
+      "description": "Publicar datos en tiempo real desde Python",
+      "code": "frappe.publish_realtime('test_event', { label: 1, points: [10] })"
+    }
+  ]
+}

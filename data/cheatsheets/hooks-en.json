@@ -1,0 +1,15 @@
+{
+  "title": "Hooks (Frappe)",
+  "language": "en",
+  "tags": ["hooks", "frappe", "python", "framework", "event"],
+  "cheats": [
+    { "description": "File where app hooks are defined", "code": "hooks.py" },
+    { "description": "Get value of a defined hook", "code": "frappe.get_hooks('test_string')" },
+    { "description": "Get dictionary of hooks", "code": "frappe.get_hooks('test_dict')" },
+    { "description": "Get list of hooks", "code": "frappe.get_hooks('test_list')" },
+    { "description": "Conflict resolution: last writer wins", "code": "..." },
+    { "description": "App metadata: app_name, app_title, app_publisher, app_description, app_version", "code": "..." }
+  ],
+  "created": "2025-09-27",
+  "updated": "2025-09-27"
+}
