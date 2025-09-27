@@ -44,21 +44,21 @@ fi
 echo "Construyendo paquete..."
 dpkg-buildpackage -us -uc -b
 
-# Generar nombre dinámico para el paquete
-DYNAMIC_PACKAGE_NAME=$(generate_package_name)
+# Generar nombre simple para el paquete (solo versión, sin timestamp ni git hash)
+SIMPLE_PACKAGE_NAME=$(generate_simple_package_name)
 
 # Mover y renombrar el .deb al directorio actual
 ORIGINAL_DEB=$(ls ../floating-cheatsheets_*.deb)
-mv "$ORIGINAL_DEB" "./$DYNAMIC_PACKAGE_NAME"
+mv "$ORIGINAL_DEB" "./$SIMPLE_PACKAGE_NAME"
 
 echo "=== Paquete .deb creado exitosamente ==="
-echo "Archivo: ${DYNAMIC_PACKAGE_NAME}"
+echo "Archivo: ${SIMPLE_PACKAGE_NAME}"
 echo "Versión: ${PROJECT_VERSION}"
 echo "Build: ${BUILD_TIMESTAMP}"
 echo "Git hash: ${GIT_HASH}"
 echo ""
 echo "Para instalar:"
-echo "sudo dpkg -i ${DYNAMIC_PACKAGE_NAME}"
+echo "sudo dpkg -i ${SIMPLE_PACKAGE_NAME}"
 echo ""
 echo "Para instalar dependencias si faltan:"
 echo "sudo apt-get install -f"

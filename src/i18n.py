@@ -1,6 +1,6 @@
 """
 Internationalization (i18n) Module
-Sistema de traducciones para la interfaz de usuario
+Translation system for the user interface
 """
 
 import json
@@ -9,7 +9,7 @@ from typing import Dict, Optional
 
 
 class I18n:
-    """Clase para manejar las traducciones de la interfaz de usuario"""
+    """Class to handle user interface translations"""
 
     def __init__(self, languages_file: Optional[str] = None,
                  default_language: Optional[str] = None):
@@ -20,14 +20,14 @@ class I18n:
         self.current_language = None
         self.default_language = default_language or 'es'
 
-        # Callbacks para actualización dinámica de UI
+        # Callbacks for dynamic UI updates
         self.update_callbacks = []
 
         self._load_languages_config()
         self.set_language(self.default_language)
 
     def _load_languages_config(self) -> None:
-        """Cargar configuración de idiomas desde archivo JSON"""
+        """Load languages configuration from JSON file"""
         try:
             with open(self.languages_file, 'r', encoding='utf-8') as f:
                 self.languages_config = json.load(f)
@@ -37,7 +37,7 @@ class I18n:
         except (FileNotFoundError, json.JSONDecodeError) as e:
             print(f"Error loading languages config from "
                   f"{self.languages_file}: {e}")
-            # Configuración por defecto si falla la carga
+            # Default configuration if loading fails
             self.languages_config = {
                 'default_language': 'es',
                 'supported_languages': {
@@ -55,13 +55,13 @@ class I18n:
             }
 
     def set_language(self, language_code: str) -> bool:
-        """Cambiar el idioma actual"""
+        """Change the current language"""
         if not self.is_language_supported(language_code):
             return False
 
         self.current_language = language_code
 
-        # Notificar a todos los callbacks registrados
+        # Notify all registered callbacks
         for callback in self.update_callbacks:
             try:
                 callback()
@@ -71,16 +71,16 @@ class I18n:
         return True
 
     def get_current_language(self) -> str:
-        """Obtener el idioma actual"""
+        """Get the current language"""
         return self.current_language or self.default_language
 
     def is_language_supported(self, language_code: str) -> bool:
-        """Verificar si un idioma es soportado"""
+        """Check if a language is supported"""
         supported_langs = self.languages_config.get('supported_languages', {})
         return language_code in supported_langs
 
     def get_supported_languages(self) -> Dict[str, str]:
-        """Obtener lista de idiomas soportados"""
+        """Get list of supported languages"""
         supported_langs = self.languages_config.get('supported_languages', {})
         return {
             code: info['name']
@@ -88,36 +88,36 @@ class I18n:
         }
 
     def get_language_info(self, language_code: str) -> Dict:
-        """Obtener información completa de un idioma"""
+        """Get complete information for a language"""
         supported_langs = self.languages_config.get('supported_languages', {})
         return supported_langs.get(language_code, {})
 
     def get_text(self, key: str, language: Optional[str] = None,
                  fallback: Optional[str] = None) -> str:
         """
-        Obtener texto traducido para una clave específica
+        Get translated text for a specific key
 
         Args:
-            key: Clave del texto a traducir
-            language: Idioma específico (opcional, usa el idioma actual
-                      por defecto)
-            fallback: Texto de respaldo si no se encuentra la traducción
+            key: Key of text to translate
+            language: Specific language (optional, uses current language
+                      by default)
+            fallback: Fallback text if translation not found
 
         Returns:
-            Texto traducido o clave si no se encuentra
+            Translated text or key if not found
         """
         if language is None:
             language = self.get_current_language()
 
-        # Obtener configuración del idioma
+        # Get language configuration
         supported_langs = self.languages_config.get('supported_languages', {})
         lang_config = supported_langs.get(language, {})
         interface_texts = lang_config.get('interface', {})
 
-        # Buscar el texto
+        # Search for the text
         text = interface_texts.get(key)
 
-        # Si no se encuentra, intentar con el idioma por defecto
+        # If not found, try with default language
         if text is None and language != self.default_language:
             default_lang_config = supported_langs.get(
                 self.default_language, {})
@@ -133,40 +133,40 @@ class I18n:
     def format_text(self, key: str, *args, language: Optional[str] = None,
                     fallback: Optional[str] = None) -> str:
         """
-        Obtener texto traducido y formatearlo con argumentos
+        Get translated text and format it with arguments
 
         Args:
-            key: Clave del texto a traducir
-            *args: Argumentos para formatear el texto
-            language: Idioma específico (opcional)
-            fallback: Texto de respaldo si no se encuentra la traducción
+            key: Key of text to translate
+            *args: Arguments to format the text
+            language: Specific language (optional)
+            fallback: Fallback text if translation not found
 
         Returns:
-            Texto traducido y formateado
+            Translated and formatted text
         """
         text = self.get_text(key, language, fallback)
 
         try:
             return text.format(*args)
         except (IndexError, KeyError, ValueError):
-            # Si hay error de formato, devolver el texto sin formatear
+            # If there's a format error, return unformatted text
             return text
 
     def register_update_callback(self, callback):
-        """Registrar callback para actualización dinámica de UI"""
+        """Register callback for dynamic UI updates"""
         if callback not in self.update_callbacks:
             self.update_callbacks.append(callback)
 
     def unregister_update_callback(self, callback):
-        """Desregistrar callback de actualización"""
+        """Unregister update callback"""
         if callback in self.update_callbacks:
             self.update_callbacks.remove(callback)
 
     def reload_config(self) -> bool:
-        """Recargar configuración de idiomas desde archivo"""
+        """Reload languages configuration from file"""
         try:
             self._load_languages_config()
-            # Verificar que el idioma actual sigue siendo válido
+            # Check that current language is still valid
             if (self.current_language and
                     not self.is_language_supported(self.current_language)):
                 self.set_language(self.default_language)
@@ -182,7 +182,7 @@ _i18n_instance = None
 
 def get_i18n(languages_file: Optional[str] = None,
              default_language: Optional[str] = None) -> I18n:
-    """Obtener la instancia global de I18n (singleton)"""
+    """Get the global I18n instance (singleton)"""
     global _i18n_instance
 
     if _i18n_instance is None:
@@ -194,12 +194,12 @@ def get_i18n(languages_file: Optional[str] = None,
 def _(key: str, *args, language: Optional[str] = None,
       fallback: Optional[str] = None) -> str:
     """
-    Función de conveniencia para obtener textos traducidos
+    Convenience function to get translated texts
 
     Usage:
-        _('save')  # Obtiene el texto 'save' en el idioma actual
-        _('confirm_delete_tag', 'python')  # Formatea con argumentos
-        _('title', language='en')  # Fuerza idioma específico
+        _('save')  # Gets 'save' text in current language
+        _('confirm_delete_tag', 'python')  # Formats with arguments
+        _('title', language='en')  # Forces specific language
     """
     i18n = get_i18n()
 
@@ -210,27 +210,27 @@ def _(key: str, *args, language: Optional[str] = None,
         return i18n.get_text(key, language=language, fallback=fallback)
 
 
-# Ejemplo de uso
+# Usage example
 if __name__ == "__main__":
     # Inicializar i18n
     i18n = get_i18n()
 
-    # Probar traducciones
-    print("Idiomas soportados:", i18n.get_supported_languages())
+    # Test translations
+    print("Supported languages:", i18n.get_supported_languages())
 
-    # Probar en español
+    # Test in Spanish
     i18n.set_language('es')
     print(f"ES - Guardar: {_('save')}")
     print(f"ES - Título: {_('title')}")
     print(f"ES - Error formateado: {_('confirm_delete_tag', 'python')}")
 
-    # Probar en inglés
+    # Test in English
     i18n.set_language('en')
     print(f"EN - Save: {_('save')}")
     print(f"EN - Title: {_('title')}")
     print(f"EN - Formatted error: {_('confirm_delete_tag', 'python')}")
 
-    # Probar en francés
+    # Test in French
     i18n.set_language('fr')
     print(f"FR - Enregistrer: {_('save')}")
     print(f"FR - Titre: {_('title')}")
