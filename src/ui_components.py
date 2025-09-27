@@ -286,6 +286,13 @@ class DialMenu:
         context_menu = tk.Menu(self.menu_window, tearoff=0)
 
     # Add options to the context menu
+        if 'buscar' in self.context_menu_callbacks:
+            search_label = _("search_cheatsheets", fallback="🔍 Buscar")
+            context_menu.add_command(
+                label=search_label,
+                command=self.context_menu_callbacks['buscar'])
+            context_menu.add_separator()
+
         if 'nueva' in self.context_menu_callbacks:
             context_menu.add_command(
                 label=_("new_cheatsheet"),
@@ -683,6 +690,7 @@ class TagManager:
         self.parent = parent
         self.cheatsheet_manager = cheatsheet_manager
         self.on_change_callback = on_change_callback
+        self.current_filtered_results = []  # Store search results
 
         self.window = tk.Toplevel(parent)
         self.window.title(_("tag_manager_title"))
@@ -790,9 +798,34 @@ class TagManager:
         # Force an immediate update to ensure correct initial state
         self.window.after(100, self._force_update_language_combobox)
 
+        # Search frame
+        search_frame = ttk.Frame(self.cheatsheets_frame)
+        search_frame.pack(fill=tk.X, pady=(5, 5))
+        
+        # Import here to avoid circular import
+        from search_components import QuickSearchEntry
+        
+        # Add quick search entry
+        self.quick_search = QuickSearchEntry(
+            search_frame, 
+            self.cheatsheet_manager,
+            on_results_callback=self.on_search_results,
+            placeholder=_("search_cheatsheets_placeholder", fallback="Buscar cheatsheets..."),
+            width=40
+        )
+        self.quick_search.get_frame().pack(side=tk.LEFT, fill=tk.X, expand=True)
+        
+        # Advanced search button
+        advanced_search_btn = ttk.Button(
+            search_frame, 
+            text=_("advanced_search", fallback="Búsqueda Avanzada"),
+            command=self.show_advanced_search
+        )
+        advanced_search_btn.pack(side=tk.RIGHT, padx=(5, 0))
+
         # Lista de cheatsheets
         ttk.Label(self.cheatsheets_frame, text=_("existing_cheatsheets")).pack(
-            anchor=tk.W, pady=(0, 5))
+            anchor=tk.W, pady=(5, 5))
 
         # Frame con scrollbar para la lista
         list_frame = ttk.Frame(self.cheatsheets_frame)
@@ -1159,6 +1192,75 @@ class TagManager:
         selected_sheet = cheatsheets[selection[0]]
 
         CheatSheetViewer(self.window, selected_sheet)
+
+    def on_search_results(self, results, query):
+        """Handle search results from quick search"""
+        # Clear current listbox
+        self.cheatsheets_listbox.delete(0, tk.END)
+        
+        # Add search results to listbox
+        for sheet in results:
+            title = sheet.get('title', 'Sin título')
+            language = sheet.get('language', 'es')
+            tags = ', '.join(sheet.get('tags', []))
+            items_count = len(sheet.get('items', []))
+            
+            # Format display text
+            display_text = f"{title} ({language}) - {items_count} items"
+            if tags:
+                display_text += f" [{tags}]"
+            
+            self.cheatsheets_listbox.insert(tk.END, display_text)
+        
+        # Store current results for access by other methods
+        self.current_filtered_results = results
+        
+        # Update label to show search info
+        if query:
+            info_text = f"Resultados de búsqueda para '{query}': {len(results)} encontrados"
+        else:
+            info_text = f"Mostrando todos los cheatsheets: {len(results)}"
+        
+        # Find and update the label (this could be improved with a dedicated label)
+        for child in self.cheatsheets_frame.winfo_children():
+            if isinstance(child, ttk.Label) and hasattr(child, 'cget'):
+                try:
+                    current_text = child.cget('text')
+                    if 'cheatsheets' in current_text.lower() or 'resultados' in current_text.lower():
+                        child.config(text=info_text)
+                        break
+                except Exception:
+                    pass
+
+    def show_advanced_search(self):
+        """Show advanced search dialog"""
+        from search_components import show_search_dialog
+        
+        def on_select(cheatsheet_data):
+            # Refresh the list to show all results and highlight the selected one
+            self.refresh_cheatsheets()
+            
+            # Try to select the chosen cheatsheet in the listbox
+            filename = cheatsheet_data.get('filename')
+            if filename:
+                all_sheets = self.cheatsheet_manager.get_all_cheatsheets()
+                for i, sheet in enumerate(all_sheets):
+                    if sheet.get('filename') == filename:
+                        self.cheatsheets_listbox.selection_clear(0, tk.END)
+                        self.cheatsheets_listbox.selection_set(i)
+                        self.cheatsheets_listbox.see(i)
+                        break
+        
+        # Get current language from combobox
+        current_lang = self.language_var.get() if hasattr(self, 'language_var') else 'es'
+        
+        show_search_dialog(
+            parent=self.window,
+            cheatsheet_manager=self.cheatsheet_manager,
+            on_select_callback=on_select,
+            current_language=current_lang,
+            current_tag="all"
+        )
 
     def _initialize_correct_language(self):
         """Initialize TagManager with correct language from app"""

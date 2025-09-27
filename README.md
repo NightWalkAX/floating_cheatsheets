@@ -8,7 +8,9 @@ Un widget flotante circular para acceso rápido a cheatsheets, con inicio autom�
 - 📊 **Menú dial dinámico** con paginación automática
 - 🏷️ **Organización por tags** para categorizar cheatsheets
 - 🌍 **Soporte multiidioma** - Español, Inglés, Francés y Portugués
-- 🔍 **Filtrado por idioma** - Buscar cheatsheets por idioma específico
+- 🔍 **Sistema de búsqueda avanzada** - Buscar por texto, tags e idiomas
+- 🔎 **Búsqueda en tiempo real** - Resultados instantáneos mientras escribes
+- 🎯 **Filtros combinados** - Filtrado simultáneo por idioma y etiquetas
 - 🎨 **Interfaz localizada** - UI traduce automáticamente
 - ✏️ **Editor integrado** con formato específico
 - 💾 **Persistencia** - recuerda posición y configuración
@@ -19,13 +21,17 @@ Un widget flotante circular para acceso rápido a cheatsheets, con inicio autom�
 
 - **Click izquierdo**: Abrir/cerrar menú dial
 - **Arrastrar**: Mover widget
-- **Click derecho**: Menú contextual (ajustar tamaño, salir)
+- **Click derecho**: Menú contextual con opciones:
+  - `🔍 Buscar CheatSheets`: Abrir diálogo de búsqueda avanzada
+  - `🌍 Idioma`: Cambiar idioma de la aplicación
+  - `Salir`: Cerrar aplicación
 - **Menú dial**: 
   - Botones circulares para cada cheatsheet
   - `+ Nueva`: Crear cheatsheet
   - `🏷️ Tags`: Filtrar por categoría
   - `🌍 Idioma`: Filtrar por idioma (ES/EN/FR/PT)
   - `◀ Ant` / `Sig ▶`: Navegación entre páginas
+  - **Click derecho en centro**: Menú con búsqueda, tags y gestión
 
 ## 📄 Formato de CheatSheet
 
@@ -46,7 +52,33 @@ find . -name - Buscar archivos por nombre
   find . -name "*.py"
 ```
 
-## 🚀 Instalación
+## � Sistema de Búsqueda
+
+### Acceso a la Búsqueda
+
+1. **Desde Widget Principal**: Click derecho → "🔍 Buscar CheatSheets"
+2. **Desde TagManager**: Pestaña CheatSheets → Barra de búsqueda o "Búsqueda Avanzada"
+3. **Desde Menú Dial**: Click derecho en el centro → "🔍 Buscar"
+
+### Funcionalidades de Búsqueda
+
+- **🔤 Búsqueda de Texto**: Busca en títulos, descripciones y contenido de items
+- **🏷️ Filtrado por Tags**: Selecciona etiquetas específicas o "Todas las etiquetas"
+- **🌍 Filtrado por Idioma**: Busca en idioma específico o "Todos los idiomas"
+- **⚡ Búsqueda en Tiempo Real**: Resultados se actualizan mientras escribes
+- **📊 Vista Detallada**: Muestra título, tags, idioma y número de items
+- **🎯 Combinación de Filtros**: Usa texto + tags + idioma simultáneamente
+
+### Ejemplo de Uso
+
+1. Abrir búsqueda avanzada desde click derecho
+2. Escribir "git" en el campo de búsqueda
+3. Seleccionar tag "version-control" 
+4. Seleccionar idioma "Español (es)"
+5. Ver resultados filtrados en tiempo real
+6. Doble-click en resultado para abrir cheatsheet
+
+## �🚀 Instalación
 
 ### 📦 Descarga desde GitHub Releases
 
@@ -54,15 +86,15 @@ find . -name - Buscar archivos por nombre
 
 1. Ve a [Releases](https://github.com/your-username/floating_cheatsheets/releases/latest)
 2. Descarga el archivo apropiado:
-   - **Linux**: `floating-cheatsheets_1.1.0_all.deb`
-   - **Windows**: `floating-cheatsheets-1.1.0-setup.exe`
+   - **Linux**: `floating-cheatsheets_1.2.0_all.deb`
+   - **Windows**: `floating-cheatsheets-1.2.0-setup.exe`
 
 ### 🐧 Linux (Debian/Ubuntu)
 
 ```bash
 # Descargar e instalar el paquete .deb
-wget https://github.com/your-username/floating_cheatsheets/releases/latest/download/floating-cheatsheets_1.1.0_all.deb
-sudo dpkg -i floating-cheatsheets_1.1.0_all.deb
+wget https://github.com/your-username/floating_cheatsheets/releases/latest/download/floating-cheatsheets_1.2.0_all.deb
+sudo dpkg -i floating-cheatsheets_1.2.0_all.deb
 
 # Si hay dependencias faltantes:
 sudo apt-get install -f
@@ -70,7 +102,7 @@ sudo apt-get install -f
 
 ### 🪟 Windows
 
-1. Descarga `floating-cheatsheets-1.1.0-setup.exe`
+1. Descarga `floating-cheatsheets-1.2.0-setup.exe`
 2. Ejecuta el instalador y sigue las instrucciones
 3. El programa se instalará y estará disponible en el menú de inicio
 
