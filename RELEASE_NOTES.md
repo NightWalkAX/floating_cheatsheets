@@ -1,5 +1,43 @@
 # Release Notes
 
+## v1.2.0 - Sistema de Búsqueda Avanzada (2025-09-27)
+
+### 🔍 Nuevas Características Principales
+
+- **Sistema de Búsqueda Completo**: Nuevo módulo `search_components.py` con funcionalidad avanzada
+- **Búsqueda desde Menú Contextual**: Opción "🔍 Buscar CheatSheets" en click derecho del widget
+- **Búsqueda en TagManager**: Integración de búsqueda rápida y avanzada en gestión de cheatsheets
+- **Filtros Avanzados**: Búsqueda por texto, etiquetas y lenguajes simultáneamente
+- **Búsqueda en Tiempo Real**: Actualización instantánea de resultados mientras escribes
+
+### 🛠️ Componentes Nuevos
+
+- **SearchDialog**: Diálogo completo de búsqueda con filtros y resultados detallados
+- **QuickSearchEntry**: Componente embebible para búsqueda rápida
+- **Menús Contextuales Mejorados**: Integración de búsqueda en DialMenu
+
+### 📊 Funcionalidades de Búsqueda
+
+- **Búsqueda de Texto Libre**: Busca en títulos, descripciones y contenido
+- **Filtrado por Etiquetas**: Selección múltiple de tags para filtrar resultados  
+- **Filtrado por Idioma**: Búsqueda específica por idioma o en todos los idiomas
+- **Resultados Detallados**: Vista completa con información de cada cheatsheet
+- **Navegación Intuitiva**: Doble-click para seleccionar, botones de acción claros
+
+### 🎨 Mejoras de Interfaz
+
+- **Traducciones Completas**: Nuevas claves de traducción para funcionalidad de búsqueda
+- **Integración Seamless**: Búsqueda integrada naturalmente en flujos de trabajo existentes
+- **Feedback Visual**: Contadores de resultados y mensajes informativos
+- **Búsqueda Contextual**: Mantiene filtros actuales como punto de partida
+
+### 🔧 Mejoras Técnicas
+
+- **Arquitectura Modular**: Código de búsqueda separado en módulo independiente
+- **APIs Extendidas**: CheatSheetManager con nuevos métodos de búsqueda
+- **Callbacks Configurables**: Sistema flexible para manejo de resultados
+- **Compatibilidad Completa**: Funciona con sistema multiidioma existente
+
 ## v1.1.0 - Soporte Multiidioma (2025-09-27)
 
 ### 🌍 Nuevas Características Principales
