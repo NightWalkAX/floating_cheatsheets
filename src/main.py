@@ -11,6 +11,7 @@ import math
 from pathlib import Path
 from cheatsheet_manager import CheatSheetManager
 from ui_components import DialMenu, CheatSheetEditor, CheatSheetViewer, TagManager, get_tag_color
+from i18n import get_i18n, _
 
 
 class FloatingWidget:
@@ -23,7 +24,11 @@ class FloatingWidget:
         self.menu_open = False
         self.current_page = 0
         self.current_tag = "all"
+        self.current_language = "es"  # Idioma por defecto
 
+        # Inicializar sistema de traducción
+        self.i18n = get_i18n()
+        
         # Inicializar manager y dial menu (después de load_config)
         self.cheatsheet_manager = None
         self.dial_menu = None
@@ -32,10 +37,17 @@ class FloatingWidget:
 
         # Inicializar manager después de cargar config
         self.cheatsheet_manager = CheatSheetManager(self.config['data_path'])
+        
+        # Cargar idioma de la configuración y configurar i18n
+        self.current_language = self.config.get('current_language', 'es')
+        self.i18n.set_language(self.current_language)
+        
+        # Registrar callback para actualización dinámica de UI
+        self.i18n.register_update_callback(self.update_ui_texts)
 
     def setup_window(self):
         """Configurar la ventana principal"""
-        self.root.title("CheatSheets")
+        self.root.title(_("window_title"))
         self.root.overrideredirect(True)  # Sin bordes de ventana
         self.root.attributes('-topmost', True)  # Siempre encima
         self.root.attributes('-alpha', 0.95)  # Transparencia
@@ -94,6 +106,7 @@ class FloatingWidget:
         self.config['window']['x'] = self.root.winfo_x()
         self.config['window']['y'] = self.root.winfo_y()
         self.config['window']['size'] = self.size
+        self.config['current_language'] = self.current_language
 
         config_path = self.user_data_path / 'config.json'
         with open(config_path, 'w') as f:
@@ -260,21 +273,62 @@ class FloatingWidget:
     def show_context_menu(self, event):
         """Mostrar menú contextual (click derecho)"""
         context_menu = tk.Menu(self.root, tearoff=0)
-        context_menu.add_command(label="Salir", command=self.root.quit)
+        
+        # Submenú de idiomas
+        language_menu = tk.Menu(context_menu, tearoff=0)
+        context_menu.add_cascade(label=_("language"), menu=language_menu)
+        
+        # Agregar idiomas disponibles
+        if self.cheatsheet_manager:
+            languages = self.cheatsheet_manager.get_supported_languages()
+            language_var = tk.StringVar(value=self.current_language)
+            
+            for code, name in languages.items():
+                flag = self.cheatsheet_manager.get_language_info(code).get('flag', '')
+                label = f"{flag} {name}"
+                language_menu.add_radiobutton(
+                    label=label,
+                    variable=language_var,
+                    value=code,
+                    command=lambda lang=code: self.change_language(lang)
+                )
+        
+        context_menu.add_separator()
+        context_menu.add_command(label=_("exit"), command=self.root.quit)
 
         try:
             context_menu.tk_popup(event.x_root, event.y_root)
         finally:
             context_menu.grab_release()
 
+    def change_language(self, language_code):
+        """Cambiar el idioma actual de la aplicación"""
+        if self.current_language != language_code:
+            self.current_language = language_code
+            self.i18n.set_language(language_code)
+            self.save_config()
+            
+            # Actualizar menú si está abierto
+            if self.menu_open:
+                self.hide_dial_menu()
+                self.show_dial_menu()
+
+    def update_ui_texts(self):
+        """Actualizar todos los textos de la UI cuando cambia el idioma"""
+        # Actualizar título de la ventana
+        self.root.title(_("window_title"))
+        
+        # Si hay ventanas de tag o configuración abiertas,
+        # se actualizarán automáticamente en la próxima apertura
+
     def resize_widget(self):
         """Ventana para ajustar el tamaño del widget"""
         resize_window = tk.Toplevel(self.root)
-        resize_window.title("Ajustar Tamaño")
+        resize_window.title(_("adjust_size_title"))
         resize_window.geometry("200x100")
         resize_window.attributes('-topmost', True)
 
-        tk.Label(resize_window, text="Tamaño:").pack(pady=5)
+        tk.Label(resize_window, text=_("size")).pack(pady=5)
 
         size_var = tk.IntVar(value=self.size)
         size_scale = tk.Scale(
@@ -293,7 +347,8 @@ class FloatingWidget:
             self.save_config()
             resize_window.destroy()
 
-        tk.Button(resize_window, text="Aplicar", command=apply_size).pack(pady=5)
+        tk.Button(resize_window, text=_("apply"),
+                  command=apply_size).pack(pady=5)
 
     def redraw_widget(self):
         """Redibujar el widget con el nuevo tamaño"""
@@ -354,10 +409,16 @@ class FloatingWidget:
 
             print(f"DEBUG: Created dial menu at ({center_x}, {center_y}) with radius {radius}")
 
-        # Obtener cheatsheets según tag actual
+        # Obtener cheatsheets según tag e idioma actual
         try:
-            cheatsheets = self.cheatsheet_manager.get_cheatsheets_by_tag(self.current_tag)
-            print(f"DEBUG: Found {len(cheatsheets)} cheatsheets for tag '{self.current_tag}'")
+            if self.current_tag == "all":
+                # Obtener todas las cheatsheets del idioma actual
+                cheatsheets = self.cheatsheet_manager.get_cheatsheets_by_language(self.current_language)
+            else:
+                # Obtener cheatsheets por tag e idioma
+                cheatsheets = self.cheatsheet_manager.get_cheatsheets_by_tag_and_language(
+                    self.current_tag, self.current_language)
+            print(f"DEBUG: Found {len(cheatsheets)} cheatsheets for tag '{self.current_tag}' in language '{self.current_language}'")
         except Exception as e:
             print(f"ERROR: Failed to get cheatsheets: {e}")
             cheatsheets = []
@@ -391,7 +452,7 @@ class FloatingWidget:
             # Botón anterior (si no estamos en la primera página)
             if self.current_page > 0:
                 self.dial_menu.add_item(
-                    text="◀ Anterior",
+                    text=f"◀ {_('previous')}",
                     callback=self.previous_page,
                     color="#666666"
                 )
@@ -399,7 +460,7 @@ class FloatingWidget:
             # Botón siguiente (si no estamos en la última página)
             if self.current_page < total_pages - 1:
                 self.dial_menu.add_item(
-                    text="Siguiente ▶",
+                    text=f"{_('next')} ▶",
                     callback=self.next_page,
                     color="#666666"
                 )
@@ -425,7 +486,13 @@ class FloatingWidget:
 
     def next_page(self):
         """Ir a página siguiente"""
-        cheatsheets = self.cheatsheet_manager.get_cheatsheets_by_tag(self.current_tag)
+        # Obtener cheatsheets filtradas por idioma
+        if self.current_tag == "all":
+            cheatsheets = self.cheatsheet_manager.get_cheatsheets_by_language(self.current_language)
+        else:
+            cheatsheets = self.cheatsheet_manager.get_cheatsheets_by_tag_and_language(
+                self.current_tag, self.current_language)
+        
         total_pages = max(1, (len(cheatsheets) + 2) // 3)  # 3 items per page
 
         if self.current_page < total_pages - 1:
@@ -449,7 +516,10 @@ class FloatingWidget:
 
         def on_save(title, tags, items):
             try:
-                self.cheatsheet_manager.create_cheatsheet(title, tags, items)
+                # Usar el idioma actual de la aplicación
+                current_language = getattr(self, 'current_language', 'es')
+                self.cheatsheet_manager.create_cheatsheet(
+                    title, tags, items, current_language)
                 # Refresh menu if it's open
                 if self.menu_open:
                     self.hide_dial_menu()
@@ -468,19 +538,22 @@ class FloatingWidget:
 
         # Crear ventana simple para seleccionar tag
         tag_window = tk.Toplevel(self.root)
-        tag_window.title("Seleccionar Tag")
+        tag_window.title(_("select_tag_title"))
         tag_window.geometry("200x300")
         tag_window.attributes('-topmost', True)
 
-        ttk.Label(tag_window, text="Filtrar por tag:").pack(pady=10)
+        ttk.Label(tag_window, text=_("filter_by_tag")).pack(pady=10)
 
         # Lista de tags
-        tags = ["all"] + self.cheatsheet_manager.get_all_tags()
+        if self.cheatsheet_manager:
+            tags = ["all"] + self.cheatsheet_manager.get_all_tags()
+        else:
+            tags = ["all"]
 
         for tag in tags:
             btn = ttk.Button(
                 tag_window,
-                text=tag.title() if tag != "all" else "Todos",
+                text=tag.title() if tag != "all" else _("all"),
                 command=lambda t=tag: self.select_tag(t, tag_window)
             )
             btn.pack(fill=tk.X, padx=10, pady=2)

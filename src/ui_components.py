@@ -7,6 +7,7 @@ import tkinter as tk
 from tkinter import ttk, messagebox, scrolledtext, simpledialog
 import math
 from typing import List, Dict, Callable
+from i18n import get_i18n, _
 
 
 class DialMenu:
@@ -286,16 +287,19 @@ class DialMenu:
 
         # Agregar opciones del menú contextual
         if 'nueva' in self.context_menu_callbacks:
-            context_menu.add_command(label="Nueva CheatSheet", 
-                                   command=self.context_menu_callbacks['nueva'])
+            context_menu.add_command(
+                label=_("new_cheatsheet"),
+                command=self.context_menu_callbacks['nueva'])
 
         if 'tags' in self.context_menu_callbacks:
-            context_menu.add_command(label="Seleccionar Tags", 
-                                   command=self.context_menu_callbacks['tags'])
+            context_menu.add_command(
+                label=_("select_tag_title"),
+                command=self.context_menu_callbacks['tags'])
 
         if 'gestion' in self.context_menu_callbacks:
-            context_menu.add_command(label="Gestión", 
-                                   command=self.context_menu_callbacks['gestion'])
+            context_menu.add_command(
+                label=_("manage_tags"),
+                command=self.context_menu_callbacks['gestion'])
 
         try:
             context_menu.tk_popup(event.x_root, event.y_root)
@@ -312,7 +316,7 @@ class CheatSheetEditor:
         self.on_save_callback = on_save_callback
 
         self.window = tk.Toplevel(parent)
-        self.window.title("Editor de CheatSheet")
+        self.window.title(_("cheatsheet_editor_title"))
         self.window.geometry("600x500")
         self.window.attributes('-topmost', True)
 
@@ -330,13 +334,17 @@ class CheatSheetEditor:
         main_frame.grid(row=0, column=0, sticky=(tk.W, tk.E, tk.N, tk.S))
 
         # Título
-        ttk.Label(main_frame, text="Título:").grid(row=0, column=0, sticky=tk.W, pady=(0, 5))
+        ttk.Label(main_frame, text=_("title") + ":").grid(
+            row=0, column=0, sticky=tk.W, pady=(0, 5))
         self.title_var = tk.StringVar()
-        self.title_entry = ttk.Entry(main_frame, textvariable=self.title_var, width=50)
-        self.title_entry.grid(row=1, column=0, columnspan=2, sticky=(tk.W, tk.E), pady=(0, 10))
+        self.title_entry = ttk.Entry(main_frame, textvariable=self.title_var,
+                                     width=50)
+        self.title_entry.grid(row=1, column=0, columnspan=2,
+                              sticky=(tk.W, tk.E), pady=(0, 10))
 
         # Tags
-        ttk.Label(main_frame, text="Tags:").grid(row=2, column=0, sticky=tk.W, pady=(0, 5))
+        ttk.Label(main_frame, text=_("tags") + ":").grid(
+            row=2, column=0, sticky=tk.W, pady=(0, 5))
 
         # Frame para tags dinámicos
         tags_container = ttk.Frame(main_frame)
@@ -360,48 +368,50 @@ class CheatSheetEditor:
         self.tags_combobox.pack(side=tk.LEFT, padx=(0, 5))
 
         # Botón para agregar tag
-        self.add_tag_button = ttk.Button(selector_frame, text="Agregar", 
-                                        command=self.add_selected_tag)
+        self.add_tag_button = ttk.Button(selector_frame, text=_("add"),
+                                         command=self.add_selected_tag)
         self.add_tag_button.pack(side=tk.LEFT, padx=(0, 5))
 
         # Entry para crear nuevo tag
         self.new_tag_var = tk.StringVar()
-        self.new_tag_entry = ttk.Entry(selector_frame, textvariable=self.new_tag_var, 
-                                      width=15, font=("Arial", 9))
+        self.new_tag_entry = ttk.Entry(selector_frame,
+                                       textvariable=self.new_tag_var,
+                                       width=15, font=("Arial", 9))
         self.new_tag_entry.pack(side=tk.LEFT, padx=(0, 5))
 
         # Botón para crear y agregar nuevo tag
-        ttk.Button(selector_frame, text="Crear", command=self.create_and_add_tag).pack(side=tk.LEFT)
+        ttk.Button(selector_frame, text=_("create_and_add"),
+                   command=self.create_and_add_tag).pack(side=tk.LEFT)
 
         # Inicializar tags disponibles
         self.update_available_tags()
 
         # Items
-        ttk.Label(main_frame, text="Items:").grid(row=4, column=0, sticky=tk.W, pady=(0, 5))
+        ttk.Label(main_frame, text=_("items") + ":").grid(
+            row=4, column=0, sticky=tk.W, pady=(0, 5))
 
         # Frame para items con scrollbar
         items_frame = ttk.Frame(main_frame)
-        items_frame.grid(row=5, column=0, columnspan=2, sticky=(tk.W, tk.E, tk.N, tk.S), pady=(0, 10))
+        items_frame.grid(row=5, column=0, columnspan=2,
+                         sticky=(tk.W, tk.E, tk.N, tk.S), pady=(0, 10))
 
-        self.items_text = scrolledtext.ScrolledText(items_frame, height=15, width=70)
+        self.items_text = scrolledtext.ScrolledText(items_frame, height=15,
+                                                    width=70)
         self.items_text.pack(fill=tk.BOTH, expand=True)
 
         # Instrucciones
-        instructions = (
-            "Formato por item:\n"
-            "código/objeto - descripción\n"
-            "  ejemplo\n"
-            "\n"
-            "Separar items con una línea vacía"
-        )
-        ttk.Label(main_frame, text=instructions, foreground="gray").grid(row=6, column=0, columnspan=2, sticky=tk.W, pady=(0, 10))
+        instructions = _("format_instructions")
+        ttk.Label(main_frame, text=instructions, foreground="gray").grid(
+            row=6, column=0, columnspan=2, sticky=tk.W, pady=(0, 10))
 
         # Botones
         button_frame = ttk.Frame(main_frame)
         button_frame.grid(row=7, column=0, columnspan=2, pady=(10, 0))
 
-        ttk.Button(button_frame, text="Guardar", command=self.save).pack(side=tk.LEFT, padx=(0, 5))
-        ttk.Button(button_frame, text="Cancelar", command=self.window.destroy).pack(side=tk.LEFT)
+        ttk.Button(button_frame, text=_("save"), command=self.save).pack(
+            side=tk.LEFT, padx=(0, 5))
+        ttk.Button(button_frame, text=_("cancel"),
+                   command=self.window.destroy).pack(side=tk.LEFT)
 
         # Configurar grid weights
         self.window.columnconfigure(0, weight=1)
@@ -465,6 +475,8 @@ class CheatSheetEditor:
             print(f"Error updating tags: {e}")
             self.tags_combobox['values'] = []
             self.available_tags_var.set("")
+
+
 
     def add_selected_tag(self):
         """Agregar el tag seleccionado del combobox"""
@@ -586,7 +598,8 @@ class CheatSheetViewer:
         self.cheatsheet_data = cheatsheet_data
 
         self.window = tk.Toplevel(parent)
-        self.window.title(f"CheatSheet: {cheatsheet_data.get('title', 'Sin título')}")
+        title = cheatsheet_data.get('title', _('cheatsheet_viewer_title'))
+        self.window.title(f"{_('cheatsheet_viewer_title')}: {title}")
         self.window.geometry("500x400")
         self.window.attributes('-topmost', True)
 
@@ -618,7 +631,8 @@ class CheatSheetViewer:
         self.content_text.pack(fill=tk.BOTH, expand=True, pady=(0, 10))
 
         # Botón cerrar
-        ttk.Button(main_frame, text="Cerrar", command=self.window.destroy).pack()
+        ttk.Button(main_frame, text=_("close"),
+                   command=self.window.destroy).pack()
 
     def load_content(self):
         """Cargar el contenido de la cheatsheet"""
@@ -671,7 +685,7 @@ class TagManager:
         self.on_change_callback = on_change_callback
 
         self.window = tk.Toplevel(parent)
-        self.window.title("Gestionar Tags y CheatSheets")
+        self.window.title(_("tag_manager_title"))
         self.window.geometry("600x600")
         self.window.attributes('-topmost', True)
 
@@ -694,7 +708,7 @@ class TagManager:
 
         # Pestaña de Tags
         self.tags_frame = ttk.Frame(self.notebook)
-        self.notebook.add(self.tags_frame, text="Tags")
+        self.notebook.add(self.tags_frame, text=_("tags"))
         self.setup_tags_tab()
 
         # Pestaña de CheatSheets
@@ -703,24 +717,28 @@ class TagManager:
         self.setup_cheatsheets_tab()
 
         # Botón cerrar
-        ttk.Button(main_frame, text="Cerrar", command=self.close).pack()
+        ttk.Button(main_frame, text=_("close"), command=self.close).pack()
 
     def setup_tags_tab(self):
         """Configurar la pestaña de gestión de tags"""
 
         # Frame para crear nuevo tag
-        create_frame = ttk.LabelFrame(self.tags_frame, text="Crear nuevo tag", padding="5")
+        create_frame = ttk.LabelFrame(self.tags_frame, text=_("create_new_tag"),
+                                      padding="5")
         create_frame.pack(fill=tk.X, pady=(0, 10))
 
         self.new_tag_var = tk.StringVar()
         entry_frame = ttk.Frame(create_frame)
         entry_frame.pack(fill=tk.X)
 
-        ttk.Entry(entry_frame, textvariable=self.new_tag_var, width=25).pack(side=tk.LEFT, padx=(0, 5))
-        ttk.Button(entry_frame, text="Crear", command=self.create_tag).pack(side=tk.LEFT)
+        ttk.Entry(entry_frame, textvariable=self.new_tag_var,
+                  width=25).pack(side=tk.LEFT, padx=(0, 5))
+        ttk.Button(entry_frame, text=_("create"),
+                   command=self.create_tag).pack(side=tk.LEFT)
 
         # Lista de tags existentes
-        ttk.Label(self.tags_frame, text="Tags existentes:").pack(anchor=tk.W, pady=(0, 5))
+        ttk.Label(self.tags_frame, text=_("existing_tags")).pack(
+            anchor=tk.W, pady=(0, 5))
 
         # Frame con scrollbar para la lista
         list_frame = ttk.Frame(self.tags_frame)
@@ -738,14 +756,17 @@ class TagManager:
         buttons_frame = ttk.Frame(self.tags_frame)
         buttons_frame.pack(fill=tk.X, pady=(10, 0))
 
-        ttk.Button(buttons_frame, text="Renombrar", command=self.rename_tag).pack(side=tk.LEFT, padx=(0, 5))
-        ttk.Button(buttons_frame, text="Eliminar", command=self.delete_tag).pack(side=tk.LEFT, padx=(0, 5))
+        ttk.Button(buttons_frame, text=_("rename"),
+                   command=self.rename_tag).pack(side=tk.LEFT, padx=(0, 5))
+        ttk.Button(buttons_frame, text=_("delete"),
+                   command=self.delete_tag).pack(side=tk.LEFT, padx=(0, 5))
 
     def setup_cheatsheets_tab(self):
         """Configurar la pestaña de gestión de cheatsheets"""
 
         # Lista de cheatsheets
-        ttk.Label(self.cheatsheets_frame, text="CheatSheets existentes:").pack(anchor=tk.W, pady=(0, 5))
+        ttk.Label(self.cheatsheets_frame, text=_("existing_cheatsheets")).pack(
+            anchor=tk.W, pady=(0, 5))
 
         # Frame con scrollbar para la lista
         list_frame = ttk.Frame(self.cheatsheets_frame)
@@ -763,10 +784,14 @@ class TagManager:
         buttons_frame = ttk.Frame(self.cheatsheets_frame)
         buttons_frame.pack(fill=tk.X, pady=(10, 0))
 
-        ttk.Button(buttons_frame, text="Nueva", command=self.create_cheatsheet).pack(side=tk.LEFT, padx=(0, 5))
-        ttk.Button(buttons_frame, text="Editar", command=self.edit_cheatsheet).pack(side=tk.LEFT, padx=(0, 5))
-        ttk.Button(buttons_frame, text="Eliminar", command=self.delete_cheatsheet).pack(side=tk.LEFT, padx=(0, 5))
-        ttk.Button(buttons_frame, text="Ver", command=self.view_cheatsheet).pack(side=tk.LEFT)
+        ttk.Button(buttons_frame, text=_("new"),
+                   command=self.create_cheatsheet).pack(side=tk.LEFT, padx=(0, 5))
+        ttk.Button(buttons_frame, text=_("edit"),
+                   command=self.edit_cheatsheet).pack(side=tk.LEFT, padx=(0, 5))
+        ttk.Button(buttons_frame, text=_("delete"),
+                   command=self.delete_cheatsheet).pack(side=tk.LEFT, padx=(0, 5))
+        ttk.Button(buttons_frame, text=_("view"),
+                   command=self.view_cheatsheet).pack(side=tk.LEFT)
 
     def refresh_tags(self):
         """Actualizar la lista de tags"""
@@ -782,15 +807,18 @@ class TagManager:
         tag_name = self.new_tag_var.get().strip()
 
         if not tag_name:
-            messagebox.showwarning("Advertencia", "Ingrese un nombre para el tag")
+            messagebox.showwarning(_("error_invalid_tag_name"),
+                                   _("error_invalid_tag_name"))
             return
 
         if not self.cheatsheet_manager.create_tag(tag_name):
-            messagebox.showerror("Error", "Nombre de tag inválido. Use solo letras, números, guiones y guiones bajos.")
+            messagebox.showerror(_("error_invalid_tag_name"),
+                                 _("error_invalid_tag_name"))
             return
 
         # El tag se creará automáticamente cuando se use en una cheatsheet
-        messagebox.showinfo("Información", f"Tag '{tag_name}' validado. Se creará cuando lo use en una cheatsheet.")
+        messagebox.showinfo(_("info_tag_validated", tag_name),
+                            _("info_tag_validated", tag_name))
         self.new_tag_var.set("")
 
     def rename_tag(self):

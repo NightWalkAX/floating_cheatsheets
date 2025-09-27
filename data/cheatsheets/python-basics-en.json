@@ -1,0 +1,84 @@
+{
+  "title": "Python Basics",
+  "language": "en",
+  "tags": ["python", "programming", "basics"],
+  "items": [
+    {
+      "code": "print()",
+      "description": "Print output to console",
+      "example": "print('Hello World') | print(f'Value: {variable}')"
+    },
+    {
+      "code": "input()",
+      "description": "Get user input",
+      "example": "name = input('Enter name: ') | age = int(input('Enter age: '))"
+    },
+    {
+      "code": "len()",
+      "description": "Get length of object",
+      "example": "len('hello') # 5 | len([1,2,3]) # 3"
+    },
+    {
+      "code": "type()",
+      "description": "Get type of object",
+      "example": "type('hello') # <class 'str'> | type(42) # <class 'int'>"
+    },
+    {
+      "code": "str()",
+      "description": "Convert to string",
+      "example": "str(42) # '42' | str([1,2,3]) # '[1, 2, 3]'"
+    },
+    {
+      "code": "int()",
+      "description": "Convert to integer",
+      "example": "int('42') # 42 | int(3.14) # 3"
+    },
+    {
+      "code": "float()",
+      "description": "Convert to float",
+      "example": "float('3.14') # 3.14 | float(42) # 42.0"
+    },
+    {
+      "code": "list()",
+      "description": "Create or convert to list",
+      "example": "list('hello') # ['h','e','l','l','o'] | list(range(3)) # [0,1,2]"
+    },
+    {
+      "code": "range()",
+      "description": "Generate range of numbers",
+      "example": "range(5) # 0,1,2,3,4 | range(1,6) # 1,2,3,4,5"
+    },
+    {
+      "code": "for loop",
+      "description": "Iterate over sequence",
+      "example": "for i in range(3): print(i) | for item in list: print(item)"
+    },
+    {
+      "code": "if statement",
+      "description": "Conditional execution",
+      "example": "if x > 0: print('positive') elif x < 0: print('negative') else: print('zero')"
+    },
+    {
+      "code": "def function",
+      "description": "Define function",
+      "example": "def greet(name): return f'Hello {name}' | def add(a, b): return a + b"
+    },
+    {
+      "code": "class",
+      "description": "Define class",
+      "example": "class Person: def __init__(self, name): self.name = name"
+    },
+    {
+      "code": "import",
+      "description": "Import modules",
+      "example": "import os | from math import pi | import numpy as np"
+    },
+    {
+      "code": "try/except",
+      "description": "Handle exceptions",
+      "example": "try: result = 10/0 except ZeroDivisionError: print('Cannot divide by zero')"
+    }
+  ],
+  "created": "2024-01-01",
+  "updated": "2024-01-01"
+}
