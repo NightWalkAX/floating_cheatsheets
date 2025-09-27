@@ -2,60 +2,67 @@
 const CONFIG = {
     githubUser: 'NightWalkAX',
     repoName: 'floating_cheatsheets',
-    version: null
+    releaseInfo: null
 };
 
-// Cargar versión dinámicamente
-async function loadVersion() {
+// Cargar información de la release dinámicamente
+async function loadReleaseInfo() {
     try {
-        const response = await fetch('./version.json');
+        const response = await fetch('./release_info.json?t=' + new Date().getTime());
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
         const data = await response.json();
-        CONFIG.version = data.version;
-        updateVersionElements();
+        CONFIG.releaseInfo = data;
+        updateDynamicContent();
     } catch (error) {
-        console.warn('No se pudo cargar la versión dinámicamente, usando versión por defecto');
-        CONFIG.version = '1.0.0';
-        updateVersionElements();
+        console.error('No se pudo cargar la información de la release:', error);
+        // Fallback a contenido por defecto si falla la carga
+        CONFIG.releaseInfo = {
+            version: 'N/A',
+            windowsURL: '#',
+            linuxURL: '#'
+        };
+        updateDynamicContent();
     }
 }
 
-// Actualizar todos los elementos que contienen la versión
-function updateVersionElements() {
-    const version = CONFIG.version;
+// Actualizar todos los elementos dinámicos en la página
+function updateDynamicContent() {
+    const { version, windowsURL, linuxURL } = CONFIG.releaseInfo;
     const githubUser = CONFIG.githubUser;
     const repoName = CONFIG.repoName;
-    
-    // Función helper para reemplazar placeholders
-    function replacePlaceholders(text) {
-        return text.replace(/\{\{VERSION\}\}/g, version)
-                  .replace(/\{\{GITHUB_USER\}\}/g, githubUser)
-                  .replace(/\{\{REPO_NAME\}\}/g, repoName);
+
+    // Actualizar enlaces de descarga principales
+    const linuxLink = document.getElementById('linux-download-link');
+    if (linuxLink) linuxLink.href = linuxURL;
+
+    const windowsLink = document.getElementById('windows-download-link');
+    if (windowsLink) windowsLink.href = windowsURL;
+
+    // Función helper para reemplazar placeholders de versión
+    function replaceVersionPlaceholder(text) {
+        return text.replace(/\{\{VERSION\}\}/g, version);
     }
-    
-    // Actualizar todos los enlaces y textos que contengan placeholders
-    document.querySelectorAll('a[href*="{{VERSION}}"]').forEach(link => {
-        link.href = replacePlaceholders(link.href);
-    });
-    
-    document.querySelectorAll('code').forEach(code => {
-        if (code.textContent.includes('{{VERSION}}')) {
-            code.textContent = replacePlaceholders(code.textContent);
+
+    // Actualizar placeholders en el texto de instalación y otros lugares
+    document.querySelectorAll('code, .install-option, a[href*="floating-cheatsheets_"]').forEach(element => {
+        if (element.href && element.href.includes('floating-cheatsheets_')) {
+            // Caso especial para el enlace de instalación de Linux
+            const simpleLinuxName = `floating-cheatsheets_${version}_all.deb`;
+            element.href = `https://github.com/${githubUser}/${repoName}/releases/latest/download/${simpleLinuxName}`;
+        }
+        if (element.textContent && element.textContent.includes('{{VERSION}}')) {
+            element.textContent = replaceVersionPlaceholder(element.textContent);
         }
     });
-    
-    // Actualizar código de instalación
-    document.querySelectorAll('pre code').forEach(code => {
-        if (code.textContent.includes('{{VERSION}}')) {
-            code.textContent = replacePlaceholders(code.textContent);
-        }
-    });
-    
-    // Agregar versión al footer
+
+    // Actualizar versión en el footer
     const footerBottom = document.querySelector('.footer-bottom p');
-    if (footerBottom && !footerBottom.textContent.includes('v')) {
+    if (footerBottom && !footerBottom.textContent.includes(`v${version}`)) {
         footerBottom.innerHTML = `&copy; 2024 Floating CheatSheets v${version}. Código abierto bajo licencia MIT.`;
     }
-    
+
     // Agregar badge de versión al hero
     const heroContent = document.querySelector('.hero-content');
     if (heroContent && !document.querySelector('.version-badge')) {
@@ -221,7 +228,7 @@ function initOSDetection() {
 
 // Inicializar todo cuando se carga la página
 document.addEventListener('DOMContentLoaded', async () => {
-    await loadVersion();
+    await loadReleaseInfo();
     initSmoothScrolling();
     initMobileMenu();
     initScrollAnimations();
@@ -230,7 +237,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     initOSDetection();
 });
 
-// Actualizar versión cuando se actualice el archivo
+// Actualizar información de la release cuando la ventana vuelve a tener foco
 window.addEventListener('focus', () => {
-    loadVersion();
+    loadReleaseInfo();
 });
