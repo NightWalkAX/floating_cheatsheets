@@ -57,8 +57,8 @@ If you need to create a manual release:
 1. Build packages locally using `./build_all.sh`
 2. Create a new GitHub release
 3. Upload the generated files:
-   - `floating-cheatsheets_1.0.0_all.deb`
-   - `windows/floating-cheatsheets-1.0.0-setup.exe`
+   - `floating-cheatsheets_1.1.0_all.deb`
+   - `windows/floating-cheatsheets-1.1.0-setup.exe`
 
 ## Project Structure
 

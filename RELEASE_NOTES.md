@@ -1,5 +1,34 @@
 # Release Notes
 
+## v1.1.0 - Soporte Multiidioma (2025-09-27)
+
+### 🌍 Nuevas Características Principales
+
+- **Soporte Multiidioma Completo**: Interfaz localizada en Español, Inglés, Francés y Portugués
+- **Filtrado por Idioma**: Nueva opción para filtrar cheatsheets por idioma específico  
+- **Sistema de Configuración Expandible**: Gestión dinámica de idiomas desde archivo JSON
+- **Migración Automática**: Script incluido para migrar cheatsheets existentes
+- **UI Dinámicamente Localizada**: Textos de interfaz se actualizan automáticamente
+
+### 🔧 Mejoras Técnicas
+
+- **Nuevo Módulo i18n**: Sistema completo de internacionalización
+- **Configuración Externa**: Los idiomas se gestionan desde `data/languages.json`
+- **CheatSheets Multiidioma**: Campo `language` añadido a todos los cheatsheets
+- **Callbacks de Actualización**: Sistema para actualizar UI dinámicamente
+
+### 📊 CheatSheets Ampliados
+
+- **Contenido Multiidioma**: Cheatsheets disponibles en 4 idiomas
+- **Nuevas Traducciones**: Contenido localizado para cada idioma soportado
+- **Formato Mejorado**: Estructura JSON actualizada con soporte de idioma
+
+### 🎨 Mejoras de UI
+
+- **Selector de Idioma**: Nuevo botón en el menú dial para cambiar idioma
+- **Indicadores Visuales**: Banderas y nombres de idioma
+- **Filtrado Inteligente**: Muestra solo cheatsheets del idioma seleccionado
+
 ## v1.0.0 - Primera Release (2025-09-24)
 
 ### 🎉 Nuevas Características

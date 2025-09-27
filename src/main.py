@@ -28,7 +28,7 @@ class FloatingWidget:
 
         # Inicializar sistema de traducción
         self.i18n = get_i18n()
-        
+
         # Inicializar manager y dial menu (después de load_config)
         self.cheatsheet_manager = None
         self.dial_menu = None
@@ -37,11 +37,11 @@ class FloatingWidget:
 
         # Inicializar manager después de cargar config
         self.cheatsheet_manager = CheatSheetManager(self.config['data_path'])
-        
+
         # Cargar idioma de la configuración y configurar i18n
         self.current_language = self.config.get('current_language', 'es')
         self.i18n.set_language(self.current_language)
-        
+
         # Registrar callback para actualización dinámica de UI
         self.i18n.register_update_callback(self.update_ui_texts)
 
@@ -273,16 +273,16 @@ class FloatingWidget:
     def show_context_menu(self, event):
         """Mostrar menú contextual (click derecho)"""
         context_menu = tk.Menu(self.root, tearoff=0)
-        
+
         # Submenú de idiomas
         language_menu = tk.Menu(context_menu, tearoff=0)
         context_menu.add_cascade(label=_("language"), menu=language_menu)
-        
+
         # Agregar idiomas disponibles
         if self.cheatsheet_manager:
             languages = self.cheatsheet_manager.get_supported_languages()
             language_var = tk.StringVar(value=self.current_language)
-            
+
             for code, name in languages.items():
                 flag = self.cheatsheet_manager.get_language_info(code).get('flag', '')
                 label = f"{flag} {name}"
@@ -292,7 +292,7 @@ class FloatingWidget:
                     value=code,
                     command=lambda lang=code: self.change_language(lang)
                 )
-        
+
         context_menu.add_separator()
         context_menu.add_command(label=_("exit"), command=self.root.quit)
 
@@ -307,7 +307,7 @@ class FloatingWidget:
             self.current_language = language_code
             self.i18n.set_language(language_code)
             self.save_config()
-            
+
             # Actualizar menú si está abierto
             if self.menu_open:
                 self.hide_dial_menu()
@@ -317,7 +317,7 @@ class FloatingWidget:
         """Actualizar todos los textos de la UI cuando cambia el idioma"""
         # Actualizar título de la ventana
         self.root.title(_("window_title"))
-        
+
         # Si hay ventanas de tag o configuración abiertas,
         # se actualizarán automáticamente en la próxima apertura
 
@@ -377,7 +377,7 @@ class FloatingWidget:
 
         # Resetear dial menu para que se recree con nuevas dimensiones
         self.dial_menu = None
-    
+
     def show_dial_menu(self):
         """Mostrar menú dial con paginación dinámica"""
         if self.menu_open:
@@ -447,6 +447,24 @@ class FloatingWidget:
                 color=color
             )
 
+        # Si no hay cheatsheets, agregar opciones básicas para empezar
+        if len(cheatsheets) == 0:
+            self.dial_menu.add_item(
+                text=_("new_cheatsheet"),
+                callback=self.create_new_cheatsheet,
+                color="#28a745"
+            )
+            # Agregar opción para cambiar idioma si el actual no tiene sheets
+            current_lang_info = self.cheatsheet_manager.get_language_info(
+                self.current_language)
+            lang_name = current_lang_info.get('name', self.current_language)
+            lang_flag = current_lang_info.get('flag', '')
+            self.dial_menu.add_item(
+                text=f"{lang_flag} {lang_name}",
+                callback=self.show_language_selector,
+                color="#17a2b8"
+            )
+
         # Solo botones de navegación si hay múltiples páginas (siempre abajo)
         if total_pages > 1:
             # Botón anterior (si no estamos en la primera página)
@@ -492,7 +510,7 @@ class FloatingWidget:
         else:
             cheatsheets = self.cheatsheet_manager.get_cheatsheets_by_tag_and_language(
                 self.current_tag, self.current_language)
-        
+
         total_pages = max(1, (len(cheatsheets) + 2) // 3)  # 3 items per page
 
         if self.current_page < total_pages - 1:
@@ -582,6 +600,46 @@ class FloatingWidget:
                 self.show_dial_menu()
 
         TagManager(self.root, self.cheatsheet_manager, on_tags_changed)
+
+    def show_language_selector(self):
+        """Mostrar selector de idiomas"""
+        # Ocultar el menú dial antes de mostrar el selector
+        self.hide_dial_menu()
+
+        # Crear ventana simple para seleccionar idioma
+        lang_window = tk.Toplevel(self.root)
+        lang_window.title(_("language"))
+        lang_window.geometry("300x400")
+        lang_window.attributes('-topmost', True)
+
+        ttk.Label(lang_window, text=_("language") + ":").pack(pady=10)
+
+        # Lista de idiomas disponibles
+        if self.cheatsheet_manager:
+            languages = self.cheatsheet_manager.get_supported_languages()
+            for code, name in languages.items():
+                lang_info = self.cheatsheet_manager.get_language_info(code)
+                flag = lang_info.get('flag', '')
+                is_current = code == self.current_language
+                btn_text = f"{'▶ ' if is_current else ''}{flag} {name}"
+                
+                btn = ttk.Button(
+                    lang_window,
+                    text=btn_text,
+                    command=lambda lang=code: self.select_language(lang,
+                                                                   lang_window)
+                )
+                btn.pack(fill=tk.X, padx=10, pady=2)
+
+    def select_language(self, language_code, window):
+        """Seleccionar un idioma específico"""
+        self.change_language(language_code)
+        window.destroy()
+
+        # Refresh menu
+        if self.menu_open:
+            self.hide_dial_menu()
+            self.show_dial_menu()
 
     def run(self):
         """Ejecutar la aplicación"""

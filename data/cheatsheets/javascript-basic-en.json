@@ -1,0 +1,299 @@
+{
+  "title": "JavaScript Basics",
+  "language": "en",
+  "tags": ["javascript", "programming", "basics", "web"],
+  "items": [
+    {
+      "code": "console.log()",
+      "description": "Print message to console",
+      "example": "console.log('Hello world')"
+    },
+    {
+      "code": "var",
+      "description": "Declare variable (function scope)",
+      "example": "var name = 'John'"
+    },
+    {
+      "code": "let",
+      "description": "Declare variable (block scope)",
+      "example": "let age = 25"
+    },
+    {
+      "code": "const",
+      "description": "Declare constant",
+      "example": "const PI = 3.14159"
+    },
+    {
+      "code": "if/else",
+      "description": "Conditional structure",
+      "example": "if (age >= 18) { console.log('Adult'); } else { console.log('Minor'); }"
+    },
+    {
+      "code": "for",
+      "description": "Traditional for loop",
+      "example": "for (let i = 0; i < 5; i++) { console.log(i); }"
+    },
+    {
+      "code": "while",
+      "description": "While loop",
+      "example": "while (counter < 10) { counter++; }"
+    },
+    {
+      "code": "function",
+      "description": "Declare function",
+      "example": "function greet(name) { return 'Hello ' + name; }"
+    },
+    {
+      "code": "arrow function",
+      "description": "Arrow function",
+      "example": "const add = (a, b) => a + b"
+    },
+    {
+      "code": "array",
+      "description": "Create array",
+      "example": "const fruits = ['apple', 'banana', 'orange']"
+    },
+    {
+      "code": "array.push()",
+      "description": "Add element to end",
+      "example": "fruits.push('grape')"
+    },
+    {
+      "code": "array.pop()",
+      "description": "Remove last element",
+      "example": "const last = fruits.pop()"
+    },
+    {
+      "code": "array.length",
+      "description": "Get array length",
+      "example": "console.log(fruits.length)"
+    },
+    {
+      "code": "array.forEach()",
+      "description": "Iterate over array",
+      "example": "fruits.forEach(fruit => console.log(fruit))"
+    },
+    {
+      "code": "array.map()",
+      "description": "Transform array",
+      "example": "const numbers = [1, 2, 3].map(n => n * 2)"
+    },
+    {
+      "code": "array.filter()",
+      "description": "Filter array",
+      "example": "const evens = [1, 2, 3, 4].filter(n => n % 2 === 0)"
+    },
+    {
+      "code": "object",
+      "description": "Create object",
+      "example": "const person = { name: 'Anna', age: 30 }"
+    },
+    {
+      "code": "object.property",
+      "description": "Access property",
+      "example": "console.log(person.name)"
+    },
+    {
+      "code": "object['property']",
+      "description": "Access with brackets",
+      "example": "console.log(person['age'])"
+    },
+    {
+      "code": "Object.keys()",
+      "description": "Get object keys",
+      "example": "const keys = Object.keys(person)"
+    },
+    {
+      "code": "Object.values()",
+      "description": "Get object values",
+      "example": "const values = Object.values(person)"
+    },
+    {
+      "code": "string.length",
+      "description": "String length",
+      "example": "const text = 'Hello'; console.log(text.length)"
+    },
+    {
+      "code": "string.toUpperCase()",
+      "description": "Convert to uppercase",
+      "example": "const upper = text.toUpperCase()"
+    },
+    {
+      "code": "string.toLowerCase()",
+      "description": "Convert to lowercase",
+      "example": "const lower = text.toLowerCase()"
+    },
+    {
+      "code": "string.substring()",
+      "description": "Extract substring",
+      "example": "const sub = text.substring(0, 2)"
+    },
+    {
+      "code": "string.split()",
+      "description": "Split string",
+      "example": "const words = 'one two three'.split(' ')"
+    },
+    {
+      "code": "parseInt()",
+      "description": "Convert to integer",
+      "example": "const number = parseInt('123')"
+    },
+    {
+      "code": "parseFloat()",
+      "description": "Convert to decimal",
+      "example": "const decimal = parseFloat('123.45')"
+    },
+    {
+      "code": "typeof",
+      "description": "Get variable type",
+      "example": "console.log(typeof variable)"
+    },
+    {
+      "code": "Math.random()",
+      "description": "Random number",
+      "example": "const random = Math.random()"
+    },
+    {
+      "code": "Math.floor()",
+      "description": "Round down",
+      "example": "const integer = Math.floor(4.7)"
+    },
+    {
+      "code": "Math.ceil()",
+      "description": "Round up",
+      "example": "const integer = Math.ceil(4.2)"
+    },
+    {
+      "code": "Date()",
+      "description": "Create current date",
+      "example": "const now = new Date()"
+    },
+    {
+      "code": "Date.now()",
+      "description": "Current timestamp",
+      "example": "const timestamp = Date.now()"
+    },
+    {
+      "code": "setTimeout()",
+      "description": "Execute after delay",
+      "example": "setTimeout(() => console.log('Hello'), 1000)"
+    },
+    {
+      "code": "setInterval()",
+      "description": "Execute repeatedly",
+      "example": "const timer = setInterval(() => console.log('Tick'), 1000)"
+    },
+    {
+      "code": "JSON.stringify()",
+      "description": "Convert object to JSON",
+      "example": "const json = JSON.stringify(person)"
+    },
+    {
+      "code": "JSON.parse()",
+      "description": "Convert JSON to object",
+      "example": "const object = JSON.parse(jsonString)"
+    },
+    {
+      "code": "try/catch",
+      "description": "Error handling",
+      "example": "try { code(); } catch (error) { console.error(error); }"
+    },
+    {
+      "code": "addEventListener()",
+      "description": "Add event listener",
+      "example": "button.addEventListener('click', () => console.log('Clicked'))"
+    },
+    {
+      "code": "document.getElementById()",
+      "description": "Get element by ID",
+      "example": "const element = document.getElementById('myId')"
+    },
+    {
+      "code": "document.querySelector()",
+      "description": "Get first matching element",
+      "example": "const element = document.querySelector('.myClass')"
+    },
+    {
+      "code": "document.querySelectorAll()",
+      "description": "Get all matching elements",
+      "example": "const elements = document.querySelectorAll('div')"
+    },
+    {
+      "code": "element.innerHTML",
+      "description": "Get/set inner HTML",
+      "example": "element.innerHTML = '<p>New content</p>'"
+    },
+    {
+      "code": "element.textContent",
+      "description": "Get/set text content",
+      "example": "element.textContent = 'New text'"
+    },
+    {
+      "code": "element.style",
+      "description": "Modify CSS styles",
+      "example": "element.style.color = 'red'"
+    },
+    {
+      "code": "element.classList.add()",
+      "description": "Add CSS class",
+      "example": "element.classList.add('newClass')"
+    },
+    {
+      "code": "element.classList.remove()",
+      "description": "Remove CSS class",
+      "example": "element.classList.remove('oldClass')"
+    },
+    {
+      "code": "fetch()",
+      "description": "Make HTTP request",
+      "example": "fetch('/api/data').then(response => response.json()).then(data => console.log(data))"
+    },
+    {
+      "code": "Promise",
+      "description": "Create promise",
+      "example": "const promise = new Promise((resolve, reject) => { resolve('Success'); })"
+    },
+    {
+      "code": "async/await",
+      "description": "Async functions",
+      "example": "async function getData() { const data = await fetch('/api'); return data.json(); }"
+    },
+    {
+      "code": "localStorage.setItem()",
+      "description": "Save to local storage",
+      "example": "localStorage.setItem('key', 'value')"
+    },
+    {
+      "code": "localStorage.getItem()",
+      "description": "Get from local storage",
+      "example": "const value = localStorage.getItem('key')"
+    },
+    {
+      "code": "isNaN()",
+      "description": "Check if not a number",
+      "example": "console.log(isNaN('abc'))"
+    },
+    {
+      "code": "Array.isArray()",
+      "description": "Check if is array",
+      "example": "console.log(Array.isArray([1, 2, 3]))"
+    },
+    {
+      "code": "String()",
+      "description": "Convert to string",
+      "example": "const text = String(123)"
+    },
+    {
+      "code": "Number()",
+      "description": "Convert to number",
+      "example": "const number = Number('123')"
+    },
+    {
+      "code": "Boolean()",
+      "description": "Convert to boolean",
+      "example": "const bool = Boolean(1)"
+    }
+  ],
+  "created": "2025-09-27",
+  "updated": "2025-09-27"
+}

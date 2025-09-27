@@ -1,0 +1,44 @@
+{
+  "title": "Mathematical Formulas",
+  "language": "en",
+  "tags": ["math", "formulas", "science"],
+  "items": [
+    {
+      "code": "Pythagorean Theorem",
+      "description": "Relationship in a right triangle",
+      "example": "a² + b² = c²"
+    },
+    {
+      "code": "Quadratic Formula",
+      "description": "Find roots of a quadratic equation",
+      "example": "x = [-b ± sqrt(b²-4ac)] / 2a"
+    },
+    {
+      "code": "Area of a Circle",
+      "description": "Calculate the area of a circle",
+      "example": "A = πr²"
+    },
+    {
+      "code": "Circumference",
+      "description": "Calculate the length of a circle's edge",
+      "example": "C = 2πr"
+    },
+    {
+      "code": "Power Rule Derivative",
+      "description": "Power rule for derivatives",
+      "example": "d/dx(x^n) = nx^(n-1)"
+    },
+    {
+      "code": "Power Rule Integral",
+      "description": "Power rule for integrals",
+      "example": "∫x^n dx = x^(n+1)/(n+1) + C"
+    },
+    {
+      "code": "Euler's Identity",
+      "description": "Relates five fundamental mathematical constants",
+      "example": "e^(iπ) + 1 = 0"
+    }
+  ],
+  "created": "2025-09-27",
+  "updated": "2025-09-27"
+}

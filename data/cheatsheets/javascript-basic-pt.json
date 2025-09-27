@@ -1,0 +1,15 @@
+{
+  "title": "JavaScript Básico",
+  "language": "pt",
+  "cheats": [
+    { "description": "Imprimir mensagem no console", "code": "console.log('Olá Mundo')" },
+    { "description": "Declarar variável (escopo de função)", "code": "var x = 5;" },
+    { "description": "Declarar variável (escopo de bloco)", "code": "let y = 10;" },
+    { "description": "Declarar constante", "code": "const PI = 3.14;" },
+    { "description": "Estrutura condicional", "code": "if (x > 0) { ... } else { ... }" },
+    { "description": "Laço for tradicional", "code": "for (let i = 0; i < 5; i++) { ... }" },
+    { "description": "Laço while", "code": "while (x < 10) { ... }" },
+    { "description": "Declarar função", "code": "function soma(a, b) { return a + b; }" },
+    { "description": "Função flecha", "code": "const soma = (a, b) => a + b;" }
+  ]
+}

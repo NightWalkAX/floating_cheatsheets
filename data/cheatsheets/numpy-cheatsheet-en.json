@@ -1,0 +1,14 @@
+{
+  "title": "NumPy Cheatsheet",
+  "language": "en",
+  "cheats": [
+    { "description": "Create a NumPy array", "code": "np.array([1, 2, 3])" },
+    { "description": "Create an array with a range of values", "code": "np.arange(0, 10, 2)" },
+    { "description": "Create an array with evenly spaced values", "code": "np.linspace(0, 1, 5)" },
+    { "description": "View array shape and dtype", "code": "a.shape, a.dtype" },
+    { "description": "Element-wise math operations", "code": "a + b, a * b" },
+    { "description": "Dot product of two arrays", "code": "np.dot(a, b)" },
+    { "description": "Calculate sum or mean", "code": "a.sum(), a.mean()" },
+    { "description": "Reshape array", "code": "a.reshape(3, 2)" }
+  ]
+}

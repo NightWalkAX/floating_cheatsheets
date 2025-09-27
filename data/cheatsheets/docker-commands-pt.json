@@ -1,0 +1,109 @@
+{
+  "title": "Comandos Docker",
+  "language": "pt",
+  "tags": ["docker", "contêineres", "devops"],
+  "items": [
+    {
+      "code": "docker --version",
+      "description": "Ver versão do Docker",
+      "example": "docker --version | docker version"
+    },
+    {
+      "code": "docker pull",
+      "description": "Baixar imagem",
+      "example": "docker pull ubuntu:20.04 | docker pull nginx:latest"
+    },
+    {
+      "code": "docker images",
+      "description": "Listar imagens baixadas",
+      "example": "docker images | docker images --no-trunc"
+    },
+    {
+      "code": "docker run",
+      "description": "Executar contêiner",
+      "example": "docker run -it ubuntu bash | docker run -d -p 80:80 nginx"
+    },
+    {
+      "code": "docker ps",
+      "description": "Listar contêineres em execução",
+      "example": "docker ps | docker ps -a (todos) | docker ps -q (apenas IDs)"
+    },
+    {
+      "code": "docker stop",
+      "description": "Parar contêiner",
+      "example": "docker stop container_id | docker stop $(docker ps -q)"
+    },
+    {
+      "code": "docker start",
+      "description": "Iniciar contêiner parado",
+      "example": "docker start container_id"
+    },
+    {
+      "code": "docker restart",
+      "description": "Reiniciar contêiner",
+      "example": "docker restart container_id"
+    },
+    {
+      "code": "docker rm",
+      "description": "Remover contêiner",
+      "example": "docker rm container_id | docker rm $(docker ps -aq)"
+    },
+    {
+      "code": "docker rmi",
+      "description": "Remover imagem",
+      "example": "docker rmi image_id | docker rmi $(docker images -q)"
+    },
+    {
+      "code": "docker exec",
+      "description": "Executar comando no contêiner",
+      "example": "docker exec -it container_id bash"
+    },
+    {
+      "code": "docker logs",
+      "description": "Ver logs do contêiner",
+      "example": "docker logs container_id | docker logs -f container_id"
+    },
+    {
+      "code": "docker build",
+      "description": "Construir imagem do Dockerfile",
+      "example": "docker build -t meu_app . | docker build -t meu_app:v1.0 ."
+    },
+    {
+      "code": "docker push",
+      "description": "Enviar imagem para registry",
+      "example": "docker push usuario/meu_app:latest"
+    },
+    {
+      "code": "docker tag",
+      "description": "Marcar imagem",
+      "example": "docker tag meu_app:latest usuario/meu_app:v1.0"
+    },
+    {
+      "code": "docker network",
+      "description": "Gerenciar redes",
+      "example": "docker network ls | docker network create minha_rede"
+    },
+    {
+      "code": "docker volume",
+      "description": "Gerenciar volumes",
+      "example": "docker volume ls | docker volume create meu_volume"
+    },
+    {
+      "code": "docker-compose up",
+      "description": "Iniciar serviços com compose",
+      "example": "docker-compose up | docker-compose up -d"
+    },
+    {
+      "code": "docker-compose down",
+      "description": "Parar serviços do compose",
+      "example": "docker-compose down | docker-compose down -v"
+    },
+    {
+      "code": "docker system prune",
+      "description": "Limpar recursos não utilizados",
+      "example": "docker system prune | docker system prune -a"
+    }
+  ],
+  "created": "2025-09-27",
+  "updated": "2025-09-27"
+}

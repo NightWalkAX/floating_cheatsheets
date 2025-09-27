@@ -1,0 +1,14 @@
+{
+  "title": "Docker Commands",
+  "language": "en",
+  "cheats": [
+    { "description": "Run a container", "code": "docker run image" },
+    { "description": "List containers", "code": "docker ps" },
+    { "description": "Stop a container", "code": "docker stop container" },
+    { "description": "Remove a container", "code": "docker rm container" },
+    { "description": "List images", "code": "docker images" },
+    { "description": "Remove image", "code": "docker rmi image" },
+    { "description": "Build image", "code": "docker build -t name ." },
+    { "description": "Show logs", "code": "docker logs container" }
+  ]
+}

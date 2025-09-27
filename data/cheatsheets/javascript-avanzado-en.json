@@ -1,0 +1,14 @@
+{
+  "title": "Advanced JavaScript",
+  "language": "en",
+  "cheats": [
+    { "description": "Async/Await syntax", "code": "async function myFunc() { await something(); }" },
+    { "description": "Run multiple promises in parallel", "code": "Promise.all([p1, p2, p3]).then(values => { ... });" },
+    { "description": "Closures", "code": "function outer() { let x = 1; function inner() { return x; } return inner; }" },
+    { "description": "Prototypes", "code": "function Person(){}; Person.prototype.sayHi = function() { console.log('Hi'); }" },
+    { "description": "Destructuring", "code": "const [a, b] = [1, 2]; const {x, y} = obj;" },
+    { "description": "Spread operator", "code": "const arr2 = [...arr1];" },
+    { "description": "Advanced data collections", "code": "const map = new Map(); const set = new Set();" },
+    { "description": "Concurrency model", "code": "JavaScript uses an event loop for concurrency." }
+  ]
+}

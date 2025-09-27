@@ -7,6 +7,9 @@ Un widget flotante circular para acceso rápido a cheatsheets, con inicio autom�
 - 🎯 **Widget circular flotante** ajustable y personalizable
 - 📊 **Menú dial dinámico** con paginación automática
 - 🏷️ **Organización por tags** para categorizar cheatsheets
+- 🌍 **Soporte multiidioma** - Español, Inglés, Francés y Portugués
+- 🔍 **Filtrado por idioma** - Buscar cheatsheets por idioma específico
+- 🎨 **Interfaz localizada** - UI traduce automáticamente
 - ✏️ **Editor integrado** con formato específico
 - 💾 **Persistencia** - recuerda posición y configuración
 - 🚀 **Inicio automático** con el sistema
@@ -21,6 +24,7 @@ Un widget flotante circular para acceso rápido a cheatsheets, con inicio autom�
   - Botones circulares para cada cheatsheet
   - `+ Nueva`: Crear cheatsheet
   - `🏷️ Tags`: Filtrar por categoría
+  - `🌍 Idioma`: Filtrar por idioma (ES/EN/FR/PT)
   - `◀ Ant` / `Sig ▶`: Navegación entre páginas
 
 ## 📄 Formato de CheatSheet
@@ -50,15 +54,15 @@ find . -name - Buscar archivos por nombre
 
 1. Ve a [Releases](https://github.com/your-username/floating_cheatsheets/releases/latest)
 2. Descarga el archivo apropiado:
-   - **Linux**: `floating-cheatsheets_1.0.0_all.deb`
-   - **Windows**: `floating-cheatsheets-1.0.0-setup.exe`
+   - **Linux**: `floating-cheatsheets_1.1.0_all.deb`
+   - **Windows**: `floating-cheatsheets-1.1.0-setup.exe`
 
 ### 🐧 Linux (Debian/Ubuntu)
 
 ```bash
 # Descargar e instalar el paquete .deb
-wget https://github.com/your-username/floating_cheatsheets/releases/latest/download/floating-cheatsheets_1.0.0_all.deb
-sudo dpkg -i floating-cheatsheets_1.0.0_all.deb
+wget https://github.com/your-username/floating_cheatsheets/releases/latest/download/floating-cheatsheets_1.1.0_all.deb
+sudo dpkg -i floating-cheatsheets_1.1.0_all.deb
 
 # Si hay dependencias faltantes:
 sudo apt-get install -f
@@ -66,7 +70,7 @@ sudo apt-get install -f
 
 ### 🪟 Windows
 
-1. Descarga `floating-cheatsheets-1.0.0-setup.exe`
+1. Descarga `floating-cheatsheets-1.1.0-setup.exe`
 2. Ejecuta el instalador y sigue las instrucciones
 3. El programa se instalará y estará disponible en el menú de inicio
 
@@ -121,8 +125,10 @@ floating_cheatsheets/
 ├── src/                    # Código fuente
 │   ├── main.py            # Widget principal
 │   ├── cheatsheet_manager.py  # Gestión CRUD
-│   └── ui_components.py   # Componentes UI
+│   ├── ui_components.py   # Componentes UI
+│   └── i18n.py           # Sistema de internacionalización
 ├── data/                  # Datos de ejemplo
+│   ├── languages.json    # Configuración de idiomas
 ├── debian/               # Empaquetado .deb
 ├── windows/              # Empaquetado Windows
 │   ├── build_windows.spec # Configuración PyInstaller
@@ -151,7 +157,34 @@ El archivo `config.json` contiene:
     "always_on_top": true
   },
   "current_tag": "all",
+  "current_language": "es",
   "data_path": "~/.local/share/floating-cheatsheets/cheatsheets"
+}
+```
+
+## 🌍 Configuración de Idiomas
+
+El archivo `data/languages.json` gestiona los idiomas soportados:
+```json
+{
+  "default_language": "es",
+  "supported_languages": {
+    "es": { "name": "Español", "flag": "🇪🇸" },
+    "en": { "name": "English", "flag": "🇺🇸" },
+    "fr": { "name": "Français", "flag": "🇫🇷" },
+    "pt": { "name": "Português", "flag": "🇵🇹" }
+  }
+}
+```
+
+### Crear CheatSheets Multiidioma
+
+Los cheatsheets ahora incluyen un campo de idioma:
+```json
+{
+  "title": "Git Commands",
+  "language": "en",
+  "content": "git status - Check repository status\n  git status --short"
 }
 ```
 
@@ -198,6 +231,9 @@ El proyecto usa GitHub Actions para construir automáticamente ambas versiones:
 - [ ] Sincronización en la nube
 - [ ] Atajos de teclado
 - [ ] Categorías anidadas
+- [x] Soporte multiidioma (ES/EN/FR/PT)
+- [x] Filtrado por idioma
+- [x] Interfaz localizada
 - [x] Soporte multiplataforma (Linux/Windows)
 - [x] Automatización CI/CD
 

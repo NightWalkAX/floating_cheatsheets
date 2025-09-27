@@ -46,8 +46,8 @@ class DialMenu:
     def show(self):
         """Mostrar el menú dial en una ventana temporal expandida"""
         print(f"DEBUG: DialMenu.show() called, is_visible={self.is_visible}, items_count={len(self.items)}")
-        if self.is_visible or not self.items:
-            print("DEBUG: DialMenu.show() returning early")
+        if self.is_visible:
+            print("DEBUG: DialMenu.show() returning early - already visible")
             return
 
         self.is_visible = True

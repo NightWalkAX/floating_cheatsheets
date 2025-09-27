@@ -1,0 +1,12 @@
+{
+  "title": "Python Avançado",
+  "language": "pt",
+  "cheats": [
+    { "description": "List comprehension", "code": "[x for x in range(10)]" },
+    { "description": "Função lambda", "code": "lambda x: x * 2" },
+    { "description": "Decoradores", "code": "@decorator\ndef func(): pass" },
+    { "description": "Geradores", "code": "def gen(): yield 1" },
+    { "description": "Gerenciador de contexto", "code": "with open('arquivo') as f: ..." },
+    { "description": "Desempacotamento de argumentos", "code": "def f(*args, **kwargs): ..." }
+  ]
+}

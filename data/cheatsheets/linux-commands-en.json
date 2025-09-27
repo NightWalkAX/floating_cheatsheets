@@ -1,0 +1,14 @@
+{
+  "title": "Linux Commands",
+  "language": "en",
+  "cheats": [
+    { "description": "List files", "code": "ls" },
+    { "description": "Change directory", "code": "cd folder" },
+    { "description": "Show current directory", "code": "pwd" },
+    { "description": "Copy file", "code": "cp source dest" },
+    { "description": "Move file", "code": "mv source dest" },
+    { "description": "Remove file", "code": "rm file" },
+    { "description": "Show file content", "code": "cat file" },
+    { "description": "Find text in files", "code": "grep 'text' file" }
+  ]
+}

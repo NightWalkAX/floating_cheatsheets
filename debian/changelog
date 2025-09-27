@@ -1,3 +1,14 @@
+floating-cheatsheets (1.1.0) unstable; urgency=low
+
+  * Soporte multiidioma completo
+  * Interfaz localizada en Español, Inglés, Francés y Portugués
+  * Filtro de cheatsheets por idioma
+  * Sistema de configuración de idiomas expandible
+  * Migración automática de cheatsheets existentes
+  * UI dinámicamente actualizable por idioma
+
+ -- NightWalkAX <jymendev@gmail.com>  Fri, 27 Sep 2025 12:00:00 +0000
+
 floating-cheatsheets (1.0.0) unstable; urgency=low
 
   * Versión inicial

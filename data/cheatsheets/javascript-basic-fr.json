@@ -1,0 +1,15 @@
+{
+  "title": "JavaScript Basique",
+  "language": "fr",
+  "cheats": [
+    { "description": "Afficher un message dans la console", "code": "console.log('Bonjour le monde')" },
+    { "description": "Déclarer une variable (portée de fonction)", "code": "var x = 5;" },
+    { "description": "Déclarer une variable (portée de bloc)", "code": "let y = 10;" },
+    { "description": "Déclarer une constante", "code": "const PI = 3.14;" },
+    { "description": "Structure conditionnelle", "code": "if (x > 0) { ... } else { ... }" },
+    { "description": "Boucle for traditionnelle", "code": "for (let i = 0; i < 5; i++) { ... }" },
+    { "description": "Boucle while", "code": "while (x < 10) { ... }" },
+    { "description": "Déclarer une fonction", "code": "function somme(a, b) { return a + b; }" },
+    { "description": "Fonction flèche", "code": "const somme = (a, b) => a + b;" }
+  ]
+}

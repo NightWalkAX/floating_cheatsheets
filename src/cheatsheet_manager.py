@@ -10,15 +10,21 @@ from typing import List, Dict, Optional
 
 
 class CheatSheetManager:
-    def __init__(self, data_path: str = None, default_language: str = None, languages_file: str = None):
+    """Clase para manejar las cheatsheets"""
+    def __init__(
+            self,
+            data_path: str = None,
+            default_language: str = None,
+            languages_file: str = None
+            ):
         self.base_path = Path(__file__).parent.parent
         self.data_path = self.base_path / 'data' / 'cheatsheets' if data_path is None else Path(data_path)
         self.data_path.mkdir(parents=True, exist_ok=True)
-        
+
         # Cargar configuración de idiomas
         self.languages_file = languages_file or str(self.base_path / 'data' / 'languages.json')
         self._load_languages_config()
-        
+
         # Establecer idioma predeterminado
         self.default_language = default_language or self.languages_config.get('default_language', 'es')
 
@@ -81,7 +87,7 @@ class CheatSheetManager:
         """Crear una nueva cheatsheet"""
         # Generar filename desde el título
         filename = self._generate_filename(title)
-        
+
         # Usar idioma predeterminado si no se especifica
         if language is None:
             language = self.default_language
@@ -113,7 +119,7 @@ class CheatSheetManager:
             # Cargar datos existentes para preservar fecha de creación
             with open(file_path, 'r', encoding='utf-8') as f:
                 existing_data = json.load(f)
-            
+
             # Usar idioma existente o predeterminado si no se especifica
             if language is None:
                 language = existing_data.get('language', self.default_language)
@@ -192,7 +198,12 @@ class CheatSheetManager:
 
         return results
 
-    def validate_cheatsheet_data(self, title: str, tags: List[str], items: List[Dict], language: str = None) -> List[str]:
+    def validate_cheatsheet_data(
+            self, title: str,
+            tags: List[str],
+            items: List[Dict],
+            language: str = None
+            ) -> List[str]:
         """Validar datos de cheatsheet, retorna lista de errores"""
         errors = []
 
@@ -223,7 +234,10 @@ class CheatSheetManager:
 
         return errors
 
-    def create_tag(self, tag_name: str) -> bool:
+    def create_tag(
+            self,
+            tag_name: str
+            ) -> bool:
         """Crear un nuevo tag (realmente no necesita crear archivo, solo validar)"""
         if not tag_name or not tag_name.strip():
             return False
@@ -281,7 +295,7 @@ class CheatSheetManager:
                 # Reemplazar el tag
                 tag_index = tags.index(old_tag)
                 tags[tag_index] = new_tag
- 
+
                 # Actualizar la cheatsheet
                 self.update_cheatsheet(
                     sheet['filename'],
@@ -327,35 +341,43 @@ class CheatSheetManager:
         """Obtener lista de códigos de idiomas disponibles en cheatsheets"""
         all_sheets = self.get_all_cheatsheets()
         languages = set()
-        
+
         for sheet in all_sheets:
             languages.add(sheet.get('language', self.default_language))
-        
+
         return sorted(list(languages))
 
     def get_cheatsheets_by_language(self, language: str) -> List[Dict]:
         """Obtener cheatsheets filtradas por idioma"""
         if not self.validate_language(language):
             return []
-        
+
         all_sheets = self.get_all_cheatsheets()
         return [sheet for sheet in all_sheets 
                 if sheet.get('language', self.default_language) == language]
 
-    def get_cheatsheets_by_tag_and_language(self, tag: str, language: str) -> List[Dict]:
+    def get_cheatsheets_by_tag_and_language(
+            self,
+            tag: str,
+            language: str
+            ) -> List[Dict]:
         """Obtener cheatsheets filtradas por tag e idioma"""
         if not self.validate_language(language):
             return []
-        
+
         sheets_by_tag = self.get_cheatsheets_by_tag(tag)
         return [sheet for sheet in sheets_by_tag 
                 if sheet.get('language', self.default_language) == language]
 
-    def search_cheatsheets_by_language(self, query: str, language: str) -> List[Dict]:
+    def search_cheatsheets_by_language(
+            self,
+            query: str,
+            language: str
+            ) -> List[Dict]:
         """Buscar cheatsheets por término en un idioma específico"""
         if not self.validate_language(language):
             return []
-        
+
         all_results = self.search_cheatsheets(query)
         return [sheet for sheet in all_results 
                 if sheet.get('language', self.default_language) == language]
@@ -364,7 +386,7 @@ class CheatSheetManager:
         """Obtener estadísticas por idioma"""
         all_sheets = self.get_all_cheatsheets()
         stats = {}
-        
+
         for lang_code, lang_info in self.languages_config.get('supported_languages', {}).items():
             sheets_count = len([s for s in all_sheets 
                               if s.get('language', self.default_language) == lang_code])
@@ -373,18 +395,22 @@ class CheatSheetManager:
                 'flag': lang_info.get('flag', ''),
                 'count': sheets_count
             }
-        
+
         return stats
 
-    def migrate_cheatsheets_language(self, from_language: str, to_language: str) -> int:
+    def migrate_cheatsheets_language(
+            self,
+            from_language: str,
+            to_language: str
+            ) -> int:
         """Migrar cheatsheets de un idioma a otro"""
         if (not self.validate_language(from_language) or 
             not self.validate_language(to_language)):
             return 0
-        
+
         modified_count = 0
         sheets_to_migrate = self.get_cheatsheets_by_language(from_language)
-        
+
         for sheet in sheets_to_migrate:
             success = self.update_cheatsheet(
                 sheet['filename'],
@@ -395,7 +421,7 @@ class CheatSheetManager:
             )
             if success:
                 modified_count += 1
-        
+
         return modified_count
 
     def validate_language(self, language: str) -> bool:
@@ -443,10 +469,10 @@ class CheatSheetManager:
         """Obtener texto de interfaz en el idioma especificado"""
         if language is None:
             language = self.default_language
-        
+
         lang_config = self.languages_config.get('supported_languages', {}).get(language, {})
         interface_texts = lang_config.get('interface', {})
-        
+
         return interface_texts.get(key, key)
 
     def get_language_info(self, language: str) -> Dict:
@@ -457,15 +483,15 @@ class CheatSheetManager:
         """Agregar un nuevo idioma a la configuración"""
         if interface is None:
             interface = {}
-        
+
         new_language = {
             'name': name,
             'flag': flag,
             'interface': interface
         }
-        
+
         self.languages_config.setdefault('supported_languages', {})[code] = new_language
-        
+
         # Guardar cambios al archivo
         return self._save_languages_config()
 
@@ -473,12 +499,12 @@ class CheatSheetManager:
         """Eliminar un idioma de la configuración"""
         if code == self.default_language:
             return False  # No se puede eliminar el idioma predeterminado
-        
+
         supported_languages = self.languages_config.get('supported_languages', {})
         if code in supported_languages:
             del supported_languages[code]
             return self._save_languages_config()
-        
+
         return False
 
     def update_language_interface(self, code: str, interface_updates: Dict) -> bool:
@@ -486,7 +512,7 @@ class CheatSheetManager:
         lang_config = self.languages_config.get('supported_languages', {}).get(code)
         if not lang_config:
             return False
-        
+
         lang_config.setdefault('interface', {}).update(interface_updates)
         return self._save_languages_config()
 
@@ -503,11 +529,11 @@ class CheatSheetManager:
     def validate_languages_config(self) -> List[str]:
         """Validar la estructura de la configuración de idiomas"""
         errors = []
-        
+
         if not isinstance(self.languages_config, dict):
             errors.append("La configuración debe ser un objeto JSON")
             return errors
-        
+
         if 'supported_languages' not in self.languages_config:
             errors.append("Falta la clave 'supported_languages'")
         else:
@@ -519,31 +545,31 @@ class CheatSheetManager:
                     if not isinstance(info, dict):
                         errors.append(f"Idioma '{code}': debe ser un objeto")
                         continue
-                    
+
                     if 'name' not in info:
                         errors.append(f"Idioma '{code}': falta el campo 'name'")
-                    
+
                     if 'interface' in info and not isinstance(info['interface'], dict):
                         errors.append(f"Idioma '{code}': 'interface' debe ser un objeto")
-        
+
         default_lang = self.languages_config.get('default_language')
         if default_lang and default_lang not in self.languages_config.get('supported_languages', {}):
             errors.append(f"El idioma predeterminado '{default_lang}' no está en supported_languages")
-        
+
         return errors
 
 
 # Ejemplo de uso y testing
 if __name__ == "__main__":
     manager = CheatSheetManager()
-    
+
     # Mostrar idiomas soportados
     print("Idiomas soportados:")
     for code, name in manager.get_supported_languages().items():
         info = manager.get_language_info(code)
         flag = info.get('flag', '')
         print(f"  {code}: {name} {flag}")
-    
+
     # Crear cheatsheet de ejemplo en español
     items_es = [
         {
@@ -552,7 +578,7 @@ if __name__ == "__main__":
             "example": "docker run -d -p 80:80 nginx"
         }
     ]
-    
+
     filename_es = manager.create_cheatsheet(
         "Comandos Docker", 
         ["docker", "containers"], 
@@ -560,7 +586,7 @@ if __name__ == "__main__":
         "es"
     )
     print(f"Created (ES): {filename_es}")
-    
+
     # Crear cheatsheet de ejemplo en inglés
     items_en = [
         {
@@ -569,7 +595,7 @@ if __name__ == "__main__":
             "example": "docker run -d -p 80:80 nginx"
         }
     ]
-    
+
     filename_en = manager.create_cheatsheet(
         "Docker Commands", 
         ["docker", "containers"], 
@@ -587,7 +613,7 @@ if __name__ == "__main__":
     # Listar cheatsheets por idioma
     es_sheets = manager.get_cheatsheets_by_language('es')
     print(f"Cheatsheets en español: {len(es_sheets)}")
-    
+
     en_sheets = manager.get_cheatsheets_by_language('en')
     print(f"Cheatsheets in English: {len(en_sheets)}")
 

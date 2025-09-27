@@ -1,0 +1,44 @@
+{
+  "title": "Fórmulas Matemáticas",
+  "language": "pt",
+  "tags": ["math", "fórmulas", "ciência"],
+  "items": [
+    {
+      "code": "Teorema de Pitágoras",
+      "description": "Relação em um triângulo retângulo",
+      "example": "a² + b² = c²"
+    },
+    {
+      "code": "Fórmula Quadrática",
+      "description": "Encontrar as raízes de uma equação quadrática",
+      "example": "x = [-b ± sqrt(b²-4ac)] / 2a"
+    },
+    {
+      "code": "Área de um Círculo",
+      "description": "Calcular a área de um círculo",
+      "example": "A = πr²"
+    },
+    {
+      "code": "Circunferência",
+      "description": "Calcular o comprimento da borda de um círculo",
+      "example": "C = 2πr"
+    },
+    {
+      "code": "Regra da Potência (Derivada)",
+      "description": "Regra da potência para derivadas",
+      "example": "d/dx(x^n) = nx^(n-1)"
+    },
+    {
+      "code": "Regra da Potência (Integral)",
+      "description": "Regra da potência para integrais",
+      "example": "∫x^n dx = x^(n+1)/(n+1) + C"
+    },
+    {
+      "code": "Identidade de Euler",
+      "description": "Relaciona cinco constantes matemáticas fundamentais",
+      "example": "e^(iπ) + 1 = 0"
+    }
+  ],
+  "created": "2025-09-27",
+  "updated": "2025-09-27"
+}
