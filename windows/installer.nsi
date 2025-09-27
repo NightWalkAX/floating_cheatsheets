@@ -20,12 +20,12 @@ RequestExecutionLevel admin
 
 ; Interface settings
 !define MUI_ABORTWARNING
-!define MUI_ICON "../assets/icon.ico"
-!define MUI_UNICON "../assets/icon.ico"
+!define MUI_ICON "..\assets\icon.ico"
+!define MUI_UNICON "..\assets\icon.ico"
 
 ; Pages
 !insertmacro MUI_PAGE_WELCOME
-!insertmacro MUI_PAGE_LICENSE "../LICENSE"
+!insertmacro MUI_PAGE_LICENSE "..\LICENSE"
 !insertmacro MUI_PAGE_DIRECTORY
 !insertmacro MUI_PAGE_INSTFILES
 !insertmacro MUI_PAGE_FINISH
