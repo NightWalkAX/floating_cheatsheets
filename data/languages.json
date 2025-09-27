@@ -61,7 +61,22 @@
         "error_tag_already_exists": "Ya existe un tag con ese nombre",
         "info_tag_validated": "Tag '{}' validado. Se creará cuando lo use en una cheatsheet.",
         "enter_new_tag_name": "Ingrese el nuevo nombre para el tag:",
-        "tag_usage_count": "{} ({} usos)"
+        "tag_usage_count": "{} ({} usos)",
+        "search_cheatsheets": "🔍 Buscar CheatSheets",
+        "search_cheatsheets_title": "Buscar CheatSheets",
+        "search_cheatsheets_placeholder": "Buscar cheatsheets...",
+        "advanced_search": "Búsqueda Avanzada",
+        "filters": "Filtros",
+        "clear": "Limpiar",
+        "select": "Seleccionar",
+        "all_languages": "Todos los idiomas",
+        "no_results_found": "No se encontraron resultados",
+        "one_result_found": "1 resultado encontrado",
+        "multiple_results_found": "{} resultados encontrados",
+        "items_count": "Items",
+        "error_loading_data": "Error cargando datos",
+        "search_error": "Error en la búsqueda",
+        "no_title": "Sin título"
       }
     },
     "en": {
@@ -124,7 +139,22 @@
         "error_tag_already_exists": "A tag with that name already exists",
         "info_tag_validated": "Tag '{}' validated. It will be created when you use it in a cheatsheet.",
         "enter_new_tag_name": "Enter the new name for the tag:",
-        "tag_usage_count": "{} ({} uses)"
+        "tag_usage_count": "{} ({} uses)",
+        "search_cheatsheets": "🔍 Search CheatSheets",
+        "search_cheatsheets_title": "Search CheatSheets",
+        "search_cheatsheets_placeholder": "Search cheatsheets...",
+        "advanced_search": "Advanced Search",
+        "filters": "Filters",
+        "clear": "Clear",
+        "select": "Select",
+        "all_languages": "All languages",
+        "no_results_found": "No results found",
+        "one_result_found": "1 result found",
+        "multiple_results_found": "{} results found",
+        "items_count": "Items",
+        "error_loading_data": "Error loading data",
+        "search_error": "Search error",
+        "no_title": "No title"
       }
     },
     "fr": {

@@ -13,6 +13,7 @@ from cheatsheet_manager import CheatSheetManager
 from ui_components import (
     DialMenu, CheatSheetEditor, CheatSheetViewer, TagManager, get_tag_color
 )
+from search_components import show_search_dialog
 from i18n import get_i18n, _
 
 
@@ -285,6 +286,12 @@ class FloatingWidget:
         """Show context menu (right click)"""
         context_menu = tk.Menu(self.root, tearoff=0)
 
+        # Search option
+        search_label = _("search_cheatsheets", fallback="🔍 Buscar CheatSheets")
+        context_menu.add_command(label=search_label,
+                                command=self.show_search_dialog)
+        context_menu.add_separator()
+
         # Languages submenu
         language_menu = tk.Menu(context_menu, tearoff=0)
         context_menu.add_cascade(label=_("language"), menu=language_menu)
@@ -389,8 +396,13 @@ class FloatingWidget:
         # Reset dial menu so it recreates with new dimensions
         self.dial_menu = None
 
-    def show_dial_menu(self):
-        """Show dial menu with dynamic pagination"""
+    def show_dial_menu(self, filtered_cheatsheets=None):
+        """Show dial menu with dynamic pagination
+        
+        Args:
+            filtered_cheatsheets: Optional list of cheatsheets to display.
+                                 If None, uses current tag and language filters.
+        """
         if self.menu_open:
             return
 
@@ -410,26 +422,31 @@ class FloatingWidget:
             radius = 80  # Radio fijo para mejor posicionamiento
             self.dial_menu = DialMenu(self.canvas, center_x, center_y, radius)
 
-            # Configurar callbacks del menú contextual
+            # Configurar callbacks del menú contextual incluyendo búsqueda
             context_callbacks = {
                 'nueva': self.create_new_cheatsheet,
                 'tags': self.show_tag_selector,
-                'gestion': self.show_tag_manager
+                'gestion': self.show_tag_manager,
+                'buscar': self.show_search_dialog
             }
             self.dial_menu.set_context_menu_callbacks(context_callbacks)
 
             print(f"DEBUG: Created dial menu at ({center_x}, {center_y}) with radius {radius}")
 
-        # Get cheatsheets according to tag and current language
+        # Get cheatsheets - use filtered list if provided, otherwise apply normal filters
         try:
-            if self.current_tag == "all":
-                # Obtener todas las cheatsheets del idioma actual
-                cheatsheets = self.cheatsheet_manager.get_cheatsheets_by_language(self.current_language)
+            if filtered_cheatsheets is not None:
+                cheatsheets = filtered_cheatsheets
+                print(f"DEBUG: Using filtered cheatsheets: {len(cheatsheets)} items")
             else:
-                # Obtener cheatsheets por tag e idioma
-                cheatsheets = self.cheatsheet_manager.get_cheatsheets_by_tag_and_language(
-                    self.current_tag, self.current_language)
-            print(f"DEBUG: Found {len(cheatsheets)} cheatsheets for tag '{self.current_tag}' in language '{self.current_language}'")
+                if self.current_tag == "all":
+                    # Obtener todas las cheatsheets del idioma actual
+                    cheatsheets = self.cheatsheet_manager.get_cheatsheets_by_language(self.current_language)
+                else:
+                    # Obtener cheatsheets por tag e idioma
+                    cheatsheets = self.cheatsheet_manager.get_cheatsheets_by_tag_and_language(
+                        self.current_tag, self.current_language)
+                print(f"DEBUG: Found {len(cheatsheets)} cheatsheets for tag '{self.current_tag}' in language '{self.current_language}'")
         except Exception as e:
             print(f"ERROR: Failed to get cheatsheets: {e}")
             cheatsheets = []
@@ -658,6 +675,23 @@ class FloatingWidget:
         if self.menu_open:
             self.hide_dial_menu()
             self.show_dial_menu()
+
+    def show_search_dialog(self):
+        """Show search dialog and handle selected cheatsheet"""
+        def on_cheatsheet_selected(cheatsheet_data):
+            # Show selected cheatsheet directly
+            filename = cheatsheet_data.get('filename')
+            if filename:
+                self.show_cheatsheet(filename)
+        
+        # Show search dialog
+        show_search_dialog(
+            parent=self.root,
+            cheatsheet_manager=self.cheatsheet_manager,
+            on_select_callback=on_cheatsheet_selected,
+            current_language=self.current_language,
+            current_tag=self.current_tag
+        )
 
     def run(self):
         """Run the application"""
