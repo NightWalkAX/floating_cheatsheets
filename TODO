@@ -1,10 +1,3 @@
-- (COMPLETADO) ✅ Implementar buscador en el menu contextual (para que en el menu dial se muestren la(s) cheatsheets ) y menu de gestion de CheatSheets
-  * ✅ Creado módulo search_components.py con SearchDialog y QuickSearchEntry
-  * ✅ Integrado buscador en menú contextual del widget principal
-  * ✅ Añadida funcionalidad de búsqueda rápida en TagManager (pestaña cheatsheets)
-  * ✅ Búsqueda avanzada con filtros por tags y lenguajes
-  * ✅ Actualizado DialMenu para incluir opción de búsqueda en menú contextual central
-
 - Arreglar el install options en index.html
 
 - (MAS ADELANTE) Exportar/Importar paquetes de cheatsheets para poder compartirlos y extraerlos con comodidad
