@@ -1,5 +1,40 @@
 # Release Notes
 
+## v1.2.1 - Installation and Uninstallation Improvements (2025-09-29)
+
+### 🔧 Critical Installation Improvements
+
+- **Root Permission Installation**: Mandatory sudo permission validation for secure installation
+- **Automatic Updater**: Automatic removal of previous installations before updating
+- **Process Stopping**: Automatically stops the application before performing updates
+- **Complete System Installation**: Includes documentation in `/usr/share/doc/floating-cheatsheets/`
+
+### 📦 Enhanced Installation Files
+
+- **Language Files Inclusion**: Automatic copying of `languages.json` and all necessary data
+- **Multi-User Configuration**: Configures autostart for existing and current users
+- **Complete File Structure**:
+  - Executable: `/usr/bin/floating-cheatsheets`
+  - Application: `/usr/share/floating-cheatsheets/`
+  - Icon: `/usr/share/pixmaps/floating-cheatsheets.png`
+  - Desktop: `/usr/share/applications/floating-cheatsheets.desktop`
+  - Documentation: `/usr/share/doc/floating-cheatsheets/`
+
+### 🗑️ Complete Uninstallation
+
+- **Exhaustive Removal**: Uses `rm -rf` to completely remove all system files
+- **Cache Cleanup**: Removes cache, logs, and temporary files
+- **Registry Updates**: Improvements in `update-desktop-database` and `gtk-update-icon-cache`
+- **Final Verification**: Checks that all files were removed correctly
+- **Enhanced Feedback**: Shows which files are being removed in real-time
+
+### 🛠️ Correcciones de Release Workflow
+
+- **Prevención de Pérdida de Versiones**: No elimina releases anteriores automáticamente
+- **Inclusión de Changelog**: Integra automáticamente el changelog en las release notes
+- **Bump de Versión Automático**: Incrementa versión basada en archivo VERSION
+- **Soporte para Branch Special**: Permite releases desde branch `special` además de `main`
+
 ## v1.2.0 - Sistema de Búsqueda Avanzada (2025-09-27)
 
 ### 🔍 Nuevas Características Principales

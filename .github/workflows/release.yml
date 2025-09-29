@@ -8,7 +8,6 @@ on:
 
 env:
   APP_NAME: floating-cheatsheets
-  APP_VERSION: 1.0.0
 
 jobs:
   build-linux:
@@ -242,6 +241,35 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     
+    - name: Read version from VERSION file
+      id: version
+      run: |
+        VERSION=$(cat VERSION | tr -d '\n\r' | xargs)
+        echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
+        echo "Current version: $VERSION"
+        
+    - name: Increment version for hotfix
+      id: new_version
+      run: |
+        CURRENT_VERSION="${{ steps.version.outputs.VERSION }}"
+        # Increment patch version for hotfix
+        IFS='.' read -r major minor patch <<< "$CURRENT_VERSION"
+        NEW_PATCH=$((patch + 1))
+        NEW_VERSION="${major}.${minor}.${NEW_PATCH}"
+        echo "NEW_VERSION=$NEW_VERSION" >> $GITHUB_OUTPUT
+        echo "New version: $NEW_VERSION"
+        
+        # Update VERSION file
+        echo "$NEW_VERSION" > VERSION
+        
+        # Configure git
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        
+        # Commit version bump
+        git add VERSION
+        git commit -m "chore: bump version to v$NEW_VERSION (hotfix release)"
+    
     - name: Download all artifacts
       uses: actions/download-artifact@v4
     
@@ -252,20 +280,50 @@ jobs:
         echo "Looking for artifacts:"
         find . -name "*.deb" -o -name "*.exe" | head -10
     
-    - name: Delete existing latest release
-      continue-on-error: true
+    - name: Extract latest release notes
+      id: changelog
       run: |
-        gh release delete latest --yes
-        git push --delete origin latest || true
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # Extract the latest version changelog from RELEASE_NOTES.md
+        VERSION="${{ steps.version.outputs.VERSION }}"
+        echo "Extracting changelog for version: $VERSION"
+        
+        # Get changelog content between the first version header and the next one
+        CHANGELOG=$(awk -v version="$VERSION" '
+          /^## v/ { 
+            if (found) exit
+            if ($0 ~ version) found=1
+            next
+          }
+          found && /^## v/ { exit }
+          found { print }
+        ' RELEASE_NOTES.md | sed '/^\s*$/d' | head -n 50)
+        
+        # If no specific changelog found, use a default message
+        if [ -z "$CHANGELOG" ]; then
+          CHANGELOG="## What's New in v$VERSION
+        
+        - Cross-platform support (Linux and Windows)
+        - Floating cheatsheet widget
+        - Easy cheatsheet management
+        - Customizable interface
+        
+        See [RELEASE_NOTES.md](https://github.com/${{ github.repository }}/blob/main/RELEASE_NOTES.md) for detailed changelog."
+        fi
+        
+        # Save changelog to file for multi-line output
+        echo "$CHANGELOG" > changelog.md
+        echo "Changelog extracted successfully"
     
     - name: Create Release
       run: |
+        VERSION="${{ steps.new_version.outputs.NEW_VERSION }}"
+        TAG_NAME="v$VERSION"
+        
         # Find the actual paths of the built files
         DEB_FILE=$(find . -name "floating-cheatsheets_*.deb" | head -1)
         EXE_FILE=$(find . -name "floating-cheatsheets-*-setup.exe" | head -1)
         
+        echo "Creating release for version: $VERSION"
         echo "Found DEB file: $DEB_FILE"
         echo "Found EXE file: $EXE_FILE"
         
@@ -276,35 +334,46 @@ jobs:
           exit 1
         fi
         
-        gh release create latest \
-          --title "Release ${{ env.APP_VERSION }}" \
-          --notes "🚀 **Floating CheatSheets v${{ env.APP_VERSION }}**
+        # Check if release already exists
+        if gh release view "$TAG_NAME" >/dev/null 2>&1; then
+          echo "Release $TAG_NAME already exists, skipping creation"
+          echo "Use a different version number to create a new release"
+          exit 0
+        fi
         
-        ## Downloads
-        - **Linux**: Download the \`.deb\` file for Debian/Ubuntu systems
-        - **Windows**: Download the \`.exe\` installer for Windows systems
+        # Create release notes with changelog
+        echo "🚀 **Floating CheatSheets v$VERSION**" > release_notes.md
+        echo "" >> release_notes.md
+        echo "## Downloads" >> release_notes.md
+        echo "- **Linux**: Download the \`.deb\` file for Debian/Ubuntu systems" >> release_notes.md
+        echo "- **Windows**: Download the \`.exe\` installer for Windows systems" >> release_notes.md
+        echo "" >> release_notes.md
+        echo "## Installation" >> release_notes.md
+        echo "" >> release_notes.md
+        echo "### Linux (Debian/Ubuntu)" >> release_notes.md
+        echo "\`\`\`bash" >> release_notes.md
+        echo "sudo dpkg -i floating-cheatsheets_${VERSION}_all.deb" >> release_notes.md
+        echo "\`\`\`" >> release_notes.md
+        echo "" >> release_notes.md
+        echo "### Windows" >> release_notes.md
+        echo "Run the \`.exe\` installer and follow the installation wizard." >> release_notes.md
+        echo "" >> release_notes.md
+        echo "## Changelog" >> release_notes.md
+        cat changelog.md >> release_notes.md
+        echo "" >> release_notes.md
+        echo "---" >> release_notes.md
+        echo "" >> release_notes.md
+        PREV_VERSION=$(echo $VERSION | awk -F. '{print $1"."$2"."$3-1}')
+        echo "**Full Changelog**: https://github.com/${{ github.repository }}/compare/v${PREV_VERSION}...v$VERSION" >> release_notes.md
         
-        ## Installation
-        
-        ### Linux (Debian/Ubuntu)
-        \`\`\`bash
-        sudo dpkg -i floating-cheatsheets_${{ env.APP_VERSION }}_all.deb
-        \`\`\`
-        
-        ### Windows
-        Run the \`.exe\` installer and follow the installation wizard.
-        
-        ## What's New
-        - Cross-platform support (Linux and Windows)
-        - Floating cheatsheet widget
-        - Easy cheatsheet management
-        - Customizable interface
-        
-        ---
-        
-        **Full Changelog**: https://github.com/${{ github.repository }}/commits/main" \
+        # Create the release
+        gh release create "$TAG_NAME" \
+          --title "Floating CheatSheets v$VERSION" \
+          --notes-file release_notes.md \
           "$DEB_FILE" \
           "$EXE_FILE"
+        
+        echo "Release v$VERSION created successfully!"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     
