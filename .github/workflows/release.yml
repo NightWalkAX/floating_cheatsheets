@@ -126,7 +126,54 @@ jobs:
       shell: powershell
     
     - name: Install NSIS
-      uses: joncloud/makensis-action@v4
+      run: |
+        try {
+          # Method 1: Use Chocolatey to install NSIS
+          Write-Host "Installing NSIS via Chocolatey..."
+          choco install nsis -y --no-progress
+          
+          # Verify installation
+          $nsisPath = "C:\Program Files (x86)\NSIS"
+          if (Test-Path "$nsisPath\makensis.exe") {
+            Write-Host "NSIS installed successfully via Chocolatey"
+            & "$nsisPath\makensis.exe" /VERSION
+            
+            # Add to environment for current session and subsequent steps
+            $env:PATH = "$nsisPath;$env:PATH"
+            "$nsisPath" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+          } else {
+            throw "Chocolatey installation failed"
+          }
+        } catch {
+          Write-Host "Chocolatey method failed, trying direct download..."
+          
+          # Method 2: Direct download and install
+          $nsisUrl = "https://sourceforge.net/projects/nsis/files/NSIS%203/3.08/nsis-3.08.zip/download"
+          $nsisZip = "$env:TEMP\nsis.zip"
+          $nsisDir = "C:\nsis"
+          
+          Write-Host "Downloading NSIS portable..."
+          Invoke-WebRequest -Uri $nsisUrl -OutFile $nsisZip -UserAgent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+          
+          Write-Host "Extracting NSIS..."
+          Expand-Archive -Path $nsisZip -DestinationPath $nsisDir -Force
+          
+          # Find makensis.exe in extracted folder
+          $makeNsisPath = Get-ChildItem -Path $nsisDir -Name "makensis.exe" -Recurse | Select-Object -First 1
+          if ($makeNsisPath) {
+            $nsisPath = Split-Path -Parent (Join-Path $nsisDir $makeNsisPath)
+            Write-Host "NSIS installed successfully at: $nsisPath"
+            & "$nsisPath\makensis.exe" /VERSION
+            
+            # Add to environment
+            $env:PATH = "$nsisPath;$env:PATH"
+            "$nsisPath" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+          } else {
+            Write-Error "NSIS installation failed completely"
+            exit 1
+          }
+        }
+      shell: powershell
     
     - name: Create Windows installer
       run: |
@@ -136,8 +183,24 @@ jobs:
           exit 1
         }
         
+        # Show current directory structure for debugging
+        Write-Host "Current directory structure:"
+        Get-ChildItem -Recurse -Name | Select-Object -First 20
+        
+        # Verify required files exist
+        Write-Host "Checking required files..."
+        $requiredFiles = @("assets\icon.ico", "LICENSE", "windows\installer.nsi")
+        foreach ($file in $requiredFiles) {
+          if (Test-Path $file) {
+            Write-Host "Found: $file"
+          } else {
+            Write-Host "Missing: $file"
+          }
+        }
+        
         # Change to windows directory and create installer
         Set-Location windows
+        Write-Host "Changed to windows directory: $(Get-Location)"
         
         # Verify installer script exists
         if (-not (Test-Path "installer.nsi")) {
@@ -145,7 +208,12 @@ jobs:
           exit 1
         }
         
-        # Create the installer
+        # Create the installer using makensis
+        Write-Host "Creating installer with NSIS..."
+        Write-Host "NSIS Version:"
+        makensis /VERSION
+        
+        Write-Host "Running makensis on installer.nsi..."
         makensis installer.nsi
         
         # Verify installer was created
