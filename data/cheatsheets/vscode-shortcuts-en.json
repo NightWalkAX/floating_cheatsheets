@@ -1,0 +1,159 @@
+{
+  "title": "VS Code Shortcuts",
+  "language": "en",
+  "tags": ["vscode", "shortcuts", "productivity"],
+  "items": [
+    {
+      "code": "Ctrl+Shift+P",
+      "description": "Open command palette",
+      "example": "Access to all VS Code commands"
+    },
+    {
+      "code": "Ctrl+P",
+      "description": "Go to file",
+      "example": "Quick file search in the project"
+    },
+    {
+      "code": "Ctrl+G",
+      "description": "Go to line",
+      "example": "Jump directly to a specific line"
+    },
+    {
+      "code": "Ctrl+F",
+      "description": "Find in current file",
+      "example": "Search for text in the open file"
+    },
+    {
+      "code": "Ctrl+Shift+F",
+      "description": "Find in entire project",
+      "example": "Global search in all files"
+    },
+    {
+      "code": "Ctrl+H",
+      "description": "Find and replace",
+      "example": "Replace text in current file"
+    },
+    {
+      "code": "Ctrl+Shift+H",
+      "description": "Find and replace globally",
+      "example": "Replace in entire project"
+    },
+    {
+      "code": "Ctrl+D",
+      "description": "Select next occurrence",
+      "example": "Multi-select matching words"
+    },
+    {
+      "code": "Ctrl+Shift+L",
+      "description": "Select all occurrences",
+      "example": "Select all instances of a word"
+    },
+    {
+      "code": "Alt+Click",
+      "description": "Multiple cursors",
+      "example": "Click while holding Alt for multiple cursors"
+    },
+    {
+      "code": "Ctrl+Shift+K",
+      "description": "Delete line",
+      "example": "Delete the entire current line"
+    },
+    {
+      "code": "Ctrl+Shift+Enter",
+      "description": "Insert line above",
+      "example": "New line above cursor"
+    },
+    {
+      "code": "Ctrl+Enter",
+      "description": "Insert line below",
+      "example": "New line below cursor"
+    },
+    {
+      "code": "Alt+↑/↓",
+      "description": "Move line up/down",
+      "example": "Move current line up or down"
+    },
+    {
+      "code": "Shift+Alt+↑/↓",
+      "description": "Copy line up/down",
+      "example": "Duplicate current line"
+    },
+    {
+      "code": "Ctrl+/",
+      "description": "Toggle line comment",
+      "example": "Toggle comment on current line"
+    },
+    {
+      "code": "Shift+Alt+A",
+      "description": "Toggle block comment",
+      "example": "Toggle block comment /* */"
+    },
+    {
+      "code": "Ctrl+K Ctrl+F",
+      "description": "Format selection",
+      "example": "Format selected code"
+    },
+    {
+      "code": "Shift+Alt+F",
+      "description": "Format document",
+      "example": "Format entire file"
+    },
+    {
+      "code": "Ctrl+Space",
+      "description": "Trigger IntelliSense",
+      "example": "Show code suggestions"
+    },
+    {
+      "code": "Ctrl+Shift+Space",
+      "description": "Show parameter hints",
+      "example": "Function parameter information"
+    },
+    {
+      "code": "F12",
+      "description": "Go to definition",
+      "example": "Jump to function/variable definition"
+    },
+    {
+      "code": "Ctrl+K F12",
+      "description": "Open definition to the side",
+      "example": "Open definition in side panel"
+    },
+    {
+      "code": "Shift+F12",
+      "description": "Show references",
+      "example": "View all uses of a function/variable"
+    },
+    {
+      "code": "F2",
+      "description": "Rename symbol",
+      "example": "Rename variable/function in entire project"
+    },
+    {
+      "code": "Ctrl+`",
+      "description": "Toggle terminal",
+      "example": "Show/hide integrated terminal"
+    },
+    {
+      "code": "Ctrl+Shift+`",
+      "description": "New terminal",
+      "example": "Create new terminal instance"
+    },
+    {
+      "code": "Ctrl+B",
+      "description": "Toggle sidebar",
+      "example": "Show/hide side panel"
+    },
+    {
+      "code": "Ctrl+Shift+E",
+      "description": "File explorer",
+      "example": "Open file panel"
+    },
+    {
+      "code": "Ctrl+Shift+G",
+      "description": "Source control",
+      "example": "Open Git panel"
+    }
+  ],
+  "created": "2025-10-01",
+  "updated": "2025-10-01"
+}

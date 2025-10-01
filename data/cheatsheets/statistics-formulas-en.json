@@ -1,0 +1,44 @@
+{
+  "title": "Statistics Formulas",
+  "language": "en",
+  "tags": ["statistics", "formulas", "data-science"],
+  "items": [
+    {
+      "code": "Mean (Average)",
+      "description": "Sum of values divided by the number of values",
+      "example": "μ = Σx / N"
+    },
+    {
+      "code": "Median",
+      "description": "Central value in an ordered dataset",
+      "example": "Sort data and find the middle value"
+    },
+    {
+      "code": "Mode",
+      "description": "Value that appears most frequently",
+      "example": "Find the most repeated value in the data"
+    },
+    {
+      "code": "Variance",
+      "description": "Average of the squared differences from the mean",
+      "example": "σ² = Σ(x - μ)² / N"
+    },
+    {
+      "code": "Standard Deviation",
+      "description": "Square root of the variance",
+      "example": "σ = sqrt(Σ(x - μ)² / N)"
+    },
+    {
+      "code": "Correlation (r)",
+      "description": "Measures the linear relationship between two variables",
+      "example": "r = Σ[(xi-x̄)(yi-ȳ)] / sqrt[Σ(xi-x̄)²Σ(yi-ȳ)²]"
+    },
+    {
+      "code": "Bayes' Theorem",
+      "description": "Probability of an event based on prior knowledge",
+      "example": "P(A|B) = [P(B|A) * P(A)] / P(B)"
+    }
+  ],
+  "created": "2025-10-01",
+  "updated": "2025-10-01"
+}

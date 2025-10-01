@@ -1,0 +1,42 @@
+Form Tours 
+Frappe provides an easy way to generate form tutorials for your complex doctype with very little configuration.
+
+Form Tour
+
+Creating a Form Tour 
+To create a Form Tour, type "new form tour" in awesomebar and hit enter.
+
+Enter Title. For eg., 'Creating a Custom Field'
+Select Reference DocType.
+Add steps defining each fields.
+Save the document.
+Custom Field Form Tour
+A Tour to explain creation of Custom Fields
+
+Configuration Options 
+Form Tour 
+Is Standard: To make a standard Form Tour which will be stored as JSON. Can only be set while developer mode is on.
+Save on Completion: If checked, the last step of the Form Tour will prompt the user to save the document.
+Show First Document Tour: If you want to show the tour of an existing document instead of a new form, enable this. As the name suggests, it gives the tour of the very first document created for this DocType.
+Include Name Field: For some doctypes, the name is set by the user. On enabling this, the name field becomes the first step of the tour.
+Form Tour Steps 
+Field: A field from the selected doctype. This will be highlighted with a Title & Description.
+Title & Description: To describe the field for its use, impact, and other hidden wirings of the field.
+Position: The position of the highlighting popover is decided by this field. There are multiple options to choose depending upon the position of the highlighted field.
+Next Condition: A code field which expects a valid JS condition which applies on the document. For eg., for a Task DocType Tour, we can check if task priority is set before going to the next condition by setting next condition as follows:
+
+eval: doc.priority != ""
+
+Is Table Field: To be checked if the field to be highlighted is under a child table.
+Parent Field: Table field from the selected doctype. Only visible if Is Table Field is checked. Allows user to select a child table field.
+Triggering the Tours 
+Once you are done describing the Form & its fields, you are now ready to trigger the tour by using Form API. You just have to initialize the tour with appropriate tour_name and then simply start the tour with frm.tour.start().
+
+frappe.ui.form.on('Custom Field', 'onload', () => {
+ const tour_name = 'Creating a Custom Field';
+ frm.tour
+ .init({ tour_name })
+ .then(() => frm.tour.start());
+});
+Was this article helpful?
+Give Feedback
