@@ -1,0 +1,14 @@
+{
+  "title": "Pandas Cheatsheet",
+  "language": "fr",
+  "cheats": [
+    { "description": "Créer un DataFrame", "code": "pd.DataFrame({'a': [1,2]})" },
+    { "description": "Lire un fichier CSV", "code": "pd.read_csv('fichier.csv')" },
+    { "description": "Sélectionner une colonne", "code": "df['col']" },
+    { "description": "Filtrer les lignes", "code": "df[df['col'] > 0]" },
+    { "description": "Grouper par colonne", "code": "df.groupby('col').sum()" },
+    { "description": "Trier par colonne", "code": "df.sort_values('col')" },
+    { "description": "Décrire le DataFrame", "code": "df.describe()" },
+    { "description": "Supprimer une colonne", "code": "df.drop('col', axis=1)" }
+  ]
+}

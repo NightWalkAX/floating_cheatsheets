@@ -1,0 +1,14 @@
+{
+  "title": "JavaScript Intermediário",
+  "language": "pt",
+  "cheats": [
+    { "description": "Array map", "code": "arr.map(x => x * 2)" },
+    { "description": "Array filter", "code": "arr.filter(x => x > 0)" },
+    { "description": "Array reduce", "code": "arr.reduce((acc, x) => acc + x, 0)" },
+    { "description": "Chaves do objeto", "code": "Object.keys(obj)" },
+    { "description": "Valores do objeto", "code": "Object.values(obj)" },
+    { "description": "Entradas do objeto", "code": "Object.entries(obj)" },
+    { "description": "Template literals", "code": "`Olá ${nome}`" },
+    { "description": "Parâmetros padrão", "code": "function f(x = 1) { ... }" }
+  ]
+}

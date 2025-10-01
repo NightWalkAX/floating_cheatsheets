@@ -1,0 +1,11 @@
+{
+  "title": "HTML & CSS Básico",
+  "language": "pt",
+  "cheats": [
+    { "description": "Estrutura básica HTML", "code": "<html>\n  <head>\n    <title>Título</title>\n  </head>\n  <body>\n    Conteúdo\n  </body>\n</html>" },
+    { "description": "Adicionar estilo CSS", "code": "<style>body { color: red; }</style>" },
+    { "description": "Vincular CSS externo", "code": "<link rel=\"stylesheet\" href=\"styles.css\">" },
+    { "description": "Definir cor de fundo", "code": "body { background-color: #fff; }" },
+    { "description": "Centralizar texto", "code": "h1 { text-align: center; }" }
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "title": "Comandos Linux",
+  "language": "pt",
+  "tags": ["linux", "terminal", "comandos"],
+  "items": [
+    {
+      "code": "ls",
+      "description": "Listar arquivos e diretórios",
+      "example": "ls | ls -la | ls -lh"
+    },
+    {
+      "code": "cd",
+      "description": "Mudar diretório",
+      "example": "cd /home | cd .. | cd ~"
+    },
+    {
+      "code": "pwd",
+      "description": "Mostrar diretório atual",
+      "example": "pwd"
+    },
+    {
+      "code": "mkdir",
+      "description": "Criar diretório",
+      "example": "mkdir pasta | mkdir -p pasta/subpasta"
+    },
+    {
+      "code": "rmdir",
+      "description": "Remover diretório vazio",
+      "example": "rmdir pasta | rmdir -p pasta/subpasta"
+    },
+    {
+      "code": "rm",
+      "description": "Remover arquivos e diretórios",
+      "example": "rm arquivo.txt | rm -rf pasta/"
+    },
+    {
+      "code": "cp",
+      "description": "Copiar arquivos",
+      "example": "cp origem destino | cp -r pasta/ nova_pasta/"
+    },
+    {
+      "code": "mv",
+      "description": "Mover/renomear arquivos",
+      "example": "mv antigo.txt novo.txt | mv arquivo.txt /home/"
+    },
+    {
+      "code": "chmod",
+      "description": "Alterar permissões",
+      "example": "chmod 755 arquivo.sh | chmod +x script.sh"
+    },
+    {
+      "code": "chown",
+      "description": "Alterar proprietário",
+      "example": "chown usuario:grupo arquivo.txt | chown -R usuario pasta/"
+    },
+    {
+      "code": "find",
+      "description": "Procurar arquivos",
+      "example": "find /home -name '*.txt' | find . -type f -exec grep 'texto' {} \\;"
+    },
+    {
+      "code": "grep",
+      "description": "Procurar texto em arquivos",
+      "example": "grep 'texto' arquivo.txt | grep -r 'padrão' pasta/"
+    },
+    {
+      "code": "ps",
+      "description": "Listar processos",
+      "example": "ps aux | ps -ef | ps -u usuario"
+    },
+    {
+      "code": "top",
+      "description": "Monitor de processos em tempo real",
+      "example": "top | htop"
+    },
+    {
+      "code": "kill",
+      "description": "Matar processo",
+      "example": "kill PID | kill -9 PID | killall nome_processo"
+    }
+  ],
+  "created": "2024-01-01",
+  "updated": "2024-01-01"
+}

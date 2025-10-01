@@ -1,0 +1,14 @@
+{
+  "title": "Fórmulas de Química",
+  "language": "pt",
+  "cheats": [
+    { "description": "Fórmula da água", "code": "H2O" },
+    { "description": "Fórmula do dióxido de carbono", "code": "CO2" },
+    { "description": "Fórmula da glicose", "code": "C6H12O6" },
+    { "description": "Fórmula do ácido sulfúrico", "code": "H2SO4" },
+    { "description": "Fórmula do cloreto de sódio", "code": "NaCl" },
+    { "description": "Fórmula do metano", "code": "CH4" },
+    { "description": "Fórmula da amônia", "code": "NH3" },
+    { "description": "Fórmula do etanol", "code": "C2H5OH" }
+  ]
+}

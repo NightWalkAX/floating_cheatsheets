@@ -2,45 +2,13 @@
   "title": "Linux Commands",
   "language": "en",
   "cheats": [
-    {
-      "description": "List files",
-      "code": "ls",
-      "example": "# Lists: file1.txt file2.txt folder/"
-    },
-    {
-      "description": "Change directory",
-      "code": "cd folder",
-      "example": "# File system operation"
-    },
-    {
-      "description": "Show current directory",
-      "code": "pwd",
-      "example": "# Usage example for: pwd..."
-    },
-    {
-      "description": "Copy file",
-      "code": "cp source dest",
-      "example": "# File system operation"
-    },
-    {
-      "description": "Move file",
-      "code": "mv source dest",
-      "example": "# File system operation"
-    },
-    {
-      "description": "Remove file",
-      "code": "rm file",
-      "example": "# Removes file or directory"
-    },
-    {
-      "description": "Show file content",
-      "code": "cat file",
-      "example": "# Usage example for: cat file..."
-    },
-    {
-      "description": "Find text in files",
-      "code": "grep 'text' file",
-      "example": "# Searches and highlights matching text"
-    }
+    { "description": "List files", "code": "ls" },
+    { "description": "Change directory", "code": "cd folder" },
+    { "description": "Show current directory", "code": "pwd" },
+    { "description": "Copy file", "code": "cp source dest" },
+    { "description": "Move file", "code": "mv source dest" },
+    { "description": "Remove file", "code": "rm file" },
+    { "description": "Show file content", "code": "cat file" },
+    { "description": "Find text in files", "code": "grep 'text' file" }
   ]
 }

@@ -2,30 +2,10 @@
   "title": "Finance Formulas",
   "language": "en",
   "cheats": [
-    {
-      "description": "Simple interest",
-      "code": "I = P * r * t",
-      "example": "# Example: 1000 * (1 + 0.05)^10 = 1628.89"
-    },
-    {
-      "description": "Compound interest",
-      "code": "A = P(1 + r/n)^(nt)",
-      "example": "# Example: 1000 * (1 + 0.05)^10 = 1628.89"
-    },
-    {
-      "description": "Future value",
-      "code": "FV = PV * (1 + r)^n",
-      "example": "# Example: 1000 * (1 + 0.05)^10 = 1628.89"
-    },
-    {
-      "description": "Present value",
-      "code": "PV = FV / (1 + r)^n",
-      "example": "# Example: 1000 * (1 + 0.05)^10 = 1628.89"
-    },
-    {
-      "description": "Loan payment",
-      "code": "PMT = [P * r(1 + r)^n] / [(1 + r)^n - 1]",
-      "example": "# Example: 1000 * (1 + 0.05)^10 = 1628.89"
-    }
+    { "description": "Simple interest", "code": "I = P * r * t" },
+    { "description": "Compound interest", "code": "A = P(1 + r/n)^(nt)" },
+    { "description": "Future value", "code": "FV = PV * (1 + r)^n" },
+    { "description": "Present value", "code": "PV = FV / (1 + r)^n" },
+    { "description": "Loan payment", "code": "PMT = [P * r(1 + r)^n] / [(1 + r)^n - 1]" }
   ]
 }

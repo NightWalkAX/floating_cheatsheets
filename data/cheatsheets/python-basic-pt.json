@@ -1,0 +1,109 @@
+{
+  "title": "Python Básico",
+  "language": "pt",
+  "tags": ["python", "programação", "básico"],
+  "items": [
+    {
+      "code": "print()",
+      "description": "Imprimir no console",
+      "example": "print(\"Olá mundo\") | print(f\"Variável: {variavel}\")"
+    },
+    {
+      "code": "input()",
+      "description": "Ler entrada do usuário",
+      "example": "nome = input(\"Seu nome: \")"
+    },
+    {
+      "code": "len()",
+      "description": "Obter comprimento",
+      "example": "len(\"texto\") | len([1,2,3]) | len({\"a\":1})"
+    },
+    {
+      "code": "type()",
+      "description": "Obter tipo de dado",
+      "example": "type(42) | type(\"texto\") | type([])"
+    },
+    {
+      "code": "str(), int(), float()",
+      "description": "Converter tipos de dados",
+      "example": "str(42) | int(\"42\") | float(\"3.14\")"
+    },
+    {
+      "code": "range()",
+      "description": "Gerar sequência de números",
+      "example": "range(10) | range(1, 11) | range(0, 10, 2)"
+    },
+    {
+      "code": "for loop",
+      "description": "Loop for",
+      "example": "for i in range(5): print(i)"
+    },
+    {
+      "code": "while loop",
+      "description": "Loop while",
+      "example": "while condicao: # código"
+    },
+    {
+      "code": "if/elif/else",
+      "description": "Condicionais",
+      "example": "if x > 0: print(\"positivo\") elif x < 0: print(\"negativo\")"
+    },
+    {
+      "code": "def function()",
+      "description": "Definir função",
+      "example": "def saudar(nome): return f\"Olá {nome}\""
+    },
+    {
+      "code": "list comprehension",
+      "description": "Criar listas com compreensão",
+      "example": "[x**2 for x in range(10)] | [x for x in lista if x > 0]"
+    },
+    {
+      "code": "with open()",
+      "description": "Ler/escrever arquivos",
+      "example": "with open('arquivo.txt', 'r') as f: conteudo = f.read()"
+    },
+    {
+      "code": "try/except",
+      "description": "Tratamento de exceções",
+      "example": "try: resultado = 10/0 except ZeroDivisionError: print(\"Erro\")"
+    },
+    {
+      "code": "import",
+      "description": "Importar módulos",
+      "example": "import os | from datetime import datetime | import json as js"
+    },
+    {
+      "code": ".split(), .join()",
+      "description": "Dividir e juntar strings",
+      "example": "\"a,b,c\".split(\",\") | \",\".join([\"a\", \"b\", \"c\"])"
+    },
+    {
+      "code": ".append(), .extend()",
+      "description": "Adicionar a listas",
+      "example": "lista.append(item) | lista.extend([1,2,3])"
+    },
+    {
+      "code": ".keys(), .values(), .items()",
+      "description": "Métodos de dicionários",
+      "example": "dict.keys() | dict.values() | dict.items()"
+    },
+    {
+      "code": "enumerate()",
+      "description": "Enumerar com índice",
+      "example": "for i, valor in enumerate(lista): print(i, valor)"
+    },
+    {
+      "code": "zip()",
+      "description": "Combinar iteráveis",
+      "example": "for a, b in zip(lista1, lista2): print(a, b)"
+    },
+    {
+      "code": "sorted()",
+      "description": "Ordenar iteráveis",
+      "example": "sorted([3,1,2]) | sorted(lista, key=len, reverse=True)"
+    }
+  ],
+  "created": "2025-09-27",
+  "updated": "2025-09-27"
+}

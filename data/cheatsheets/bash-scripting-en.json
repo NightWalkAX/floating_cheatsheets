@@ -2,50 +2,14 @@
   "title": "Bash Scripting",
   "language": "en",
   "cheats": [
-    {
-      "description": "Print message to console",
-      "code": "echo 'Hello World'",
-      "example": "# Usage example for: echo 'Hello World'..."
-    },
-    {
-      "description": "Declare variable",
-      "code": "myvar=5",
-      "example": "# Usage example for: myvar=5..."
-    },
-    {
-      "description": "Read user input",
-      "code": "read name",
-      "example": "# Usage example for: read name..."
-    },
-    {
-      "description": "If statement",
-      "code": "if [ $myvar -eq 5 ]; then echo 'Five'; fi",
-      "example": "# Usage example for: if [ $myvar -eq 5 ]; then echo..."
-    },
-    {
-      "description": "For loop",
-      "code": "for i in 1 2 3; do echo $i; done",
-      "example": "# Usage example for: for i in 1 2 3; do echo $i; do..."
-    },
-    {
-      "description": "While loop",
-      "code": "while [ $myvar -gt 0 ]; do echo $myvar; myvar=$((myvar-1)); done",
-      "example": "# Example: 1000 * (1 + 0.05)^10 = 1628.89"
-    },
-    {
-      "description": "Function definition",
-      "code": "myfunc() { echo 'Function'; }",
-      "example": "# Usage example for: myfunc() { echo 'Function'; }..."
-    },
-    {
-      "description": "Get script arguments",
-      "code": "$1, $2, ...",
-      "example": "# Retrieves data"
-    },
-    {
-      "description": "Exit script",
-      "code": "exit 0",
-      "example": "# Usage example for: exit 0..."
-    }
+    { "description": "Print message to console", "code": "echo 'Hello World'" },
+    { "description": "Declare variable", "code": "myvar=5" },
+    { "description": "Read user input", "code": "read name" },
+    { "description": "If statement", "code": "if [ $myvar -eq 5 ]; then echo 'Five'; fi" },
+    { "description": "For loop", "code": "for i in 1 2 3; do echo $i; done" },
+    { "description": "While loop", "code": "while [ $myvar -gt 0 ]; do echo $myvar; myvar=$((myvar-1)); done" },
+    { "description": "Function definition", "code": "myfunc() { echo 'Function'; }" },
+    { "description": "Get script arguments", "code": "$1, $2, ..." },
+    { "description": "Exit script", "code": "exit 0" }
   ]
 }

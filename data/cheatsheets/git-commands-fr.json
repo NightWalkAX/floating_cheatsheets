@@ -1,0 +1,109 @@
+{
+  "title": "Commandes Git",
+  "language": "fr",
+  "tags": ["git", "contrôle-version", "terminal"],
+  "items": [
+    {
+      "code": "git init",
+      "description": "Initialiser un dépôt Git",
+      "example": "git init | git init --bare (dépôt nu)"
+    },
+    {
+      "code": "git clone",
+      "description": "Cloner un dépôt distant",
+      "example": "git clone https://github.com/user/repo.git"
+    },
+    {
+      "code": "git status",
+      "description": "Voir l'état du dépôt",
+      "example": "git status | git status --short | git status --porcelain"
+    },
+    {
+      "code": "git add",
+      "description": "Ajouter des fichiers au staging",
+      "example": "git add fichier.txt | git add . | git add -A"
+    },
+    {
+      "code": "git commit",
+      "description": "Créer un commit",
+      "example": "git commit -m \"message\" | git commit -am \"message\" (add+commit)"
+    },
+    {
+      "code": "git push",
+      "description": "Pousser les changements vers le distant",
+      "example": "git push origin main | git push -u origin feature-branch"
+    },
+    {
+      "code": "git pull",
+      "description": "Tirer les changements du distant",
+      "example": "git pull origin main | git pull --rebase"
+    },
+    {
+      "code": "git fetch",
+      "description": "Télécharger les changements sans merge",
+      "example": "git fetch origin | git fetch --all"
+    },
+    {
+      "code": "git branch",
+      "description": "Gérer les branches",
+      "example": "git branch | git branch nouvelle-branche | git branch -d branche"
+    },
+    {
+      "code": "git checkout",
+      "description": "Changer de branche ou restaurer des fichiers",
+      "example": "git checkout main | git checkout -b nouvelle-branche"
+    },
+    {
+      "code": "git switch",
+      "description": "Changer de branche (commande moderne)",
+      "example": "git switch main | git switch -c nouvelle-branche"
+    },
+    {
+      "code": "git merge",
+      "description": "Fusionner des branches",
+      "example": "git merge feature-branch | git merge --no-ff feature-branch"
+    },
+    {
+      "code": "git rebase",
+      "description": "Réécrire l'historique des commits",
+      "example": "git rebase main | git rebase -i HEAD~3"
+    },
+    {
+      "code": "git log",
+      "description": "Voir l'historique des commits",
+      "example": "git log --oneline | git log --graph --all"
+    },
+    {
+      "code": "git diff",
+      "description": "Voir les différences",
+      "example": "git diff | git diff --staged | git diff HEAD~1"
+    },
+    {
+      "code": "git stash",
+      "description": "Sauvegarder les changements temporairement",
+      "example": "git stash | git stash pop | git stash list"
+    },
+    {
+      "code": "git remote",
+      "description": "Gérer les dépôts distants",
+      "example": "git remote -v | git remote add origin URL"
+    },
+    {
+      "code": "git reset",
+      "description": "Annuler les changements",
+      "example": "git reset HEAD~1 | git reset --hard HEAD~1"
+    },
+    {
+      "code": "git tag",
+      "description": "Créer des étiquettes",
+      "example": "git tag v1.0.0 | git tag -a v1.0.0 -m \"message\""
+    },
+    {
+      "code": "git show",
+      "description": "Afficher les informations du commit",
+      "example": "git show HEAD | git show v1.0.0"
+    }
+  ],
+  "created": "2025-09-27",
+  "updated": "2025-09-27"
+}

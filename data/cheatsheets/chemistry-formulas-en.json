@@ -1,0 +1,14 @@
+{
+  "title": "Chemistry Formulas",
+  "language": "en",
+  "cheats": [
+    { "description": "Water formula", "code": "H2O" },
+    { "description": "Carbon dioxide formula", "code": "CO2" },
+    { "description": "Glucose formula", "code": "C6H12O6" },
+    { "description": "Sulfuric acid formula", "code": "H2SO4" },
+    { "description": "Sodium chloride formula", "code": "NaCl" },
+    { "description": "Methane formula", "code": "CH4" },
+    { "description": "Ammonia formula", "code": "NH3" },
+    { "description": "Ethanol formula", "code": "C2H5OH" }
+  ]
+}

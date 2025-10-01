@@ -2,45 +2,13 @@
   "title": "NumPy Cheatsheet",
   "language": "en",
   "cheats": [
-    {
-      "description": "Create a NumPy array",
-      "code": "np.array([1, 2, 3])",
-      "example": "# Returns: array([1, 2, 3, 4, 5])"
-    },
-    {
-      "description": "Create an array with a range of values",
-      "code": "np.arange(0, 10, 2)",
-      "example": "# NumPy operation"
-    },
-    {
-      "description": "Create an array with evenly spaced values",
-      "code": "np.linspace(0, 1, 5)",
-      "example": "# NumPy operation"
-    },
-    {
-      "description": "View array shape and dtype",
-      "code": "a.shape, a.dtype",
-      "example": "# Usage example for: a.shape, a.dtype..."
-    },
-    {
-      "description": "Element-wise math operations",
-      "code": "a + b, a * b",
-      "example": "# Usage example for: a + b, a * b..."
-    },
-    {
-      "description": "Dot product of two arrays",
-      "code": "np.dot(a, b)",
-      "example": "# NumPy operation"
-    },
-    {
-      "description": "Calculate sum or mean",
-      "code": "a.sum(), a.mean()",
-      "example": "# Usage example for: a.sum(), a.mean()..."
-    },
-    {
-      "description": "Reshape array",
-      "code": "a.reshape(3, 2)",
-      "example": "# Usage example for: a.reshape(3, 2)..."
-    }
+    { "description": "Create a NumPy array", "code": "np.array([1, 2, 3])" },
+    { "description": "Create an array with a range of values", "code": "np.arange(0, 10, 2)" },
+    { "description": "Create an array with evenly spaced values", "code": "np.linspace(0, 1, 5)" },
+    { "description": "View array shape and dtype", "code": "a.shape, a.dtype" },
+    { "description": "Element-wise math operations", "code": "a + b, a * b" },
+    { "description": "Dot product of two arrays", "code": "np.dot(a, b)" },
+    { "description": "Calculate sum or mean", "code": "a.sum(), a.mean()" },
+    { "description": "Reshape array", "code": "a.reshape(3, 2)" }
   ]
 }
