@@ -1,0 +1,34 @@
+{
+  "title": "Response Generation (Server)",
+  "language": "en",
+  "tags": ["responses", "frappe", "python", "backend", "http"],
+  "items": [
+    {
+      "description": "Return JSON data (the default behavior).",
+      "code": "# In a @frappe.whitelist() method\ndef my_method():\n    return {'key': 'value'}",
+      "example": "# Frappe will automatically set the Content-Type to 'application/json'\n# and serialize the dictionary."
+    },
+    {
+      "description": "Set a custom HTTP status code.",
+      "code": "frappe.local.response.http_status_code = 404",
+      "example": "@frappe.whitelist()\ndef get_data():\n    if not frappe.db.exists('MyDocType', 'my-doc'):\n        frappe.local.response.http_status_code = 404\n        return {'error': 'Not found'}"
+    },
+    {
+      "description": "Force a CSV file download.",
+      "code": "frappe.response['result'] = 'CSV,Content'\nfrappe.response['type'] = 'csv'\nfrappe.response['doctype'] = 'FileName'",
+      "example": "data = [['Name', 'Age'], ['Jules', 30]]\ncsv_data = '\\n'.join([','.join(map(str, row)) for row in data])\n\nfrappe.response.result = csv_data\nfrappe.response.type = 'csv'\nfrappe.response.doctype = 'my_report'"
+    },
+    {
+      "description": "Force the download of content as a file.",
+      "code": "frappe.response.filecontent = '...'\nfrappe.response.filename = 'my_file.txt'",
+      "example": "frappe.response.filecontent = 'Hello, this is the content of my file.'\nfrappe.response.filename = 'greeting.txt'"
+    },
+    {
+      "description": "Render a Jinja template as an HTML response.",
+      "code": "frappe.render_template('my_template.html', {'context': 'value'})",
+      "example": "html = frappe.render_template('templates/pages/my_page.html', {\n    'title': 'My Dynamic Page'\n})\nfrappe.local.response.response = html"
+    }
+  ],
+  "created": "2025-09-27",
+  "updated": "2025-10-01"
+}

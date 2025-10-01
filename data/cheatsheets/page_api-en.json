@@ -1,0 +1,39 @@
+{
+  "title": "Page API (Client)",
+  "language": "en",
+  "tags": ["javascript", "api", "frappe", "page-api", "ui"],
+  "items": [
+    {
+      "description": "Creates a new application page.",
+      "code": "const page = frappe.ui.make_app_page({ parent, title, single_column })",
+      "example": "// Inside a page script (.js)\nfrappe.pages['my-page'].on_page_load = function(wrapper) {\n    const page = frappe.ui.make_app_page({\n        parent: wrapper,\n        title: 'My Custom Page',\n        single_column: true\n    });\n}"
+    },
+    {
+      "description": "Sets the page title after creation.",
+      "code": "page.set_title('New Title')",
+      "example": "page.set_title('Main Dashboard');"
+    },
+    {
+      "description": "Adds a colored status indicator to the page header.",
+      "code": "page.set_indicator('Label', 'color')",
+      "example": "page.set_indicator('Active', 'green');"
+    },
+    {
+      "description": "Sets the primary action button for the page.",
+      "code": "page.set_primary_action('Label', () => { ... }, 'icon')",
+      "example": "page.set_primary_action('Create Task', () => {\n    frappe.new_doc('Task');\n}, 'add');"
+    },
+    {
+      "description": "Adds a secondary action button to the menu.",
+      "code": "page.add_menu_item('Label', () => { ... })",
+      "example": "page.add_menu_item('Import Data', () => {\n    // Import logic here\n});"
+    },
+    {
+      "description": "Adds a field to the page body.",
+      "code": "page.add_field({ fieldname, fieldtype, label })",
+      "example": "let date_filter = page.add_field({\n    fieldname: 'filter_date',\n    fieldtype: 'Date',\n    label: 'Filter by Date'\n});"
+    }
+  ],
+  "created": "2025-09-26",
+  "updated": "2025-10-01"
+}

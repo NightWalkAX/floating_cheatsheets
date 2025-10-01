@@ -1,12 +1,49 @@
 {
   "title": "Advanced Python",
   "language": "en",
-  "cheats": [
-    { "description": "List comprehension", "code": "[x for x in range(10)]" },
-    { "description": "Lambda function", "code": "lambda x: x * 2" },
-    { "description": "Decorators", "code": "@decorator\ndef func(): pass" },
-    { "description": "Generators", "code": "def gen(): yield 1" },
-    { "description": "Context manager", "code": "with open('file') as f: ..." },
-    { "description": "Unpacking arguments", "code": "def f(*args, **kwargs): ..." }
-  ]
+  "tags": ["python", "programming", "advanced"],
+  "items": [
+    {
+      "code": "Decorators",
+      "description": "Modify or extend functions or methods.",
+      "example": "def my_decorator(func):\n    def wrapper():\n        print('Something before the function.')\n        func()\n    return wrapper\n\n@my_decorator\ndef say_hello():\n    print('Hello!')"
+    },
+    {
+      "code": "Generators",
+      "description": "Functions that return a lazy iterator, using `yield`.",
+      "example": "def my_generator(n):\n    for i in range(n):\n        yield i*i\n\nfor num in my_generator(5):\n    print(num)"
+    },
+    {
+      "code": "Metaclasses",
+      "description": "Classes that are used to create other classes.",
+      "example": "class MyMetaclass(type):\n    def __new__(cls, name, bases, dct):\n        dct['my_attribute'] = 'Hello World'\n        return super().__new__(cls, name, bases, dct)\n\nclass MyClass(metaclass=MyMetaclass):\n    pass\n\nprint(MyClass.my_attribute)"
+    },
+    {
+      "code": "Concurrency (asyncio)",
+      "description": "Asynchronous programming with async/await.",
+      "example": "import asyncio\n\nasync def main():\n    print('Hello')\n    await asyncio.sleep(1)\n    print('...World')\n\nasyncio.run(main())"
+    },
+    {
+      "code": "Context Managers",
+      "description": "Manage resources using the `with` statement.",
+      "example": "from contextlib import contextmanager\n\n@contextmanager\ndef my_context():\n    print('Entering')\n    yield\n    print('Exiting')\n\nwith my_context():\n    print('Inside the with')"
+    },
+    {
+      "code": "Partial Functions",
+      "description": "Create new functions with pre-set arguments.",
+      "example": "from functools import partial\n\ndef multiply(a, b):\n    return a * b\n\ndouble = partial(multiply, 2)\nprint(double(5)) # Prints 10"
+    },
+    {
+      "code": "GIL (Global Interpreter Lock)",
+      "description": "A mutex that protects access to Python objects, limiting CPU-bound multithreading in CPython.",
+      "example": "# Theoretical concept, not runnable code.\n# Affects CPU-bound tasks in multithreading, but not I/O."
+    },
+    {
+      "code": "Magic Methods (__init__)",
+      "description": "Special double-underscore methods that allow behavior emulation.",
+      "example": "class Vector:\n    def __init__(self, x, y):\n        self.x, self.y = x, y\n\n    def __add__(self, other):\n        return Vector(self.x + other.x, self.y + other.y)"
+    }
+  ],
+  "created": "2025-09-26",
+  "updated": "2025-10-01"
 }

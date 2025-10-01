@@ -1,0 +1,54 @@
+{
+  "title": "Form Scripts API (Client)",
+  "language": "en",
+  "tags": ["javascript", "api", "frappe", "form", "client-script"],
+  "items": [
+    {
+      "description": "Attach event handlers to a Doctype.",
+      "code": "frappe.ui.form.on('MyDocType', { event(frm) { ... } })",
+      "example": "frappe.ui.form.on('Sales Order', {\n    refresh(frm) {\n        console.log('Form reloaded');\n    }\n});"
+    },
+    {
+      "description": "'refresh' event: Fires when the form is loaded or reloaded.",
+      "code": "refresh(frm) { ... }",
+      "example": "refresh(frm) {\n    frm.set_intro('This is an intro text for the form.');\n}"
+    },
+    {
+      "description": "Field change event: Fires when a field's value changes.",
+      "code": "field_name(frm) { ... }",
+      "example": "customer(frm) {\n    if (frm.doc.customer) {\n        frappe.msgprint(`The customer is ${frm.doc.customer}`);\n    }\n}"
+    },
+    {
+      "description": "Set the value of a field.",
+      "code": "frm.set_value('field_name', 'value')",
+      "example": "frm.set_value('status', 'Completed');\n// Can also be an object for multiple fields\nfrm.set_value({ 'status': 'Completed', 'completed_on': frappe.datetime.now_date() });"
+    },
+    {
+      "description": "Refresh the display of a specific field.",
+      "code": "frm.refresh_field('field_name')",
+      "example": "// Useful after changing a field's state (e.g., hidden, read-only)\nfrm.refresh_field('items');"
+    },
+    {
+      "description": "Add a custom button to the form's toolbar.",
+      "code": "frm.add_custom_button('Label', () => { ... })",
+      "example": "frm.add_custom_button('Create Invoice', () => {\n    // Logic to create an invoice\n}).addClass('btn-primary');"
+    },
+    {
+      "description": "Set a query for a `Link` field.",
+      "code": "frm.set_query('field_name', () => { ... })",
+      "example": "frm.set_query('customer', () => {\n    return {\n        filters: {\n            'customer_group': 'Internal'\n        }\n    };\n});"
+    },
+    {
+      "description": "'validate' event: Fires before saving.",
+      "code": "validate(frm) { ... }",
+      "example": "validate(frm) {\n    if (frm.doc.total_amount < 100) {\n        frappe.throw('The total amount must be at least 100.');\n    }\n}"
+    },
+    {
+      "description": "Access a row in a child table.",
+      "code": "frappe.get_doc(cdt, cdn)",
+      "example": "// Inside a child table field event\nitem_code(frm, cdt, cdn) {\n    let row = frappe.get_doc(cdt, cdn);\n    console.log('Selected row:', row);\n}"
+    }
+  ],
+  "created": "2025-09-26",
+  "updated": "2025-10-01"
+}

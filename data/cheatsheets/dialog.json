@@ -1,0 +1,34 @@
+{
+  "title": "API de Diálogos (Frappe)",
+  "language": "es",
+  "tags": ["dialog", "frappe", "ui", "javascript"],
+  "items": [
+    {
+      "code": "frappe.msgprint('Mensaje')",
+      "description": "Muestra un diálogo de mensaje simple.",
+      "example": "frappe.msgprint('El documento ha sido guardado exitosamente.');"
+    },
+    {
+      "code": "frappe.msgprint({ msg: '...', title: '...', indicator: '...' })",
+      "description": "Muestra un mensaje con título e indicador de color.",
+      "example": "frappe.msgprint({ msg: 'No se pudo conectar al servidor.', title: 'Error de Red', indicator: 'red' });"
+    },
+    {
+      "code": "frappe.throw('Mensaje de error')",
+      "description": "Muestra un diálogo de error y lanza una excepción.",
+      "example": "if (!doc.customer) {\n    frappe.throw('Por favor, seleccione un cliente.');\n}"
+    },
+    {
+      "code": "new frappe.ui.Dialog({ title, fields, primary_action })",
+      "description": "Crea un diálogo modal personalizado con campos de entrada.",
+      "example": "let d = new frappe.ui.Dialog({\n    title: 'Crear Nuevo Proyecto',\n    fields: [\n        { label: 'Nombre del Proyecto', fieldname: 'project_name', fieldtype: 'Data', reqd: 1 },\n        { label: 'Fecha de Inicio', fieldname: 'start_date', fieldtype: 'Date' }\n    ],\n    primary_action_label: 'Crear',\n    primary_action(values) {\n        console.log(values);\n        d.hide();\n    }\n});\nd.show();"
+    },
+    {
+      "code": "frappe.confirm('¿Estás seguro?', () => { ... })",
+      "description": "Muestra un diálogo de confirmación con acciones de 'Sí' y 'No'.",
+      "example": "frappe.confirm('¿Está seguro de que desea eliminar este registro?',\n    () => { /* Lógica de eliminación */ },\n    () => { /* Lógica de cancelación */ }\n);"
+    }
+  ],
+  "created": "2025-09-27",
+  "updated": "2025-10-01"
+}

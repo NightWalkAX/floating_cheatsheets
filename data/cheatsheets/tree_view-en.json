@@ -1,0 +1,39 @@
+{
+  "title": "Tree View API (Client)",
+  "language": "en",
+  "tags": ["javascript", "api", "frappe", "tree-view", "ui"],
+  "items": [
+    {
+      "description": "Customize the Tree View settings for a nestable Doctype.",
+      "code": "frappe.treeview_settings['MyNestableDocType'] = { ... }",
+      "example": "// In a client script for the 'Account' Doctype or in a global script\nfrappe.treeview_settings['Account'] = {\n    // ... see options below\n};"
+    },
+    {
+      "description": "Specifies the whitelisted Python method to get the child nodes.",
+      "code": "get_tree_nodes: 'my_app.utils.get_child_nodes'",
+      "example": "get_tree_nodes: 'erpnext.accounts.utils.get_children'"
+    },
+    {
+      "description": "Specifies the whitelisted Python method to add a new node.",
+      "code": "add_tree_node: 'my_app.utils.add_node'",
+      "example": "add_tree_node: 'erpnext.accounts.utils.add_account'"
+    },
+    {
+      "description": "Defines the fields that will appear in the dialog for adding a new node.",
+      "code": "fields: [ { fieldname, fieldtype, label, reqd } ]",
+      "example": "fields: [\n    { fieldtype: 'Data', fieldname: 'account_name', label: 'New Account Name', reqd: true },\n    { fieldtype: 'Select', fieldname: 'account_type', options: ['Income', 'Expense'] }\n]"
+    },
+    {
+      "description": "Adds custom filters to the tree view's sidebar.",
+      "code": "filters: [ { fieldname, fieldtype, options, label } ]",
+      "example": "filters: [\n    { fieldname: 'company', fieldtype: 'Link', options: 'Company', label: 'Company' }\n]"
+    },
+    {
+      "description": "Adds custom menu items to the tree view's menu.",
+      "code": "menu_items: [ { label, action } ]",
+      "example": "menu_items: [\n    { label: 'Import Accounts', action: () => { /* import logic */ } }\n]"
+    }
+  ],
+  "created": "2025-09-26",
+  "updated": "2025-10-01"
+}

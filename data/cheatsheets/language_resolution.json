@@ -1,0 +1,39 @@
+{
+  "title": "Resolución de Idioma (Frappe)",
+  "language": "es",
+  "tags": ["language", "frappe", "python", "settings", "localization"],
+  "items": [
+    {
+      "code": "frappe.lang",
+      "description": "El idioma actual de la sesión del usuario. La resolución final de los siguientes pasos se almacena aquí.",
+      "example": "# En cualquier método de Python\nprint(frappe.lang)  # Imprimirá 'es', 'en', etc."
+    },
+    {
+      "code": "URL Query String: ?lang=es",
+      "description": "Prioridad 1 (la más alta): Parámetro `lang` en la URL de la petición.",
+      "example": "https://mi-sitio.com/app/home?lang=es"
+    },
+    {
+      "code": "User Document: user.language",
+      "description": "Prioridad 2: El campo 'language' en el documento del usuario que ha iniciado sesión.",
+      "example": "# Si el usuario 'test@example.com' tiene 'Español' en su configuración\nuser_doc = frappe.get_doc('User', 'test@example.com')\n# user_doc.language == 'es'"
+    },
+    {
+      "code": "System Settings: SystemSettings.language",
+      "description": "Prioridad 3: El idioma por defecto configurado para toda la instancia.",
+      "example": "# Valor en /app/system-settings\nsystem_settings = frappe.get_doc('System Settings')\n# system_settings.language == 'es'"
+    },
+    {
+      "code": "Cookie: preferred_language (Guest)",
+      "description": "Prioridad 4 (solo para invitados): Cookie guardada en el navegador.",
+      "example": "Cookie: preferred_language=es"
+    },
+    {
+      "code": "Header: Accept-Language (Guest)",
+      "description": "Prioridad 5 (solo para invitados): Cabecera del navegador.",
+      "example": "Request Header: Accept-Language: es-ES,es;q=0.9,en;q=0.8"
+    }
+  ],
+  "created": "2025-09-27",
+  "updated": "2025-10-01"
+}

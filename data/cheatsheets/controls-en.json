@@ -1,0 +1,34 @@
+{
+  "title": "Controls API",
+  "language": "en",
+  "tags": [
+    "javascript",
+    "api",
+    "frappe",
+    "controls"
+  ],
+  "items": [
+    {
+      "description": "Create a generic control for a form field",
+      "code": "frappe.ui.form.make_control({ parent, df, render_input })",
+      "example": "const wrapper = document.getElementById('control-wrapper');\nconst df = { label: 'My Field', fieldname: 'my_field', fieldtype: 'Data' };\nfrappe.ui.form.make_control({ parent: wrapper, df: df, render_input: true });"
+    },
+    {
+      "description": "Example: Create a 'Date' field control",
+      "code": "frappe.ui.form.make_control({ parent: wrapper, df: { ... }, render_input: true })",
+      "example": "const df = { label: 'Due Date', fieldname: 'due_date', fieldtype: 'Date' };\nfrappe.ui.form.make_control({ parent: wrapper, df: df, render_input: true });"
+    },
+    {
+      "description": "Example: Definition for an 'Attach' field",
+      "code": "{ fieldtype: 'Attach', label: 'Attachment' }",
+      "example": "const df = { label: 'Upload Invoice', fieldname: 'invoice_attachment', fieldtype: 'Attach' };\n// Used inside a Doctype's field definition or in a dialog"
+    },
+    {
+      "description": "Example: Definition for an 'Autocomplete' field",
+      "code": "{ fieldtype: 'Autocomplete', options: [...] }",
+      "example": "const df = { label: 'Select User', fieldtype: 'Autocomplete', options: ['jules@example.com', 'jane@example.com'] };\n// 'options' can be a list of strings or a newline-separated string"
+    }
+  ],
+  "created": "2025-09-26",
+  "updated": "2025-10-01"
+}

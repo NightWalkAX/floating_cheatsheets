@@ -1,0 +1,29 @@
+{
+  "title": "Form Tours API",
+  "language": "en",
+  "tags": ["javascript", "api", "frappe", "form_tours", "onboarding"],
+  "items": [
+    {
+      "description": "Define the steps for a Form Tour in a JSON file.",
+      "code": "/* Create a file, e.g., 'public/js/tours/my_tour.json' in your app */",
+      "example": "[\n    {\n        \"title\": \"Step 1: Subject Field\",\n        \"fieldname\": \"subject\",\n        \"position\": \"Bottom\",\n        \"description\": \"This is the main subject for your task.\"\n    },\n    {\n        \"title\": \"Step 2: Priority\",\n        \"fieldname\": \"priority\",\n        \"position\": \"Top\",\n        \"description\": \"Set the priority of the task. 'High' is for urgent matters.\"\n    }\n]"
+    },
+    {
+      "description": "Initiate a Form Tour from a client script.",
+      "code": "frm.tour.init({ tour_name, steps })",
+      "example": "// In the 'refresh' event of a Form Script\nrefresh(frm) {\n    // Load steps from a JSON file\n    frappe.require('/assets/my_app/js/tours/my_tour.json').then(steps => {\n        frm.tour.init({ steps: steps }).then(() => {\n            frm.tour.start();\n        });\n    });\n}"
+    },
+    {
+      "description": "Start a predefined tour (saved in the 'Form Tour' Doctype).",
+      "code": "frm.tour.init({ tour_name }).then(() => frm.tour.start());",
+      "example": "// Start a tour named 'My Task Tour'\nrefresh(frm) {\n    const tour_name = 'My Task Tour';\n    // 'tour_name' must match a record in the 'Form Tour' Doctype\n    frm.tour.init({ tour_name: tour_name }).then(() => {\n        frm.tour.start();\n    });\n}"
+    },
+    {
+      "description": "Add a conditional step that only appears if a criterion is met.",
+      "code": "{ \"title\": \"...\", \"condition\": \"eval:doc.status=='Open'\" }",
+      "example": "{\n    \"title\": \"Confirm Closure\",\n    \"fieldname\": \"status\",\n    \"description\": \"This step only appears if the status is 'Open'.\",\n    \"condition\": \"eval:doc.status=='Open'\"\n}"
+    }
+  ],
+  "created": "2025-09-26",
+  "updated": "2025-10-01"
+}

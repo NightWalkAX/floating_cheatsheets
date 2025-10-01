@@ -1,0 +1,59 @@
+{
+  "title": "Database API (Frappe)",
+  "language": "en",
+  "tags": ["database", "frappe", "python", "orm", "sql"],
+  "items": [
+    {
+      "code": "frappe.db.get_list('MyDocType')",
+      "description": "Gets a list of dictionaries from a DocType.",
+      "example": "frappe.db.get_list('Employee', fields=['name', 'company'])"
+    },
+    {
+      "code": "frappe.db.get_all('MyDocType')",
+      "description": "Similar to get_list but with slightly different syntax.",
+      "example": "frappe.db.get_all('Task', filters={'status': 'Open'}, fields=['subject', 'exp_end_date'])"
+    },
+    {
+      "code": "frappe.db.get_value('MyDocType', 'doc_name', 'fieldname')",
+      "description": "Gets a single value from a document.",
+      "example": "user_email = frappe.db.get_value('User', 'test@example.com', 'email_id')"
+    },
+    {
+      "code": "frappe.db.get_doc('MyDocType', 'doc_name')",
+      "description": "Gets a full document as a `Document` object.",
+      "example": "user_doc = frappe.get_doc('User', 'test@example.com')"
+    },
+    {
+      "code": "frappe.db.set_value('MyDocType', 'doc_name', 'fieldname', 'value')",
+      "description": "Sets a value in a document without loading the full object.",
+      "example": "frappe.db.set_value('Employee', 'EMP-0001', 'status', 'Left')"
+    },
+    {
+      "code": "frappe.db.exists('MyDocType', 'doc_name')",
+      "description": "Checks if a document exists.",
+      "example": "if frappe.db.exists('User', 'non_existent@example.com'):\n    # do something"
+    },
+    {
+      "code": "frappe.db.sql('SELECT ...')",
+      "description": "Executes a raw SQL query.",
+      "example": "frappe.db.sql('SELECT name, status FROM tabTask WHERE priority=%s', 'High')"
+    },
+    {
+      "code": "frappe.db.get_list('Task', filters={'status': 'Open'})",
+      "description": "Query with basic filters.",
+      "example": "open_tasks = frappe.db.get_list('Task', filters={'status': 'Open'})"
+    },
+    {
+      "code": "frappe.db.get_list('Task', filters=[['status', '=', 'Open']])",
+      "description": "Alternative filter syntax using tuples.",
+      "example": "open_tasks = frappe.db.get_list('Task', filters=[['status', '=', 'Open']])"
+    },
+    {
+      "code": "frappe.db.get_list('Task', filters={'date': ['>', '2023-01-01']})",
+      "description": "Filter using operators like '>', '<', 'like'.",
+      "example": "recent_tasks = frappe.db.get_list('Task', filters={'_updated': ['>', '2023-10-01']})"
+    }
+  ],
+  "created": "2025-09-27",
+  "updated": "2025-10-01"
+}

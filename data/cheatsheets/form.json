@@ -1,0 +1,54 @@
+{
+  "title": "API de Scripts de Formulario (Cliente)",
+  "language": "es",
+  "tags": ["javascript", "api", "frappe", "form", "client-script"],
+  "items": [
+    {
+      "description": "Adjuntar manejadores de eventos a un Doctype.",
+      "code": "frappe.ui.form.on('MiDocType', { evento(frm) { ... } })",
+      "example": "frappe.ui.form.on('Sales Order', {\n    refresh(frm) {\n        console.log('Formulario recargado');\n    }\n});"
+    },
+    {
+      "description": "Evento 'refresh': Se dispara cuando el formulario se carga o recarga.",
+      "code": "refresh(frm) { ... }",
+      "example": "refresh(frm) {\n    frm.set_intro('Este es un texto de introducción para el formulario.');\n}"
+    },
+    {
+      "description": "Evento de cambio de campo: Se dispara cuando cambia el valor de un campo.",
+      "code": "nombre_campo(frm) { ... }",
+      "example": "customer(frm) {\n    if (frm.doc.customer) {\n        frappe.msgprint(`El cliente es ${frm.doc.customer}`);\n    }\n}"
+    },
+    {
+      "description": "Establecer el valor de un campo.",
+      "code": "frm.set_value('nombre_campo', 'valor')",
+      "example": "frm.set_value('status', 'Completed');\n// También puede ser un objeto para múltiples campos\nfrm.set_value({ 'status': 'Completed', 'completed_on': frappe.datetime.now_date() });"
+    },
+    {
+      "description": "Refrescar la visualización de un campo específico.",
+      "code": "frm.refresh_field('nombre_campo')",
+      "example": "// Útil después de cambiar el estado de un campo (ej. oculto, solo lectura)\nfrm.refresh_field('items');"
+    },
+    {
+      "description": "Añadir un botón personalizado a la barra de herramientas del formulario.",
+      "code": "frm.add_custom_button('Etiqueta', () => { ... })",
+      "example": "frm.add_custom_button('Crear Factura', () => {\n    // Lógica para crear factura\n}).addClass('btn-primary');"
+    },
+    {
+      "description": "Establecer una consulta (query) para un campo `Link`.",
+      "code": "frm.set_query('nombre_campo', () => { ... })",
+      "example": "frm.set_query('customer', () => {\n    return {\n        filters: {\n            'customer_group': 'Internal'\n        }\n    };\n});"
+    },
+    {
+      "description": "Evento de validación: Se dispara antes de guardar.",
+      "code": "validate(frm) { ... }",
+      "example": "validate(frm) {\n    if (frm.doc.total_amount < 100) {\n        frappe.throw('El monto total debe ser al menos 100.');\n    }\n}"
+    },
+    {
+      "description": "Acceder a una fila de una tabla hija (child table).",
+      "code": "frappe.get_doc(cdt, cdn)",
+      "example": "// Dentro de un evento de campo de tabla hija\nitem_code(frm, cdt, cdn) {\n    let row = frappe.get_doc(cdt, cdn);\n    console.log('Fila seleccionada:', row);\n}"
+    }
+  ],
+  "created": "2025-09-26",
+  "updated": "2025-10-01"
+}

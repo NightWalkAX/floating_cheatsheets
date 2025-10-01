@@ -1,0 +1,39 @@
+{
+  "title": "API de Logging (Servidor)",
+  "language": "es",
+  "tags": ["logging", "frappe", "python", "backend", "debug"],
+  "items": [
+    {
+      "description": "Obtener una instancia del logger para un módulo específico.",
+      "code": "logger = frappe.logger('mi_app.utils')",
+      "example": "# Dentro de un archivo de Python en tu aplicación\nimport frappe\n\nlogger = frappe.logger('mi_modulo')"
+    },
+    {
+      "description": "Registrar un mensaje de depuración (debug).",
+      "code": "logger.debug('Mensaje')",
+      "example": "logger.debug(f'Procesando el documento: {doc.name}')\n# Solo se mostrará si el nivel de log es DEBUG"
+    },
+    {
+      "description": "Registrar un mensaje informativo (info).",
+      "code": "logger.info('Mensaje')",
+      "example": "logger.info('Se ha completado la sincronización de datos.')"
+    },
+    {
+      "description": "Registrar una advertencia (warning).",
+      "code": "logger.warning('Mensaje')",
+      "example": "logger.warning('La configuración de la API está obsoleta. Por favor, actualice.')"
+    },
+    {
+      "description": "Registrar un error (error).",
+      "code": "logger.error('Mensaje')",
+      "example": "logger.error('No se pudo conectar con el servicio externo.')"
+    },
+    {
+      "description": "Registrar un error con traza de excepción.",
+      "code": "logger.exception('Mensaje')",
+      "example": "try:\n    # Código que puede fallar\n    result = 1 / 0\nexcept Exception:\n    logger.exception('Ocurrió un error al calcular el resultado.')"
+    }
+  ],
+  "created": "2025-09-26",
+  "updated": "2025-10-01"
+}

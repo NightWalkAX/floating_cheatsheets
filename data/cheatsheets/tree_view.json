@@ -1,0 +1,39 @@
+{
+  "title": "API de Vista de Árbol (Cliente)",
+  "language": "es",
+  "tags": ["javascript", "api", "frappe", "tree-view", "ui"],
+  "items": [
+    {
+      "description": "Personalizar la configuración de la Vista de Árbol para un Doctype anidable.",
+      "code": "frappe.treeview_settings['MiDocTypeAnidable'] = { ... }",
+      "example": "// En un script de cliente para el Doctype 'Account' o en un script global\nfrappe.treeview_settings['Account'] = {\n    // ... ver opciones abajo\n};"
+    },
+    {
+      "description": "Especifica el método Python 'whitelisted' para obtener los nodos hijos.",
+      "code": "get_tree_nodes: 'mi_app.utils.get_nodos_hijos'",
+      "example": "get_tree_nodes: 'erpnext.accounts.utils.get_children'"
+    },
+    {
+      "description": "Especifica el método Python 'whitelisted' para añadir un nuevo nodo.",
+      "code": "add_tree_node: 'mi_app.utils.añadir_nodo'",
+      "example": "add_tree_node: 'erpnext.accounts.utils.add_account'"
+    },
+    {
+      "description": "Define los campos que aparecerán en el diálogo para añadir un nuevo nodo.",
+      "code": "fields: [ { fieldname, fieldtype, label, reqd } ]",
+      "example": "fields: [\n    { fieldtype: 'Data', fieldname: 'account_name', label: 'Nombre de la Cuenta', reqd: true },\n    { fieldtype: 'Select', fieldname: 'account_type', options: ['Ingresos', 'Gastos'] }\n]"
+    },
+    {
+      "description": "Añade filtros personalizados a la barra lateral de la vista de árbol.",
+      "code": "filters: [ { fieldname, fieldtype, options, label } ]",
+      "example": "filters: [\n    { fieldname: 'company', fieldtype: 'Link', options: 'Company', label: 'Compañía' }\n]"
+    },
+    {
+      "description": "Añade elementos de menú personalizados al menú de la vista de árbol.",
+      "code": "menu_items: [ { label, action } ]",
+      "example": "menu_items: [\n    { label: 'Importar Cuentas', action: () => { /* lógica de importación */ } }\n]"
+    }
+  ],
+  "created": "2025-09-26",
+  "updated": "2025-10-01"
+}

@@ -1,0 +1,59 @@
+{
+  "title": "Ciclo de Vida de la Petición (Frappe)",
+  "language": "es",
+  "tags": ["request-lifecycle", "frappe", "python", "backend", "web"],
+  "items": [
+    {
+      "code": "1. Entrada de la Petición (Request)",
+      "description": "El servidor WSGI recibe la petición HTTP y la pasa a la aplicación Frappe.",
+      "example": "# El usuario navega a https://mi-sitio.com/app/home"
+    },
+    {
+      "code": "2. `frappe.app.application`",
+      "description": "El punto de entrada principal que inicializa el objeto `frappe.local`.",
+      "example": "# Frappe establece el sitio, el usuario, la sesión y otros datos locales de la petición."
+    },
+    {
+      "code": "3. Manejo de Rutas Especiales",
+      "description": "Se comprueban rutas especiales como `/api/...`, `/files/...` antes del renderizado completo de la página.",
+      "example": "# Una petición a /api/resource/ToDo/TASK-001 es manejada por la API REST."
+    },
+    {
+      "code": "4. Hook: `on_session_creation`",
+      "description": "Se ejecuta después de que se crea una sesión de usuario válida.",
+      "example": "# En hooks.py: on_session_creation = \"mi_app.utils.setup_user_session\""
+    },
+    {
+      "code": "5. Renderizado de la Página",
+      "description": "Si la ruta no es especial, Frappe intenta renderizar una página web.",
+      "example": "# Para la ruta '/about', Frappe busca '/about.html' en la carpeta 'www'."
+    },
+    {
+      "code": "6. `frappe.local.response`",
+      "description": "El contenido de la respuesta se construye y se almacena en este diccionario.",
+      "example": "frappe.local.response['http_status_code'] = 200\nfrappe.local.response['type'] = 'json'"
+    },
+    {
+      "code": "7. Hook: `before_request`",
+      "description": "Se ejecuta justo antes de que la petición principal sea procesada. Puede modificar la petición.",
+      "example": "# En hooks.py: before_request = [\"mi_app.utils.log_request\"]"
+    },
+    {
+      "code": "8. Procesamiento de la Petición",
+      "description": "Se ejecuta el método del controlador principal (ej. una llamada a un método `@frappe.whitelist`).",
+      "example": "@frappe.whitelist()\ndef mi_metodo():\n    return {'data': 'éxito'}"
+    },
+    {
+      "code": "9. Hook: `after_request`",
+      "description": "Se ejecuta después de que la petición ha sido procesada, pero antes de enviar la respuesta.",
+      "example": "# En hooks.py: after_request = [\"mi_app.utils.log_response\"]"
+    },
+    {
+      "code": "10. Envío de la Respuesta (Response)",
+      "description": "El servidor WSGI envía el contenido de `frappe.local.response` al cliente.",
+      "example": "# El navegador recibe el HTML o JSON y lo renderiza."
+    }
+  ],
+  "created": "2025-09-27",
+  "updated": "2025-10-01"
+}

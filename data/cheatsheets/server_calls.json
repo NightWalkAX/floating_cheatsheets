@@ -1,0 +1,39 @@
+{
+  "title": "API de Llamadas al Servidor (Cliente)",
+  "language": "es",
+  "tags": ["javascript", "api", "frappe", "server-call", "ajax"],
+  "items": [
+    {
+      "description": "Llama a un método Python 'whitelisted' en el servidor.",
+      "code": "frappe.call({ method, args, callback })",
+      "example": "frappe.call({\n    method: 'mi_app.api.mi_metodo',\n    args: { 'parametro': 'valor' },\n    callback(r) {\n        console.log(r.message);\n    }\n});"
+    },
+    {
+      "description": "Sintaxis corta para llamadas simples sin argumentos.",
+      "code": "frappe.call('dotted.path.to.method')",
+      "example": "frappe.call('frappe.utils.ping');"
+    },
+    {
+      "description": "Manejo de la respuesta con promesas (`.then`).",
+      "code": "frappe.call(...).then(r => { ... })",
+      "example": "frappe.call('mi_app.api.obtener_datos')\n    .then(r => {\n        if (r.message) {\n            console.log(r.message.datos);\n        }\n    });"
+    },
+    {
+      "description": "Manejo de errores en la llamada al servidor.",
+      "code": "frappe.call({ ..., error(r) { ... } })",
+      "example": "frappe.call({\n    method: 'metodo.que.falla',\n    error(r) {\n        console.error('Ocurrió un error:', r.message);\n    }\n});"
+    },
+    {
+      "description": "Congelar la UI mientras se ejecuta la llamada.",
+      "code": "frappe.call({ ..., freeze: true, freeze_message: '...' })",
+      "example": "frappe.call({\n    method: 'mi_app.api.proceso_largo',\n    freeze: true,\n    freeze_message: 'Procesando datos...'\n});"
+    },
+    {
+      "description": "Llamar a un método de un controlador de DocType.",
+      "code": "frappe.call({ doc: doc_object, method: 'nombre_metodo' })",
+      "example": "// Asumiendo que 'frm.doc' es un documento de formulario\nfrappe.call({\n    doc: frm.doc,\n    method: 'mi_metodo_personalizado'\n});"
+    }
+  ],
+  "created": "2025-09-26",
+  "updated": "2025-10-01"
+}

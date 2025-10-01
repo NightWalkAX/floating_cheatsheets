@@ -1,0 +1,54 @@
+{
+  "title": "Jinja API (Frappe)",
+  "language": "en",
+  "tags": ["jinja", "frappe", "python", "template", "html"],
+  "items": [
+    {
+      "code": "{{ frappe.db.get_value(...) }}",
+      "description": "Gets a single value from the database.",
+      "example": "<h3>Welcome, {{ frappe.db.get_value('User', frappe.session.user, 'full_name') }}</h3>"
+    },
+    {
+      "code": "{% set doc = frappe.get_doc(...) %}",
+      "description": "Gets a full document to use in the template.",
+      "example": "{% set user = frappe.get_doc('User', frappe.session.user) %}\n<p>Email: {{ user.email }}</p>"
+    },
+    {
+      "code": "{% for item in doc.items %}",
+      "description": "Iterates over a list, such as a document's child table.",
+      "example": "<ul>\n{% for task in frappe.get_all('Task', filters={'status': 'Open'}) %}\n    <li>{{ task.subject }}</li>\n{% endfor %}\n</ul>"
+    },
+    {
+      "code": "{% if condition %}",
+      "description": "Renders a block conditionally.",
+      "example": "{% if doc.status == 'Open' %}\n    <span class=\"badge badge-warning\">Open</span>\n{% else %}\n    <span class=\"badge badge-success\">Closed</span>\n{% endif %}"
+    },
+    {
+      "code": "{{ _('Text to translate') }}",
+      "description": "Translate function `_` for internationalization.",
+      "example": "<button>{{ _('Save') }}</button>"
+    },
+    {
+      "code": "{{ frappe.utils.formatdate(doc.creation) }}",
+      "description": "Formats a date string into a readable format.",
+      "example": "<p>Created on: {{ frappe.utils.formatdate(doc.creation) }}</p>"
+    },
+    {
+      "code": "{% extends 'base.html' %}",
+      "description": "Inherits from a base template.",
+      "example": "{# At the top of your template #}\n{% extends 'templates/web.html' %}"
+    },
+    {
+      "code": "{% block content %}",
+      "description": "Defines a block that can be overridden by a child template.",
+      "example": "{% block page_content %}\n    <h1>My Content</h1>\n{% endblock %}"
+    },
+    {
+      "code": "{% include 'my_snippet.html' %}",
+      "description": "Includes and renders another template.",
+      "example": "<div class=\"footer\">\n    {% include 'templates/includes/footer/footer.html' %}\n</div>"
+    }
+  ],
+  "created": "2025-09-27",
+  "updated": "2025-10-01"
+}

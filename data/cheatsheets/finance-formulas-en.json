@@ -1,11 +1,44 @@
 {
-  "title": "Finance Formulas",
+  "title": "Financial Formulas",
   "language": "en",
-  "cheats": [
-    { "description": "Simple interest", "code": "I = P * r * t" },
-    { "description": "Compound interest", "code": "A = P(1 + r/n)^(nt)" },
-    { "description": "Future value", "code": "FV = PV * (1 + r)^n" },
-    { "description": "Present value", "code": "PV = FV / (1 + r)^n" },
-    { "description": "Loan payment", "code": "PMT = [P * r(1 + r)^n] / [(1 + r)^n - 1]" }
-  ]
+  "tags": ["finance", "formulas", "business"],
+  "items": [
+    {
+      "code": "Simple Interest",
+      "description": "Calculates interest on the principal amount",
+      "example": "I = P * r * t (Principal * Rate * Time)"
+    },
+    {
+      "code": "Compound Interest",
+      "description": "Calculates interest on the principal plus accumulated interest",
+      "example": "A = P(1 + r/n)^(nt)"
+    },
+    {
+      "code": "Present Value (PV)",
+      "description": "The current value of a future sum of money",
+      "example": "PV = FV / (1 + r)^n"
+    },
+    {
+      "code": "Future Value (FV)",
+      "description": "The value of an asset at a future date",
+      "example": "FV = PV * (1 + r)^n"
+    },
+    {
+      "code": "Return on Investment (ROI)",
+      "description": "Measures the profitability of an investment",
+      "example": "ROI = (Gain - Cost) / Cost"
+    },
+    {
+      "code": "Break-Even Point",
+      "description": "The point at which total costs equal total revenues",
+      "example": "Fixed Costs / (Sales Price - Variable Costs)"
+    },
+    {
+      "code": "Debt-to-Equity Ratio",
+      "description": "Measures a company's financial leverage",
+      "example": "Total Debt / Total Equity"
+    }
+  ],
+  "created": "2025-09-26",
+  "updated": "2025-10-01"
 }

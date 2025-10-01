@@ -1,0 +1,59 @@
+{
+  "title": "API de Base de Datos (Frappe)",
+  "language": "es",
+  "tags": ["database", "frappe", "python", "orm", "sql"],
+  "items": [
+    {
+      "code": "frappe.db.get_list('MiDocType')",
+      "description": "Obtiene una lista de diccionarios de un DocType.",
+      "example": "frappe.db.get_list('Employee', fields=['name', 'company'])"
+    },
+    {
+      "code": "frappe.db.get_all('MiDocType')",
+      "description": "Similar a get_list pero con una sintaxis ligeramente diferente.",
+      "example": "frappe.db.get_all('Task', filters={'status': 'Open'}, fields=['subject', 'exp_end_date'])"
+    },
+    {
+      "code": "frappe.db.get_value('MiDocType', 'nombre_doc', 'campo')",
+      "description": "Obtiene un único valor de un documento.",
+      "example": "user_email = frappe.db.get_value('User', 'test@example.com', 'email_id')"
+    },
+    {
+      "code": "frappe.db.get_doc('MiDocType', 'nombre_doc')",
+      "description": "Obtiene un documento completo como un objeto `Document`.",
+      "example": "user_doc = frappe.get_doc('User', 'test@example.com')"
+    },
+    {
+      "code": "frappe.db.set_value('MiDocType', 'nombre_doc', 'campo', 'valor')",
+      "description": "Establece un valor en un documento sin cargar el objeto completo.",
+      "example": "frappe.db.set_value('Employee', 'EMP-0001', 'status', 'Left')"
+    },
+    {
+      "code": "frappe.db.exists('MiDocType', 'nombre_doc')",
+      "description": "Verifica si un documento existe.",
+      "example": "if frappe.db.exists('User', 'non_existent@example.com'):\n    # hacer algo"
+    },
+    {
+      "code": "frappe.db.sql('SELECT ...')",
+      "description": "Ejecuta una consulta SQL cruda.",
+      "example": "frappe.db.sql('SELECT name, status FROM tabTask WHERE priority=%s', 'High')"
+    },
+    {
+      "code": "frappe.db.get_list('Task', filters={'status': 'Open'})",
+      "description": "Consulta con filtros básicos.",
+      "example": "open_tasks = frappe.db.get_list('Task', filters={'status': 'Open'})"
+    },
+    {
+      "code": "frappe.db.get_list('Task', filters=[['status', '=', 'Open']])",
+      "description": "Sintaxis de filtro alternativa usando tuplas.",
+      "example": "open_tasks = frappe.db.get_list('Task', filters=[['status', '=', 'Open']])"
+    },
+    {
+      "code": "frappe.db.get_list('Task', filters={'date': ['>', '2023-01-01']})",
+      "description": "Filtrar usando operadores como '>', '<', 'like'.",
+      "example": "recent_tasks = frappe.db.get_list('Task', filters={'_updated': ['>', '2023-10-01']})"
+    }
+  ],
+  "created": "2025-09-27",
+  "updated": "2025-10-01"
+}

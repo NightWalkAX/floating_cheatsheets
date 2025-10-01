@@ -1,0 +1,44 @@
+{
+  "title": "Query Builder SQL (MariaDB)",
+  "language": "es",
+  "tags": ["sql", "mariadb", "query-builder", "python", "frappe", "pypika"],
+  "items": [
+    {
+      "code": "frappe.qb.from_('MiDocType').select(...)",
+      "description": "Realiza una consulta SELECT básica.",
+      "example": "query = frappe.qb.from_('Customer').select('name', 'customer_name')\n# SQL: SELECT `name`,`customer_name` FROM `tabCustomer`"
+    },
+    {
+      "code": "customers = frappe.qb.DocType('Customer')",
+      "description": "Obtiene una tabla `pypika` para usar en consultas complejas.",
+      "example": "Customer = frappe.qb.DocType('Customer')\nquery = frappe.qb.from_(Customer).select(Customer.name).where(Customer.customer_name == 'Acme')"
+    },
+    {
+      "code": "query.where(...).where(...)",
+      "description": "Añade condiciones `WHERE` a la consulta.",
+      "example": "Customer = frappe.qb.DocType('Customer')\nquery = frappe.qb.from_(Customer).select('name').where(Customer.territory == 'USA').where(Customer.customer_group == 'Retail')"
+    },
+    {
+      "code": "query.run(as_dict=True)",
+      "description": "Ejecuta la consulta y devuelve los resultados como una lista de diccionarios.",
+      "example": "results = frappe.qb.from_('ToDo').select('name', 'description').run(as_dict=True)"
+    },
+    {
+      "code": "from frappe.query_builder.functions import Count",
+      "description": "Usa funciones de agregación como `Count`, `Sum`, `Avg`.",
+      "example": "from frappe.query_builder.functions import Count\nTask = frappe.qb.DocType('Task')\nquery = frappe.qb.from_(Task).select(Count(Task.name).as_('total_tasks'))\n# SQL: SELECT COUNT(`name`) 'total_tasks' FROM `tabTask`"
+    },
+    {
+      "code": "query.orderby(...).limit(...)",
+      "description": "Ordena y limita los resultados.",
+      "example": "from pypika import Order\nTask = frappe.qb.DocType('Task')\nquery = frappe.qb.from_(Task).select('subject').orderby(Task.creation, order=Order.desc).limit(10)"
+    },
+    {
+      "code": "query.left_join(...).on(...)",
+      "description": "Une múltiples tablas.",
+      "example": "SalesOrder = frappe.qb.DocType('Sales Order')\nCustomer = frappe.qb.DocType('Customer')\nquery = frappe.qb.from_(SalesOrder)\n    .left_join(Customer).on(SalesOrder.customer == Customer.name)\n    .select(SalesOrder.name, Customer.customer_name)"
+    }
+  ],
+  "created": "2025-09-27",
+  "updated": "2025-10-01"
+}

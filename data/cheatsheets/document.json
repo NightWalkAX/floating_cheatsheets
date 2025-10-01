@@ -1,0 +1,49 @@
+{
+  "title": "API de Documentos (Frappe)",
+  "language": "es",
+  "tags": ["document", "frappe", "python", "doctype", "orm"],
+  "items": [
+    {
+      "code": "frappe.get_doc('MiDocType', 'nombre_doc')",
+      "description": "Obtiene un documento existente de la base de datos.",
+      "example": "# Carga el documento 'TASK-00001' en memoria\ndoc = frappe.get_doc('Task', 'TASK-00001')"
+    },
+    {
+      "code": "frappe.new_doc('MiDocType')",
+      "description": "Crea un nuevo documento en memoria (no guardado).",
+      "example": "doc = frappe.new_doc('Task')\ndoc.subject = 'Mi nueva tarea'\ndoc.status = 'Open'"
+    },
+    {
+      "code": "doc.insert()",
+      "description": "Guarda un nuevo documento en la base de datos por primera vez.",
+      "example": "doc = frappe.new_doc('Task')\ndoc.subject = 'Tarea a insertar'\ndoc.insert()"
+    },
+    {
+      "code": "doc.save()",
+      "description": "Guarda los cambios de un documento existente en la base de datos.",
+      "example": "doc = frappe.get_doc('Task', 'TASK-00001')\ndoc.status = 'Closed'\ndoc.save()"
+    },
+    {
+      "code": "doc.delete()",
+      "description": "Elimina un documento de la base de datos.",
+      "example": "doc = frappe.get_doc('Task', 'TASK-00002')\ndoc.delete()"
+    },
+    {
+      "code": "frappe.get_last_doc('MiDocType')",
+      "description": "Obtiene el último documento guardado de un DocType.",
+      "example": "last_task = frappe.get_last_doc('Task', filters={'status': 'Open'})"
+    },
+    {
+      "code": "doc.append('nombre_tabla_hija', { ... })",
+      "description": "Añade una nueva fila a una tabla hija (child table).",
+      "example": "sales_order = frappe.get_doc('Sales Order', 'SO-0001')\nsales_order.append('items', {\n    'item_code': 'ITM001',\n    'qty': 5\n})\nsales_order.save()"
+    },
+    {
+      "code": "doc.reload()",
+      "description": "Recarga el documento desde la base de datos, descartando cambios locales.",
+      "example": "doc = frappe.get_doc('User', 'test@example.com')\n# ...alguien más cambia el doc...\ndoc.reload()\n# ahora 'doc' tiene los datos más recientes"
+    }
+  ],
+  "created": "2025-09-27",
+  "updated": "2025-10-01"
+}

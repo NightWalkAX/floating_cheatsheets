@@ -2,24 +2,3 @@
 
 - (MAS ADELANTE) Exportar/Importar paquetes de cheatsheets para poder compartirlos y extraerlos con comodidad
 
-- Arreglar la importacion en la instalacion de el archivo de idiomas
-- Arreglar el problema de los scripts de desinstalacion:
-aparece en el menu de aplicaciones, y cuando lo toco funciona y corre
-
-sudo rm -rf /usr/bin/floating-cheatsheets
-
-sudo rm -rf /usr/share/pixmaps/floating-cheatsheets.png
-
-sudo rm -rf /usr/share/applications/floating-cheatsheets.desktop
-
-
-sudo rm -rf /usr/share/floating-cheatsheets
-
-sudo rm -rf /usr/share/doc/floating-cheatsheets
-
-sudo update-desktop-database
-
-sudo gtk-update-icon-cache /usr/share/pixmaps/ 2>/dev/null || echo "Cache actualizado"
-
-sudo dpkg --forget-old-unavail
-- Arreglar el problema de actualizacion, ya que al actualizar hay problemas de que mantiene el codigo anterior.

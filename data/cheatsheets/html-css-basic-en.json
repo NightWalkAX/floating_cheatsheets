@@ -1,11 +1,129 @@
 {
   "title": "HTML & CSS Basics",
   "language": "en",
-  "cheats": [
-    { "description": "Basic HTML structure", "code": "<html>\n  <head>\n    <title>Title</title>\n  </head>\n  <body>\n    Content\n  </body>\n</html>" },
-    { "description": "Add CSS style", "code": "<style>body { color: red; }</style>" },
-    { "description": "Link external CSS", "code": "<link rel=\"stylesheet\" href=\"styles.css\">" },
-    { "description": "Set background color", "code": "body { background-color: #fff; }" },
-    { "description": "Center text", "code": "h1 { text-align: center; }" }
-  ]
+  "tags": ["html", "css", "web", "frontend"],
+  "items": [
+    {
+      "code": "<!DOCTYPE html>",
+      "description": "HTML5 document declaration",
+      "example": "<!DOCTYPE html><html><head><title>Title</title></head><body></body></html>"
+    },
+    {
+      "code": "<head>",
+      "description": "Metadata section",
+      "example": "<head><meta charset=\"UTF-8\"><title>My Page</title></head>"
+    },
+    {
+      "code": "<meta>",
+      "description": "Document metadata",
+      "example": "<meta charset=\"UTF-8\"> | <meta name=\"viewport\" content=\"width=device-width\">"
+    },
+    {
+      "code": "<h1> - <h6>",
+      "description": "Headings",
+      "example": "<h1>Main Heading</h1> | <h2>Subheading</h2>"
+    },
+    {
+      "code": "<p>",
+      "description": "Paragraph",
+      "example": "<p>This is a paragraph of text.</p>"
+    },
+    {
+      "code": "<a>",
+      "description": "Links",
+      "example": "<a href=\"https://example.com\">Link</a> | <a href=\"#section\">Internal link</a>"
+    },
+    {
+      "code": "<img>",
+      "description": "Images",
+      "example": "<img src=\"image.jpg\" alt=\"Description\">"
+    },
+    {
+      "code": "<div>",
+      "description": "Generic container",
+      "example": "<div class=\"container\">Content</div>"
+    },
+    {
+      "code": "<span>",
+      "description": "Inline container",
+      "example": "<span class=\"highlight\">Highlighted text</span>"
+    },
+    {
+      "code": "<ul>, <ol>, <li>",
+      "description": "Lists",
+      "example": "<ul><li>Item 1</li><li>Item 2</li></ul> | <ol><li>First</li></ol>"
+    },
+    {
+      "code": "<table>, <tr>, <td>",
+      "description": "Tables",
+      "example": "<table><tr><td>Cell 1</td><td>Cell 2</td></tr></table>"
+    },
+    {
+      "code": "<form>, <input>",
+      "description": "Forms",
+      "example": "<form><input type=\"text\" name=\"name\"><input type=\"submit\"></form>"
+    },
+    {
+      "code": "color",
+      "description": "Text color (CSS)",
+      "example": "color: red; | color: #ff0000; | color: rgb(255,0,0);"
+    },
+    {
+      "code": "background-color",
+      "description": "Background color (CSS)",
+      "example": "background-color: blue; | background-color: #0000ff;"
+    },
+    {
+      "code": "font-size",
+      "description": "Font size (CSS)",
+      "example": "font-size: 16px; | font-size: 1.2em; | font-size: large;"
+    },
+    {
+      "code": "margin, padding",
+      "description": "Spacing (CSS)",
+      "example": "margin: 10px; | padding: 5px 10px; | margin-top: 20px;"
+    },
+    {
+      "code": "width, height",
+      "description": "Dimensions (CSS)",
+      "example": "width: 100px; | height: 200px; | width: 50%;"
+    },
+    {
+      "code": "display",
+      "description": "Display type (CSS)",
+      "example": "display: block; | display: inline; | display: flex;"
+    },
+    {
+      "code": "position",
+      "description": "Positioning (CSS)",
+      "example": "position: relative; | position: absolute; | position: fixed;"
+    },
+    {
+      "code": "text-align",
+      "description": "Text alignment (CSS)",
+      "example": "text-align: center; | text-align: left; | text-align: justify;"
+    },
+    {
+      "code": "border",
+      "description": "Borders (CSS)",
+      "example": "border: 1px solid black; | border-radius: 5px;"
+    },
+    {
+      "code": "flex",
+      "description": "Flexbox (CSS)",
+      "example": "display: flex; justify-content: center; align-items: center;"
+    },
+    {
+      "code": "grid",
+      "description": "CSS Grid (CSS)",
+      "example": "display: grid; grid-template-columns: 1fr 1fr; gap: 10px;"
+    },
+    {
+      "code": "@media",
+      "description": "Media queries (CSS)",
+      "example": "@media (max-width: 768px) { /* mobile styles */ }"
+    }
+  ],
+  "created": "2025-09-24",
+  "updated": "2025-10-01"
 }

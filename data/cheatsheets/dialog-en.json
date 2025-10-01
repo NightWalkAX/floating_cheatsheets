@@ -1,0 +1,34 @@
+{
+  "title": "Dialog API (Frappe)",
+  "language": "en",
+  "tags": ["dialog", "frappe", "ui", "javascript"],
+  "items": [
+    {
+      "code": "frappe.msgprint('Message')",
+      "description": "Shows a simple message dialog.",
+      "example": "frappe.msgprint('The document has been saved successfully.');"
+    },
+    {
+      "code": "frappe.msgprint({ msg: '...', title: '...', indicator: '...' })",
+      "description": "Shows a message with a title and color indicator.",
+      "example": "frappe.msgprint({ msg: 'Could not connect to the server.', title: 'Network Error', indicator: 'red' });"
+    },
+    {
+      "code": "frappe.throw('Error message')",
+      "description": "Shows an error dialog and throws an exception.",
+      "example": "if (!doc.customer) {\n    frappe.throw('Please select a customer.');\n}"
+    },
+    {
+      "code": "new frappe.ui.Dialog({ title, fields, primary_action })",
+      "description": "Creates a custom modal dialog with input fields.",
+      "example": "let d = new frappe.ui.Dialog({\n    title: 'Create New Project',\n    fields: [\n        { label: 'Project Name', fieldname: 'project_name', fieldtype: 'Data', reqd: 1 },\n        { label: 'Start Date', fieldname: 'start_date', fieldtype: 'Date' }\n    ],\n    primary_action_label: 'Create',\n    primary_action(values) {\n        console.log(values);\n        d.hide();\n    }\n});\nd.show();"
+    },
+    {
+      "code": "frappe.confirm('Are you sure?', () => { ... })",
+      "description": "Shows a confirmation dialog with 'Yes' and 'No' actions.",
+      "example": "frappe.confirm('Are you sure you want to delete this record?',\n    () => { /* Deletion logic */ },\n    () => { /* Cancellation logic */ }\n);"
+    }
+  ],
+  "created": "2025-09-27",
+  "updated": "2025-10-01"
+}

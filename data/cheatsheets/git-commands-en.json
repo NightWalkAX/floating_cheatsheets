@@ -15,17 +15,17 @@
     },
     {
       "code": "git status",
-      "description": "Show repository status",
+      "description": "Check repository status",
       "example": "git status | git status --short | git status --porcelain"
     },
     {
       "code": "git add",
-      "description": "Add files to staging",
+      "description": "Add files to staging area",
       "example": "git add file.txt | git add . | git add -A"
     },
     {
       "code": "git commit",
-      "description": "Create commit",
+      "description": "Create a new commit",
       "example": "git commit -m \"message\" | git commit -am \"message\" (add+commit)"
     },
     {
@@ -40,7 +40,7 @@
     },
     {
       "code": "git fetch",
-      "description": "Download changes without merge",
+      "description": "Download changes without merging",
       "example": "git fetch origin | git fetch --all"
     },
     {
@@ -54,29 +54,29 @@
       "example": "git checkout main | git checkout -b new-branch"
     },
     {
+      "code": "git switch",
+      "description": "Switch branches (modern command)",
+      "example": "git switch main | git switch -c new-branch"
+    },
+    {
       "code": "git merge",
       "description": "Merge branches",
-      "example": "git merge feature-branch | git merge --no-ff feature"
+      "example": "git merge feature-branch | git merge --no-ff feature-branch"
     },
     {
       "code": "git rebase",
-      "description": "Reapply commits on top of another base",
+      "description": "Rewrite commit history",
       "example": "git rebase main | git rebase -i HEAD~3"
     },
     {
       "code": "git log",
-      "description": "Show commit history",
-      "example": "git log | git log --oneline | git log --graph"
+      "description": "View commit history",
+      "example": "git log --oneline | git log --graph --all"
     },
     {
       "code": "git diff",
-      "description": "Show differences between commits",
+      "description": "Show differences",
       "example": "git diff | git diff --staged | git diff HEAD~1"
-    },
-    {
-      "code": "git reset",
-      "description": "Reset current HEAD to specified state",
-      "example": "git reset HEAD~1 | git reset --hard HEAD~1"
     },
     {
       "code": "git stash",
@@ -84,16 +84,26 @@
       "example": "git stash | git stash pop | git stash list"
     },
     {
-      "code": "git tag",
-      "description": "Create, list, delete tags",
-      "example": "git tag v1.0.0 | git tag -l | git tag -d v1.0.0"
-    },
-    {
       "code": "git remote",
       "description": "Manage remote repositories",
-      "example": "git remote -v | git remote add origin url | git remote remove origin"
+      "example": "git remote -v | git remote add origin URL"
+    },
+    {
+      "code": "git reset",
+      "description": "Undo changes",
+      "example": "git reset HEAD~1 | git reset --hard HEAD~1"
+    },
+    {
+      "code": "git tag",
+      "description": "Create tags",
+      "example": "git tag v1.0.0 | git tag -a v1.0.0 -m \"message\""
+    },
+    {
+      "code": "git show",
+      "description": "Show commit information",
+      "example": "git show HEAD | git show v1.0.0"
     }
   ],
-  "created": "2024-01-01",
-  "updated": "2024-01-01"
+  "created": "2025-09-24",
+  "updated": "2025-10-01"
 }

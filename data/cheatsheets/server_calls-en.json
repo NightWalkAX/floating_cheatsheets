@@ -1,0 +1,39 @@
+{
+  "title": "Server Calls API (Client)",
+  "language": "en",
+  "tags": ["javascript", "api", "frappe", "server-call", "ajax"],
+  "items": [
+    {
+      "description": "Calls a whitelisted Python method on the server.",
+      "code": "frappe.call({ method, args, callback })",
+      "example": "frappe.call({\n    method: 'my_app.api.my_method',\n    args: { 'parameter': 'value' },\n    callback(r) {\n        console.log(r.message);\n    }\n});"
+    },
+    {
+      "description": "Short syntax for simple calls with no arguments.",
+      "code": "frappe.call('dotted.path.to.method')",
+      "example": "frappe.call('frappe.utils.ping');"
+    },
+    {
+      "description": "Handling the response with promises (`.then`).",
+      "code": "frappe.call(...).then(r => { ... })",
+      "example": "frappe.call('my_app.api.get_data')\n    .then(r => {\n        if (r.message) {\n            console.log(r.message.data);\n        }\n    });"
+    },
+    {
+      "description": "Handling errors in the server call.",
+      "code": "frappe.call({ ..., error(r) { ... } })",
+      "example": "frappe.call({\n    method: 'failing.method',\n    error(r) {\n        console.error('An error occurred:', r.message);\n    }\n});"
+    },
+    {
+      "description": "Freeze the UI while the call is running.",
+      "code": "frappe.call({ ..., freeze: true, freeze_message: '...' })",
+      "example": "frappe.call({\n    method: 'my_app.api.long_process',\n    freeze: true,\n    freeze_message: 'Processing data...'\n});"
+    },
+    {
+      "description": "Call a method from a DocType controller.",
+      "code": "frappe.call({ doc: doc_object, method: 'method_name' })",
+      "example": "// Assuming 'frm.doc' is a form document\nfrappe.call({\n    doc: frm.doc,\n    method: 'my_custom_method'\n});"
+    }
+  ],
+  "created": "2025-09-26",
+  "updated": "2025-10-01"
+}
