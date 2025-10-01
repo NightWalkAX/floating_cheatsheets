@@ -1,0 +1,29 @@
+{
+  "title": "Form Tours",
+  "language": "en",
+  "tags": ["javascript", "form", "tour", "tutorial"],
+  "items": [
+    {
+      "code": "New Form Tour",
+      "description": "To create a new Form Tour, type 'new form tour' in the awesomebar and hit enter. You will need to enter a title, select a reference DocType, and add steps for each field.",
+      "example": "// Navigate to 'new form tour' via the awesomebar to start creating a tour."
+    },
+    {
+      "code": "Form Tour Configuration",
+      "description": "Key configuration options for a Form Tour document.",
+      "example": "/*\n- Is Standard: Makes the tour a standard one stored as JSON (developer mode only).\n- Save on Completion: Prompts the user to save the document at the end of the tour.\n- Show First Document Tour: Shows the tour on the first existing document instead of a new form.\n- Include Name Field: Makes the 'name' field the first step of the tour.\n*/"
+    },
+    {
+      "code": "Form Tour Step Configuration",
+      "description": "Key configuration options for each step in a Form Tour.",
+      "example": "/*\n- Field: The field to be highlighted.\n- Title & Description: Text to describe the highlighted field.\n- Position: Position of the popover (e.g., 'Top', 'Bottom', 'Left', 'Right').\n- Next Condition: A JavaScript condition (e.g., 'eval: doc.priority != \"\"') that must be met to proceed to the next step.\n- Is Table Field: Check if the field is within a child table.\n- Parent Field: The parent table field if 'Is Table Field' is checked.\n*/"
+    },
+    {
+      "code": "frm.tour.init({ tour_name }).then(() => frm.tour.start())",
+      "description": "Initializes and starts a Form Tour. This is typically done in the 'onload' event of a form script.",
+      "example": "frappe.ui.form.on('Custom Field', 'onload', () => {\n const tour_name = 'Creating a Custom Field';\n frm.tour\n .init({ tour_name })\n .then(() => frm.tour.start());\n});"
+    }
+  ],
+  "created": "2024-01-01",
+  "updated": "2024-01-01"
+}

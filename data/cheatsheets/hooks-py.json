@@ -1,0 +1,69 @@
+{
+  "title": "Ganchos de Frappe (Python)",
+  "language": "es",
+  "tags": ["python", "hooks", "backend", "personalización"],
+  "items": [
+    {
+      "code": "doc_events = { ... }",
+      "description": "Se engancha a los eventos CRUD (Crear, Leer, Actualizar, Eliminar) de los documentos. Permite ejecutar código personalizado antes o después de acciones como `validate`, `on_submit`, `on_cancel`, etc.",
+      "example": "doc_events = {\n    \"Task\": {\n        \"on_update\": \"mi_app.tasks.on_task_update\"\n    },\n    \"*\": {\n        \"after_insert\": \"mi_app.utils.log_all_inserts\"\n    }\n}"
+    },
+    {
+      "code": "scheduler_events = { ... }",
+      "description": "Programa funciones de Python para que se ejecuten periódicamente en segundo plano. Admite sintaxis cron y preajustes como `hourly`, `daily`, `weekly`, `monthly`.",
+      "example": "scheduler_events = {\n    \"daily\": [\n        \"mi_app.tasks.cleanup_old_logs\"\n    ],\n    \"cron\": {\n        \"*/15 * * * *\": [\n            \"mi_app.tasks.check_system_health\"\n        ]\n    }\n}"
+    },
+    {
+      "code": "override_whitelisted_methods = { ... }",
+      "description": "Reemplaza un método estándar de la lista blanca con tu propia implementación personalizada. Útil para cambiar el comportamiento del API principal.",
+      "example": "override_whitelisted_methods = {\n    \"frappe.client.get_count\": \"mi_app.overrides.custom_get_count\"\n}"
+    },
+    {
+      "code": "permission_query_conditions = { ... }",
+      "description": "Aplica condiciones `WHERE` de SQL adicionales a las consultas de lista (`frappe.db.get_list`), permitiendo una seguridad detallada a nivel de registro basada en el usuario.",
+      "example": "permission_query_conditions = {\n    \"Project\": \"mi_app.permissions.project_query\"\n}"
+    },
+    {
+      "code": "has_permission = { ... }",
+      "description": "Define una lógica de verificación de permisos personalizada para un DocType, anulando los permisos estándar basados en roles.",
+      "example": "has_permission = {\n    \"Event\": \"mi_app.permissions.event_has_permission\"\n}"
+    },
+    {
+      "code": "app_include_js = 'ruta' or ['ruta1', ...]",
+      "description": "Incluye archivos JavaScript personalizados en la interfaz de Desk.",
+      "example": "app_include_js = \"/assets/mi_app/js/custom_script.js\""
+    },
+    {
+      "code": "app_include_css = 'ruta' or ['ruta1', ...]",
+      "description": "Incluye archivos CSS personalizados en la interfaz de Desk.",
+      "example": "app_include_css = \"/assets/mi_app/css/custom_styles.css\""
+    },
+    {
+      "code": "fixtures = [ ... ]",
+      "description": "Especifica registros de datos (como archivos JSON) que se sincronizarán con la base de datos durante la instalación y migración de la aplicación. Útil para sembrar datos predeterminados.",
+      "example": "fixtures = [\n    \"Custom Field\",\n    \"Property Setter\",\n    {\"dt\": \"Role\", \"filters\": [[\"name\", \"in\", [\"Sales Manager\", \"Purchase Manager\"]]]}\n]"
+    },
+    {
+      "code": "override_doctype_class = { ... }",
+      "description": "Extiende o anula la clase del controlador de Python de un DocType estándar, permitiéndote agregar o modificar sus métodos.",
+      "example": "override_doctype_class = {\n    \"ToDo\": \"mi_app.overrides.todo.CustomToDo\"\n}"
+    },
+    {
+      "code": "website_route_rules = [ ... ]",
+      "description": "Mapea rutas de URL personalizadas a archivos de controlador específicos, permitiendo páginas web limpias y dinámicas.",
+      "example": "website_route_rules = [\n    {\"from_route\": \"/projects/<project_name>\", \"to_route\": \"mi_app.www.project\"}\n]"
+    },
+    {
+      "code": "on_session_creation = 'ruta.a.metodo'",
+      "description": "Ejecuta una función cada vez que se crea una nueva sesión de usuario (es decir, después de un inicio de sesión exitoso).",
+      "example": "on_session_creation = \"mi_app.auth.setup_user_session\""
+    },
+    {
+      "code": "user_data_fields = [ ... ]",
+      "description": "Define qué DocTypes y campos contienen datos personales del usuario, para su uso con funciones de privacidad de datos como la eliminación y exportación de datos.",
+      "example": "user_data_fields = [\n    {\"doctype\": \"Contact\", \"filter_by\": \"email_id\", \"rename\": True},\n    {\"doctype\": \"User\", \"redact_fields\": [\"first_name\", \"last_name\"]}\n]"
+    }
+  ],
+  "created": "2024-01-01",
+  "updated": "2024-01-01"
+}

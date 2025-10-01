@@ -1,0 +1,54 @@
+{
+  "title": "API del Constructor de Consultas (Python)",
+  "language": "es",
+  "tags": ["python", "database", "query-builder", "orm", "backend"],
+  "items": [
+    {
+      "code": "from frappe.query_builder import DocType",
+      "description": "El primer paso es importar el objeto `DocType` y usarlo para crear una referencia a la tabla de la base de datos que deseas consultar.",
+      "example": "from frappe.query_builder import DocType\nTask = DocType('Task')"
+    },
+    {
+      "code": "frappe.qb.from_(MiDocType).select(...).run()",
+      "description": "La estructura básica de una consulta. Comienza con `frappe.qb.from_`, selecciona los campos deseados y ejecútala con `.run()`.",
+      "example": "Task = DocType('Task')\nquery = frappe.qb.from_(Task).select(Task.name, Task.subject, Task.status)\ntasks = query.run(as_dict=True)"
+    },
+    {
+      "code": ".where(condicion)",
+      "description": "Filtra los resultados de la consulta basándose en una o más condiciones. Puedes encadenar múltiples llamadas a `.where()`, que se combinan con `AND`.",
+      "example": "Task = DocType('Task')\nquery = (\n    frappe.qb.from_(Task)\n    .select(Task.subject)\n    .where(Task.status == 'Abierto')\n    .where(Task.priority == 'Alto')\n)\n"
+    },
+    {
+      "code": "Condiciones .where() complejas (AND/OR)",
+      "description": "Usa `&` para `AND` y `|` para `OR` para combinar múltiples condiciones dentro de una sola cláusula `.where()`.",
+      "example": "Task = DocType('Task')\nquery = (\n    frappe.qb.from_(Task)\n    .select(Task.subject)\n    .where((Task.status == 'Abierto') | (Task.priority == 'Urgente'))\n)"
+    },
+    {
+      "code": ".join(OtroDocType).on(condicion)",
+      "description": "Une la consulta con otra tabla. Usa `.on()` para especificar la condición de unión.",
+      "example": "User = DocType('User')\nToDo = DocType('ToDo')\nquery = (\n    frappe.qb.from_(ToDo)\n    .join(User).on(User.name == ToDo.owner)\n    .select(ToDo.description, User.full_name)\n)"
+    },
+    {
+      "code": "from frappe.query_builder.functions import Count, Sum, Avg",
+      "description": "Usa funciones de agregación como `Count`, `Sum`, `Avg`, etc., para realizar cálculos sobre tus datos. Usa `.as_('alias')` para nombrar la columna resultante.",
+      "example": "from frappe.query_builder.functions import Count\n\nTask = DocType('Task')\nquery = (\n    frappe.qb.from_(Task)\n    .select(Task.status, Count('*').as_('count'))\n    .groupby(Task.status)\n)\nresults = query.run(as_dict=True)"
+    },
+    {
+      "code": ".orderby(campo, order=Order.asc)",
+      "description": "Ordena los resultados. `Order` se puede importar desde `pypika.enums`.",
+      "example": "from pypika.enums import Order\n\nTask = DocType('Task')\nquery = (\n    frappe.qb.from_(Task)\n    .select(Task.subject, Task.creation)\n    .orderby(Task.creation, order=Order.desc)\n)"
+    },
+    {
+      "code": ".limit(n).offset(m)",
+      "description": "Se utiliza para la paginación. `.limit()` especifica el número de registros a devolver, y `.offset()` especifica el punto de inicio.",
+      "example": "Task = DocType('Task')\nquery = (\n    frappe.qb.from_(Task)\n    .select(Task.subject)\n    .limit(10).offset(20) # Obtener registros 21-30\n)"
+    },
+    {
+      "code": "query.run(as_dict=True, debug=False)",
+      "description": "Ejecuta la consulta. `as_dict=True` devuelve una lista de diccionarios en lugar de una lista de tuplas. `debug=True` imprime la consulta SQL y el tiempo de ejecución.",
+      "example": "Task = DocType('Task')\nresults = frappe.qb.from_(Task).select(Task.name).run(as_dict=True, debug=True)"
+    }
+  ],
+  "created": "2024-01-01",
+  "updated": "2024-01-01"
+}

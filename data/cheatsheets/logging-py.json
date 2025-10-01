@@ -1,0 +1,44 @@
+{
+  "title": "API de Logging (Python)",
+  "language": "es",
+  "tags": ["python", "logging", "api", "backend"],
+  "items": [
+    {
+      "code": "frappe.logger(module, ...)",
+      "description": "Devuelve un objeto logging.Logger para el registro a nivel de sitio y de bench. Si el logger no existe, se crea.",
+      "example": "frappe.utils.logger.set_log_level(\"DEBUG\")\nlogger = frappe.logger(\"api\", allow_site=True, file_count=50)"
+    },
+    {
+      "code": "logger.info(message)",
+      "description": "Registra un mensaje con el nivel 'INFO'. Útil para rastrear eventos normales de la aplicación.",
+      "example": "user = frappe.session.user\nlogger.info(f\"{user} accedió a counter_app.update con valor={value}\")"
+    },
+    {
+      "code": "logger.debug(message)",
+      "description": "Registra un mensaje con el nivel 'DEBUG'. Útil para información detallada, típicamente durante el desarrollo y la solución de problemas.",
+      "example": "logger.debug(f\"{current_value} + {value} = {updated_value}\")"
+    },
+    {
+      "code": "logger.warning(message)",
+      "description": "Registra un mensaje con el nivel 'WARNING'. Indica un problema potencial que no impide que el programa se ejecute.",
+      "example": "logger.warning('La sesión expirará pronto.')"
+    },
+    {
+      "code": "logger.error(message)",
+      "description": "Registra un mensaje con el nivel 'ERROR'. Registra un error grave que ha ocurrido.",
+      "example": "logger.error('Fallo al conectar con la base de datos.')"
+    },
+    {
+      "code": "logger.critical(message)",
+      "description": "Registra un mensaje con el nivel 'CRITICAL'. Registra un error crítico que podría llevar a la terminación de la aplicación.",
+      "example": "logger.critical('Apagado del sistema debido a un fallo crítico.')"
+    },
+    {
+      "code": "frappe.utils.logger.set_log_level(level)",
+      "description": "Establece el nivel de registro dinámicamente para los procesos de Frappe. Los niveles incluyen 'DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL'.",
+      "example": "frappe.utils.logger.set_log_level(\"INFO\")"
+    }
+  ],
+  "created": "2024-01-01",
+  "updated": "2024-01-01"
+}

@@ -1,0 +1,64 @@
+{
+  "title": "API de Jinja (Python)",
+  "language": "es",
+  "tags": ["python", "jinja", "plantillas", "backend"],
+  "items": [
+    {
+      "code": "frappe.get_doc(doctype, name)",
+      "description": "Obtiene un objeto de documento completo, que luego se puede usar para acceder a sus campos.",
+      "example": "{% set task = frappe.get_doc('Task', 'TASK00001') %}\n<h3>{{ task.subject }}</h3>\n<p>Estado: {{ task.status }}</p>"
+    },
+    {
+      "code": "frappe.get_list(doctype, filters, fields)",
+      "description": "Obtiene una lista de documentos, aplicando los permisos del usuario. Similar a `frappe.get_all` pero respeta los permisos.",
+      "example": "{% set open_tasks = frappe.get_list('Task', filters={'status': 'Abierto'}, fields=['subject']) %}\n<ul>\n    {% for task in open_tasks %}\n        <li>{{ task.subject }}</li>\n    {% endfor %}\n</ul>"
+    },
+    {
+      "code": "frappe.db.get_value(doctype, name, fieldname)",
+      "description": "Una forma más eficiente de obtener uno o más valores de campos específicos de un documento sin cargar el objeto completo.",
+      "example": "Abreviatura de la Compañía: {{ frappe.db.get_value('Company', 'Frappe Inc', 'abbr') }}"
+    },
+    {
+      "code": "frappe.db.get_single_value(doctype, fieldname)",
+      "description": "Obtiene un valor de un DocType Single, como Configuraciones del Sistema.",
+      "example": "La zona horaria del sistema es {{ frappe.db.get_single_value('System Settings', 'time_zone') }}."
+    },
+    {
+      "code": "frappe.format(value, df)",
+      "description": "Formatea un valor crudo de la base de datos a un formato amigable para el usuario basado en las propiedades del DocField (p. ej., formateo de fechas, monedas).",
+      "example": "Fecha Formateada: {{ frappe.format('2023-10-26', {'fieldtype': 'Date'}) }}"
+    },
+    {
+      "code": "frappe.format_date(date_string)",
+      "description": "Formatea una cadena de fecha a un formato largo y legible para humanos (p. ej., '26 de octubre de 2023').",
+      "example": "{{ frappe.format_date(doc.posting_date) }}"
+    },
+    {
+      "code": "_(text) or frappe._(text)",
+      "description": "Traduce una cadena de texto al idioma del usuario actual.",
+      "example": "<h1>{{ _('Hola Mundo') }}</h1>"
+    },
+    {
+      "code": "frappe.render_template(template_path, context)",
+      "description": "Renderiza otra plantilla Jinja desde un archivo y la incluye en la plantilla actual.",
+      "example": "{{ frappe.render_template('templates/includes/my_partial.html', {'my_variable': 'valor'}) }}"
+    },
+    {
+      "code": "frappe.session.user",
+      "description": "Devuelve el correo electrónico/ID del usuario actualmente conectado.",
+      "example": "¡Bienvenido, {{ frappe.session.user }}!"
+    },
+    {
+      "code": "frappe.form_dict",
+      "description": "Un diccionario que contiene los parámetros de consulta de la solicitud web actual.",
+      "example": "{% set user_id = frappe.form_dict.get('user') %}"
+    },
+    {
+      "code": "frappe.get_meta(doctype)",
+      "description": "Devuelve el objeto meta para un DocType, que contiene información sobre sus campos, permisos y propiedades.",
+      "example": "{% set task_meta = frappe.get_meta('Task') %}\n<p>El DocType Tarea tiene {{ task_meta.fields | len }} campos.</p>"
+    }
+  ],
+  "created": "2024-01-01",
+  "updated": "2024-01-01"
+}

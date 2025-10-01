@@ -1,0 +1,164 @@
+{
+  "title": "Controls",
+  "language": "en",
+  "tags": ["javascript", "ui", "controls"],
+  "items": [
+    {
+      "code": "frappe.ui.form.make_control({ parent, df })",
+      "description": "Makes a frappe control based on df properties and appends it into the parent container.",
+      "example": "frappe.ui.form.make_control({\n parent: $wrapper.find('.my-control'),\n df: {\n label: 'Due Date',\n fieldname: 'due_date',\n fieldtype: 'Date'\n },\n render_input: true\n})"
+    },
+    {
+      "code": "{ fieldtype: 'Attach' }",
+      "description": "Attach control to upload files.",
+      "example": "{\n label: 'Attachment',\n fieldname: 'attachment',\n fieldtype: 'Attach'\n}"
+    },
+    {
+      "code": "{ fieldtype: 'Attach Image' }",
+      "description": "Attach Image control to upload images.",
+      "example": "{\n label: 'User Image',\n fieldname: 'user_image',\n fieldtype: 'Attach Image'\n}"
+    },
+    {
+      "code": "{ fieldtype: 'Autocomplete' }",
+      "description": "Autocomplete control for selecting from a list of options.",
+      "example": "{\n label: 'Select User',\n fieldname: 'user',\n fieldtype: 'Autocomplete',\n options: [\n 'faris@erpnext.com',\n 'suraj@erpnext.com'\n ]\n}"
+    },
+    {
+      "code": "{ fieldtype: 'Barcode' }",
+      "description": "Barcode control.",
+      "example": "{\n label: 'Item Barcode',\n fieldname: 'item_barcode',\n fieldtype: 'Barcode'\n}"
+    },
+    {
+      "code": "{ fieldtype: 'Check' }",
+      "description": "Checkbox control.",
+      "example": "{\n label: 'Enable feature',\n fieldname: 'enable_feature',\n fieldtype: 'Check'\n}"
+    },
+    {
+      "code": "{ fieldtype: 'Code' }",
+      "description": "Code editor control with syntax highlighting.",
+      "example": "{\n label: 'JS Script',\n fieldname: 'script',\n fieldtype: 'Code',\n options: 'Javascript',\n wrap: true,\n max_lines: 10,\n min_lines: 5\n}"
+    },
+    {
+      "code": "{ fieldtype: 'Color' }",
+      "description": "Color picker control.",
+      "example": "{\n label: 'Your favorite color',\n fieldname: 'user_color',\n fieldtype: 'Color'\n}"
+    },
+    {
+      "code": "{ fieldtype: 'Currency' }",
+      "description": "Currency input control.",
+      "example": "{\n label: 'Amount',\n fieldname: 'amount',\n fieldtype: 'Currency',\n options: 'INR'\n}"
+    },
+    {
+      "code": "{ fieldtype: 'Data' }",
+      "description": "Generic data input control.",
+      "example": "{\n label: 'First Name',\n fieldname: 'first_name',\n fieldtype: 'Data',\n options: 'Email'\n}"
+    },
+    {
+      "code": "{ fieldtype: 'Date Range' }",
+      "description": "Date range picker control.",
+      "example": "{\n label: 'Select Date Range',\n fieldname: 'date_range',\n fieldtype: 'Date Range'\n}"
+    },
+    {
+      "code": "{ fieldtype: 'Date' }",
+      "description": "Date picker control.",
+      "example": "{\n label: 'Birth Date',\n fieldname: 'birth_date',\n fieldtype: 'Date'\n}"
+    },
+    {
+      "code": "{ fieldtype: 'Datetime' }",
+      "description": "Datetime picker control.",
+      "example": "{\n label: 'Submission Date and Time',\n fieldname: 'submission',\n fieldtype: 'Datetime'\n}"
+    },
+    {
+      "code": "{ fieldtype: 'Dynamic Link' }",
+      "description": "Dynamic link control that links to different DocTypes.",
+      "example": "{\n label: 'Party',\n fieldname: 'party',\n fieldtype: 'Dynamic Link',\n options: 'party_type'\n}"
+    },
+    {
+      "code": "{ fieldtype: 'Float' }",
+      "description": "Float input control.",
+      "example": "{\n label: 'Threshold',\n fieldname: 'threshold',\n fieldtype: 'Float'\n}"
+    },
+    {
+      "code": "{ fieldtype: 'Geolocation' }",
+      "description": "Geolocation control.",
+      "example": "{\n label: 'Meeting Place',\n fieldname: 'meeting_place',\n fieldtype: 'Geolocation'\n}"
+    },
+    {
+      "code": "{ fieldtype: 'HTML Editor' }",
+      "description": "HTML editor control.",
+      "example": "{\n label: 'Custom HTML',\n fieldname: 'custom_html',\n fieldtype: 'HTML Editor'\n}"
+    },
+    {
+      "code": "{ fieldtype: 'Int' }",
+      "description": "Integer input control.",
+      "example": "{\n label: 'No of days',\n fieldname: 'no_of_days',\n fieldtype: 'Int'\n}"
+    },
+    {
+      "code": "{ fieldtype: 'Link' }",
+      "description": "Link control to another DocType.",
+      "example": "{\n label: 'Select User',\n fieldname: 'user',\n fieldtype: 'Link',\n options: 'User'\n}"
+    },
+    {
+      "code": "{ fieldtype: 'Markdown Editor' }",
+      "description": "Markdown editor control.",
+      "example": "{\n label: 'Blog Content',\n fieldname: 'content',\n fieldtype: 'Markdown Editor'\n}"
+    },
+    {
+      "code": "{ fieldtype: 'MultiCheck' }",
+      "description": "Multiple checkbox control.",
+      "example": "{\n label: 'Blog Content',\n fieldname: 'content',\n fieldtype: 'MultiCheck',\n options: [\n 'Option 1',\n 'Option 2',\n 'Option 3',\n 'Option 4',\n ],\n columns: 2\n}"
+    },
+    {
+      "code": "{ fieldtype: 'MultiSelect' }",
+      "description": "Multi-select dropdown control.",
+      "example": "{\n label: 'Select Users',\n fieldname: 'users',\n fieldtype: 'MultiSelect',\n options: [\n 'faris@erpnext.com',\n 'suraj@erpnext.com',\n 'shivam@erpnext.com'\n ]\n}"
+    },
+    {
+      "code": "{ fieldtype: 'Password' }",
+      "description": "Password input control.",
+      "example": "{\n label: 'New Password',\n fieldname: 'password',\n fieldtype: 'Password'\n}"
+    },
+    {
+      "code": "{ fieldtype: 'Rating' }",
+      "description": "Rating control.",
+      "example": "{\n label: 'Rate your experience',\n fieldname: 'rating',\n fieldtype: 'Rating'\n}"
+    },
+    {
+      "code": "{ fieldtype: 'Select' }",
+      "description": "Select dropdown control.",
+      "example": "{\n label: 'Status',\n fieldname: 'status',\n fieldtype: 'Select',\n options: [\n 'Open',\n 'Closed',\n 'Cancelled'\n ]\n}"
+    },
+    {
+      "code": "{ fieldtype: 'Signature' }",
+      "description": "Signature pad control.",
+      "example": "{\n label: 'Status',\n fieldname: 'status',\n fieldtype: 'Signature'\n}"
+    },
+    {
+      "code": "{ fieldtype: 'Text Editor' }",
+      "description": "Rich text editor control.",
+      "example": "{\n label: 'Description',\n fieldname: 'description',\n fieldtype: 'Text Editor'\n}"
+    },
+    {
+      "code": "{ fieldtype: 'Time' }",
+      "description": "Time picker control.",
+      "example": "{\n label: 'In Time',\n fieldname: 'in_time',\n fieldtype: 'Time'\n}"
+    },
+    {
+      "code": "{ fieldtype: 'Button' }",
+      "description": "Button control.",
+      "example": "{\n label: 'Fetch',\n fieldname: 'fetch',\n fieldtype: 'Button',\n btn_size: 'xs'\n}"
+    },
+    {
+      "code": "{ fieldtype: 'Icon' }",
+      "description": "Icon picker control.",
+      "example": "{\n label: 'Page Icon',\n fieldname: 'page_icon',\n fieldtype: 'Icon'\n}"
+    },
+    {
+      "code": "frappe.meta.docfield_map['DocField'].fieldtype.formatter = (value) => { ... }",
+      "description": "You can add custom formatters for text type objects by adding them to the docfield object in frappe.meta.docfield_map.",
+      "example": "frappe.meta.docfield_map['DocField'].fieldtype.formatter = (value) => {\n if (value==='Section Break') return '🔵 Section Break';\n else return value;\n}"
+    }
+  ],
+  "created": "2024-01-01",
+  "updated": "2024-01-01"
+}

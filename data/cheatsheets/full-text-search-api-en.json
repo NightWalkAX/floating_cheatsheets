@@ -1,0 +1,34 @@
+{
+  "title": "Full-Text Search API (Python)",
+  "language": "en",
+  "tags": ["python", "search", "whoosh", "backend"],
+  "items": [
+    {
+      "code": "search_instance.search(text, scope=None, limit=20)",
+      "description": "Searches the index for a given text string, with an optional scope and limit for the number of results.",
+      "example": "# Assuming 'search_instance' is an instance of FullTextSearch\nresults = search_instance.search('erpnext', scope='documentation', limit=10)"
+    },
+    {
+      "code": "search_instance.update_index_by_name(doc_name)",
+      "description": "Updates the search index for a single document specified by its name. Should be run by an administrator or in a background job.",
+      "example": "# Assuming 'search_instance' is an instance of FullTextSearch\nsearch_instance.update_index_by_name('DOC-001')"
+    },
+    {
+      "code": "search_instance.update_index(document)",
+      "description": "Updates the search index for a given document object. The document should be a dictionary with 'title', 'path', and 'content' keys.",
+      "example": "doc_to_index = {\n    'title': 'My New Document',\n    'path': '/docs/my-new-document',\n    'content': 'This is the content of the new document.'\n}\nsearch_instance.update_index(doc_to_index)"
+    },
+    {
+      "code": "search_instance.remove_document_from_index(doc_name)",
+      "description": "Removes a specific document from the search index by its name.",
+      "example": "search_instance.remove_document_from_index('DOC-001')"
+    },
+    {
+      "code": "search_instance.build_index()",
+      "description": "Builds or rebuilds the entire search index for all parsed documents.",
+      "example": "search_instance.build_index()"
+    }
+  ],
+  "created": "2024-01-01",
+  "updated": "2024-01-01"
+}

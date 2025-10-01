@@ -1,0 +1,24 @@
+{
+  "title": "API de Escáner",
+  "language": "es",
+  "tags": ["javascript", "escaner", "codigo de barras", "codigo qr", "api"],
+  "items": [
+    {
+      "code": "new frappe.ui.Scanner({ ... })",
+      "description": "Crea una nueva instancia de Escáner para leer códigos de barras, códigos QR, etc., utilizando la cámara del dispositivo. Utiliza la biblioteca Html5-QRCode.",
+      "example": "// Este código escanea un solo código de barras y lo muestra en la consola.\nnew frappe.ui.Scanner({\n    dialog: true,       // abrir el escáner de la cámara en un diálogo\n    multiple: false,    // detenerse después de escanear un valor\n    on_scan(data) {\n        console.log(data.decodedText);\n    }\n});"
+    },
+    {
+      "code": "Escaneo Continuo",
+      "description": "Para escanear múltiples códigos de forma continua, establece la opción `multiple` en `true`. Luego puedes manejar cada código escaneado en el callback `on_scan`.",
+      "example": "const scanner = new frappe.ui.Scanner({\n    dialog: true,\n    multiple: true,\n    on_scan(data) {\n        handle_scanned_barcode(data.decodedText);\n    }\n});"
+    },
+    {
+      "code": "scanner.stop_scan()",
+      "description": "Si tienes una instancia del escáner, puedes detener el proceso de escaneo programáticamente llamando a este método.",
+      "example": "// Suponiendo que 'scanner' es una instancia del ejemplo anterior\nscanner.stop_scan();"
+    }
+  ],
+  "created": "2024-01-01",
+  "updated": "2024-01-01"
+}

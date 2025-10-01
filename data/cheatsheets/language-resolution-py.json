@@ -1,0 +1,34 @@
+{
+  "title": "Orden de Resolución de Idioma (Python)",
+  "language": "es",
+  "tags": ["python", "localización", "idioma", "backend"],
+  "items": [
+    {
+      "code": "1. Diccionario de Formulario: `_lang`",
+      "description": "Prioridad más alta. El idioma se establece a través del parámetro `_lang` en el diccionario de formulario de la solicitud (p. ej., `?_lang=ru`). Se usa a menudo para contextos específicos como plantillas de correo electrónico o vistas de impresión.",
+      "example": "// Una solicitud a /api/resource/Task?_lang=es forzará el idioma de la sesión a español para esa solicitud."
+    },
+    {
+      "code": "2. Cookie: `preferred_language` (Usuarios Invitados)",
+      "description": "Para usuarios invitados (no autenticados), una cookie llamada `preferred_language` puede establecer una preferencia de idioma persistente pero temporal. Esto es utilizado por el selector de idioma del sitio web.",
+      "example": "// Si un usuario invitado selecciona 'Alemán' en un selector de idioma, se establece una cookie `preferred_language=de`."
+    },
+    {
+      "code": "3. Cabecera de Solicitud: `Accept-Language` (Usuarios Invitados)",
+      "description": "Para usuarios invitados, si no se establece ninguna cookie, Frappe verificará la cabecera HTTP estándar `Accept-Language` enviada por el navegador para determinar el idioma preferido del usuario.",
+      "example": "// El navegador envía `Accept-Language: fr-CH, fr;q=0.9, en;q=0.8`. Frappe resolvería a francés."
+    },
+    {
+      "code": "4. Documento de Usuario: `language`",
+      "description": "Para usuarios autenticados, el campo `language` en su documento de Usuario tiene precedencia. Esta configuración persiste en todos los dispositivos y sesiones para ese usuario.",
+      "example": "// El Usuario 'test@example.com' tiene su campo de idioma establecido en 'Español' en su documento de Usuario."
+    },
+    {
+      "code": "5. Configuraciones del Sistema: `language`",
+      "description": "Prioridad más baja. El campo `language` en Configuraciones del Sistema sirve como el idioma de respaldo predeterminado para todo el sitio si no se determina ningún otro idioma por los métodos anteriores.",
+      "example": "// Configuraciones del Sistema tiene 'Inglés' establecido como el idioma predeterminado para todo el sitio."
+    }
+  ],
+  "created": "2024-01-01",
+  "updated": "2024-01-01"
+}

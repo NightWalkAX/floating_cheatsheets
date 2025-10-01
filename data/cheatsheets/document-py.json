@@ -1,0 +1,69 @@
+{
+  "title": "API de Documento (Python)",
+  "language": "es",
+  "tags": ["python", "documento", "orm", "backend"],
+  "items": [
+    {
+      "code": "frappe.get_doc(doctype, name)",
+      "description": "Devuelve un objeto Documento para el doctype y nombre dados. Lanza DoesNotExistError si no se encuentra.",
+      "example": "# Obtener un documento existente\ndoc = frappe.get_doc('Task', 'TASK00002')\ndoc.status = 'Completado'\ndoc.save()"
+    },
+    {
+      "code": "frappe.get_doc({ 'doctype': 'MyDoc', ... })",
+      "description": "Crea un nuevo objeto Documento en memoria a partir de un diccionario. El documento aún no se ha guardado en la base de datos.",
+      "example": "doc = frappe.get_doc({\n    'doctype': 'Task',\n    'subject': 'Mi nueva tarea desde código'\n})\ndoc.insert()"
+    },
+    {
+      "code": "frappe.new_doc(doctype)",
+      "description": "Una forma conveniente de crear un nuevo objeto Documento vacío en memoria.",
+      "example": "doc = frappe.new_doc('Task')\ndoc.subject = 'Otra nueva tarea'\ndoc.status = 'Abierto'\ndoc.insert()"
+    },
+    {
+      "code": "frappe.delete_doc(doctype, name)",
+      "description": "Elimina un documento y todos sus datos vinculados (comentarios, línea de tiempo, etc.) de la base de datos.",
+      "example": "frappe.delete_doc('Task', 'TASK00003')"
+    },
+    {
+      "code": "frappe.rename_doc(doctype, old_name, new_name)",
+      "description": "Renombra la clave primaria (nombre) de un documento. Requiere que 'Permitir Renombrar' esté habilitado en el DocType.",
+      "example": "frappe.rename_doc('Task', 'TASK00004', 'TASK-2023-001')"
+    },
+    {
+      "code": "doc.insert(ignore_permissions=False, ...)",
+      "description": "Inserta un nuevo documento en la base de datos, ejecutando todos los ganchos del controlador (ej. `before_insert`, `validate`).",
+      "example": "new_task = frappe.get_doc({'doctype': 'Task', 'subject': 'Tarea Importante'})\nnew_task.insert(ignore_permissions=True)"
+    },
+    {
+      "code": "doc.save(ignore_permissions=False, ...)",
+      "description": "Guarda los cambios en un documento existente, ejecutando los ganchos del controlador (ej. `validate`, `on_update`).",
+      "example": "task = frappe.get_doc('Task', 'TASK00001')\ntask.priority = 'Alto'\ntask.save()"
+    },
+    {
+      "code": "doc.reload()",
+      "description": "Recarga el documento desde la base de datos para obtener el estado más reciente.",
+      "example": "task = frappe.get_doc('Task', 'TASK00001')\n# otro proceso podría cambiar el doc aquí\ntask.reload()\nprint(task.status)"
+    },
+    {
+      "code": "doc.db_set(fieldname, value, commit=False)",
+      "description": "Establece el valor de un campo directamente en la base de datos, omitiendo los ganchos y validaciones del ORM. Usar con precaución.",
+      "example": "task = frappe.get_doc('Task', 'TASK00001')\ntask.db_set('priority', 'Bajo') # Actualiza directamente la BD"
+    },
+    {
+      "code": "doc.append(table_fieldname, { ... })",
+      "description": "Añade una nueva fila a una tabla hija (campo Tabla) dentro del documento.",
+      "example": "sales_order.append('items', {\n    'item_code': 'ITM001',\n    'qty': 5\n})"
+    },
+    {
+      "code": "doc.add_comment(comment_type, text)",
+      "description": "Añade un comentario a la línea de tiempo del documento.",
+      "example": "task.add_comment('Comment', text='Esta tarea está bloqueada por otro problema.')"
+    },
+    {
+      "code": "doc.queue_action(method, **kwargs)",
+      "description": "Ejecuta un método del controlador en un trabajo en segundo plano.",
+      "example": "doc.queue_action('send_follow_up_email', customer=doc.customer)"
+    }
+  ],
+  "created": "2024-01-01",
+  "updated": "2024-01-01"
+}

@@ -1,0 +1,29 @@
+{
+  "title": "Recorridos de Formulario",
+  "language": "es",
+  "tags": ["javascript", "formulario", "recorrido", "tutorial"],
+  "items": [
+    {
+      "code": "Nuevo Recorrido de Formulario",
+      "description": "Para crear un nuevo Recorrido de Formulario, escribe 'nuevo recorrido de formulario' en la barra de búsqueda (awesomebar) y presiona Enter. Deberás ingresar un título, seleccionar un DocType de referencia y agregar pasos para cada campo.",
+      "example": "// Navega a 'nuevo recorrido de formulario' a través de la awesomebar para comenzar a crear un recorrido."
+    },
+    {
+      "code": "Configuración del Recorrido de Formulario",
+      "description": "Opciones de configuración clave para un documento de Recorrido de Formulario.",
+      "example": "/*\n- Es Estándar: Convierte el recorrido en uno estándar almacenado como JSON (solo en modo desarrollador).\n- Guardar al Completar: Pide al usuario que guarde el documento al final del recorrido.\n- Mostrar Primer Recorrido de Documento: Muestra el recorrido en el primer documento existente en lugar de un formulario nuevo.\n- Incluir Campo de Nombre: Hace que el campo 'name' sea el primer paso del recorrido.\n*/"
+    },
+    {
+      "code": "Configuración de Pasos del Recorrido de Formulario",
+      "description": "Opciones de configuración clave para cada paso en un Recorrido de Formulario.",
+      "example": "/*\n- Campo: El campo a resaltar.\n- Título y Descripción: Texto para describir el campo resaltado.\n- Posición: Posición del popover (ej. 'Arriba', 'Abajo', 'Izquierda', 'Derecha').\n- Condición Siguiente: Una condición de JavaScript (ej. 'eval: doc.priority != \"\"') que debe cumplirse para pasar al siguiente paso.\n- Es Campo de Tabla: Marcar si el campo está dentro de una tabla hija.\n- Campo Padre: El campo de la tabla padre si 'Es Campo de Tabla' está marcado.\n*/"
+    },
+    {
+      "code": "frm.tour.init({ tour_name }).then(() => frm.tour.start())",
+      "description": "Inicializa e inicia un Recorrido de Formulario. Esto se hace típicamente en el evento 'onload' de un script de formulario.",
+      "example": "frappe.ui.form.on('Custom Field', 'onload', () => {\n const tour_name = 'Creando un Campo Personalizado';\n frm.tour\n .init({ tour_name })\n .then(() => frm.tour.start());\n});"
+    }
+  ],
+  "created": "2024-01-01",
+  "updated": "2024-01-01"
+}

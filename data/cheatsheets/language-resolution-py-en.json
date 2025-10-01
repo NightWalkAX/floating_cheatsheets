@@ -1,0 +1,34 @@
+{
+  "title": "Language Resolution Order (Python)",
+  "language": "en",
+  "tags": ["python", "localization", "language", "backend"],
+  "items": [
+    {
+      "code": "1. Form Dict: `_lang`",
+      "description": "Highest priority. The language is set via the `_lang` parameter in the request's form dictionary (e.g., `?_lang=ru`). This is often used for specific contexts like email templates or print views.",
+      "example": "// A request to /api/resource/Task?_lang=es will force the session language to Spanish for that request."
+    },
+    {
+      "code": "2. Cookie: `preferred_language` (Guest Users)",
+      "description": "For guest (not logged-in) users, a cookie named `preferred_language` can set a persistent but temporary language preference. This is used by the website language switcher.",
+      "example": "// If a guest user selects 'German' from a language switcher, a cookie `preferred_language=de` is set."
+    },
+    {
+      "code": "3. Request Header: `Accept-Language` (Guest Users)",
+      "description": "For guest users, if no cookie is set, Frappe will check the standard `Accept-Language` HTTP header sent by the browser to determine the user's preferred language.",
+      "example": "// Browser sends `Accept-Language: fr-CH, fr;q=0.9, en;q=0.8`. Frappe would resolve to French."
+    },
+    {
+      "code": "4. User Document: `language`",
+      "description": "For logged-in users, the `language` field in their User document takes precedence. This setting persists across all devices and sessions for that user.",
+      "example": "// The User 'test@example.com' has their language field set to 'Spanish' in their User document."
+    },
+    {
+      "code": "5. System Settings: `language`",
+      "description": "Lowest priority. The `language` field in System Settings serves as the default, site-wide fallback language if no other language is determined by the methods above.",
+      "example": "// System Settings has 'English' set as the default language for the entire site."
+    }
+  ],
+  "created": "2024-01-01",
+  "updated": "2024-01-01"
+}

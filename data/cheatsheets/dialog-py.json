@@ -1,0 +1,19 @@
+{
+  "title": "API de Diálogo (Python)",
+  "language": "es",
+  "tags": ["python", "dialogo", "ui", "backend"],
+  "items": [
+    {
+      "code": "frappe.msgprint(msg, title, raise_exception, as_table, as_list, indicator, primary_action)",
+      "description": "Muestra un diálogo de mensaje al usuario en la interfaz de Desk que inició la solicitud. Este método solo funciona dentro de un ciclo de solicitud-respuesta.",
+      "example": "# Mensaje simple\nfrappe.msgprint('El documento se ha enviado correctamente.')\n\n# Mensaje con título y excepción\nfrappe.msgprint(\n    msg='No se pudo encontrar el archivo seleccionado.',\n    title='Error',\n    raise_exception=FileNotFoundError\n)\n\n# Mensaje con una acción principal\nfrappe.msgprint(\n    msg='¿Desea continuar con esta acción?',\n    primary_action={\n        'label': 'Proceder',\n        'server_action': 'ruta.punteada.al.metodo.servidor',\n        'args': { 'id': 123 }\n    }\n)"
+    },
+    {
+      "code": "frappe.throw(msg, exc, title)",
+      "description": "Un envoltorio alrededor de `frappe.msgprint` que lanza una excepción y muestra un diálogo de mensaje al usuario. Por defecto, lanza una `frappe.ValidationError`.",
+      "example": "if not frappe.db.exists('User', 'test@example.com'):\n    frappe.throw(\n        msg='Usuario no encontrado. Por favor, verifique la dirección de correo electrónico.',\n        title='Usuario no válido',\n        exc=frappe.DoesNotExistError\n    )"
+    }
+  ],
+  "created": "2024-01-01",
+  "updated": "2024-01-01"
+}

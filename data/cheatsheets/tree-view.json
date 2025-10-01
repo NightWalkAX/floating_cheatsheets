@@ -1,0 +1,64 @@
+{
+  "title": "Configuración de Vista de Árbol",
+  "language": "es",
+  "tags": ["javascript", "vista-de-arbol", "api"],
+  "items": [
+    {
+      "code": "frappe.treeview_settings['DocType'] = { ... }",
+      "description": "Para personalizar la Vista de Árbol para un DocType, crea un archivo `{doctype}_tree.js` y define la configuración dentro de esta estructura.",
+      "example": "frappe.treeview_settings['Account'] = {\n    // la configuración de la vista de árbol va aquí\n};"
+    },
+    {
+      "code": "breadcrumb: 'Contabilidad'",
+      "description": "Establece la ruta de navegación (breadcrumb) que se muestra en la parte superior de la página.",
+      "example": "breadcrumb: 'Contabilidad'"
+    },
+    {
+      "code": "title: 'Plan de Cuentas'",
+      "description": "Establece el título principal para la página de la Vista de Árbol.",
+      "example": "title: 'Plan de Cuentas'"
+    },
+    {
+      "code": "filters: [ { ... } ]",
+      "description": "Un array de objetos que definen campos de filtro que se mostrarán en la parte superior de la vista de árbol.",
+      "example": "filters: [\n    {\n        fieldname: 'company',\n        fieldtype:'Select',\n        options: 'Compañía 1\\nCompañía 2',\n        label: 'Compañía'\n    }\n]"
+    },
+    {
+      "code": "get_tree_nodes: 'ruta.a.metodo'",
+      "description": "La ruta punteada a un método de Python en la lista blanca que obtiene los nodos hijos para un nodo padre dado.",
+      "example": "get_tree_nodes: 'mi_app.utilidades.get_children'"
+    },
+    {
+      "code": "add_tree_node: 'ruta.a.metodo'",
+      "description": "La ruta punteada a un método de Python en la lista blanca que maneja la creación de un nuevo nodo.",
+      "example": "add_tree_node: 'mi_app.utilidades.add_node'"
+    },
+    {
+      "code": "fields: [ { ... } ]",
+      "description": "Un array de definiciones de campos para el diálogo que aparece al agregar un nuevo nodo.",
+      "example": "fields: [\n    {\n        fieldtype: 'Data', fieldname: 'account_name',\n        label: 'Nuevo Nombre de Cuenta', reqd: true\n    },\n    {\n        fieldtype: 'Check', fieldname: 'is_group', label: 'Es Grupo'\n    }\n]"
+    },
+    {
+      "code": "menu_items: [ { ... } ]",
+      "description": "Agrega elementos personalizados al menú desplegable 'Menú' (tres puntos) en el encabezado de la página.",
+      "example": "menu_items: [\n    {\n        label: 'Nueva Compañía',\n        action: function() { frappe.new_doc('Company', true) },\n        condition: 'frappe.boot.user.can_create.indexOf(\"Company\") !== -1'\n    }\n]"
+    },
+    {
+      "code": "toolbar: [ { ... } ]",
+      "description": "Agrega botones personalizados junto a cada nodo en el árbol. Requiere `extend_toolbar: true`.",
+      "example": "extend_toolbar: true,\ntoolbar: [\n    {\n        label: 'Añadir Hijo',\n        condition: function(node) { return node.is_group; },\n        click: function(node) { /* ... */ },\n        btnClass: 'hidden-xs'\n    }\n]"
+    },
+    {
+      "code": "onload: function(treeview) { ... }",
+      "description": "Una función que se dispara una vez cuando la vista de árbol se instancia por primera vez.",
+      "example": "onload: function(treeview) {\n    console.log('Vista de árbol cargada');\n}"
+    },
+    {
+      "code": "onrender: function(node) { ... }",
+      "description": "Una función que se dispara cada vez que un nodo se renderiza en el árbol.",
+      "example": "onrender: function(node) {\n    if(node.data.is_group) {\n        $(node.parent).find('.tree-label').css('font-weight', 'bold');\n    }\n}"
+    }
+  ],
+  "created": "2024-01-01",
+  "updated": "2024-01-01"
+}

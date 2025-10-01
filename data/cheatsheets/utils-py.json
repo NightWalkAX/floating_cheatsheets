@@ -1,0 +1,44 @@
+{
+  "title": "Funciones de Utilidad (Python)",
+  "language": "es",
+  "tags": ["python", "utils", "helpers", "backend"],
+  "items": [
+    {
+      "code": "Utilidades de Fecha y Hora",
+      "description": "Funciones para trabajar con fechas y horas.",
+      "example": "from frappe.utils import now, today, getdate, add_to_date, pretty_date\n\n# Cadena de fecha y hora actual: '2023-10-26 12:30:00'\nnow_str = now()\n\n# Cadena de fecha actual: '2023-10-26'\ntoday_str = today()\n\n# Objeto de fecha desde cadena\ndate_obj = getdate('2023-10-26')\n\n# Añadir 10 días a la fecha actual\nfuture_date = add_to_date(None, days=10, as_string=True)\n\n# Tiempo transcurrido legible: 'hace 2 horas'\nfriendly_date = pretty_date('2023-10-26 10:30:00')"
+    },
+    {
+      "code": "Utilidades de Formateo",
+      "description": "Funciones para formatear datos en cadenas amigables para el usuario.",
+      "example": "from frappe.utils import comma_and, money_in_words, get_abbr\n\n# 'Manzana, Banana y Naranja'\nformatted_list = comma_and(['Manzana', 'Banana', 'Naranja'], add_quotes=False)\n\n# 'USD Cien y Cincuenta Centavos solamente.'\nin_words = money_in_words(100.50, 'USD', 'Cents')\n\n# 'ERP'\ninitials = get_abbr('Enterprise Resource Planning', max_len=3)"
+    },
+    {
+      "code": "Utilidades de Validación",
+      "description": "Funciones para validar tipos de datos comunes como correos electrónicos, URLs y números de teléfono.",
+      "example": "from frappe.utils import validate_email_address, validate_url, validate_phone_number\n\n# Devuelve 'test@example.com' o lanza una excepción\nvalid_email = validate_email_address('test@example.com', throw=True)\n\n# Devuelve True\nis_valid_url = validate_url('https://frappe.io')\n\n# Devuelve True\nis_valid_phone = validate_phone_number('+1-555-123-4567')"
+    },
+    {
+      "code": "frappe.sendmail(...)",
+      "description": "Envía un correo electrónico. Puede usar plantillas Jinja e incluir archivos adjuntos.",
+      "example": "frappe.sendmail(\n    recipients=['test@example.com'],\n    subject='Bienvenido a nuestra App',\n    template='welcome_email_template',\n    args={'user_name': 'John Doe'},\n    attachments=[{'file_url': '/files/guia_bienvenida.pdf'}]\n)"
+    },
+    {
+      "code": "frappe.cache()",
+      "description": "Devuelve una instancia de caché de Redis para almacenar y recuperar pares clave-valor.",
+      "example": "cache = frappe.cache()\n\n# Establecer un valor en la caché\ncache.set('mi_clave', 'mi_valor')\n\n# Obtener un valor de la caché\nretrieved_value = cache.get('mi_clave') # devuelve bytes: b'mi_valor'"
+    },
+    {
+      "code": "get_pdf(html)",
+      "description": "Convierte una cadena HTML en un archivo PDF, devolviendo los datos brutos del PDF como bytes.",
+      "example": "from frappe.utils.pdf import get_pdf\n\nhtml_content = '<h1>¡Hola, PDF!</h1>'\npdf_data = get_pdf(html_content)\n\n# Se puede usar para adjuntar a correos o en una respuesta de descarga"
+    },
+    {
+      "code": "random_string(length)",
+      "description": "Genera una cadena alfanumérica aleatoria de una longitud especificada.",
+      "example": "from frappe.utils import random_string\n\n# Generar un token aleatorio de 16 caracteres\napi_token = random_string(16)"
+    }
+  ],
+  "created": "2024-01-01",
+  "updated": "2024-01-01"
+}

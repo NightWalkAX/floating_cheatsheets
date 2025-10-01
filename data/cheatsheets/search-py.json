@@ -1,0 +1,39 @@
+{
+  "title": "Indexación de Búsqueda Personalizada (Python)",
+  "language": "es",
+  "tags": ["python", "busqueda", "whoosh", "backend", "indexación"],
+  "items": [
+    {
+      "code": "class MiBusqueda(FullTextSearch): ...",
+      "description": "Para crear un índice de búsqueda personalizado, extiendes la clase `frappe.search.FullTextSearch` y anulas sus métodos para definir qué datos indexar y cómo indexarlos.",
+      "example": "from frappe.search import FullTextSearch\n\nclass BlogSearch(FullTextSearch):\n    # Anular métodos aquí\n    pass"
+    },
+    {
+      "code": "def get_schema(self):",
+      "description": "Define la estructura (esquema) del índice de búsqueda utilizando campos de Whoosh como `ID` y `TEXT`. Esto determina qué campos se almacenan e indexan para cada documento.",
+      "example": "from whoosh.fields import Schema, ID, TEXT\n\ndef get_schema(self):\n    return Schema(name=ID(stored=True), content=TEXT(stored=True))"
+    },
+    {
+      "code": "def get_items_to_index(self):",
+      "description": "Devuelve una lista de todos los elementos que deben ser indexados. Este método es responsable de consultar la base de datos u otras fuentes para obtener la lista inicial de documentos.",
+      "example": "def get_items_to_index(self):\n    # Devolver una lista de todos los nombres de las publicaciones de blog publicadas\n    return frappe.get_all('Blog Post', filters={'published': 1}, pluck='name')"
+    },
+    {
+      "code": "def get_document_to_index(self, name):",
+      "description": "Toma el nombre de un solo elemento (de la lista devuelta por `get_items_to_index`) y devuelve un diccionario que representa el documento a indexar. Las claves deben coincidir con el esquema.",
+      "example": "def get_document_to_index(self, name):\n    blog = frappe.get_doc('Blog Post', name)\n    return frappe._dict(name=name, content=blog.content)"
+    },
+    {
+      "code": "def parse_result(self, result):",
+      "description": "Formatea un único resultado de búsqueda antes de devolverlo al usuario. `result` es un objeto similar a un diccionario de Whoosh.",
+      "example": "def parse_result(self, result):\n    # Devolver solo el nombre de la publicación del blog del resultado de la búsqueda\n    return result['name']"
+    },
+    {
+      "code": "Instanciar y Construir",
+      "description": "Una vez definida la clase, puedes instanciarla y usar sus métodos para construir el índice o realizar búsquedas.",
+      "example": "blog_search = BlogSearch('blog_index') # 'blog_index' es el nombre del archivo de índice\n\n# Para construir el índice por primera vez\nblog_search.build()\n\n# Para buscar en el índice\nresults = blog_search.search('algún texto de consulta')"
+    }
+  ],
+  "created": "2024-01-01",
+  "updated": "2024-01-01"
+}

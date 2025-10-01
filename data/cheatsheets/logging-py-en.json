@@ -1,0 +1,44 @@
+{
+  "title": "Logging API (Python)",
+  "language": "en",
+  "tags": ["python", "logging", "api", "backend"],
+  "items": [
+    {
+      "code": "frappe.logger(module, ...)",
+      "description": "Returns a logging.Logger object for both site and bench level logging. If the logger doesn't exist, it is created.",
+      "example": "frappe.utils.logger.set_log_level(\"DEBUG\")\nlogger = frappe.logger(\"api\", allow_site=True, file_count=50)"
+    },
+    {
+      "code": "logger.info(message)",
+      "description": "Logs a message with the level 'INFO'. Useful for tracking normal application events.",
+      "example": "user = frappe.session.user\nlogger.info(f\"{user} accessed counter_app.update with value={value}\")"
+    },
+    {
+      "code": "logger.debug(message)",
+      "description": "Logs a message with the level 'DEBUG'. Useful for detailed information, typically during development and troubleshooting.",
+      "example": "logger.debug(f\"{current_value} + {value} = {updated_value}\")"
+    },
+    {
+      "code": "logger.warning(message)",
+      "description": "Logs a message with the level 'WARNING'. Indicates a potential issue that doesn't prevent the program from running.",
+      "example": "logger.warning('The session will expire soon.')"
+    },
+    {
+      "code": "logger.error(message)",
+      "description": "Logs a message with the level 'ERROR'. Records a serious error that has occurred.",
+      "example": "logger.error('Failed to connect to the database.')"
+    },
+    {
+      "code": "logger.critical(message)",
+      "description": "Logs a message with the level 'CRITICAL'. Records a critical error that might lead to the application terminating.",
+      "example": "logger.critical('System shutdown due to critical failure.')"
+    },
+    {
+      "code": "frappe.utils.logger.set_log_level(level)",
+      "description": "Sets the logging level dynamically for Frappe processes. Levels include 'DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL'.",
+      "example": "frappe.utils.logger.set_log_level(\"INFO\")"
+    }
+  ],
+  "created": "2024-01-01",
+  "updated": "2024-01-01"
+}

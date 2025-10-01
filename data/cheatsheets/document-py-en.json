@@ -1,0 +1,69 @@
+{
+  "title": "Document API (Python)",
+  "language": "en",
+  "tags": ["python", "document", "orm", "backend"],
+  "items": [
+    {
+      "code": "frappe.get_doc(doctype, name)",
+      "description": "Returns a Document object for the given doctype and name. Raises DoesNotExistError if not found.",
+      "example": "# Get an existing document\ndoc = frappe.get_doc('Task', 'TASK00002')\ndoc.status = 'Completed'\ndoc.save()"
+    },
+    {
+      "code": "frappe.get_doc({ 'doctype': 'MyDoc', ... })",
+      "description": "Creates a new in-memory Document object from a dictionary. The document is not saved to the database yet.",
+      "example": "doc = frappe.get_doc({\n    'doctype': 'Task',\n    'subject': 'My new task from code'\n})\ndoc.insert()"
+    },
+    {
+      "code": "frappe.new_doc(doctype)",
+      "description": "A convenient way to create a new, empty Document object in memory.",
+      "example": "doc = frappe.new_doc('Task')\ndoc.subject = 'Another new task'\ndoc.status = 'Open'\ndoc.insert()"
+    },
+    {
+      "code": "frappe.delete_doc(doctype, name)",
+      "description": "Deletes a document and all its linked data (comments, timeline, etc.) from the database.",
+      "example": "frappe.delete_doc('Task', 'TASK00003')"
+    },
+    {
+      "code": "frappe.rename_doc(doctype, old_name, new_name)",
+      "description": "Renames a document's primary key (name). Requires 'Allow Rename' to be enabled on the DocType.",
+      "example": "frappe.rename_doc('Task', 'TASK00004', 'TASK-2023-001')"
+    },
+    {
+      "code": "doc.insert(ignore_permissions=False, ...)",
+      "description": "Inserts a new document into the database, running all controller hooks (e.g., `before_insert`, `validate`).",
+      "example": "new_task = frappe.get_doc({'doctype': 'Task', 'subject': 'Important Task'})\nnew_task.insert(ignore_permissions=True)"
+    },
+    {
+      "code": "doc.save(ignore_permissions=False, ...)",
+      "description": "Saves changes to an existing document, running controller hooks (e.g., `validate`, `on_update`).",
+      "example": "task = frappe.get_doc('Task', 'TASK00001')\ntask.priority = 'High'\ntask.save()"
+    },
+    {
+      "code": "doc.reload()",
+      "description": "Reloads the document from the database to get the latest state.",
+      "example": "task = frappe.get_doc('Task', 'TASK00001')\n# another process might change the doc here\ntask.reload()\nprint(task.status)"
+    },
+    {
+      "code": "doc.db_set(fieldname, value, commit=False)",
+      "description": "Sets a field's value directly in the database, bypassing ORM hooks and validations. Use with caution.",
+      "example": "task = frappe.get_doc('Task', 'TASK00001')\ntask.db_set('priority', 'Low') # Directly updates the DB"
+    },
+    {
+      "code": "doc.append(table_fieldname, { ... })",
+      "description": "Appends a new row to a child table (Table field) within the document.",
+      "example": "sales_order.append('items', {\n    'item_code': 'ITM001',\n    'qty': 5\n})"
+    },
+    {
+      "code": "doc.add_comment(comment_type, text)",
+      "description": "Adds a comment to the document's timeline.",
+      "example": "task.add_comment('Comment', text='This task is blocked by another issue.')"
+    },
+    {
+      "code": "doc.queue_action(method, **kwargs)",
+      "description": "Runs a controller method in a background job.",
+      "example": "doc.queue_action('send_follow_up_email', customer=doc.customer)"
+    }
+  ],
+  "created": "2024-01-01",
+  "updated": "2024-01-01"
+}

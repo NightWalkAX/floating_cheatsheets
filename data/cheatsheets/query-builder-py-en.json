@@ -1,0 +1,54 @@
+{
+  "title": "Query Builder API (Python)",
+  "language": "en",
+  "tags": ["python", "database", "query-builder", "orm", "backend"],
+  "items": [
+    {
+      "code": "from frappe.query_builder import DocType",
+      "description": "The first step is to import the `DocType` object and use it to create a reference to the database table you want to query.",
+      "example": "from frappe.query_builder import DocType\nTask = DocType('Task')"
+    },
+    {
+      "code": "frappe.qb.from_(MyDocType).select(...).run()",
+      "description": "The basic structure of a query. Start with `frappe.qb.from_`, select the desired fields, and execute it with `.run()`.",
+      "example": "Task = DocType('Task')\nquery = frappe.qb.from_(Task).select(Task.name, Task.subject, Task.status)\ntasks = query.run(as_dict=True)"
+    },
+    {
+      "code": ".where(condition)",
+      "description": "Filters the query results based on one or more conditions. You can chain multiple `.where()` calls, which are combined with `AND`.",
+      "example": "Task = DocType('Task')\nquery = (\n    frappe.qb.from_(Task)\n    .select(Task.subject)\n    .where(Task.status == 'Open')\n    .where(Task.priority == 'High')\n)\n"
+    },
+    {
+      "code": "Complex .where() conditions (AND/OR)",
+      "description": "Use `&` for `AND` and `|` for `OR` to combine multiple conditions within a single `.where()` clause.",
+      "example": "Task = DocType('Task')\nquery = (\n    frappe.qb.from_(Task)\n    .select(Task.subject)\n    .where((Task.status == 'Open') | (Task.priority == 'Urgent'))\n)"
+    },
+    {
+      "code": ".join(OtherDocType).on(condition)",
+      "description": "Joins the query with another table. Use `.on()` to specify the join condition.",
+      "example": "User = DocType('User')\nToDo = DocType('ToDo')\nquery = (\n    frappe.qb.from_(ToDo)\n    .join(User).on(User.name == ToDo.owner)\n    .select(ToDo.description, User.full_name)\n)"
+    },
+    {
+      "code": "from frappe.query_builder.functions import Count, Sum, Avg",
+      "description": "Use aggregate functions like `Count`, `Sum`, `Avg`, etc., to perform calculations on your data. Use `.as_('alias')` to name the resulting column.",
+      "example": "from frappe.query_builder.functions import Count\n\nTask = DocType('Task')\nquery = (\n    frappe.qb.from_(Task)\n    .select(Task.status, Count('*').as_('count'))\n    .groupby(Task.status)\n)\nresults = query.run(as_dict=True)"
+    },
+    {
+      "code": ".orderby(field, order=Order.asc)",
+      "description": "Sorts the results. `Order` can be imported from `pypika.enums`.",
+      "example": "from pypika.enums import Order\n\nTask = DocType('Task')\nquery = (\n    frappe.qb.from_(Task)\n    .select(Task.subject, Task.creation)\n    .orderby(Task.creation, order=Order.desc)\n)"
+    },
+    {
+      "code": ".limit(n).offset(m)",
+      "description": "Used for pagination. `.limit()` specifies the number of records to return, and `.offset()` specifies the starting point.",
+      "example": "Task = DocType('Task')\nquery = (\n    frappe.qb.from_(Task)\n    .select(Task.subject)\n    .limit(10).offset(20) # Get records 21-30\n)"
+    },
+    {
+      "code": "query.run(as_dict=True, debug=False)",
+      "description": "Executes the query. `as_dict=True` returns a list of dictionaries instead of a list of tuples. `debug=True` prints the SQL query and execution time.",
+      "example": "Task = DocType('Task')\nresults = frappe.qb.from_(Task).select(Task.name).run(as_dict=True, debug=True)"
+    }
+  ],
+  "created": "2024-01-01",
+  "updated": "2024-01-01"
+}

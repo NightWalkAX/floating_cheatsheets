@@ -1,0 +1,59 @@
+{
+  "title": "Server Calls (AJAX)",
+  "language": "en",
+  "tags": ["javascript", "ajax", "database", "api"],
+  "items": [
+    {
+      "code": "frappe.call(method, args)",
+      "description": "Makes an AJAX request to a whitelisted Python method on the server and returns its response.",
+      "example": "// Simple call\nfrappe.call('ping').then(r => console.log(r.message)); // 'pong'\n\n// Call with arguments and options\nfrappe.call({\n    method: 'frappe.core.doctype.user.user.get_role_profile',\n    args: {\n        role_profile: 'Test'\n    },\n    freeze: true,\n    callback: (r) => {\n        console.log(r.message);\n    }\n});"
+    },
+    {
+      "code": "frappe.db.get_doc(doctype, name, filters)",
+      "description": "Returns the full Document object for a given doctype and name, or the first one matching filters.",
+      "example": "// Get doc by name\nfrappe.db.get_doc('Task', 'TASK00002').then(doc => console.log(doc));\n\n// Get doc by filters\nfrappe.db.get_doc('Task', null, { status: 'Open' }).then(doc => console.log(doc));"
+    },
+    {
+      "code": "frappe.db.get_list(doctype, { fields, filters })",
+      "description": "Returns a list of records from a doctype, specifying which fields to fetch and applying filters.",
+      "example": "frappe.db.get_list('Task', {\n    fields: ['subject', 'description'],\n    filters: {\n        status: 'Open'\n    }\n}).then(records => {\n    console.log(records);\n});"
+    },
+    {
+      "code": "frappe.db.get_value(doctype, name | filters, fieldname | [fieldnames])",
+      "description": "Returns one or more field values for a specific document or a document matching filters.",
+      "example": "// Get a single value\nfrappe.db.get_value('Task', 'TASK00004', 'status').then(r => console.log(r.message.status));\n\n// Get multiple values\nfrappe.db.get_value('Task', 'TASK00004', ['status', 'subject']).then(r => console.log(r.message));"
+    },
+    {
+      "code": "frappe.db.get_single_value(doctype, field)",
+      "description": "Returns a field value from a Single DocType.",
+      "example": "frappe.db.get_single_value('System Settings', 'time_zone').then(tz => console.log(tz));"
+    },
+    {
+      "code": "frappe.db.set_value(doctype, docname, fieldname | {fieldname: value}, value)",
+      "description": "Sets one or more field values for a document on the server.",
+      "example": "// Set a single value\nfrappe.db.set_value('Task', 'TASK00004', 'status', 'Open').then(r => console.log(r.message));\n\n// Set multiple values\nfrappe.db.set_value('Task', 'TASK00004', { status: 'Working', priority: 'Medium' }).then(r => console.log(r.message));"
+    },
+    {
+      "code": "frappe.db.insert(doc)",
+      "description": "Inserts a new document into the database.",
+      "example": "frappe.db.insert({\n    doctype: 'Task',\n    subject: 'New Task from DB API'\n}).then(doc => {\n    console.log(doc);\n});"
+    },
+    {
+      "code": "frappe.db.count(doctype, filters)",
+      "description": "Returns the number of records for a given doctype, with optional filters.",
+      "example": "// Count all tasks\nfrappe.db.count('Task').then(count => console.log(count));\n\n// Count open tasks\nfrappe.db.count('Task', { status: 'Open' }).then(count => console.log(count));"
+    },
+    {
+      "code": "frappe.db.delete_doc(doctype, name)",
+      "description": "Deletes a document from the database.",
+      "example": "frappe.db.delete_doc('Task', 'TASK00004');"
+    },
+    {
+      "code": "frappe.db.exists(doctype, name)",
+      "description": "Returns a boolean indicating if a document exists.",
+      "example": "frappe.db.exists('Task', 'TASK00004').then(exists => console.log(exists));"
+    }
+  ],
+  "created": "2024-01-01",
+  "updated": "2024-01-01"
+}

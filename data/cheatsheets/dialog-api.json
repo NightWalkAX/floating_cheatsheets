@@ -1,0 +1,59 @@
+{
+  "title": "API de Diálogo",
+  "language": "es",
+  "tags": ["javascript", "ui", "dialogo"],
+  "items": [
+    {
+      "code": "new frappe.ui.Dialog({ title, fields, primary_action })",
+      "description": "Crea una nueva instancia de Diálogo.",
+      "example": "let d = new frappe.ui.Dialog({\n    title: 'Ingrese detalles',\n    fields: [\n        {\n            label: 'Nombre',\n            fieldname: 'first_name',\n            fieldtype: 'Data'\n        },\n        {\n            label: 'Apellido',\n            fieldname: 'last_name',\n            fieldtype: 'Data'\n        },\n        {\n            label: 'Edad',\n            fieldname: 'age',\n            fieldtype: 'Int'\n        }\n    ],\n    size: 'small', // small, large, extra-large \n    primary_action_label: 'Enviar',\n    primary_action(values) {\n        console.log(values);\n        d.hide();\n    }\n});\n\nd.show();"
+    },
+    {
+      "code": "frappe.msgprint(message | { title, message, indicator })",
+      "description": "Muestra un mensaje en un modal. También puede tener una acción principal.",
+      "example": "// mensaje simple\nfrappe.msgprint(__('Documento actualizado exitosamente'));\n\n// con opciones\nfrappe.msgprint({\n    title: __('Notificación'),\n    indicator: 'green',\n    message: __('Documento actualizado exitosamente')\n});\n\n// con acción principal\nfrappe.msgprint({\n    title: __('Notificación'),\n    message: __('¿Estás seguro de que quieres continuar?'),\n    primary_action:{\n        action(values) {\n            console.log(values);\n        }\n    }\n});"
+    },
+    {
+      "code": "frappe.throw(error_message)",
+      "description": "Muestra un mensaje de error en un modal y lanza una excepción.",
+      "example": "frappe.throw(__('Este es un Mensaje de Error'))"
+    },
+    {
+      "code": "frappe.prompt(label | df | fields, callback)",
+      "description": "Solicita al usuario uno o más valores.",
+      "example": "// solicitar un solo valor\nfrappe.prompt('Nombre', ({ value }) => console.log(value))\n\n// solicitar múltiples valores\nfrappe.prompt([\n    {\n        label: 'Nombre',\n        fieldname: 'first_name',\n        fieldtype: 'Data'\n    },\n    {\n        label: 'Apellido',\n        fieldname: 'last_name',\n        fieldtype: 'Data'\n    },\n], (values) => {\n    console.log(values.first_name, values.last_name);\n})"
+    },
+    {
+      "code": "frappe.confirm(message, if_yes, if_no)",
+      "description": "Muestra un modal de confirmación y ejecuta un callback basado en la elección del usuario.",
+      "example": "frappe.confirm('¿Estás seguro de que quieres continuar?',\n    () => {\n        // acción a realizar si se selecciona Sí\n    }, () => {\n        // acción a realizar si se selecciona No\n    })"
+    },
+    {
+      "code": "frappe.warn(title, message_html, proceed_action, primary_label, is_minimizable)",
+      "description": "Muestra un modal de advertencia que se puede minimizar.",
+      "example": "frappe.warn('¿Estás seguro de que quieres continuar?',\n    'Hay cambios sin guardar en esta página',\n    () => {\n        // acción a realizar si se selecciona Continuar\n    },\n    'Continuar',\n    true // Establece el diálogo como minimizable\n)"
+    },
+    {
+      "code": "frappe.show_alert(message | {message, indicator}, seconds)",
+      "description": "Muestra un mensaje de alerta no obstructivo durante unos segundos.",
+      "example": "frappe.show_alert('Hola, tienes un nuevo mensaje', 5);\n\n// con indicador\nfrappe.show_alert({\n    message:__('Hola, tienes un nuevo mensaje'),\n    indicator:'green'\n}, 5);"
+    },
+    {
+      "code": "frappe.show_progress(title, count, total, description)",
+      "description": "Muestra una barra de progreso.",
+      "example": "frappe.show_progress('Cargando..', 70, 100, 'Por favor espera');"
+    },
+    {
+      "code": "frappe.new_doc(doctype, route_options, init_callback)",
+      "description": "Abre un nuevo formulario para el DocType especificado, con opciones para inicializar campos.",
+      "example": "frappe.new_doc(\"Task\", {subject: \"Nueva Tarea\"}, \n    doc => { doc.description = \"Hacer lo necesario\"; });"
+    },
+    {
+      "code": "new frappe.ui.form.MultiSelectDialog({ doctype, target, setters, ... })",
+      "description": "Crea un diálogo para seleccionar múltiples registros de un DocType, con filtrado y acciones.",
+      "example": "new frappe.ui.form.MultiSelectDialog({\n    doctype: \"Material Request\",\n    target: this.cur_frm,\n    setters: {\n        schedule_date: null,\n        status: 'Pending'\n    },\n    get_query() {\n        return {\n            filters: { docstatus: ['!=', 2] }\n        }\n    },\n    action(selections) {\n        console.log(selections);\n    }\n});"
+    }
+  ],
+  "created": "2024-01-01",
+  "updated": "2024-01-01"
+}

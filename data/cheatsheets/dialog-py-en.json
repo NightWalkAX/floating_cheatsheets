@@ -1,0 +1,19 @@
+{
+  "title": "Dialog API (Python)",
+  "language": "en",
+  "tags": ["python", "dialog", "ui", "backend"],
+  "items": [
+    {
+      "code": "frappe.msgprint(msg, title, raise_exception, as_table, as_list, indicator, primary_action)",
+      "description": "Shows a message dialog to the user in the Desk UI who initiated the request. This method works only within a request-response cycle.",
+      "example": "# Simple message\nfrappe.msgprint('Document has been submitted successfully.')\n\n# Message with title and exception\nfrappe.msgprint(\n    msg='The selected file could not be found.',\n    title='Error',\n    raise_exception=FileNotFoundError\n)\n\n# Message with a primary action\nfrappe.msgprint(\n    msg='Do you want to proceed with this action?',\n    primary_action={\n        'label': 'Proceed',\n        'server_action': 'dotted.path.to.server.method',\n        'args': { 'id': 123 }\n    }\n)"
+    },
+    {
+      "code": "frappe.throw(msg, exc, title)",
+      "description": "A wrapper around `frappe.msgprint` that raises an exception and shows a message dialog to the user. By default, it raises a `frappe.ValidationError`.",
+      "example": "if not frappe.db.exists('User', 'test@example.com'):\n    frappe.throw(\n        msg='User not found. Please check the email address.',\n        title='Invalid User',\n        exc=frappe.DoesNotExistError\n    )"
+    }
+  ],
+  "created": "2024-01-01",
+  "updated": "2024-01-01"
+}

@@ -1,0 +1,39 @@
+{
+  "title": "Custom Search Indexing (Python)",
+  "language": "en",
+  "tags": ["python", "search", "whoosh", "backend", "indexing"],
+  "items": [
+    {
+      "code": "class MySearch(FullTextSearch): ...",
+      "description": "To create a custom search index, you extend the `frappe.search.FullTextSearch` class and override its methods to define what data to index and how to index it.",
+      "example": "from frappe.search import FullTextSearch\n\nclass BlogSearch(FullTextSearch):\n    # Override methods here\n    pass"
+    },
+    {
+      "code": "def get_schema(self):",
+      "description": "Defines the structure (schema) of the search index using Whoosh fields like `ID` and `TEXT`. This determines what fields are stored and indexed for each document.",
+      "example": "from whoosh.fields import Schema, ID, TEXT\n\ndef get_schema(self):\n    return Schema(name=ID(stored=True), content=TEXT(stored=True))"
+    },
+    {
+      "code": "def get_items_to_index(self):",
+      "description": "Returns a list of all items that should be indexed. This method is responsible for querying the database or other sources to get the initial list of documents.",
+      "example": "def get_items_to_index(self):\n    # Return a list of all published blog post names\n    return frappe.get_all('Blog Post', filters={'published': 1}, pluck='name')"
+    },
+    {
+      "code": "def get_document_to_index(self, name):",
+      "description": "Takes a single item name (from the list returned by `get_items_to_index`) and returns a dictionary representing the document to be indexed. The keys must match the schema.",
+      "example": "def get_document_to_index(self, name):\n    blog = frappe.get_doc('Blog Post', name)\n    return frappe._dict(name=name, content=blog.content)"
+    },
+    {
+      "code": "def parse_result(self, result):",
+      "description": "Formats a single search result before it is returned to the user. `result` is a dictionary-like object from Whoosh.",
+      "example": "def parse_result(self, result):\n    # Return just the name of the blog post from the search result\n    return result['name']"
+    },
+    {
+      "code": "Instantiate and Build",
+      "description": "Once the class is defined, you can instantiate it and use its methods to build the index or perform searches.",
+      "example": "blog_search = BlogSearch('blog_index') # 'blog_index' is the name of the index file\n\n# To build the index for the first time\nblog_search.build()\n\n# To search the index\nresults = blog_search.search('some query text')"
+    }
+  ],
+  "created": "2024-01-01",
+  "updated": "2024-01-01"
+}
