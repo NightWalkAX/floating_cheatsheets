@@ -1,12 +1,34 @@
 {
   "title": "Document API (Frappe)",
   "language": "en",
-  "tags": ["document", "frappe", "python", "doctype", "database"],
+  "tags": [
+    "document",
+    "frappe",
+    "python",
+    "doctype",
+    "database"
+  ],
   "cheats": [
-    { "description": "Get an existing document by type and name", "code": "frappe.get_doc('Task', 'TASK00002')" },
-    { "description": "Get a single DocType", "code": "frappe.get_doc('System Settings')" },
-    { "description": "Create a new document in memory", "code": "frappe.get_doc({ 'doctype': 'Task', 'title': 'New Task' })" },
-    { "description": "Get last created document with filters and custom ordering", "code": "frappe.get_last_doc('Task', filters={'status': 'Cancelled'}, order_by='timestamp desc')" }
+    {
+      "description": "Get an existing document by type and name",
+      "code": "frappe.get_doc('Task', 'TASK00002')",
+      "example": "# Returns: Document object with all fields"
+    },
+    {
+      "description": "Get a single DocType",
+      "code": "frappe.get_doc('System Settings')",
+      "example": "# Returns: Document object with all fields"
+    },
+    {
+      "description": "Create a new document in memory",
+      "code": "frappe.get_doc({ 'doctype': 'Task', 'title': 'New Task' })",
+      "example": "# Returns: Document object with all fields"
+    },
+    {
+      "description": "Get last created document with filters and custom ordering",
+      "code": "frappe.get_last_doc('Task', filters={'status': 'Cancelled'}, order_by='timestamp desc')",
+      "example": "# Creates new resource"
+    }
   ],
   "created": "2025-09-27",
   "updated": "2025-09-27"

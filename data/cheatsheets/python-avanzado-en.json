@@ -2,11 +2,35 @@
   "title": "Advanced Python",
   "language": "en",
   "cheats": [
-    { "description": "List comprehension", "code": "[x for x in range(10)]" },
-    { "description": "Lambda function", "code": "lambda x: x * 2" },
-    { "description": "Decorators", "code": "@decorator\ndef func(): pass" },
-    { "description": "Generators", "code": "def gen(): yield 1" },
-    { "description": "Context manager", "code": "with open('file') as f: ..." },
-    { "description": "Unpacking arguments", "code": "def f(*args, **kwargs): ..." }
+    {
+      "description": "List comprehension",
+      "code": "[x for x in range(10)]",
+      "example": "# Usage example for: [x for x in range(10)]..."
+    },
+    {
+      "description": "Lambda function",
+      "code": "lambda x: x * 2",
+      "example": "# Usage example for: lambda x: x * 2..."
+    },
+    {
+      "description": "Decorators",
+      "code": "@decorator\ndef func(): pass",
+      "example": "# Usage example for: @decorator\ndef func(): pass..."
+    },
+    {
+      "description": "Generators",
+      "code": "def gen(): yield 1",
+      "example": "# Usage example for: def gen(): yield 1..."
+    },
+    {
+      "description": "Context manager",
+      "code": "with open('file') as f: ...",
+      "example": "# Usage example for: with open('file') as f: ......"
+    },
+    {
+      "description": "Unpacking arguments",
+      "code": "def f(*args, **kwargs): ...",
+      "example": "# Usage example for: def f(*args, **kwargs): ......"
+    }
   ]
 }

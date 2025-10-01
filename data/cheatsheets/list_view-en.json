@@ -1,9 +1,22 @@
 {
   "title": "List View API",
   "language": "en",
-  "tags": ["javascript", "api", "frappe", "list_view"],
+  "tags": [
+    "javascript",
+    "api",
+    "frappe",
+    "list_view"
+  ],
   "cheats": [
-    { "description": "Customize List View settings", "code": "frappe.listview_settings['Note'] = { add_fields: ['title', 'public'], filters: [['public', '=', 1]], hide_name_column: true }" },
-    { "description": "Set indicator color", "code": "get_indicator(doc) { if (doc.public) { return ['Public', 'green', 'public,=,Yes']; } else { return ['Private', 'darkgrey', 'public,=,No']; } }" }
+    {
+      "description": "Customize List View settings",
+      "code": "frappe.listview_settings['Note'] = { add_fields: ['title', 'public'], filters: [['public', '=', 1]], hide_name_column: true }",
+      "example": "# Usage example for: frappe.listview_settings['Note..."
+    },
+    {
+      "description": "Set indicator color",
+      "code": "get_indicator(doc) { if (doc.public) { return ['Public', 'green', 'public,=,Yes']; } else { return ['Private', 'darkgrey', 'public,=,No']; } }",
+      "example": "# Lists: file1.txt file2.txt folder/"
+    }
   ]
 }

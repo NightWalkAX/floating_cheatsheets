@@ -2,13 +2,45 @@
   "title": "Advanced JavaScript",
   "language": "en",
   "cheats": [
-    { "description": "Async/Await syntax", "code": "async function myFunc() { await something(); }" },
-    { "description": "Run multiple promises in parallel", "code": "Promise.all([p1, p2, p3]).then(values => { ... });" },
-    { "description": "Closures", "code": "function outer() { let x = 1; function inner() { return x; } return inner; }" },
-    { "description": "Prototypes", "code": "function Person(){}; Person.prototype.sayHi = function() { console.log('Hi'); }" },
-    { "description": "Destructuring", "code": "const [a, b] = [1, 2]; const {x, y} = obj;" },
-    { "description": "Spread operator", "code": "const arr2 = [...arr1];" },
-    { "description": "Advanced data collections", "code": "const map = new Map(); const set = new Set();" },
-    { "description": "Concurrency model", "code": "JavaScript uses an event loop for concurrency." }
+    {
+      "description": "Async/Await syntax",
+      "code": "async function myFunc() { await something(); }",
+      "example": "// Use: const result = await fetchData();"
+    },
+    {
+      "description": "Run multiple promises in parallel",
+      "code": "Promise.all([p1, p2, p3]).then(values => { ... });",
+      "example": "// Waits for all promises: [result1, result2, result3]"
+    },
+    {
+      "description": "Closures",
+      "code": "function outer() { let x = 1; function inner() { return x; } return inner; }",
+      "example": "# Usage example for: function outer() { let x = 1; ..."
+    },
+    {
+      "description": "Prototypes",
+      "code": "function Person(){}; Person.prototype.sayHi = function() { console.log('Hi'); }",
+      "example": "# Usage example for: function Person(){}; Person.pr..."
+    },
+    {
+      "description": "Destructuring",
+      "code": "const [a, b] = [1, 2]; const {x, y} = obj;",
+      "example": "# Usage example for: const [a, b] = [1, 2]; const {..."
+    },
+    {
+      "description": "Spread operator",
+      "code": "const arr2 = [...arr1];",
+      "example": "# Usage example for: const arr2 = [...arr1];..."
+    },
+    {
+      "description": "Advanced data collections",
+      "code": "const map = new Map(); const set = new Set();",
+      "example": "# Usage example for: const map = new Map(); const s..."
+    },
+    {
+      "description": "Concurrency model",
+      "code": "JavaScript uses an event loop for concurrency.",
+      "example": "# Usage example for: JavaScript uses an event loop ..."
+    }
   ]
 }

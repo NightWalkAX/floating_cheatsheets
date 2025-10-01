@@ -1,23 +1,32 @@
 {
   "title": "Form Tours API",
   "language": "en",
-  "tags": ["javascript", "api", "frappe", "form_tours"],
+  "tags": [
+    "javascript",
+    "api",
+    "frappe",
+    "form_tours"
+  ],
   "cheats": [
     {
       "description": "Create a Form Tour",
-      "code": "Type 'new form tour' in awesomebar and hit enter."
+      "code": "Type 'new form tour' in awesomebar and hit enter.",
+      "example": "# Removes file or directory"
     },
     {
       "description": "Set options for Form Tour",
-      "code": "Is Standard, Save on Completion, Show First Document Tour, Include Name Field"
+      "code": "Is Standard, Save on Completion, Show First Document Tour, Include Name Field",
+      "example": "# Usage example for: Is Standard, Save on Completio..."
     },
     {
       "description": "Add steps to Form Tour",
-      "code": "Add steps defining each field with Title & Description, Position, Next Condition, Is Table Field, Parent Field."
+      "code": "Add steps defining each field with Title & Description, Position, Next Condition, Is Table Field, Parent Field.",
+      "example": "# Usage example for: Add steps defining each field ..."
     },
     {
       "description": "Trigger the tour",
-      "code": "frappe.ui.form.on('Custom Field', 'onload', () => { const tour_name = 'Creating a Custom Field'; frm.tour.init({ tour_name }).then(() => frm.tour.start()); });"
+      "code": "frappe.ui.form.on('Custom Field', 'onload', () => { const tour_name = 'Creating a Custom Field'; frm.tour.init({ tour_name }).then(() => frm.tour.start()); });",
+      "example": "# Executes in form context"
     }
   ]
 }

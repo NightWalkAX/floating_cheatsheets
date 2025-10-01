@@ -1,14 +1,44 @@
 {
   "title": "Language Resolution (Frappe)",
   "language": "en",
-  "tags": ["language", "frappe", "python", "settings", "localization"],
+  "tags": [
+    "language",
+    "frappe",
+    "python",
+    "settings",
+    "localization"
+  ],
   "cheats": [
-    { "description": "Session language variable", "code": "frappe.lang" },
-    { "description": "Highest priority: Form Dict > _lang", "code": "?lang=en" },
-    { "description": "Cookie: preferred_language (guest only)", "code": "preferred_language=en" },
-    { "description": "Request Header: Accept-Language (guest only)", "code": "Accept-Language: en" },
-    { "description": "User document > language field", "code": "user.language = 'en'" },
-    { "description": "System Settings > language field", "code": "system_settings.language = 'en'" }
+    {
+      "description": "Session language variable",
+      "code": "frappe.lang",
+      "example": "# Usage example for: frappe.lang..."
+    },
+    {
+      "description": "Highest priority: Form Dict > _lang",
+      "code": "?lang=en",
+      "example": "# Usage example for: ?lang=en..."
+    },
+    {
+      "description": "Cookie: preferred_language (guest only)",
+      "code": "preferred_language=en",
+      "example": "# Usage example for: preferred_language=en..."
+    },
+    {
+      "description": "Request Header: Accept-Language (guest only)",
+      "code": "Accept-Language: en",
+      "example": "# Usage example for: Accept-Language: en..."
+    },
+    {
+      "description": "User document > language field",
+      "code": "user.language = 'en'",
+      "example": "# Usage example for: user.language = 'en'..."
+    },
+    {
+      "description": "System Settings > language field",
+      "code": "system_settings.language = 'en'",
+      "example": "# Usage example for: system_settings.language = 'en..."
+    }
   ],
   "created": "2025-09-27",
   "updated": "2025-09-27"

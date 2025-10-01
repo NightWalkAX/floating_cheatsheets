@@ -1,12 +1,34 @@
 {
   "title": "Database API (Frappe)",
   "language": "en",
-  "tags": ["database", "frappe", "python", "orm", "sql"],
+  "tags": [
+    "database",
+    "frappe",
+    "python",
+    "orm",
+    "sql"
+  ],
   "cheats": [
-    { "description": "Get list of records from a DocType", "code": "frappe.db.get_list('Employee')" },
-    { "description": "Get only values of a specific field", "code": "frappe.db.get_list('Employee', pluck='name')" },
-    { "description": "Advanced query with filters, ordering, and pagination", "code": "frappe.db.get_list('Task', filters={'status': 'Open'}, fields=['subject', 'date'], order_by='date desc', start=10, page_length=20, as_list=True)" },
-    { "description": "Filter by date greater than a value", "code": "frappe.db.get_list('Task', filters={'date': ['>', '2019-09-08']})" }
+    {
+      "description": "Get list of records from a DocType",
+      "code": "frappe.db.get_list('Employee')",
+      "example": "# Returns: [{'name': 'EMP-001'}, {'name': 'EMP-002'}]"
+    },
+    {
+      "description": "Get only values of a specific field",
+      "code": "frappe.db.get_list('Employee', pluck='name')",
+      "example": "# Returns: [{'name': 'EMP-001'}, {'name': 'EMP-002'}]"
+    },
+    {
+      "description": "Advanced query with filters, ordering, and pagination",
+      "code": "frappe.db.get_list('Task', filters={'status': 'Open'}, fields=['subject', 'date'], order_by='date desc', start=10, page_length=20, as_list=True)",
+      "example": "# Returns: [{'subject': 'Fix bug', 'date': '2023-01-15'}]"
+    },
+    {
+      "description": "Filter by date greater than a value",
+      "code": "frappe.db.get_list('Task', filters={'date': ['>', '2019-09-08']})",
+      "example": "# Returns: [{'subject': 'Fix bug', 'date': '2023-01-15'}]"
+    }
   ],
   "created": "2025-09-27",
   "updated": "2025-09-27"

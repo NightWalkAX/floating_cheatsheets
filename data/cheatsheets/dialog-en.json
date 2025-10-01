@@ -1,11 +1,29 @@
 {
   "title": "Dialog API (Frappe)",
   "language": "en",
-  "tags": ["dialog", "frappe", "python", "ui", "message"],
+  "tags": [
+    "dialog",
+    "frappe",
+    "python",
+    "ui",
+    "message"
+  ],
   "cheats": [
-    { "description": "Show a message to the user in Desk", "code": "frappe.msgprint(msg, title, raise_exception, as_table, as_list, indicator, primary_action)" },
-    { "description": "Primary action in dialog", "code": "primary_action={ 'label': _('Action'), 'server_action': 'dotted.server.path', 'client_action': 'dotted.client.path', 'args': args }" },
-    { "description": "Raise an exception and show message", "code": "frappe.throw(msg, exc, title)" }
+    {
+      "description": "Show a message to the user in Desk",
+      "code": "frappe.msgprint(msg, title, raise_exception, as_table, as_list, indicator, primary_action)",
+      "example": "# Shows: 'Hello World' message to user"
+    },
+    {
+      "description": "Primary action in dialog",
+      "code": "primary_action={ 'label': _('Action'), 'server_action': 'dotted.server.path', 'client_action': 'dotted.client.path', 'args': args }",
+      "example": "# Usage example for: primary_action={ 'label': _('A..."
+    },
+    {
+      "description": "Raise an exception and show message",
+      "code": "frappe.throw(msg, exc, title)",
+      "example": "# Stops execution and shows error message"
+    }
   ],
   "created": "2025-09-27",
   "updated": "2025-09-27"

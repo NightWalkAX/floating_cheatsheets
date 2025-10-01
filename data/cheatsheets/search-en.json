@@ -1,14 +1,44 @@
 {
   "title": "Search (Frappe)",
   "language": "en",
-  "tags": ["search", "frappe", "python", "whoosh", "index"],
+  "tags": [
+    "search",
+    "frappe",
+    "python",
+    "whoosh",
+    "index"
+  ],
   "cheats": [
-    { "description": "FullTextSearch: base class for full text search", "code": "class BlogWrapper(FullTextSearch): ..." },
-    { "description": "build(): build the search index", "code": "build()" },
-    { "description": "search(text): search the index", "code": "search('text')" },
-    { "description": "get_items_to_index(): get documents to index", "code": "get_items_to_index()" },
-    { "description": "get_document_to_index(name): get document to index by name", "code": "get_document_to_index('name')" },
-    { "description": "parse_result(result): parse search results", "code": "parse_result(result)" }
+    {
+      "description": "FullTextSearch: base class for full text search",
+      "code": "class BlogWrapper(FullTextSearch): ...",
+      "example": "# Usage example for: class BlogWrapper(FullTextSear..."
+    },
+    {
+      "description": "build(): build the search index",
+      "code": "build()",
+      "example": "# Usage example for: build()..."
+    },
+    {
+      "description": "search(text): search the index",
+      "code": "search('text')",
+      "example": "# Usage example for: search('text')..."
+    },
+    {
+      "description": "get_items_to_index(): get documents to index",
+      "code": "get_items_to_index()",
+      "example": "# Retrieves data"
+    },
+    {
+      "description": "get_document_to_index(name): get document to index by name",
+      "code": "get_document_to_index('name')",
+      "example": "# Retrieves data"
+    },
+    {
+      "description": "parse_result(result): parse search results",
+      "code": "parse_result(result)",
+      "example": "# Usage example for: parse_result(result)..."
+    }
   ],
   "created": "2025-09-27",
   "updated": "2025-09-27"

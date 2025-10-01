@@ -1,11 +1,32 @@
 {
   "title": "API de Escáner",
   "language": "es",
-  "tags": ["javascript", "api", "frappe", "scanner_api"],
+  "tags": [
+    "javascript",
+    "api",
+    "frappe",
+    "scanner_api"
+  ],
   "cheats": [
-    { "description": "Crear una instancia de escáner", "code": "new frappe.ui.Scanner({ container, dialog, multiple, on_scan })" },
-    { "description": "Escanear un solo código de barras", "code": "new frappe.ui.Scanner({ dialog: true, multiple: false, on_scan(data) { console.log(data.decodedText); } })" },
-    { "description": "Escanear múltiples códigos de barras", "code": "const scanner = new frappe.ui.Scanner({ dialog: true, multiple: true, on_scan(data) { handle_scanned_barcode(data.decodedText); } })" },
-    { "description": "Detener el escaneo", "code": "scanner.stop_scan();" }
+    {
+      "description": "Crear una instancia de escáner",
+      "code": "new frappe.ui.Scanner({ container, dialog, multiple, on_scan })",
+      "example": "# Usage example for: new frappe.ui.Scanner({ contai..."
+    },
+    {
+      "description": "Escanear un solo código de barras",
+      "code": "new frappe.ui.Scanner({ dialog: true, multiple: false, on_scan(data) { console.log(data.decodedText); } })",
+      "example": "# Lists: file1.txt file2.txt folder/"
+    },
+    {
+      "description": "Escanear múltiples códigos de barras",
+      "code": "const scanner = new frappe.ui.Scanner({ dialog: true, multiple: true, on_scan(data) { handle_scanned_barcode(data.decodedText); } })",
+      "example": "# Usage example for: const scanner = new frappe.ui...."
+    },
+    {
+      "description": "Detener el escaneo",
+      "code": "scanner.stop_scan();",
+      "example": "# Usage example for: scanner.stop_scan();..."
+    }
   ]
 }

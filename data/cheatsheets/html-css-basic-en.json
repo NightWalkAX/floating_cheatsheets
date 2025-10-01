@@ -2,10 +2,30 @@
   "title": "HTML & CSS Basics",
   "language": "en",
   "cheats": [
-    { "description": "Basic HTML structure", "code": "<html>\n  <head>\n    <title>Title</title>\n  </head>\n  <body>\n    Content\n  </body>\n</html>" },
-    { "description": "Add CSS style", "code": "<style>body { color: red; }</style>" },
-    { "description": "Link external CSS", "code": "<link rel=\"stylesheet\" href=\"styles.css\">" },
-    { "description": "Set background color", "code": "body { background-color: #fff; }" },
-    { "description": "Center text", "code": "h1 { text-align: center; }" }
+    {
+      "description": "Basic HTML structure",
+      "code": "<html>\n  <head>\n    <title>Title</title>\n  </head>\n  <body>\n    Content\n  </body>\n</html>",
+      "example": "# Usage example for: <html>\n  <head>\n    <title>Tit..."
+    },
+    {
+      "description": "Add CSS style",
+      "code": "<style>body { color: red; }</style>",
+      "example": "/* Applies visual styling */"
+    },
+    {
+      "description": "Link external CSS",
+      "code": "<link rel=\"stylesheet\" href=\"styles.css\">",
+      "example": "/* Applies visual styling */"
+    },
+    {
+      "description": "Set background color",
+      "code": "body { background-color: #fff; }",
+      "example": "/* Applies visual styling */"
+    },
+    {
+      "description": "Center text",
+      "code": "h1 { text-align: center; }",
+      "example": "# Usage example for: h1 { text-align: center; }..."
+    }
   ]
 }

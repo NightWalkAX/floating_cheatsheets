@@ -1,16 +1,54 @@
 {
   "title": "Request Lifecycle (Frappe)",
   "language": "en",
-  "tags": ["request", "lifecycle", "frappe", "python", "web"],
+  "tags": [
+    "request",
+    "lifecycle",
+    "frappe",
+    "python",
+    "web"
+  ],
   "cheats": [
-    { "description": "API requests handled by REST API handler", "code": "/api/resource" },
-    { "description": "File downloads handled by specific handlers", "code": "/files/my_file.pdf" },
-    { "description": "Request pre-processing: recorder and rate limiter", "code": "..." },
-    { "description": "Path Resolver: resolves redirects and dynamic routes", "code": "..." },
-    { "description": "Renderer Selection: picks the right renderer for the route", "code": "..." },
-    { "description": "PageRenderer(BaseRenderer): custom web page renderer class", "code": "class PageRenderer(BaseRenderer): ..." },
-    { "description": "StaticPage: serves static files from public folder", "code": "..." },
-    { "description": "TemplatePage: renders HTML or Markdown from www/", "code": "..." }
+    {
+      "description": "API requests handled by REST API handler",
+      "code": "/api/resource",
+      "example": "# Usage example for: /api/resource..."
+    },
+    {
+      "description": "File downloads handled by specific handlers",
+      "code": "/files/my_file.pdf",
+      "example": "# Usage example for: /files/my_file.pdf..."
+    },
+    {
+      "description": "Request pre-processing: recorder and rate limiter",
+      "code": "...",
+      "example": "# Usage example for: ......"
+    },
+    {
+      "description": "Path Resolver: resolves redirects and dynamic routes",
+      "code": "...",
+      "example": "# Usage example for: ......"
+    },
+    {
+      "description": "Renderer Selection: picks the right renderer for the route",
+      "code": "...",
+      "example": "# Usage example for: ......"
+    },
+    {
+      "description": "PageRenderer(BaseRenderer): custom web page renderer class",
+      "code": "class PageRenderer(BaseRenderer): ...",
+      "example": "# Usage example for: class PageRenderer(BaseRendere..."
+    },
+    {
+      "description": "StaticPage: serves static files from public folder",
+      "code": "...",
+      "example": "# Usage example for: ......"
+    },
+    {
+      "description": "TemplatePage: renders HTML or Markdown from www/",
+      "code": "...",
+      "example": "# Usage example for: ......"
+    }
   ],
   "created": "2025-09-27",
   "updated": "2025-09-27"

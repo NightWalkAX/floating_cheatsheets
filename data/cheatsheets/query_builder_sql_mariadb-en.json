@@ -1,17 +1,60 @@
 {
   "title": "Query Builder SQL (MariaDB)",
   "language": "en",
-  "tags": ["sql", "mariadb", "query builder", "python", "frappe", "pypika"],
+  "tags": [
+    "sql",
+    "mariadb",
+    "query builder",
+    "python",
+    "frappe",
+    "pypika"
+  ],
   "cheats": [
-    { "description": "Basic SELECT query using query builder", "code": "frappe.qb.from_('Customer').select('id', 'fname', 'lname', 'phone')" },
-    { "description": "Get table object for building queries", "code": "customers = frappe.qb.DocType('Customer')" },
-    { "description": "OR and LIKE conditions in queries", "code": "where((customers.fname == 'Max') | (customers.id.like('RA%')) )" },
-    { "description": "Get generated SQL query", "code": "str(query) or query.get_sql()" },
-    { "description": "Run query and get results in different formats", "code": "frappe.qb.from_('ToDo').select('name').run(as_dict=True)" },
-    { "description": "Aggregate functions like Count()", "code": "from frappe.query_builder.functions import Count" },
-    { "description": "Define custom SQL functions", "code": "CustomFunction('DATE_DIFF', ['interval', 'start_date', 'end_date'])" },
-    { "description": "Define constant columns in query", "code": "ConstantColumn('john').as_('user')" },
-    { "description": "Text search with MATCH AGAINST", "code": "Match('Coloum name').Against('Some_text_match')" }
+    {
+      "description": "Basic SELECT query using query builder",
+      "code": "frappe.qb.from_('Customer').select('id', 'fname', 'lname', 'phone')",
+      "example": "# Usage example for: frappe.qb.from_('Customer').se..."
+    },
+    {
+      "description": "Get table object for building queries",
+      "code": "customers = frappe.qb.DocType('Customer')",
+      "example": "# Retrieves data"
+    },
+    {
+      "description": "OR and LIKE conditions in queries",
+      "code": "where((customers.fname == 'Max') | (customers.id.like('RA%')) )",
+      "example": "# Usage example for: where((customers.fname == 'Max..."
+    },
+    {
+      "description": "Get generated SQL query",
+      "code": "str(query) or query.get_sql()",
+      "example": "# Retrieves data"
+    },
+    {
+      "description": "Run query and get results in different formats",
+      "code": "frappe.qb.from_('ToDo').select('name').run(as_dict=True)",
+      "example": "# Retrieves data"
+    },
+    {
+      "description": "Aggregate functions like Count()",
+      "code": "from frappe.query_builder.functions import Count",
+      "example": "# Usage example for: from frappe.query_builder.func..."
+    },
+    {
+      "description": "Define custom SQL functions",
+      "code": "CustomFunction('DATE_DIFF', ['interval', 'start_date', 'end_date'])",
+      "example": "# Usage example for: CustomFunction('DATE_DIFF', ['..."
+    },
+    {
+      "description": "Define constant columns in query",
+      "code": "ConstantColumn('john').as_('user')",
+      "example": "# Usage example for: ConstantColumn('john').as_('us..."
+    },
+    {
+      "description": "Text search with MATCH AGAINST",
+      "code": "Match('Coloum name').Against('Some_text_match')",
+      "example": "# Usage example for: Match('Coloum name').Against('..."
+    }
   ],
   "created": "2025-09-27",
   "updated": "2025-09-27"

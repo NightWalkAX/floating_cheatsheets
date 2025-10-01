@@ -1,12 +1,35 @@
 {
   "title": "Utility Functions (Frappe)",
   "language": "en",
-  "tags": ["utils", "frappe", "python", "date", "time", "format"],
+  "tags": [
+    "utils",
+    "frappe",
+    "python",
+    "date",
+    "time",
+    "format"
+  ],
   "cheats": [
-    { "description": "Returns current datetime in yyyy-mm-dd hh:mm:ss format", "code": "now() # '2021-05-25 06:38:52.242515'" },
-    { "description": "Converts string date to datetime.date object", "code": "getdate('2000-03-18') # datetime.date(2000, 3, 18)" },
-    { "description": "Returns current date in yyyy-mm-dd format", "code": "today() # '2021-05-25'" },
-    { "description": "Adds or subtracts time to a given date", "code": "add_to_date(datetime.now(), days=10, as_string=True) # '2021-05-31'" }
+    {
+      "description": "Returns current datetime in yyyy-mm-dd hh:mm:ss format",
+      "code": "now() # '2021-05-25 06:38:52.242515'",
+      "example": "# Returns: formatted output"
+    },
+    {
+      "description": "Converts string date to datetime.date object",
+      "code": "getdate('2000-03-18') # datetime.date(2000, 3, 18)",
+      "example": "# Usage example for: getdate('2000-03-18') # dateti..."
+    },
+    {
+      "description": "Returns current date in yyyy-mm-dd format",
+      "code": "today() # '2021-05-25'",
+      "example": "# Returns: formatted output"
+    },
+    {
+      "description": "Adds or subtracts time to a given date",
+      "code": "add_to_date(datetime.now(), days=10, as_string=True) # '2021-05-31'",
+      "example": "# Example: 1000 * (1 + 0.05)^10 = 1628.89"
+    }
   ],
   "created": "2025-09-27",
   "updated": "2025-09-27"

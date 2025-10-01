@@ -1,10 +1,27 @@
 {
   "title": "Logging API",
   "language": "en",
-  "tags": ["javascript", "api", "frappe", "logging"],
+  "tags": [
+    "javascript",
+    "api",
+    "frappe",
+    "logging"
+  ],
   "cheats": [
-    { "description": "Set log level dynamically", "code": "frappe.utils.logger.set_log_level(level)" },
-    { "description": "Get logger instance", "code": "frappe.logger(module, with_more_info, allow_site, filter, max_size, file_count)" },
-    { "description": "Log debug information", "code": "frappe.logger('frappe.web').debug({ site: 'frappeframework.com', remote_addr: '192.148.1.7', method: 'POST' })" }
+    {
+      "description": "Set log level dynamically",
+      "code": "frappe.utils.logger.set_log_level(level)",
+      "example": "# Lists: file1.txt file2.txt folder/"
+    },
+    {
+      "description": "Get logger instance",
+      "code": "frappe.logger(module, with_more_info, allow_site, filter, max_size, file_count)",
+      "example": "# Retrieves data"
+    },
+    {
+      "description": "Log debug information",
+      "code": "frappe.logger('frappe.web').debug({ site: 'frappeframework.com', remote_addr: '192.148.1.7', method: 'POST' })",
+      "example": "# Returns: formatted output"
+    }
   ]
 }

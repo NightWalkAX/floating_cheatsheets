@@ -1,10 +1,27 @@
 {
   "title": "Form Scripts API",
   "language": "en",
-  "tags": ["javascript", "api", "frappe", "form"],
+  "tags": [
+    "javascript",
+    "api",
+    "frappe",
+    "form"
+  ],
   "cheats": [
-    { "description": "Add client-side logic to forms", "code": "frappe.ui.form.on(doctype, { event1() { /* ... */ }, event2() { /* ... */ } })" },
-    { "description": "Example: Add custom button on refresh", "code": "frappe.ui.form.on('ToDo', { refresh(frm) { if (frm.doc.reference_type && frm.doc.reference_name) { frm.add_custom_button(frm.doc.reference_name, () => { frappe.set_route('Form', frm.doc.reference_type, frm.doc.reference_name); }); } } })" },
-    { "description": "Child table script example", "code": "frappe.ui.form.on('Quotation Item', { item_code(frm, cdt, cdn) { let row = frappe.get_doc(cdt, cdn); } })" }
+    {
+      "description": "Add client-side logic to forms",
+      "code": "frappe.ui.form.on(doctype, { event1() { /* ... */ }, event2() { /* ... */ } })",
+      "example": "# Executes in form context"
+    },
+    {
+      "description": "Example: Add custom button on refresh",
+      "code": "frappe.ui.form.on('ToDo', { refresh(frm) { if (frm.doc.reference_type && frm.doc.reference_name) { frm.add_custom_button(frm.doc.reference_name, () => { frappe.set_route('Form', frm.doc.reference_type, frm.doc.reference_name); }); } } })",
+      "example": "# Executes in form context"
+    },
+    {
+      "description": "Child table script example",
+      "code": "frappe.ui.form.on('Quotation Item', { item_code(frm, cdt, cdn) { let row = frappe.get_doc(cdt, cdn); } })",
+      "example": "# Returns: Document object with all fields"
+    }
   ]
 }

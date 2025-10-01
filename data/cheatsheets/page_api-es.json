@@ -1,11 +1,32 @@
 {
   "title": "API de Página",
   "language": "es",
-  "tags": ["javascript", "api", "frappe", "page_api"],
+  "tags": [
+    "javascript",
+    "api",
+    "frappe",
+    "page_api"
+  ],
   "cheats": [
-    { "description": "Crear una nueva página", "code": "let page = frappe.ui.make_app_page({ title: 'Mi Página', parent: wrapper, single_column: true })" },
-    { "description": "Establecer título de la página", "code": "page.set_title('Mi Página')" },
-    { "description": "Establecer etiqueta e indicador de color", "code": "page.set_indicator('Pendiente', 'orange')" },
-    { "description": "Establecer botón de acción principal", "code": "page.set_primary_action('Nuevo', () => crear_nuevo(), 'octicon octicon-plus')" }
+    {
+      "description": "Crear una nueva página",
+      "code": "let page = frappe.ui.make_app_page({ title: 'Mi Página', parent: wrapper, single_column: true })",
+      "example": "# Usage example for: let page = frappe.ui.make_app_..."
+    },
+    {
+      "description": "Establecer título de la página",
+      "code": "page.set_title('Mi Página')",
+      "example": "# Usage example for: page.set_title('Mi Página')..."
+    },
+    {
+      "description": "Establecer etiqueta e indicador de color",
+      "code": "page.set_indicator('Pendiente', 'orange')",
+      "example": "# Usage example for: page.set_indicator('Pendiente'..."
+    },
+    {
+      "description": "Establecer botón de acción principal",
+      "code": "page.set_primary_action('Nuevo', () => crear_nuevo(), 'octicon octicon-plus')",
+      "example": "# Example: 1000 * (1 + 0.05)^10 = 1628.89"
+    }
   ]
 }

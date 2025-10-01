@@ -1,13 +1,42 @@
 {
   "title": "API de Vista de Árbol",
   "language": "es",
-  "tags": ["javascript", "api", "frappe", "tree_view"],
+  "tags": [
+    "javascript",
+    "api",
+    "frappe",
+    "tree_view"
+  ],
   "cheats": [
-    { "description": "Configurar la vista de árbol para un DocType", "code": "frappe.treeview_settings['Account'] = { breadcrumb: 'Contabilidad', title: 'Plan de cuentas' }" },
-    { "description": "Agregar filtros a la vista de árbol", "code": "filters: [{ fieldname: 'company', fieldtype: 'Select', options: 'Company 1,Company 2', label: 'Compañía' }]" },
-    { "description": "Método para obtener nodos del árbol", "code": "get_tree_nodes: 'ruta.a.metodo_autorizado.get_children'" },
-    { "description": "Método para agregar nodo al árbol", "code": "add_tree_node: 'ruta.a.metodo_autorizado.handle_add_account'" },
-    { "description": "Agregar campos para nuevo nodo", "code": "fields: [{ fieldtype: 'Data', fieldname: 'account_name', label: 'Nombre de cuenta nueva', reqd: true }]" },
-    { "description": "Agregar elemento de menú personalizado", "code": "menu_items: [{ label: 'Nueva compañía', action: function() { frappe.new_doc('Company', true) } }]" }
+    {
+      "description": "Configurar la vista de árbol para un DocType",
+      "code": "frappe.treeview_settings['Account'] = { breadcrumb: 'Contabilidad', title: 'Plan de cuentas' }",
+      "example": "# Usage example for: frappe.treeview_settings['Acco..."
+    },
+    {
+      "description": "Agregar filtros a la vista de árbol",
+      "code": "filters: [{ fieldname: 'company', fieldtype: 'Select', options: 'Company 1,Company 2', label: 'Compañía' }]",
+      "example": "# Usage example for: filters: [{ fieldname: 'compan..."
+    },
+    {
+      "description": "Método para obtener nodos del árbol",
+      "code": "get_tree_nodes: 'ruta.a.metodo_autorizado.get_children'",
+      "example": "# Usage example for: get_tree_nodes: 'ruta.a.metodo..."
+    },
+    {
+      "description": "Método para agregar nodo al árbol",
+      "code": "add_tree_node: 'ruta.a.metodo_autorizado.handle_add_account'",
+      "example": "# Usage example for: add_tree_node: 'ruta.a.metodo_..."
+    },
+    {
+      "description": "Agregar campos para nuevo nodo",
+      "code": "fields: [{ fieldtype: 'Data', fieldname: 'account_name', label: 'Nombre de cuenta nueva', reqd: true }]",
+      "example": "# Usage example for: fields: [{ fieldtype: 'Data', ..."
+    },
+    {
+      "description": "Agregar elemento de menú personalizado",
+      "code": "menu_items: [{ label: 'Nueva compañía', action: function() { frappe.new_doc('Company', true) } }]",
+      "example": "# Creates new document ready for modification"
+    }
   ]
 }

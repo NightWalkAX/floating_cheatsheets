@@ -1,11 +1,32 @@
 {
   "title": "Page API",
   "language": "en",
-  "tags": ["javascript", "api", "frappe", "page_api"],
+  "tags": [
+    "javascript",
+    "api",
+    "frappe",
+    "page_api"
+  ],
   "cheats": [
-    { "description": "Create a new page", "code": "let page = frappe.ui.make_app_page({ title: 'My Page', parent: wrapper, single_column: true })" },
-    { "description": "Set page title", "code": "page.set_title('My Page')" },
-    { "description": "Set indicator label and color", "code": "page.set_indicator('Pending', 'orange')" },
-    { "description": "Set primary action button", "code": "page.set_primary_action('New', () => create_new(), 'octicon octicon-plus')" }
+    {
+      "description": "Create a new page",
+      "code": "let page = frappe.ui.make_app_page({ title: 'My Page', parent: wrapper, single_column: true })",
+      "example": "# Creates new resource"
+    },
+    {
+      "description": "Set page title",
+      "code": "page.set_title('My Page')",
+      "example": "# Usage example for: page.set_title('My Page')..."
+    },
+    {
+      "description": "Set indicator label and color",
+      "code": "page.set_indicator('Pending', 'orange')",
+      "example": "# Usage example for: page.set_indicator('Pending', ..."
+    },
+    {
+      "description": "Set primary action button",
+      "code": "page.set_primary_action('New', () => create_new(), 'octicon octicon-plus')",
+      "example": "# Example: 1000 * (1 + 0.05)^10 = 1628.89"
+    }
   ]
 }

@@ -1,12 +1,37 @@
 {
   "title": "Common Utilities API",
   "language": "en",
-  "tags": ["javascript", "api", "frappe", "common_utilities"],
+  "tags": [
+    "javascript",
+    "api",
+    "frappe",
+    "common_utilities"
+  ],
   "cheats": [
-    { "description": "Get current route", "code": "frappe.get_route()" },
-    { "description": "Set route", "code": "frappe.set_route('List', 'Task', 'List')" },
-    { "description": "Format value for display", "code": "frappe.format('2019-09-08', { fieldtype: 'Date' })" },
-    { "description": "Create namespace", "code": "frappe.provide('frappe.ui.form');" },
-    { "description": "Load asset asynchronously", "code": "frappe.require(asset_path, callback)" }
+    {
+      "description": "Get current route",
+      "code": "frappe.get_route()",
+      "example": "# Retrieves data"
+    },
+    {
+      "description": "Set route",
+      "code": "frappe.set_route('List', 'Task', 'List')",
+      "example": "# Usage example for: frappe.set_route('List', 'Task..."
+    },
+    {
+      "description": "Format value for display",
+      "code": "frappe.format('2019-09-08', { fieldtype: 'Date' })",
+      "example": "# Removes file or directory"
+    },
+    {
+      "description": "Create namespace",
+      "code": "frappe.provide('frappe.ui.form');",
+      "example": "# Executes in form context"
+    },
+    {
+      "description": "Load asset asynchronously",
+      "code": "frappe.require(asset_path, callback)",
+      "example": "# Usage example for: frappe.require(asset_path, cal..."
+    }
   ]
 }

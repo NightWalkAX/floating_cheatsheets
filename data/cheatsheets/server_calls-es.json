@@ -1,11 +1,32 @@
 {
   "title": "API de Llamadas al Servidor",
   "language": "es",
-  "tags": ["javascript", "api", "frappe", "server_calls"],
+  "tags": [
+    "javascript",
+    "api",
+    "frappe",
+    "server_calls"
+  ],
   "cheats": [
-    { "description": "Realizar petición AJAX al servidor", "code": "frappe.call('ping').then(r => { console.log(r) })" },
-    { "description": "Llamada con parámetros", "code": "frappe.call('frappe.core.doctype.user.user.get_role_profile', { role_profile: 'Test' }).then(r => { console.log(r.message) })" },
-    { "description": "Obtener documento por nombre", "code": "frappe.db.get_doc('Task', 'TASK00002').then(doc => { console.log(doc) })" },
-    { "description": "Obtener documento por filtros", "code": "frappe.db.get_doc('Task', null, { status: 'Open' })" }
+    {
+      "description": "Realizar petición AJAX al servidor",
+      "code": "frappe.call('ping').then(r => { console.log(r) })",
+      "example": "// Makes AJAX call to server method"
+    },
+    {
+      "description": "Llamada con parámetros",
+      "code": "frappe.call('frappe.core.doctype.user.user.get_role_profile', { role_profile: 'Test' }).then(r => { console.log(r.message) })",
+      "example": "// Makes AJAX call to server method"
+    },
+    {
+      "description": "Obtener documento por nombre",
+      "code": "frappe.db.get_doc('Task', 'TASK00002').then(doc => { console.log(doc) })",
+      "example": "// Arrow function syntax"
+    },
+    {
+      "description": "Obtener documento por filtros",
+      "code": "frappe.db.get_doc('Task', null, { status: 'Open' })",
+      "example": "# Usage example for: frappe.db.get_doc('Task', null..."
+    }
   ]
 }
