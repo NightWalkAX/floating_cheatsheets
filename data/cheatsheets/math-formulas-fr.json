@@ -1,0 +1,44 @@
+{
+  "title": "Formules Mathématiques",
+  "language": "fr",
+  "tags": ["math", "formules", "science"],
+  "items": [
+    {
+      "code": "Théorème de Pythagore",
+      "description": "Relation dans un triangle rectangle",
+      "example": "a² + b² = c²"
+    },
+    {
+      "code": "Formule Quadratique",
+      "description": "Trouver les racines d'une équation quadratique",
+      "example": "x = [-b ± sqrt(b²-4ac)] / 2a"
+    },
+    {
+      "code": "Aire d'un Cercle",
+      "description": "Calculer l'aire d'un cercle",
+      "example": "A = πr²"
+    },
+    {
+      "code": "Circonférence",
+      "description": "Calculer la longueur du bord d'un cercle",
+      "example": "C = 2πr"
+    },
+    {
+      "code": "Règle de Puissance (Dérivée)",
+      "description": "Règle de puissance pour les dérivées",
+      "example": "d/dx(x^n) = nx^(n-1)"
+    },
+    {
+      "code": "Règle de Puissance (Intégrale)",
+      "description": "Règle de puissance pour les intégrales",
+      "example": "∫x^n dx = x^(n+1)/(n+1) + C"
+    },
+    {
+      "code": "Identité d'Euler",
+      "description": "Relie cinq constantes mathématiques fondamentales",
+      "example": "e^(iπ) + 1 = 0"
+    }
+  ],
+  "created": "2025-09-27",
+  "updated": "2025-09-27"
+}

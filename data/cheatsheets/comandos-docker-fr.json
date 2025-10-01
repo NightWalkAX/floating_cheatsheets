@@ -1,0 +1,14 @@
+{
+  "title": "Commandes Docker",
+  "language": "fr",
+  "cheats": [
+    { "description": "Exécuter un conteneur", "code": "docker run image" },
+    { "description": "Lister les conteneurs", "code": "docker ps" },
+    { "description": "Arrêter un conteneur", "code": "docker stop conteneur" },
+    { "description": "Supprimer un conteneur", "code": "docker rm conteneur" },
+    { "description": "Lister les images", "code": "docker images" },
+    { "description": "Supprimer une image", "code": "docker rmi image" },
+    { "description": "Construire une image", "code": "docker build -t nom ." },
+    { "description": "Afficher les logs", "code": "docker logs conteneur" }
+  ]
+}

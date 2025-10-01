@@ -1,119 +1,14 @@
 {
   "title": "Linux Commands",
   "language": "en",
-  "tags": ["linux", "terminal", "bash"],
-  "items": [
-    {
-      "code": "ls",
-      "description": "List files and directories",
-      "example": "ls -la (detailed) | ls -h (human-readable sizes)"
-    },
-    {
-      "code": "cd",
-      "description": "Change directory",
-      "example": "cd /path/to/dir | cd .. (go up) | cd ~ (home)"
-    },
-    {
-      "code": "pwd",
-      "description": "Show current directory",
-      "example": "pwd"
-    },
-    {
-      "code": "mkdir",
-      "description": "Create directories",
-      "example": "mkdir new_folder | mkdir -p path/to/nested/dir"
-    },
-    {
-      "code": "rmdir",
-      "description": "Remove empty directories",
-      "example": "rmdir empty_folder"
-    },
-    {
-      "code": "rm",
-      "description": "Remove files and directories",
-      "example": "rm file.txt | rm -rf directory/"
-    },
-    {
-      "code": "cp",
-      "description": "Copy files and directories",
-      "example": "cp file.txt copy.txt | cp -r directory/ copy/"
-    },
-    {
-      "code": "mv",
-      "description": "Move/rename files",
-      "example": "mv file.txt new_name.txt | mv file.txt /other/path/"
-    },
-    {
-      "code": "find",
-      "description": "Search for files and directories",
-      "example": "find . -name \"*.py\" | find /path -type f -size +100M"
-    },
-    {
-      "code": "grep",
-      "description": "Search for text in files",
-      "example": "grep -r \"function\" . | grep -i \"error\" file.log"
-    },
-    {
-      "code": "cat",
-      "description": "Show file content",
-      "example": "cat file.txt | cat -n file.txt (with line numbers)"
-    },
-    {
-      "code": "less/more",
-      "description": "View file page by page",
-      "example": "less file.txt | more file.txt"
-    },
-    {
-      "code": "head",
-      "description": "Show first lines",
-      "example": "head -n 10 file.txt"
-    },
-    {
-      "code": "tail",
-      "description": "Show last lines",
-      "example": "tail -n 10 file.txt | tail -f file.log (follow)"
-    },
-    {
-      "code": "chmod",
-      "description": "Change file permissions",
-      "example": "chmod 755 script.sh | chmod +x file"
-    },
-    {
-      "code": "chown",
-      "description": "Change owner",
-      "example": "sudo chown user:group file.txt"
-    },
-    {
-      "code": "ps",
-      "description": "View running processes",
-      "example": "ps aux | ps -ef"
-    },
-    {
-      "code": "kill",
-      "description": "Terminate processes",
-      "example": "kill PID | kill -9 PID (force)"
-    },
-    {
-      "code": "df",
-      "description": "Disk space",
-      "example": "df -h (readable) | df -i (inodes)"
-    },
-    {
-      "code": "du",
-      "description": "Directory size",
-      "example": "du -sh directory/ | du -h --max-depth=1"
-    },
-    {
-      "code": "tar",
-      "description": "Compress/decompress files",
-      "example": "tar -czf archive.tar.gz directory/ | tar -xzf archive.tar.gz"
-    },
-    {
-      "code": "wget/curl",
-      "description": "Download files from the internet",
-      "example": "wget https://example.com/file.zip | curl -O https://example.com/file.zip"
-    }
-  ],
-  "created": "2025-09-24",
-  "updated": "2025-10-01"
+  "cheats": [
+    { "description": "List files", "code": "ls" },
+    { "description": "Change directory", "code": "cd folder" },
+    { "description": "Show current directory", "code": "pwd" },
+    { "description": "Copy file", "code": "cp source dest" },
+    { "description": "Move file", "code": "mv source dest" },
+    { "description": "Remove file", "code": "rm file" },
+    { "description": "Show file content", "code": "cat file" },
+    { "description": "Find text in files", "code": "grep 'text' file" }
+  ]
 }

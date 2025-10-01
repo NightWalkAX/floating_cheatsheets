@@ -1,0 +1,15 @@
+{
+  "title": "Bash Scripting",
+  "language": "fr",
+  "cheats": [
+    { "description": "Afficher un message dans la console", "code": "echo 'Bonjour le monde'" },
+    { "description": "Déclarer une variable", "code": "mavariable=5" },
+    { "description": "Lire une entrée utilisateur", "code": "read nom" },
+    { "description": "Structure if", "code": "if [ $mavariable -eq 5 ]; then echo 'Cinq'; fi" },
+    { "description": "Boucle for", "code": "for i in 1 2 3; do echo $i; done" },
+    { "description": "Boucle while", "code": "while [ $mavariable -gt 0 ]; do echo $mavariable; mavariable=$((mavariable-1)); done" },
+    { "description": "Définir une fonction", "code": "mafonction() { echo 'Fonction'; }" },
+    { "description": "Obtenir les arguments du script", "code": "$1, $2, ..." },
+    { "description": "Quitter le script", "code": "exit 0" }
+  ]
+}

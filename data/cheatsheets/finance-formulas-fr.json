@@ -1,0 +1,11 @@
+{
+  "title": "Formules de Finance",
+  "language": "fr",
+  "cheats": [
+    { "description": "Intérêt simple", "code": "I = P * r * t" },
+    { "description": "Intérêt composé", "code": "A = P(1 + r/n)^(nt)" },
+    { "description": "Valeur future", "code": "FV = PV * (1 + r)^n" },
+    { "description": "Valeur actuelle", "code": "PV = FV / (1 + r)^n" },
+    { "description": "Paiement de prêt", "code": "PMT = [P * r(1 + r)^n] / [(1 + r)^n - 1]" }
+  ]
+}

@@ -1,49 +1,15 @@
 {
   "title": "Bash Scripting",
   "language": "en",
-  "tags": ["bash", "linux", "scripting"],
-  "items": [
-    {
-      "code": "#!/bin/bash",
-      "description": "Shebang to indicate it's a Bash script",
-      "example": "#!/bin/bash\\necho 'Hello World'"
-    },
-    {
-      "code": "variable=$value",
-      "description": "Declare a variable (no spaces)",
-      "example": "name=\"Jules\"\\necho \"Hello, $name\""
-    },
-    {
-      "code": "if [ condition ]",
-      "description": "Conditional statement",
-      "example": "if [ -f \"/etc/hosts\" ]; then echo 'File exists'; fi"
-    },
-    {
-      "code": "for item in list",
-      "description": "'for' loop",
-      "example": "for i in {1..5}; do echo $i; done"
-    },
-    {
-      "code": "while [ condition ]",
-      "description": "'while' loop",
-      "example": "c=1\\nwhile [ $c -le 5 ]; do echo $c; ((c++)); done"
-    },
-    {
-      "code": "function name()",
-      "description": "Declare a function",
-      "example": "greet() {\\n  echo \"Hello, $1\"\\n}\\ngreet \"World\""
-    },
-    {
-      "code": "$1, $2, ...",
-      "description": "Positional arguments for the script",
-      "example": "./my_script.sh arg1 arg2"
-    },
-    {
-      "code": "read -p 'prompt'",
-      "description": "Read user input",
-      "example": "read -p 'Your name: ' name"
-    }
-  ],
-  "created": "2025-09-26",
-  "updated": "2025-10-01"
+  "cheats": [
+    { "description": "Print message to console", "code": "echo 'Hello World'" },
+    { "description": "Declare variable", "code": "myvar=5" },
+    { "description": "Read user input", "code": "read name" },
+    { "description": "If statement", "code": "if [ $myvar -eq 5 ]; then echo 'Five'; fi" },
+    { "description": "For loop", "code": "for i in 1 2 3; do echo $i; done" },
+    { "description": "While loop", "code": "while [ $myvar -gt 0 ]; do echo $myvar; myvar=$((myvar-1)); done" },
+    { "description": "Function definition", "code": "myfunc() { echo 'Function'; }" },
+    { "description": "Get script arguments", "code": "$1, $2, ..." },
+    { "description": "Exit script", "code": "exit 0" }
+  ]
 }

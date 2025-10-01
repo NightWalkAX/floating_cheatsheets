@@ -1,0 +1,14 @@
+{
+  "title": "NumPy Cheatsheet",
+  "language": "fr",
+  "cheats": [
+    { "description": "Créer un tableau NumPy", "code": "np.array([1, 2, 3])" },
+    { "description": "Créer un tableau avec une plage de valeurs", "code": "np.arange(0, 10, 2)" },
+    { "description": "Créer un tableau avec des valeurs espacées uniformément", "code": "np.linspace(0, 1, 5)" },
+    { "description": "Voir la forme et le type de données du tableau", "code": "a.shape, a.dtype" },
+    { "description": "Opérations mathématiques élément par élément", "code": "a + b, a * b" },
+    { "description": "Produit scalaire de deux tableaux", "code": "np.dot(a, b)" },
+    { "description": "Calculer la somme ou la moyenne", "code": "a.sum(), a.mean()" },
+    { "description": "Changer la forme du tableau", "code": "a.reshape(3, 2)" }
+  ]
+}

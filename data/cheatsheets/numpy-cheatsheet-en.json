@@ -1,49 +1,14 @@
 {
   "title": "NumPy Cheatsheet",
   "language": "en",
-  "tags": ["numpy", "python", "data-science", "library"],
-  "items": [
-    {
-      "code": "np.array()",
-      "description": "Create a NumPy array",
-      "example": "import numpy as np\na = np.array([1, 2, 3])"
-    },
-    {
-      "code": "np.arange()",
-      "description": "Create an array with a range of values",
-      "example": "np.arange(0, 10, 2) # [0, 2, 4, 6, 8]"
-    },
-    {
-      "code": "np.linspace()",
-      "description": "Create an array with evenly spaced values",
-      "example": "np.linspace(0, 1, 5) # [0., 0.25, 0.5, 0.75, 1.]"
-    },
-    {
-      "code": "a.shape, a.dtype",
-      "description": "View the shape and data type of the array",
-      "example": "a = np.array([[1,2],[3,4]])\nprint(a.shape) # (2, 2)\nprint(a.dtype) # int64"
-    },
-    {
-      "code": "a + b, np.add(a, b)",
-      "description": "Element-wise mathematical operations",
-      "example": "a = np.array([1,2])\nb = np.array([3,4])\nc = a + b # [4, 6]"
-    },
-    {
-      "code": "a.dot(b), a @ b",
-      "description": "Dot product of two arrays",
-      "example": "c = np.dot(a, b) # 1*3 + 2*4 = 11"
-    },
-    {
-      "code": "a.sum(), a.mean()",
-      "description": "Calculate the sum or mean",
-      "example": "a = np.array([1,2,3,4])\nprint(a.sum()) # 10\nprint(a.mean()) # 2.5"
-    },
-    {
-      "code": "a.reshape()",
-      "description": "Change the shape of an array",
-      "example": "a = np.arange(6)\na_reshaped = a.reshape(3, 2)\n# [[0, 1], [2, 3], [4, 5]]"
-    }
-  ],
-  "created": "2025-09-26",
-  "updated": "2025-10-01"
+  "cheats": [
+    { "description": "Create a NumPy array", "code": "np.array([1, 2, 3])" },
+    { "description": "Create an array with a range of values", "code": "np.arange(0, 10, 2)" },
+    { "description": "Create an array with evenly spaced values", "code": "np.linspace(0, 1, 5)" },
+    { "description": "View array shape and dtype", "code": "a.shape, a.dtype" },
+    { "description": "Element-wise math operations", "code": "a + b, a * b" },
+    { "description": "Dot product of two arrays", "code": "np.dot(a, b)" },
+    { "description": "Calculate sum or mean", "code": "a.sum(), a.mean()" },
+    { "description": "Reshape array", "code": "a.reshape(3, 2)" }
+  ]
 }

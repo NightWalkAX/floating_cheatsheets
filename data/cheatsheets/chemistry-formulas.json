@@ -1,0 +1,44 @@
+{
+  "title": "Fórmulas de Química",
+  "language": "es",
+  "tags": ["chemistry", "formulas", "science"],
+  "items": [
+    {
+      "code": "Ley del Gas Ideal",
+      "description": "Ecuación de estado de un gas ideal",
+      "example": "PV = nRT"
+    },
+    {
+      "code": "Molaridad (M)",
+      "description": "Concentración de una solución",
+      "example": "M = moles de soluto / litros de solución"
+    },
+    {
+      "code": "pH",
+      "description": "Medida de la acidez o alcalinidad",
+      "example": "pH = -log[H⁺]"
+    },
+    {
+      "code": "Ecuación de Gibbs",
+      "description": "Energía libre de Gibbs",
+      "example": "ΔG = ΔH - TΔS"
+    },
+    {
+      "code": "Densidad",
+      "description": "Relación entre masa y volumen",
+      "example": "ρ = m/V"
+    },
+    {
+      "code": "Número de Avogadro",
+      "description": "Número de partículas en un mol",
+      "example": "6.022 x 10²³ mol⁻¹"
+    },
+    {
+      "code": "Ley de Boyle",
+      "description": "Relación presión-volumen de un gas a temperatura constante",
+      "example": "P₁V₁ = P₂V₂"
+    }
+  ],
+  "created": "2025-09-26",
+  "updated": "2025-09-26"
+}

@@ -1,0 +1,14 @@
+{
+  "title": "JavaScript Avançado",
+  "language": "pt",
+  "cheats": [
+    { "description": "Sintaxe Async/Await", "code": "async function minhaFunc() { await algo(); }" },
+    { "description": "Executar múltiplas promessas em paralelo", "code": "Promise.all([p1, p2, p3]).then(values => { ... });" },
+    { "description": "Closures", "code": "function externa() { let x = 1; function interna() { return x; } return interna; }" },
+    { "description": "Prototypes", "code": "function Pessoa(){}; Pessoa.prototype.dizerOi = function() { console.log('Oi'); }" },
+    { "description": "Destructuring", "code": "const [a, b] = [1, 2]; const {x, y} = obj;" },
+    { "description": "Operador spread", "code": "const arr2 = [...arr1];" },
+    { "description": "Coleções de dados avançadas", "code": "const mapa = new Map(); const conjunto = new Set();" },
+    { "description": "Modelo de concorrência", "code": "JavaScript usa um event loop para concorrência." }
+  ]
+}

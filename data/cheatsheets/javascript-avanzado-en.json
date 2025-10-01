@@ -1,49 +1,14 @@
 {
   "title": "Advanced JavaScript",
   "language": "en",
-  "tags": ["javascript", "programming", "advanced"],
-  "items": [
-    {
-      "code": "async/await",
-      "description": "Syntax for handling promises in a more readable way",
-      "example": "async function fetchData() { try { const data = await fetch(url); } catch (e) { console.error(e); } }"
-    },
-    {
-      "code": "Promise.all()",
-      "description": "Executes multiple promises in parallel",
-      "example": "Promise.all([p1, p2, p3]).then(values => { /* ... */ });"
-    },
-    {
-      "code": "Closures",
-      "description": "A function that remembers the scope where it was created",
-      "example": "function outer() { let v = 'a'; return () => console.log(v); }"
-    },
-    {
-      "code": "Prototypes",
-      "description": "JavaScript's inheritance mechanism",
-      "example": "let obj = {}; let proto = Object.getPrototypeOf(obj);"
-    },
-    {
-      "code": "Destructuring",
-      "description": "Extract data from arrays or objects",
-      "example": "const { a, b } = obj; const [x, y] = arr;"
-    },
-    {
-      "code": "Spread Operator (...)",
-      "description": "Expand elements of an iterable",
-      "example": "const arr2 = [...arr1]; const obj2 = { ...obj1 };"
-    },
-    {
-      "code": "Map, Set, WeakMap, WeakSet",
-      "description": "Advanced data collections",
-      "example": "let map = new Map(); let set = new Set();"
-    },
-    {
-      "code": "Event Loop",
-      "description": "JavaScript's concurrency model",
-      "example": "Concept: Call Stack, Task Queue, Browser APIs"
-    }
-  ],
-  "created": "2025-09-26",
-  "updated": "2025-10-01"
+  "cheats": [
+    { "description": "Async/Await syntax", "code": "async function myFunc() { await something(); }" },
+    { "description": "Run multiple promises in parallel", "code": "Promise.all([p1, p2, p3]).then(values => { ... });" },
+    { "description": "Closures", "code": "function outer() { let x = 1; function inner() { return x; } return inner; }" },
+    { "description": "Prototypes", "code": "function Person(){}; Person.prototype.sayHi = function() { console.log('Hi'); }" },
+    { "description": "Destructuring", "code": "const [a, b] = [1, 2]; const {x, y} = obj;" },
+    { "description": "Spread operator", "code": "const arr2 = [...arr1];" },
+    { "description": "Advanced data collections", "code": "const map = new Map(); const set = new Set();" },
+    { "description": "Concurrency model", "code": "JavaScript uses an event loop for concurrency." }
+  ]
 }

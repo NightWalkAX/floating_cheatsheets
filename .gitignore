@@ -184,7 +184,4 @@ config_local.json
 install_act.sh
 bin/act
 
-DATA SOURCES/*
-TODO
-
 DATA SOURCES/

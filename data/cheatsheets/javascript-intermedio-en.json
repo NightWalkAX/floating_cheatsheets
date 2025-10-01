@@ -1,49 +1,14 @@
 {
   "title": "Intermediate JavaScript",
   "language": "en",
-  "tags": ["javascript", "programming", "intermediate"],
-  "items": [
-    {
-      "code": "Higher-Order Functions",
-      "description": "Functions that operate on other functions, either by taking them as arguments or by returning them.",
-      "example": "['a', 'b'].map(c => c.toUpperCase());"
-    },
-    {
-      "code": "this keyword",
-      "description": "The value of 'this' depends on how the function is called (execution context).",
-      "example": "In an object method, 'this' refers to the object. In a regular function, it's 'window' (or undefined in strict mode)."
-    },
-    {
-      "code": "Arrow Functions vs Regular",
-      "description": "Arrow functions do not have their own 'this' binding; they inherit it from the parent scope.",
-      "example": "const obj = { method() { return () => console.log(this) } };"
-    },
-    {
-      "code": "Promises",
-      "description": "An object representing the eventual completion (or failure) of an asynchronous operation.",
-      "example": "new Promise((resolve, reject) => { /* async code */ }).then(onFulfilled, onRejected);"
-    },
-    {
-      "code": ".then(), .catch(), .finally()",
-      "description": "Methods for handling the result of a promise.",
-      "example": "fetch(url).then(res => res.json()).catch(err => console.error(err)).finally(() => console.log('Done'));"
-    },
-    {
-      "code": "ES6 Modules",
-      "description": "Module system for importing and exporting functionality between files.",
-      "example": "export const myVar = 1; import { myVar } from './module.js';"
-    },
-    {
-      "code": "Array methods (.map, .filter, .reduce)",
-      "description": "Functional methods for array manipulation.",
-      "example": "arr.filter(x => x > 10).map(x => x * 2).reduce((acc, val) => acc + val, 0);"
-    },
-    {
-      "code": "Shallow vs Deep Copy",
-      "description": "A shallow copy shares internal references; a deep copy clones the entire object.",
-      "example": "Shallow: const newArr = [...oldArr]; Deep: const newArr = JSON.parse(JSON.stringify(oldArr));"
-    }
-  ],
-  "created": "2025-09-26",
-  "updated": "2025-10-01"
+  "cheats": [
+    { "description": "Array map", "code": "arr.map(x => x * 2)" },
+    { "description": "Array filter", "code": "arr.filter(x => x > 0)" },
+    { "description": "Array reduce", "code": "arr.reduce((acc, x) => acc + x, 0)" },
+    { "description": "Object keys", "code": "Object.keys(obj)" },
+    { "description": "Object values", "code": "Object.values(obj)" },
+    { "description": "Object entries", "code": "Object.entries(obj)" },
+    { "description": "Template literals", "code": "`Hello ${name}`" },
+    { "description": "Default parameters", "code": "function f(x = 1) { ... }" }
+  ]
 }

@@ -1,0 +1,17 @@
+{
+  "title": "Docker Commands",
+  "language": "en",
+  "tags": [
+    "docker",
+    "containers"
+  ],
+  "items": [
+    {
+      "code": "docker run",
+      "description": "Run a container",
+      "example": "docker run -d -p 80:80 nginx"
+    }
+  ],
+  "created": "2025-09-26",
+  "updated": "2025-09-26"
+}
