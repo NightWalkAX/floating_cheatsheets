@@ -1,0 +1,29 @@
+{
+  "title": "API de Form Tours",
+  "language": "es",
+  "tags": ["javascript", "api", "frappe", "form_tours", "onboarding"],
+  "items": [
+    {
+      "description": "Definir los pasos para un Form Tour en un archivo JSON.",
+      "code": "/* Crear un archivo, p. ej., 'public/js/tours/mi_tour.json' en tu app */",
+      "example": "[\n    {\n        \"title\": \"Paso 1: Campo Asunto\",\n        \"fieldname\": \"subject\",\n        \"position\": \"Bottom\",\n        \"description\": \"Este es el asunto principal de tu tarea.\"\n    },\n    {\n        \"title\": \"Paso 2: Prioridad\",\n        \"fieldname\": \"priority\",\n        \"position\": \"Top\",\n        \"description\": \"Establece la prioridad de la tarea. 'Alta' es para asuntos urgentes.\"\n    }\n]"
+    },
+    {
+      "description": "Iniciar un Form Tour desde un script de cliente.",
+      "code": "frm.tour.init({ tour_name, steps })",
+      "example": "// En el evento 'refresh' de un Form Script\nrefresh(frm) {\n    // Cargar pasos desde un archivo JSON\n    frappe.require('/assets/my_app/js/tours/mi_tour.json').then(steps => {\n        frm.tour.init({ steps: steps }).then(() => {\n            frm.tour.start();\n        });\n    });\n}"
+    },
+    {
+      "description": "Iniciar un tour predefinido (guardado en el Doctype 'Form Tour').",
+      "code": "frm.tour.init({ tour_name }).then(() => frm.tour.start());",
+      "example": "// Iniciar un tour llamado 'Mi Tour de Tareas'\nrefresh(frm) {\n    const tour_name = 'Mi Tour de Tareas';\n    // 'tour_name' debe coincidir con un registro en el Doctype 'Form Tour'\n    frm.tour.init({ tour_name: tour_name }).then(() => {\n        frm.tour.start();\n    });\n}"
+    },
+    {
+      "description": "Agregar un paso condicional que solo aparece si se cumple un criterio.",
+      "code": "{ \"title\": \"...\", \"condition\": \"eval:doc.status=='Open'\" }",
+      "example": "{\n    \"title\": \"Confirmar Cierre\",\n    \"fieldname\": \"status\",\n    \"description\": \"Este paso solo aparece si el estado es 'Abierto'.\",\n    \"condition\": \"eval:doc.status=='Open'\"\n}"
+    }
+  ],
+  "created": "2025-09-26",
+  "updated": "2025-10-01"
+}

@@ -1,61 +1,44 @@
 {
   "title": "Query Builder SQL (MariaDB)",
   "language": "en",
-  "tags": [
-    "sql",
-    "mariadb",
-    "query builder",
-    "python",
-    "frappe",
-    "pypika"
-  ],
-  "cheats": [
+  "tags": ["sql", "mariadb", "query-builder", "python", "frappe", "pypika"],
+  "items": [
     {
-      "description": "Basic SELECT query using query builder",
-      "code": "frappe.qb.from_('Customer').select('id', 'fname', 'lname', 'phone')",
-      "example": "# Usage example for: frappe.qb.from_('Customer').se..."
+      "code": "frappe.qb.from_('MyDocType').select(...)",
+      "description": "Performs a basic SELECT query.",
+      "example": "query = frappe.qb.from_('Customer').select('name', 'customer_name')\n# SQL: SELECT `name`,`customer_name` FROM `tabCustomer`"
     },
     {
-      "description": "Get table object for building queries",
       "code": "customers = frappe.qb.DocType('Customer')",
-      "example": "# Retrieves data"
+      "description": "Gets a `pypika` table object to use in complex queries.",
+      "example": "Customer = frappe.qb.DocType('Customer')\nquery = frappe.qb.from_(Customer).select(Customer.name).where(Customer.customer_name == 'Acme')"
     },
     {
-      "description": "OR and LIKE conditions in queries",
-      "code": "where((customers.fname == 'Max') | (customers.id.like('RA%')) )",
-      "example": "# Usage example for: where((customers.fname == 'Max..."
+      "code": "query.where(...).where(...)",
+      "description": "Adds `WHERE` conditions to the query.",
+      "example": "Customer = frappe.qb.DocType('Customer')\nquery = frappe.qb.from_(Customer).select('name').where(Customer.territory == 'USA').where(Customer.customer_group == 'Retail')"
     },
     {
-      "description": "Get generated SQL query",
-      "code": "str(query) or query.get_sql()",
-      "example": "# Retrieves data"
+      "code": "query.run(as_dict=True)",
+      "description": "Executes the query and returns the results as a list of dictionaries.",
+      "example": "results = frappe.qb.from_('ToDo').select('name', 'description').run(as_dict=True)"
     },
     {
-      "description": "Run query and get results in different formats",
-      "code": "frappe.qb.from_('ToDo').select('name').run(as_dict=True)",
-      "example": "# Retrieves data"
-    },
-    {
-      "description": "Aggregate functions like Count()",
       "code": "from frappe.query_builder.functions import Count",
-      "example": "# Usage example for: from frappe.query_builder.func..."
+      "description": "Uses aggregate functions like `Count`, `Sum`, `Avg`.",
+      "example": "from frappe.query_builder.functions import Count\nTask = frappe.qb.DocType('Task')\nquery = frappe.qb.from_(Task).select(Count(Task.name).as_('total_tasks'))\n# SQL: SELECT COUNT(`name`) 'total_tasks' FROM `tabTask`"
     },
     {
-      "description": "Define custom SQL functions",
-      "code": "CustomFunction('DATE_DIFF', ['interval', 'start_date', 'end_date'])",
-      "example": "# Usage example for: CustomFunction('DATE_DIFF', ['..."
+      "code": "query.orderby(...).limit(...)",
+      "description": "Orders and limits the results.",
+      "example": "from pypika import Order\nTask = frappe.qb.DocType('Task')\nquery = frappe.qb.from_(Task).select('subject').orderby(Task.creation, order=Order.desc).limit(10)"
     },
     {
-      "description": "Define constant columns in query",
-      "code": "ConstantColumn('john').as_('user')",
-      "example": "# Usage example for: ConstantColumn('john').as_('us..."
-    },
-    {
-      "description": "Text search with MATCH AGAINST",
-      "code": "Match('Coloum name').Against('Some_text_match')",
-      "example": "# Usage example for: Match('Coloum name').Against('..."
+      "code": "query.left_join(...).on(...)",
+      "description": "Joins multiple tables.",
+      "example": "SalesOrder = frappe.qb.DocType('Sales Order')\nCustomer = frappe.qb.DocType('Customer')\nquery = frappe.qb.from_(SalesOrder)\n    .left_join(Customer).on(SalesOrder.customer == Customer.name)\n    .select(SalesOrder.name, Customer.customer_name)"
     }
   ],
   "created": "2025-09-27",
-  "updated": "2025-09-27"
+  "updated": "2025-10-01"
 }

@@ -1,14 +1,34 @@
 {
-  "title": "Respuestas (Frappe)",
+  "title": "Generación de Respuestas (Servidor)",
   "language": "es",
-  "tags": ["responses", "frappe", "python", "api", "web"],
+  "tags": ["responses", "frappe", "python", "backend", "http"],
   "items": [
-    { "code": "build_response(response_type=None)", "description": "Construye la respuesta según el tipo de contenido", "example": "build_response('json')" },
-    { "code": "response_type_map", "description": "Mapa de funciones para cada tipo de respuesta", "example": "{ 'csv': as_csv, 'json': as_json, ... }" },
-    { "code": "as_raw()", "description": "Handler para descargas de archivos", "example": "as_raw()" },
-    { "code": "Content-Disposition: attachment|inline", "description": "Controla si el contenido se descarga o se muestra en el navegador", "example": "frappe.response.display_content_as = 'inline'" },
-    { "code": "@frappe.whitelist()", "description": "Define endpoint para descarga directa de archivos", "example": "@frappe.whitelist()\ndef download(name): ..." }
+    {
+      "description": "Devolver datos JSON (el comportamiento por defecto).",
+      "code": "# En un método @frappe.whitelist()\ndef mi_metodo():\n    return {'clave': 'valor'}",
+      "example": "# Frappe automáticamente establecerá el Content-Type a 'application/json'\n# y serializará el diccionario."
+    },
+    {
+      "description": "Establecer un código de estado HTTP personalizado.",
+      "code": "frappe.local.response.http_status_code = 404",
+      "example": "@frappe.whitelist()\ndef obtener_datos():\n    if not frappe.db.exists('MiDocType', 'mi-doc'):\n        frappe.local.response.http_status_code = 404\n        return {'error': 'No encontrado'}"
+    },
+    {
+      "description": "Forzar una descarga de archivo CSV.",
+      "code": "frappe.response['result'] = 'Contenido,CSV'\nfrappe.response['type'] = 'csv'\nfrappe.response['doctype'] = 'NombreDelArchivo'",
+      "example": "data = [['Nombre', 'Edad'], ['Jules', 30]]\ncsv_data = '\\n'.join([','.join(map(str, row)) for row in data])\n\nfrappe.response.result = csv_data\nfrappe.response.type = 'csv'\nfrappe.response.doctype = 'mi_reporte'"
+    },
+    {
+      "description": "Forzar la descarga de contenido como un archivo.",
+      "code": "frappe.response.filecontent = '...'\nfrappe.response.filename = 'mi_archivo.txt'",
+      "example": "frappe.response.filecontent = 'Hola, este es el contenido de mi archivo.'\nfrappe.response.filename = 'saludo.txt'"
+    },
+    {
+      "description": "Renderizar una plantilla Jinja como respuesta HTML.",
+      "code": "frappe.render_template('mi_template.html', {'contexto': 'valor'})",
+      "example": "html = frappe.render_template('templates/pages/mi_pagina.html', {\n    'titulo': 'Mi Página Dinámica'\n})\nfrappe.local.response.response = html"
+    }
   ],
   "created": "2025-09-27",
-  "updated": "2025-09-27"
+  "updated": "2025-10-01"
 }

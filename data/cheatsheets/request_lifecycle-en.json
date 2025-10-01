@@ -1,55 +1,59 @@
 {
   "title": "Request Lifecycle (Frappe)",
   "language": "en",
-  "tags": [
-    "request",
-    "lifecycle",
-    "frappe",
-    "python",
-    "web"
-  ],
-  "cheats": [
+  "tags": ["request-lifecycle", "frappe", "python", "backend", "web"],
+  "items": [
     {
-      "description": "API requests handled by REST API handler",
-      "code": "/api/resource",
-      "example": "# Usage example for: /api/resource..."
+      "code": "1. Request Entry",
+      "description": "The WSGI server receives the HTTP request and passes it to the Frappe application.",
+      "example": "# User navigates to https://my-site.com/app/home"
     },
     {
-      "description": "File downloads handled by specific handlers",
-      "code": "/files/my_file.pdf",
-      "example": "# Usage example for: /files/my_file.pdf..."
+      "code": "2. `frappe.app.application`",
+      "description": "The main entry point that initializes the `frappe.local` object.",
+      "example": "# Frappe sets the site, user, session, and other request-local data."
     },
     {
-      "description": "Request pre-processing: recorder and rate limiter",
-      "code": "...",
-      "example": "# Usage example for: ......"
+      "code": "3. Special Route Handling",
+      "description": "Special routes like `/api/...` or `/files/...` are checked before full page rendering.",
+      "example": "# A request to /api/resource/ToDo/TASK-001 is handled by the REST API."
     },
     {
-      "description": "Path Resolver: resolves redirects and dynamic routes",
-      "code": "...",
-      "example": "# Usage example for: ......"
+      "code": "4. Hook: `on_session_creation`",
+      "description": "Fires after a valid user session is created.",
+      "example": "# In hooks.py: on_session_creation = \"my_app.utils.setup_user_session\""
     },
     {
-      "description": "Renderer Selection: picks the right renderer for the route",
-      "code": "...",
-      "example": "# Usage example for: ......"
+      "code": "5. Page Rendering",
+      "description": "If the route is not special, Frappe attempts to render a web page.",
+      "example": "# For the '/about' route, Frappe looks for '/about.html' in the 'www' folder."
     },
     {
-      "description": "PageRenderer(BaseRenderer): custom web page renderer class",
-      "code": "class PageRenderer(BaseRenderer): ...",
-      "example": "# Usage example for: class PageRenderer(BaseRendere..."
+      "code": "6. `frappe.local.response`",
+      "description": "The response content is built and stored in this dictionary.",
+      "example": "frappe.local.response['http_status_code'] = 200\nfrappe.local.response['type'] = 'json'"
     },
     {
-      "description": "StaticPage: serves static files from public folder",
-      "code": "...",
-      "example": "# Usage example for: ......"
+      "code": "7. Hook: `before_request`",
+      "description": "Fires just before the main request is processed. Can modify the request.",
+      "example": "# In hooks.py: before_request = [\"my_app.utils.log_request\"]"
     },
     {
-      "description": "TemplatePage: renders HTML or Markdown from www/",
-      "code": "...",
-      "example": "# Usage example for: ......"
+      "code": "8. Request Processing",
+      "description": "The main controller method is executed (e.g., a call to a `@frappe.whitelist` method).",
+      "example": "@frappe.whitelist()\ndef my_method():\n    return {'data': 'success'}"
+    },
+    {
+      "code": "9. Hook: `after_request`",
+      "description": "Fires after the request has been processed, but before the response is sent.",
+      "example": "# In hooks.py: after_request = [\"my_app.utils.log_response\"]"
+    },
+    {
+      "code": "10. Sending Response",
+      "description": "The WSGI server sends the content of `frappe.local.response` to the client.",
+      "example": "# The browser receives the HTML or JSON and renders it."
     }
   ],
   "created": "2025-09-27",
-  "updated": "2025-09-27"
+  "updated": "2025-10-01"
 }

@@ -1,0 +1,39 @@
+{
+  "title": "API de Vista de Lista (Cliente)",
+  "language": "es",
+  "tags": ["javascript", "api", "frappe", "list-view", "client-script"],
+  "items": [
+    {
+      "description": "Personalizar la configuración de la Vista de Lista para un Doctype.",
+      "code": "frappe.listview_settings['MiDocType'] = { ... }",
+      "example": "// En un script de cliente, preferiblemente para el Doctype 'ToDo' o en un script global\nfrappe.listview_settings['ToDo'] = {\n    // ... ver opciones abajo\n};"
+    },
+    {
+      "description": "Añadir columnas adicionales a la lista.",
+      "code": "add_fields: [\"campo1\", \"campo2\"]",
+      "example": "// Muestra el estado y la prioridad en la lista de Tareas\nadd_fields: [\"status\", \"priority\"]"
+    },
+    {
+      "description": "Añadir un filtro por defecto a la lista.",
+      "code": "filters: [[\"campo\", \"operador\", \"valor\"]]",
+      "example": "// Mostrar solo las tareas que están 'Abiertas'\nfilters: [[\"status\", \"=\", \"Open\"]]"
+    },
+    {
+      "description": "Definir un indicador de estado con color y filtro.",
+      "code": "get_indicator(doc) { return [texto, color, filtro]; }",
+      "example": "get_indicator(doc) {\n    if (doc.status === 'Open') {\n        return [\"Abierto\", \"orange\", \"status,=,Open\"];\n    } else if (doc.status === 'Closed') {\n        return [\"Cerrado\", \"green\", \"status,=,Closed\"];\n    }\n}"
+    },
+    {
+      "description": "Formatear el contenido de las columnas añadidas.",
+      "code": "formatters: { campo(val) { return ... } }",
+      "example": "formatters: {\n    subject(val) {\n        return val.bold();\n    },\n    priority(val) {\n        return `Prioridad: ${val}`;\n    }\n}"
+    },
+    {
+      "description": "Ocultar la columna 'name' (ID del documento).",
+      "code": "hide_name_column: true",
+      "example": "// Útil si el título o asunto ya es un identificador claro\nhide_name_column: true"
+    }
+  ],
+  "created": "2025-09-26",
+  "updated": "2025-10-01"
+}

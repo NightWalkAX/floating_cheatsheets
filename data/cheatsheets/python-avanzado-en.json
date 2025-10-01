@@ -1,36 +1,49 @@
 {
   "title": "Advanced Python",
   "language": "en",
-  "cheats": [
+  "tags": ["python", "programming", "advanced"],
+  "items": [
     {
-      "description": "List comprehension",
-      "code": "[x for x in range(10)]",
-      "example": "# Usage example for: [x for x in range(10)]..."
+      "code": "Decorators",
+      "description": "Modify or extend functions or methods.",
+      "example": "def my_decorator(func):\n    def wrapper():\n        print('Something before the function.')\n        func()\n    return wrapper\n\n@my_decorator\ndef say_hello():\n    print('Hello!')"
     },
     {
-      "description": "Lambda function",
-      "code": "lambda x: x * 2",
-      "example": "# Usage example for: lambda x: x * 2..."
+      "code": "Generators",
+      "description": "Functions that return a lazy iterator, using `yield`.",
+      "example": "def my_generator(n):\n    for i in range(n):\n        yield i*i\n\nfor num in my_generator(5):\n    print(num)"
     },
     {
-      "description": "Decorators",
-      "code": "@decorator\ndef func(): pass",
-      "example": "# Usage example for: @decorator\ndef func(): pass..."
+      "code": "Metaclasses",
+      "description": "Classes that are used to create other classes.",
+      "example": "class MyMetaclass(type):\n    def __new__(cls, name, bases, dct):\n        dct['my_attribute'] = 'Hello World'\n        return super().__new__(cls, name, bases, dct)\n\nclass MyClass(metaclass=MyMetaclass):\n    pass\n\nprint(MyClass.my_attribute)"
     },
     {
-      "description": "Generators",
-      "code": "def gen(): yield 1",
-      "example": "# Usage example for: def gen(): yield 1..."
+      "code": "Concurrency (asyncio)",
+      "description": "Asynchronous programming with async/await.",
+      "example": "import asyncio\n\nasync def main():\n    print('Hello')\n    await asyncio.sleep(1)\n    print('...World')\n\nasyncio.run(main())"
     },
     {
-      "description": "Context manager",
-      "code": "with open('file') as f: ...",
-      "example": "# Usage example for: with open('file') as f: ......"
+      "code": "Context Managers",
+      "description": "Manage resources using the `with` statement.",
+      "example": "from contextlib import contextmanager\n\n@contextmanager\ndef my_context():\n    print('Entering')\n    yield\n    print('Exiting')\n\nwith my_context():\n    print('Inside the with')"
     },
     {
-      "description": "Unpacking arguments",
-      "code": "def f(*args, **kwargs): ...",
-      "example": "# Usage example for: def f(*args, **kwargs): ......"
+      "code": "Partial Functions",
+      "description": "Create new functions with pre-set arguments.",
+      "example": "from functools import partial\n\ndef multiply(a, b):\n    return a * b\n\ndouble = partial(multiply, 2)\nprint(double(5)) # Prints 10"
+    },
+    {
+      "code": "GIL (Global Interpreter Lock)",
+      "description": "A mutex that protects access to Python objects, limiting CPU-bound multithreading in CPython.",
+      "example": "# Theoretical concept, not runnable code.\n# Affects CPU-bound tasks in multithreading, but not I/O."
+    },
+    {
+      "code": "Magic Methods (__init__)",
+      "description": "Special double-underscore methods that allow behavior emulation.",
+      "example": "class Vector:\n    def __init__(self, x, y):\n        self.x, self.y = x, y\n\n    def __add__(self, other):\n        return Vector(self.x + other.x, self.y + other.y)"
     }
-  ]
+  ],
+  "created": "2025-09-26",
+  "updated": "2025-10-01"
 }

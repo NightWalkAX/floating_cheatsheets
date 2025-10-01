@@ -1,46 +1,49 @@
 {
   "title": "Pandas Cheatsheet",
   "language": "en",
-  "cheats": [
+  "tags": ["pandas", "python", "data-science", "library"],
+  "items": [
     {
-      "description": "Create DataFrame",
-      "code": "pd.DataFrame({'a': [1,2]})",
-      "example": "# Pandas operation"
+      "code": "pd.DataFrame()",
+      "description": "Create a DataFrame",
+      "example": "import pandas as pd\ndf = pd.DataFrame({'col1': [1, 2], 'col2': [3, 4]})"
     },
     {
-      "description": "Read CSV file",
-      "code": "pd.read_csv('file.csv')",
-      "example": "# Returns: DataFrame with CSV data"
+      "code": "pd.read_csv()",
+      "description": "Read data from a CSV file",
+      "example": "df = pd.read_csv('data.csv')"
     },
     {
-      "description": "Select column",
-      "code": "df['col']",
-      "example": "# Usage example for: df['col']..."
+      "code": "df.head(), df.tail()",
+      "description": "View the first/last rows",
+      "example": "print(df.head(5))"
     },
     {
-      "description": "Filter rows",
-      "code": "df[df['col'] > 0]",
-      "example": "# Usage example for: df[df['col'] > 0]..."
-    },
-    {
-      "description": "Group by column",
-      "code": "df.groupby('col').sum()",
-      "example": "# Usage example for: df.groupby('col').sum()..."
-    },
-    {
-      "description": "Sort by column",
-      "code": "df.sort_values('col')",
-      "example": "# Usage example for: df.sort_values('col')..."
-    },
-    {
-      "description": "Describe DataFrame",
       "code": "df.describe()",
-      "example": "# Usage example for: df.describe()..."
+      "description": "Statistical summary of the data",
+      "example": "print(df.describe())"
     },
     {
-      "description": "Drop column",
-      "code": "df.drop('col', axis=1)",
-      "example": "# Usage example for: df.drop('col', axis=1)..."
+      "code": "df['column']",
+      "description": "Select a column",
+      "example": "ages = df['age']"
+    },
+    {
+      "code": "df.loc[], df.iloc[]",
+      "description": "Select rows/columns by label or position",
+      "example": "df.loc[0, 'col1']  # By label\ndf.iloc[0, 0] # By position"
+    },
+    {
+      "code": "df.groupby()",
+      "description": "Group data",
+      "example": "df.groupby('country').mean()"
+    },
+    {
+      "code": "pd.merge()",
+      "description": "Merge DataFrames",
+      "example": "pd.merge(df1, df2, on='id')"
     }
-  ]
+  ],
+  "created": "2025-09-26",
+  "updated": "2025-10-01"
 }

@@ -1,39 +1,44 @@
 {
   "title": "Hooks (Frappe)",
   "language": "es",
-  "tags": ["hooks", "frappe", "python", "framework", "event"],
+  "tags": ["hooks", "frappe", "python", "backend"],
   "items": [
     {
-      "code": "hooks.py",
-      "description": "Archivo donde se definen los hooks de la app",
-      "example": "test_string = 'valor'\ntest_list = ['valor']\ntest_dict = {'key': 'valor'}"
+      "code": "app_name = \"mi_app\"",
+      "description": "El nombre de la aplicación, usado para buscar plantillas y otros recursos.",
+      "example": "app_name = \"mi_app\""
     },
     {
-      "code": "frappe.get_hooks('test_string')",
-      "description": "Obtiene el valor de un hook definido",
-      "example": "frappe.get_hooks('test_string') # ['valor']"
+      "code": "doc_events = { ... }",
+      "description": "Asigna métodos a eventos de ciclo de vida de DocTypes (ej. on_update, validate).",
+      "example": "doc_events = {\n    \"Task\": {\n        \"validate\": \"mi_app.tasks.validate_task\",\n        \"on_update\": \"mi_app.tasks.on_update_task\"\n    }\n}"
     },
     {
-      "code": "frappe.get_hooks('test_dict')",
-      "description": "Obtiene un diccionario de hooks",
-      "example": "frappe.get_hooks('test_dict') # {'key': ['valor']}"
+      "code": "scheduler_events = { ... }",
+      "description": "Programa tareas periódicas (all, daily, weekly, monthly).",
+      "example": "scheduler_events = {\n    \"daily\": [\n        \"mi_app.tasks.cleanup_old_logs\"\n    ]\n}"
     },
     {
-      "code": "frappe.get_hooks('test_list')",
-      "description": "Obtiene una lista de hooks",
-      "example": "frappe.get_hooks('test_list') # ['valor']"
+      "code": "fixtures = [ ... ]",
+      "description": "Exporta registros de DocTypes (ej. Custom Field, Property Setter) a archivos JSON durante la migración.",
+      "example": "fixtures = [\"Custom Field\", \"Property Setter\"]"
     },
     {
-      "code": "Resolución de conflictos",
-      "description": "El último valor instalado tiene prioridad ('last writer wins')",
-      "example": "..."
+      "code": "override_doctype_class = { ... }",
+      "description": "Sobrescribe la clase Python de un DocType estándar o de otra app.",
+      "example": "override_doctype_class = {\n    \"User\": \"mi_app.overrides.custom_user.CustomUser\"\n}"
     },
     {
-      "code": "app_name, app_title, app_publisher, app_description, app_version",
-      "description": "Metadatos de la app definidos automáticamente",
-      "example": "..."
+      "code": "website_search_config = { ... }",
+      "description": "Configura qué DocTypes son buscables en el sitio web.",
+      "example": "website_search_config = {\n    \"Help Article\": {\"title\": \"title\", \"content\": \"content\"}\n}"
+    },
+    {
+      "code": "on_session_creation = [ ... ]",
+      "description": "Ejecuta una función después de que un usuario inicie sesión exitosamente.",
+      "example": "on_session_creation = [\"mi_app.auth.user_session_setup\"]"
     }
   ],
   "created": "2025-09-27",
-  "updated": "2025-09-27"
+  "updated": "2025-10-01"
 }

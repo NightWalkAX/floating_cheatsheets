@@ -1,40 +1,49 @@
 {
   "title": "REST API (Frappe)",
   "language": "en",
-  "tags": [
-    "rest",
-    "api",
-    "frappe",
-    "python",
-    "web"
-  ],
-  "cheats": [
+  "tags": ["rest", "api", "frappe", "http", "crud"],
+  "items": [
     {
-      "description": "Token Based Authentication",
-      "code": "Authorization: token api_key:api_secret",
-      "example": "# Usage example for: Authorization: token api_key:a..."
+      "description": "Token-based Authentication.",
+      "code": "Header: 'Authorization: token api_key:api_secret'",
+      "example": "# Generate the API Key and Secret from the User settings.\n# GET /api/resource/ToDo/TASK-00001\n# Authorization: token 123...:456..."
     },
     {
-      "description": "Password Based Authentication",
-      "code": "body: { usr: 'username', pwd: 'password' }",
-      "example": "# Usage example for: body: { usr: 'username', pwd: ..."
+      "description": "Get a list of records.",
+      "code": "GET /api/resource/{Doctype}",
+      "example": "# Gets the first 20 ToDos\nGET /api/resource/ToDo?fields=[\"name\",\"description\"]"
     },
     {
-      "description": "Example request with token",
-      "code": "fetch('http://<base-url>/api/method/frappe.auth.get_logged_user', { headers: { 'Authorization': 'token api_key:api_secret' } })",
-      "example": "# Usage example for: fetch('http://<base-url>/api/m..."
+      "description": "Get a single document.",
+      "code": "GET /api/resource/{Doctype}/{DocName}",
+      "example": "# Gets the ToDo with ID 'TASK-00001'\nGET /api/resource/ToDo/TASK-00001"
     },
     {
-      "description": "Example login with username and password",
-      "code": "fetch('http://<base-url>/api/method/login', { method: 'POST', headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }, body: JSON.stringify({ usr: 'username', pwd: 'password' }) })",
-      "example": "# Usage example for: fetch('http://<base-url>/api/m..."
+      "description": "Create a new document.",
+      "code": "POST /api/resource/{Doctype}",
+      "example": "# Body: { \"description\": \"My new task from the API\" }\nPOST /api/resource/ToDo"
     },
     {
-      "description": "Example login with curl",
-      "code": "curl --cookie-jar snowcookie --request POST ...",
-      "example": "# Usage example for: curl --cookie-jar snowcookie -..."
+      "description": "Update an existing document.",
+      "code": "PUT /api/resource/{Doctype}/{DocName}",
+      "example": "# Body: { \"description\": \"Updated description\" }\nPUT /api/resource/ToDo/TASK-00001"
+    },
+    {
+      "description": "Delete a document.",
+      "code": "DELETE /api/resource/{Doctype}/{DocName}",
+      "example": "# Deletes the ToDo with ID 'TASK-00001'\nDELETE /api/resource/ToDo/TASK-00001"
+    },
+    {
+      "description": "Call a whitelisted DocType method.",
+      "code": "POST /api/resource/{Doctype}/{DocName}/{method}",
+      "example": "# Calls the 'get_open_tasks' method in the ToDo controller\nGET /api/resource/ToDo/get_open_tasks"
+    },
+    {
+      "description": "Call a generic whitelisted method.",
+      "code": "GET /api/method/{dotted.path.to.method}",
+      "example": "# Calls the 'frappe.auth.get_logged_user' function\nGET /api/method/frappe.auth.get_logged_user"
     }
   ],
   "created": "2025-09-27",
-  "updated": "2025-09-27"
+  "updated": "2025-10-01"
 }

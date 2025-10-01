@@ -1,0 +1,29 @@
+{
+  "title": "API de Escáner de Código de Barras",
+  "language": "es",
+  "tags": ["javascript", "api", "frappe", "scanner", "barcode"],
+  "items": [
+    {
+      "description": "Inicia un escaneo de un solo código de barras en un diálogo.",
+      "code": "new frappe.ui.Scanner({ on_scan(data) { ... } })",
+      "example": "new frappe.ui.Scanner({\n    on_scan(data) {\n        if (data && data.decodedText) {\n            frappe.msgprint(`Código escaneado: ${data.decodedText}`);\n        }\n    }\n});"
+    },
+    {
+      "description": "Inicia un escaneo múltiple (escanea continuamente).",
+      "code": "const scanner = new frappe.ui.Scanner({ multiple: true, ... })",
+      "example": "const scanned_codes = [];\nconst scanner = new frappe.ui.Scanner({\n    multiple: true,\n    on_scan(data) {\n        scanned_codes.push(data.decodedText);\n        console.log('Códigos actuales:', scanned_codes);\n    }\n});"
+    },
+    {
+      "description": "Detiene una sesión de escaneo múltiple.",
+      "code": "scanner.stop_scan()",
+      "example": "// Asumiendo que 'scanner' es una instancia de un escaneo múltiple\nsetTimeout(() => {\n    scanner.stop_scan();\n    frappe.msgprint('Escaneo detenido.');\n}, 10000); // Detener después de 10 segundos"
+    },
+    {
+      "description": "Renderiza el escáner dentro de un contenedor específico en lugar de un diálogo.",
+      "code": "new frappe.ui.Scanner({ container: element, ... })",
+      "example": "const my_div = document.getElementById('scanner-container');\nnew frappe.ui.Scanner({\n    container: my_div,\n    on_scan(data) {\n        my_div.innerText = `Resultado: ${data.decodedText}`;\n    }\n});"
+    }
+  ],
+  "created": "2025-09-26",
+  "updated": "2025-10-01"
+}

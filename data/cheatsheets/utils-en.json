@@ -1,36 +1,49 @@
 {
-  "title": "Utility Functions (Frappe)",
+  "title": "Utility Functions (Server)",
   "language": "en",
-  "tags": [
-    "utils",
-    "frappe",
-    "python",
-    "date",
-    "time",
-    "format"
-  ],
-  "cheats": [
+  "tags": ["utils", "frappe", "python", "backend"],
+  "items": [
     {
-      "description": "Returns current datetime in yyyy-mm-dd hh:mm:ss format",
-      "code": "now() # '2021-05-25 06:38:52.242515'",
-      "example": "# Returns: formatted output"
+      "description": "Gets the current date and time as a string.",
+      "code": "frappe.utils.now()",
+      "example": "now_str = frappe.utils.now() # '2023-10-27 10:30:00.123456'"
     },
     {
-      "description": "Converts string date to datetime.date object",
-      "code": "getdate('2000-03-18') # datetime.date(2000, 3, 18)",
-      "example": "# Usage example for: getdate('2000-03-18') # dateti..."
+      "description": "Gets the current date as a string.",
+      "code": "frappe.utils.today()",
+      "example": "today_str = frappe.utils.today() # '2023-10-27'"
     },
     {
-      "description": "Returns current date in yyyy-mm-dd format",
-      "code": "today() # '2021-05-25'",
-      "example": "# Returns: formatted output"
+      "description": "Converts a date string to a `datetime.date` object.",
+      "code": "frappe.utils.getdate(date_string)",
+      "example": "from frappe.utils import getdate\nmy_date = getdate('2023-01-15') # datetime.date object"
     },
     {
-      "description": "Adds or subtracts time to a given date",
-      "code": "add_to_date(datetime.now(), days=10, as_string=True) # '2021-05-31'",
-      "example": "# Example: 1000 * (1 + 0.05)^10 = 1628.89"
+      "description": "Formats a date/datetime object into a string.",
+      "code": "frappe.utils.formatdate(date_obj, format_string)",
+      "example": "from frappe.utils import now_datetime, formatdate\nformatted_date = formatdate(now_datetime(), 'dd-MM-yyyy') # '27-10-2023'"
+    },
+    {
+      "description": "Adds time to a date.",
+      "code": "frappe.utils.add_to_date(date, days=0, months=0, ...)",
+      "example": "from frappe.utils import today, add_to_date\nnext_week = add_to_date(today(), days=7)"
+    },
+    {
+      "description": "Generates a random, secure password hash.",
+      "code": "frappe.utils.generate_hash(length=8)",
+      "example": "new_password = frappe.utils.generate_hash(length=12)"
+    },
+    {
+      "description": "Validates an email address.",
+      "code": "frappe.utils.validate_email_address(email)",
+      "example": "try:\n    frappe.utils.validate_email_address('test@invalid')\nexcept frappe.InvalidEmailAddressError:\n    print('Invalid email')"
+    },
+    {
+      "description": "Strips potentially harmful HTML tags and attributes.",
+      "code": "frappe.utils.strip_html(html_string)",
+      "example": "clean_html = frappe.utils.strip_html('<script>alert(1)</script><p>Hello</p>')"
     }
   ],
   "created": "2025-09-27",
-  "updated": "2025-09-27"
+  "updated": "2025-10-01"
 }

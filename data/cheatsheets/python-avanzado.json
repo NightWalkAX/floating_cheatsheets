@@ -1,48 +1,49 @@
 {
   "title": "Python Avanzado",
+  "language": "es",
   "tags": ["python", "programming", "avanzado"],
   "items": [
     {
-      "code": "Decorators",
-      "description": "Modificar o extender funciones o métodos",
-      "example": "@my_decorator\\ndef my_func():\\n  pass"
+      "code": "Decoradores",
+      "description": "Modifican o extienden funciones o métodos.",
+      "example": "def mi_decorador(func):\n    def wrapper():\n        print('Algo antes de la función.')\n        func()\n    return wrapper\n\n@mi_decorador\ndef di_hola():\n    print('¡Hola!')"
     },
     {
-      "code": "Generators",
-      "description": "Funciones que devuelven un iterador perezoso",
-      "example": "def my_gen():\\n  for i in range(5):\\n    yield i"
+      "code": "Generadores",
+      "description": "Funciones que devuelven un iterador perezoso, usando `yield`.",
+      "example": "def mi_generador(n):\n    for i in range(n):\n        yield i*i\n\nfor num in mi_generador(5):\n    print(num)"
     },
     {
-      "code": "Metaclasses",
-      "description": "Clases para crear clases",
-      "example": "class MyMeta(type):\\n  pass"
+      "code": "Metaclases",
+      "description": "Clases que se usan para crear otras clases.",
+      "example": "class MiMetaclase(type):\n    def __new__(cls, name, bases, dct):\n        dct['mi_atributo'] = 'Hola Mundo'\n        return super().__new__(cls, name, bases, dct)\n\nclass MiClase(metaclass=MiMetaclase):\n    pass\n\nprint(MiClase.mi_atributo)"
     },
     {
       "code": "Concurrency (asyncio)",
-      "description": "Programación asíncrona con async/await",
-      "example": "import asyncio\\nasync def main():\\n  await asyncio.sleep(1)"
+      "description": "Programación asíncrona con async/await.",
+      "example": "import asyncio\n\nasync def main():\n    print('Hola')\n    await asyncio.sleep(1)\n    print('...Mundo')\n\nasyncio.run(main())"
     },
     {
       "code": "Context Managers",
-      "description": "Gestionar recursos con la declaración 'with'",
-      "example": "with open('file.txt') as f:\\n  content = f.read()"
+      "description": "Gestionan recursos con la declaración `with`.",
+      "example": "from contextlib import contextmanager\n\n@contextmanager\ndef mi_contexto():\n    print('Entrando')\n    yield\n    print('Saliendo')\n\nwith mi_contexto():\n    print('Dentro del with')"
     },
     {
-      "code": "Partial Functions",
-      "description": "Crear funciones con argumentos pre-fijados",
-      "example": "from functools import partial\\nadd_one = partial(add, 1)"
+      "code": "Funciones Parciales",
+      "description": "Crean nuevas funciones con argumentos pre-fijados.",
+      "example": "from functools import partial\n\ndef multiplicar(a, b):\n    return a * b\n\ndoblar = partial(multiplicar, 2)\nprint(doblar(5)) # Imprime 10"
     },
     {
       "code": "GIL (Global Interpreter Lock)",
-      "description": "Mutex que protege el acceso a objetos de Python",
-      "example": "Concepto: Limita el paralelismo de hilos en CPython"
+      "description": "Mutex que protege el acceso a objetos de Python, limitando el paralelismo de hilos en CPython.",
+      "example": "# Concepto teórico, no un código ejecutable.\n# Afecta a tareas de CPU en multihilo, pero no a I/O."
     },
     {
-      "code": "Magic Methods (__init__)",
-      "description": "Métodos especiales con doble guion bajo",
-      "example": "class C:\\n  def __init__(self):\\n    pass"
+      "code": "Métodos Mágicos (__init__)",
+      "description": "Métodos especiales con doble guion bajo que permiten emular comportamientos.",
+      "example": "class Vector:\n    def __init__(self, x, y):\n        self.x, self.y = x, y\n\n    def __add__(self, other):\n        return Vector(self.x + other.x, self.y + other.y)"
     }
   ],
   "created": "2025-09-26",
-  "updated": "2025-09-26"
+  "updated": "2025-10-01"
 }

@@ -7,31 +7,33 @@
     "frappe",
     "common_utilities"
   ],
-  "cheats": [
+  "items": [
     {
-      "description": "Get current route",
+      "description": "Get the current route",
       "code": "frappe.get_route()",
-      "example": "# Retrieves data"
+      "example": "const current_route = frappe.get_route();\n// Returns ['List', 'ToDo']"
     },
     {
-      "description": "Set route",
+      "description": "Set the application route",
       "code": "frappe.set_route('List', 'Task', 'List')",
-      "example": "# Usage example for: frappe.set_route('List', 'Task..."
+      "example": "// Navigates to the List View of the 'Task' Doctype\nfrappe.set_route('List', 'Task');"
     },
     {
-      "description": "Format value for display",
-      "code": "frappe.format('2019-09-08', { fieldtype: 'Date' })",
-      "example": "# Removes file or directory"
+      "description": "Format a value for display",
+      "code": "frappe.format(value, df, options)",
+      "example": "const formatted_date = frappe.format('2024-07-31', { fieldtype: 'Date' });\n// Returns '07-31-2024' (depending on local settings)"
     },
     {
-      "description": "Create namespace",
-      "code": "frappe.provide('frappe.ui.form');",
-      "example": "# Executes in form context"
+      "description": "Create a namespace if it doesn't exist",
+      "code": "frappe.provide('my_app.utils');",
+      "example": "frappe.provide('my_app.ui');\nmy_app.ui.some_func = () => {};"
     },
     {
-      "description": "Load asset asynchronously",
+      "description": "Load a resource (JS or CSS) asynchronously",
       "code": "frappe.require(asset_path, callback)",
-      "example": "# Usage example for: frappe.require(asset_path, cal..."
+      "example": "frappe.require('/assets/my_app/js/extra.js', () => {\n  console.log('Script loaded');\n});"
     }
-  ]
+  ],
+  "created": "2025-09-26",
+  "updated": "2025-10-01"
 }

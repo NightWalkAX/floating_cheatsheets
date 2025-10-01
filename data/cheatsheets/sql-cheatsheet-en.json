@@ -1,0 +1,49 @@
+{
+  "title": "SQL Cheatsheet",
+  "language": "en",
+  "tags": ["sql", "database", "programming"],
+  "items": [
+    {
+      "code": "SELECT",
+      "description": "Extract data from a database",
+      "example": "SELECT column1, column2 FROM table_name;"
+    },
+    {
+      "code": "WHERE",
+      "description": "Filter records",
+      "example": "SELECT * FROM table_name WHERE condition;"
+    },
+    {
+      "code": "JOIN",
+      "description": "Combine rows from two or more tables",
+      "example": "SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id;"
+    },
+    {
+      "code": "GROUP BY",
+      "description": "Group rows that have the same values",
+      "example": "SELECT COUNT(id), country FROM customers GROUP BY country;"
+    },
+    {
+      "code": "ORDER BY",
+      "description": "Sort the result-set",
+      "example": "SELECT * FROM customers ORDER BY country ASC;"
+    },
+    {
+      "code": "INSERT INTO",
+      "description": "Insert new records into a table",
+      "example": "INSERT INTO table (col1, col2) VALUES (val1, val2);"
+    },
+    {
+      "code": "UPDATE",
+      "description": "Modify existing records in a table",
+      "example": "UPDATE table SET col1 = val1 WHERE condition;"
+    },
+    {
+      "code": "DELETE",
+      "description": "Delete records from a table",
+      "example": "DELETE FROM table WHERE condition;"
+    }
+  ],
+  "created": "2025-09-26",
+  "updated": "2025-10-01"
+}

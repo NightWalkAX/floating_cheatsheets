@@ -1,45 +1,39 @@
 {
   "title": "Language Resolution (Frappe)",
   "language": "en",
-  "tags": [
-    "language",
-    "frappe",
-    "python",
-    "settings",
-    "localization"
-  ],
-  "cheats": [
+  "tags": ["language", "frappe", "python", "settings", "localization"],
+  "items": [
     {
-      "description": "Session language variable",
       "code": "frappe.lang",
-      "example": "# Usage example for: frappe.lang..."
+      "description": "The current language for the user's session. The final resolution of the following steps is stored here.",
+      "example": "# In any Python method\nprint(frappe.lang)  # Will print 'en', 'es', etc."
     },
     {
-      "description": "Highest priority: Form Dict > _lang",
-      "code": "?lang=en",
-      "example": "# Usage example for: ?lang=en..."
+      "code": "URL Query String: ?lang=en",
+      "description": "Priority 1 (highest): The `lang` parameter in the request URL.",
+      "example": "https://my-site.com/app/home?lang=en"
     },
     {
-      "description": "Cookie: preferred_language (guest only)",
-      "code": "preferred_language=en",
-      "example": "# Usage example for: preferred_language=en..."
+      "code": "User Document: user.language",
+      "description": "Priority 2: The 'language' field in the logged-in user's document.",
+      "example": "# If user 'test@example.com' has 'English' in their settings\nuser_doc = frappe.get_doc('User', 'test@example.com')\n# user_doc.language == 'en'"
     },
     {
-      "description": "Request Header: Accept-Language (guest only)",
-      "code": "Accept-Language: en",
-      "example": "# Usage example for: Accept-Language: en..."
+      "code": "System Settings: SystemSettings.language",
+      "description": "Priority 3: The default language configured for the entire instance.",
+      "example": "# Value in /app/system-settings\nsystem_settings = frappe.get_doc('System Settings')\n# system_settings.language == 'en'"
     },
     {
-      "description": "User document > language field",
-      "code": "user.language = 'en'",
-      "example": "# Usage example for: user.language = 'en'..."
+      "code": "Cookie: preferred_language (Guest)",
+      "description": "Priority 4 (guests only): Cookie stored in the browser.",
+      "example": "Cookie: preferred_language=en"
     },
     {
-      "description": "System Settings > language field",
-      "code": "system_settings.language = 'en'",
-      "example": "# Usage example for: system_settings.language = 'en..."
+      "code": "Header: Accept-Language (Guest)",
+      "description": "Priority 5 (guests only): Header from the browser.",
+      "example": "Request Header: Accept-Language: en-US,en;q=0.9,es;q=0.8"
     }
   ],
   "created": "2025-09-27",
-  "updated": "2025-09-27"
+  "updated": "2025-10-01"
 }

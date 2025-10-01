@@ -1,32 +1,29 @@
 {
-  "title": "Scanner API",
+  "title": "Barcode Scanner API",
   "language": "en",
-  "tags": [
-    "javascript",
-    "api",
-    "frappe",
-    "scanner_api"
-  ],
-  "cheats": [
+  "tags": ["javascript", "api", "frappe", "scanner", "barcode"],
+  "items": [
     {
-      "description": "Create a scanner instance",
-      "code": "new frappe.ui.Scanner({ container, dialog, multiple, on_scan })",
-      "example": "# Creates new resource"
+      "description": "Initiates a scan for a single barcode in a dialog.",
+      "code": "new frappe.ui.Scanner({ on_scan(data) { ... } })",
+      "example": "new frappe.ui.Scanner({\n    on_scan(data) {\n        if (data && data.decodedText) {\n            frappe.msgprint(`Scanned code: ${data.decodedText}`);\n        }\n    }\n});"
     },
     {
-      "description": "Scan a single barcode",
-      "code": "new frappe.ui.Scanner({ dialog: true, multiple: false, on_scan(data) { console.log(data.decodedText); } })",
-      "example": "# Lists: file1.txt file2.txt folder/"
+      "description": "Initiates a multiple scan (scans continuously).",
+      "code": "const scanner = new frappe.ui.Scanner({ multiple: true, ... })",
+      "example": "const scanned_codes = [];\nconst scanner = new frappe.ui.Scanner({\n    multiple: true,\n    on_scan(data) {\n        scanned_codes.push(data.decodedText);\n        console.log('Current codes:', scanned_codes);\n    }\n});"
     },
     {
-      "description": "Scan multiple barcodes",
-      "code": "const scanner = new frappe.ui.Scanner({ dialog: true, multiple: true, on_scan(data) { handle_scanned_barcode(data.decodedText); } })",
-      "example": "# Usage example for: const scanner = new frappe.ui...."
+      "description": "Stops a multiple-scan session.",
+      "code": "scanner.stop_scan()",
+      "example": "// Assuming 'scanner' is an instance of a multiple scan\nsetTimeout(() => {\n    scanner.stop_scan();\n    frappe.msgprint('Scanning stopped.');\n}, 10000); // Stop after 10 seconds"
     },
     {
-      "description": "Stop scanning",
-      "code": "scanner.stop_scan();",
-      "example": "# Usage example for: scanner.stop_scan();..."
+      "description": "Renders the scanner inside a specific container instead of a dialog.",
+      "code": "new frappe.ui.Scanner({ container: element, ... })",
+      "example": "const my_div = document.getElementById('scanner-container');\nnew frappe.ui.Scanner({\n    container: my_div,\n    on_scan(data) {\n        my_div.innerText = `Result: ${data.decodedText}`;\n    }\n});"
     }
-  ]
+  ],
+  "created": "2025-09-26",
+  "updated": "2025-10-01"
 }

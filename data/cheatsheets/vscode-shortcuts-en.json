@@ -1,0 +1,79 @@
+{
+  "title": "VS Code Shortcuts",
+  "language": "en",
+  "tags": ["vscode", "shortcuts", "productivity", "editor"],
+  "items": [
+    {
+      "code": "Ctrl+Shift+P",
+      "description": "Open command palette",
+      "example": "e.g., 'Git: Commit', 'Tasks: Run Task'"
+    },
+    {
+      "code": "Ctrl+P",
+      "description": "Go to file",
+      "example": "Type a filename to open it quickly."
+    },
+    {
+      "code": "Ctrl+G",
+      "description": "Go to line",
+      "example": "Type ':100' to jump to line 100."
+    },
+    {
+      "code": "Ctrl+F",
+      "description": "Find in current file",
+      "example": "Search for 'myVariable' in the current file."
+    },
+    {
+      "code": "Ctrl+Shift+F",
+      "description": "Find in entire project",
+      "example": "Search for a function across all project files."
+    },
+    {
+      "code": "Ctrl+H",
+      "description": "Replace in current file",
+      "example": "Replace 'var' with 'let' in the file."
+    },
+    {
+      "code": "Ctrl+D",
+      "description": "Add selection to next find match",
+      "example": "Select a word, press Ctrl+D to edit all its instances."
+    },
+    {
+      "code": "Alt+Click",
+      "description": "Insert multiple cursors",
+      "example": "Click on several lines to edit them simultaneously."
+    },
+    {
+      "code": "Ctrl+/",
+      "description": "Toggle line comment",
+      "example": "Comments out the current line with '//' or '#'."
+    },
+    {
+      "code": "Shift+Alt+F",
+      "description": "Format document",
+      "example": "Applies the code formatter (e.g., Prettier) to the whole file."
+    },
+    {
+      "code": "F12",
+      "description": "Go to Definition",
+      "example": "Jump to the definition of a function or variable."
+    },
+    {
+      "code": "F2",
+      "description": "Rename Symbol",
+      "example": "Rename a variable in all places it is used."
+    },
+    {
+      "code": "Ctrl+`",
+      "description": "Toggle integrated terminal",
+      "example": "Opens or closes the terminal panel."
+    },
+    {
+      "code": "Ctrl+B",
+      "description": "Toggle sidebar visibility",
+      "example": "Hides the file explorer for more space."
+    }
+  ],
+  "created": "2025-09-24",
+  "updated": "2025-10-01"
+}

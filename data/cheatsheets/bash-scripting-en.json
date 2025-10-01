@@ -1,51 +1,49 @@
 {
   "title": "Bash Scripting",
   "language": "en",
-  "cheats": [
+  "tags": ["bash", "linux", "scripting"],
+  "items": [
     {
-      "description": "Print message to console",
-      "code": "echo 'Hello World'",
-      "example": "# Usage example for: echo 'Hello World'..."
+      "code": "#!/bin/bash",
+      "description": "Shebang to indicate it's a Bash script",
+      "example": "#!/bin/bash\\necho 'Hello World'"
     },
     {
-      "description": "Declare variable",
-      "code": "myvar=5",
-      "example": "# Usage example for: myvar=5..."
+      "code": "variable=$value",
+      "description": "Declare a variable (no spaces)",
+      "example": "name=\"Jules\"\\necho \"Hello, $name\""
     },
     {
-      "description": "Read user input",
-      "code": "read name",
-      "example": "# Usage example for: read name..."
+      "code": "if [ condition ]",
+      "description": "Conditional statement",
+      "example": "if [ -f \"/etc/hosts\" ]; then echo 'File exists'; fi"
     },
     {
-      "description": "If statement",
-      "code": "if [ $myvar -eq 5 ]; then echo 'Five'; fi",
-      "example": "# Usage example for: if [ $myvar -eq 5 ]; then echo..."
+      "code": "for item in list",
+      "description": "'for' loop",
+      "example": "for i in {1..5}; do echo $i; done"
     },
     {
-      "description": "For loop",
-      "code": "for i in 1 2 3; do echo $i; done",
-      "example": "# Usage example for: for i in 1 2 3; do echo $i; do..."
+      "code": "while [ condition ]",
+      "description": "'while' loop",
+      "example": "c=1\\nwhile [ $c -le 5 ]; do echo $c; ((c++)); done"
     },
     {
-      "description": "While loop",
-      "code": "while [ $myvar -gt 0 ]; do echo $myvar; myvar=$((myvar-1)); done",
-      "example": "# Example: 1000 * (1 + 0.05)^10 = 1628.89"
+      "code": "function name()",
+      "description": "Declare a function",
+      "example": "greet() {\\n  echo \"Hello, $1\"\\n}\\ngreet \"World\""
     },
     {
-      "description": "Function definition",
-      "code": "myfunc() { echo 'Function'; }",
-      "example": "# Usage example for: myfunc() { echo 'Function'; }..."
-    },
-    {
-      "description": "Get script arguments",
       "code": "$1, $2, ...",
-      "example": "# Retrieves data"
+      "description": "Positional arguments for the script",
+      "example": "./my_script.sh arg1 arg2"
     },
     {
-      "description": "Exit script",
-      "code": "exit 0",
-      "example": "# Usage example for: exit 0..."
+      "code": "read -p 'prompt'",
+      "description": "Read user input",
+      "example": "read -p 'Your name: ' name"
     }
-  ]
+  ],
+  "created": "2025-09-26",
+  "updated": "2025-10-01"
 }

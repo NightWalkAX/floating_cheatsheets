@@ -1,17 +1,109 @@
 {
   "title": "Comandos Docker",
   "language": "es",
-  "tags": [
-    "docker",
-    "containers"
-  ],
+  "tags": ["docker", "containers", "devops"],
   "items": [
     {
+      "code": "docker --version",
+      "description": "Ver versión de Docker",
+      "example": "docker --version | docker version"
+    },
+    {
+      "code": "docker pull",
+      "description": "Descargar imagen",
+      "example": "docker pull ubuntu:20.04 | docker pull nginx:latest"
+    },
+    {
+      "code": "docker images",
+      "description": "Listar imágenes descargadas",
+      "example": "docker images | docker images --no-trunc"
+    },
+    {
       "code": "docker run",
-      "description": "Ejecutar un contenedor",
-      "example": "docker run -d -p 80:80 nginx"
+      "description": "Ejecutar contenedor",
+      "example": "docker run -it ubuntu bash | docker run -d -p 80:80 nginx"
+    },
+    {
+      "code": "docker ps",
+      "description": "Listar contenedores en ejecución",
+      "example": "docker ps | docker ps -a (todos) | docker ps -q (solo IDs)"
+    },
+    {
+      "code": "docker stop",
+      "description": "Detener contenedor",
+      "example": "docker stop container_id | docker stop $(docker ps -q)"
+    },
+    {
+      "code": "docker start",
+      "description": "Iniciar contenedor detenido",
+      "example": "docker start container_id"
+    },
+    {
+      "code": "docker restart",
+      "description": "Reiniciar contenedor",
+      "example": "docker restart container_id"
+    },
+    {
+      "code": "docker rm",
+      "description": "Eliminar contenedor",
+      "example": "docker rm container_id | docker rm $(docker ps -aq)"
+    },
+    {
+      "code": "docker rmi",
+      "description": "Eliminar imagen",
+      "example": "docker rmi image_id | docker rmi $(docker images -q)"
+    },
+    {
+      "code": "docker exec",
+      "description": "Ejecutar comando en contenedor",
+      "example": "docker exec -it container_id bash"
+    },
+    {
+      "code": "docker logs",
+      "description": "Ver logs de contenedor",
+      "example": "docker logs container_id | docker logs -f container_id"
+    },
+    {
+      "code": "docker build",
+      "description": "Construir imagen desde Dockerfile",
+      "example": "docker build -t mi_app . | docker build -t mi_app:v1.0 ."
+    },
+    {
+      "code": "docker push",
+      "description": "Subir imagen a registry",
+      "example": "docker push usuario/mi_app:latest"
+    },
+    {
+      "code": "docker tag",
+      "description": "Etiquetar imagen",
+      "example": "docker tag mi_app:latest usuario/mi_app:v1.0"
+    },
+    {
+      "code": "docker network",
+      "description": "Gestionar redes",
+      "example": "docker network ls | docker network create mi_red"
+    },
+    {
+      "code": "docker volume",
+      "description": "Gestionar volúmenes",
+      "example": "docker volume ls | docker volume create mi_volumen"
+    },
+    {
+      "code": "docker-compose up",
+      "description": "Iniciar servicios con compose",
+      "example": "docker-compose up | docker-compose up -d"
+    },
+    {
+      "code": "docker-compose down",
+      "description": "Detener servicios de compose",
+      "example": "docker-compose down | docker-compose down -v"
+    },
+    {
+      "code": "docker system prune",
+      "description": "Limpiar recursos no utilizados",
+      "example": "docker system prune | docker system prune -a"
     }
   ],
-  "created": "2025-09-26",
-  "updated": "2025-09-26"
+  "created": "2025-09-24",
+  "updated": "2025-09-24"
 }

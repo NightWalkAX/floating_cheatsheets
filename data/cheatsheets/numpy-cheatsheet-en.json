@@ -1,46 +1,49 @@
 {
   "title": "NumPy Cheatsheet",
   "language": "en",
-  "cheats": [
+  "tags": ["numpy", "python", "data-science", "library"],
+  "items": [
     {
+      "code": "np.array()",
       "description": "Create a NumPy array",
-      "code": "np.array([1, 2, 3])",
-      "example": "# Returns: array([1, 2, 3, 4, 5])"
+      "example": "import numpy as np\na = np.array([1, 2, 3])"
     },
     {
+      "code": "np.arange()",
       "description": "Create an array with a range of values",
-      "code": "np.arange(0, 10, 2)",
-      "example": "# NumPy operation"
+      "example": "np.arange(0, 10, 2) # [0, 2, 4, 6, 8]"
     },
     {
+      "code": "np.linspace()",
       "description": "Create an array with evenly spaced values",
-      "code": "np.linspace(0, 1, 5)",
-      "example": "# NumPy operation"
+      "example": "np.linspace(0, 1, 5) # [0., 0.25, 0.5, 0.75, 1.]"
     },
     {
-      "description": "View array shape and dtype",
       "code": "a.shape, a.dtype",
-      "example": "# Usage example for: a.shape, a.dtype..."
+      "description": "View the shape and data type of the array",
+      "example": "a = np.array([[1,2],[3,4]])\nprint(a.shape) # (2, 2)\nprint(a.dtype) # int64"
     },
     {
-      "description": "Element-wise math operations",
-      "code": "a + b, a * b",
-      "example": "# Usage example for: a + b, a * b..."
+      "code": "a + b, np.add(a, b)",
+      "description": "Element-wise mathematical operations",
+      "example": "a = np.array([1,2])\nb = np.array([3,4])\nc = a + b # [4, 6]"
     },
     {
+      "code": "a.dot(b), a @ b",
       "description": "Dot product of two arrays",
-      "code": "np.dot(a, b)",
-      "example": "# NumPy operation"
+      "example": "c = np.dot(a, b) # 1*3 + 2*4 = 11"
     },
     {
-      "description": "Calculate sum or mean",
       "code": "a.sum(), a.mean()",
-      "example": "# Usage example for: a.sum(), a.mean()..."
+      "description": "Calculate the sum or mean",
+      "example": "a = np.array([1,2,3,4])\nprint(a.sum()) # 10\nprint(a.mean()) # 2.5"
     },
     {
-      "description": "Reshape array",
-      "code": "a.reshape(3, 2)",
-      "example": "# Usage example for: a.reshape(3, 2)..."
+      "code": "a.reshape()",
+      "description": "Change the shape of an array",
+      "example": "a = np.arange(6)\na_reshaped = a.reshape(3, 2)\n# [[0, 1], [2, 3], [4, 5]]"
     }
-  ]
+  ],
+  "created": "2025-09-26",
+  "updated": "2025-10-01"
 }

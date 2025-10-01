@@ -1,27 +1,39 @@
 {
-  "title": "Logging API",
+  "title": "Logging API (Server)",
   "language": "en",
-  "tags": [
-    "javascript",
-    "api",
-    "frappe",
-    "logging"
-  ],
-  "cheats": [
+  "tags": ["logging", "frappe", "python", "backend", "debug"],
+  "items": [
     {
-      "description": "Set log level dynamically",
-      "code": "frappe.utils.logger.set_log_level(level)",
-      "example": "# Lists: file1.txt file2.txt folder/"
+      "description": "Get a logger instance for a specific module.",
+      "code": "logger = frappe.logger('my_app.utils')",
+      "example": "# Inside a Python file in your app\nimport frappe\n\nlogger = frappe.logger('my_module')"
     },
     {
-      "description": "Get logger instance",
-      "code": "frappe.logger(module, with_more_info, allow_site, filter, max_size, file_count)",
-      "example": "# Retrieves data"
+      "description": "Log a debug message.",
+      "code": "logger.debug('Message')",
+      "example": "logger.debug(f'Processing document: {doc.name}')\n# Will only be shown if the log level is DEBUG"
     },
     {
-      "description": "Log debug information",
-      "code": "frappe.logger('frappe.web').debug({ site: 'frappeframework.com', remote_addr: '192.148.1.7', method: 'POST' })",
-      "example": "# Returns: formatted output"
+      "description": "Log an informational message.",
+      "code": "logger.info('Message')",
+      "example": "logger.info('Data synchronization has been completed.')"
+    },
+    {
+      "description": "Log a warning message.",
+      "code": "logger.warning('Message')",
+      "example": "logger.warning('The API configuration is deprecated. Please update.')"
+    },
+    {
+      "description": "Log an error message.",
+      "code": "logger.error('Message')",
+      "example": "logger.error('Could not connect to the external service.')"
+    },
+    {
+      "description": "Log an error with an exception traceback.",
+      "code": "logger.exception('Message')",
+      "example": "try:\n    # Code that might fail\n    result = 1 / 0\nexcept Exception:\n    logger.exception('An error occurred while calculating the result.')"
     }
-  ]
+  ],
+  "created": "2025-09-26",
+  "updated": "2025-10-01"
 }

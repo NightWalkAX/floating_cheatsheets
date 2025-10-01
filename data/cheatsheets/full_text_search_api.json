@@ -1,34 +1,34 @@
 {
   "title": "API de Búsqueda de Texto Completo (Frappe)",
   "language": "es",
-  "tags": ["search", "whoosh", "frappe", "python", "full text"],
+  "tags": ["search", "whoosh", "frappe", "python", "full-text-search"],
   "items": [
     {
-      "code": "update_index_by_name(doc_name)",
-      "description": "Actualiza el índice de búsqueda para un documento por nombre",
-      "example": "update_index_by_name('nombre_doc')"
+      "code": "frappe.utils.full_text_search.update_index_by_name(doctype, docname)",
+      "description": "Actualiza el índice de búsqueda para un documento específico.",
+      "example": "# En el evento on_update de un DocType\ndef on_update(self, method):\n    frappe.utils.full_text_search.update_index_by_name('Help Article', self.name)"
     },
     {
-      "code": "remove_document_from_index(doc_name)",
-      "description": "Elimina un documento del índice de búsqueda",
-      "example": "remove_document_from_index('nombre_doc')"
+      "code": "frappe.utils.full_text_search.remove_document_from_index(doc_name)",
+      "description": "Elimina un documento del índice de búsqueda (usado en `on_trash`).",
+      "example": "# En el evento on_trash de un DocType\ndef on_trash(self, method):\n    frappe.utils.full_text_search.remove_document_from_index(self.name)"
     },
     {
-      "code": "update_index(document)",
-      "description": "Actualiza el índice para un documento dado",
-      "example": "update_index({'title': '...', 'path': '...', 'content': '...'})"
+      "code": "frappe.utils.full_text_search.search(query, scope, limit)",
+      "description": "Realiza una búsqueda en el índice.",
+      "example": "from frappe.utils.full_text_search import search\n\nresults = search('instalar erpnext')\n# results es una lista de diccionarios con 'title', 'path', 'content'"
     },
     {
-      "code": "build_index()",
-      "description": "Construye el índice para todos los documentos parseados",
-      "example": "build_index()"
+      "code": "frappe.utils.full_text_search.build_index_for_all_docs()",
+      "description": "Construye (o reconstruye) el índice para todos los documentos de los DocTypes configurados.",
+      "example": "# Se puede ejecutar desde la consola bench\n# bench --site [sitename] execute frappe.utils.full_text_search.build_index_for_all_docs"
     },
     {
-      "code": "search(text, scope=None, limit=20)",
-      "description": "Realiza una búsqueda en el índice actual",
-      "example": "search('texto a buscar', limit=10)"
+      "description": "Configurar DocTypes para búsqueda en `hooks.py`.",
+      "code": "# En el archivo hooks.py de tu aplicación",
+      "example": "\"website_search_config\": {\n    \"Help Article\": {\"title\": \"title\", \"content\": \"content\", \"route\": \"kb\"}\n}"
     }
   ],
   "created": "2025-09-27",
-  "updated": "2025-09-27"
+  "updated": "2025-10-01"
 }

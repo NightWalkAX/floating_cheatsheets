@@ -1,22 +1,39 @@
 {
-  "title": "List View API",
+  "title": "List View API (Client)",
   "language": "en",
-  "tags": [
-    "javascript",
-    "api",
-    "frappe",
-    "list_view"
-  ],
-  "cheats": [
+  "tags": ["javascript", "api", "frappe", "list-view", "client-script"],
+  "items": [
     {
-      "description": "Customize List View settings",
-      "code": "frappe.listview_settings['Note'] = { add_fields: ['title', 'public'], filters: [['public', '=', 1]], hide_name_column: true }",
-      "example": "# Usage example for: frappe.listview_settings['Note..."
+      "description": "Customize the List View settings for a Doctype.",
+      "code": "frappe.listview_settings['MyDocType'] = { ... }",
+      "example": "// In a client script, preferably for the 'ToDo' Doctype or in a global script\nfrappe.listview_settings['ToDo'] = {\n    // ... see options below\n};"
     },
     {
-      "description": "Set indicator color",
-      "code": "get_indicator(doc) { if (doc.public) { return ['Public', 'green', 'public,=,Yes']; } else { return ['Private', 'darkgrey', 'public,=,No']; } }",
-      "example": "# Lists: file1.txt file2.txt folder/"
+      "description": "Add extra columns to the list.",
+      "code": "add_fields: [\"field1\", \"field2\"]",
+      "example": "// Show the status and priority in the Task list\nadd_fields: [\"status\", \"priority\"]"
+    },
+    {
+      "description": "Add a default filter to the list.",
+      "code": "filters: [[\"field\", \"operator\", \"value\"]]",
+      "example": "// Only show tasks that are 'Open'\nfilters: [[\"status\", \"=\", \"Open\"]]"
+    },
+    {
+      "description": "Define a status indicator with color and filter.",
+      "code": "get_indicator(doc) { return [text, color, filter]; }",
+      "example": "get_indicator(doc) {\n    if (doc.status === 'Open') {\n        return [\"Open\", \"orange\", \"status,=,Open\"];\n    } else if (doc.status === 'Closed') {\n        return [\"Closed\", \"green\", \"status,=,Closed\"];\n    }\n}"
+    },
+    {
+      "description": "Format the content of the added columns.",
+      "code": "formatters: { field(val) { return ... } }",
+      "example": "formatters: {\n    subject(val) {\n        return val.bold();\n    },\n    priority(val) {\n        return `Priority: ${val}`;\n    }\n}"
+    },
+    {
+      "description": "Hide the 'name' column (document ID).",
+      "code": "hide_name_column: true",
+      "example": "// Useful if the title or subject is already a clear identifier\nhide_name_column: true"
     }
-  ]
+  ],
+  "created": "2025-09-26",
+  "updated": "2025-10-01"
 }

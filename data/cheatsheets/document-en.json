@@ -1,35 +1,49 @@
 {
   "title": "Document API (Frappe)",
   "language": "en",
-  "tags": [
-    "document",
-    "frappe",
-    "python",
-    "doctype",
-    "database"
-  ],
-  "cheats": [
+  "tags": ["document", "frappe", "python", "doctype", "orm"],
+  "items": [
     {
-      "description": "Get an existing document by type and name",
-      "code": "frappe.get_doc('Task', 'TASK00002')",
-      "example": "# Returns: Document object with all fields"
+      "code": "frappe.get_doc('MyDocType', 'doc_name')",
+      "description": "Gets an existing document from the database.",
+      "example": "# Loads the 'TASK-00001' document into memory\ndoc = frappe.get_doc('Task', 'TASK-00001')"
     },
     {
-      "description": "Get a single DocType",
-      "code": "frappe.get_doc('System Settings')",
-      "example": "# Returns: Document object with all fields"
+      "code": "frappe.new_doc('MyDocType')",
+      "description": "Creates a new document in memory (not saved).",
+      "example": "doc = frappe.new_doc('Task')\ndoc.subject = 'My new task'\ndoc.status = 'Open'"
     },
     {
-      "description": "Create a new document in memory",
-      "code": "frappe.get_doc({ 'doctype': 'Task', 'title': 'New Task' })",
-      "example": "# Returns: Document object with all fields"
+      "code": "doc.insert()",
+      "description": "Saves a new document to the database for the first time.",
+      "example": "doc = frappe.new_doc('Task')\ndoc.subject = 'Task to be inserted'\ndoc.insert()"
     },
     {
-      "description": "Get last created document with filters and custom ordering",
-      "code": "frappe.get_last_doc('Task', filters={'status': 'Cancelled'}, order_by='timestamp desc')",
-      "example": "# Creates new resource"
+      "code": "doc.save()",
+      "description": "Saves the changes of an existing document to the database.",
+      "example": "doc = frappe.get_doc('Task', 'TASK-00001')\ndoc.status = 'Closed'\ndoc.save()"
+    },
+    {
+      "code": "doc.delete()",
+      "description": "Deletes a document from the database.",
+      "example": "doc = frappe.get_doc('Task', 'TASK-00002')\ndoc.delete()"
+    },
+    {
+      "code": "frappe.get_last_doc('MyDocType')",
+      "description": "Gets the last saved document of a DocType.",
+      "example": "last_task = frappe.get_last_doc('Task', filters={'status': 'Open'})"
+    },
+    {
+      "code": "doc.append('child_table_name', { ... })",
+      "description": "Adds a new row to a child table.",
+      "example": "sales_order = frappe.get_doc('Sales Order', 'SO-0001')\nsales_order.append('items', {\n    'item_code': 'ITM001',\n    'qty': 5\n})\nsales_order.save()"
+    },
+    {
+      "code": "doc.reload()",
+      "description": "Reloads the document from the database, discarding local changes.",
+      "example": "doc = frappe.get_doc('User', 'test@example.com')\n# ...someone else changes the doc...\ndoc.reload()\n# 'doc' now has the latest data"
     }
   ],
   "created": "2025-09-27",
-  "updated": "2025-09-27"
+  "updated": "2025-10-01"
 }

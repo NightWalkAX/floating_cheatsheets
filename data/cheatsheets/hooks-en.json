@@ -1,45 +1,44 @@
 {
   "title": "Hooks (Frappe)",
   "language": "en",
-  "tags": [
-    "hooks",
-    "frappe",
-    "python",
-    "framework",
-    "event"
-  ],
-  "cheats": [
+  "tags": ["hooks", "frappe", "python", "backend"],
+  "items": [
     {
-      "description": "File where app hooks are defined",
-      "code": "hooks.py",
-      "example": "# Usage example for: hooks.py..."
+      "code": "app_name = \"my_app\"",
+      "description": "The name of the application, used for locating templates and other resources.",
+      "example": "app_name = \"my_app\""
     },
     {
-      "description": "Get value of a defined hook",
-      "code": "frappe.get_hooks('test_string')",
-      "example": "# Retrieves data"
+      "code": "doc_events = { ... }",
+      "description": "Assigns methods to DocType lifecycle events (e.g., on_update, validate).",
+      "example": "doc_events = {\n    \"Task\": {\n        \"validate\": \"my_app.tasks.validate_task\",\n        \"on_update\": \"my_app.tasks.on_update_task\"\n    }\n}"
     },
     {
-      "description": "Get dictionary of hooks",
-      "code": "frappe.get_hooks('test_dict')",
-      "example": "# Retrieves data"
+      "code": "scheduler_events = { ... }",
+      "description": "Schedules periodic jobs (all, daily, weekly, monthly).",
+      "example": "scheduler_events = {\n    \"daily\": [\n        \"my_app.tasks.cleanup_old_logs\"\n    ]\n}"
     },
     {
-      "description": "Get list of hooks",
-      "code": "frappe.get_hooks('test_list')",
-      "example": "# Retrieves data"
+      "code": "fixtures = [ ... ]",
+      "description": "Exports records from DocTypes (e.g., Custom Field, Property Setter) to JSON files during migration.",
+      "example": "fixtures = [\"Custom Field\", \"Property Setter\"]"
     },
     {
-      "description": "Conflict resolution: last writer wins",
-      "code": "...",
-      "example": "# Usage example for: ......"
+      "code": "override_doctype_class = { ... }",
+      "description": "Overrides the Python class of a standard or another app's DocType.",
+      "example": "override_doctype_class = {\n    \"User\": \"my_app.overrides.custom_user.CustomUser\"\n}"
     },
     {
-      "description": "App metadata: app_name, app_title, app_publisher, app_description, app_version",
-      "code": "...",
-      "example": "# Usage example for: ......"
+      "code": "website_search_config = { ... }",
+      "description": "Configures which DocTypes are searchable on the website.",
+      "example": "website_search_config = {\n    \"Help Article\": {\"title\": \"title\", \"content\": \"content\"}\n}"
+    },
+    {
+      "code": "on_session_creation = [ ... ]",
+      "description": "Executes a function after a user successfully logs in.",
+      "example": "on_session_creation = [\"my_app.auth.user_session_setup\"]"
     }
   ],
   "created": "2025-09-27",
-  "updated": "2025-09-27"
+  "updated": "2025-10-01"
 }

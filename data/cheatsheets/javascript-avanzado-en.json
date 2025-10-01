@@ -1,46 +1,49 @@
 {
   "title": "Advanced JavaScript",
   "language": "en",
-  "cheats": [
+  "tags": ["javascript", "programming", "advanced"],
+  "items": [
     {
-      "description": "Async/Await syntax",
-      "code": "async function myFunc() { await something(); }",
-      "example": "// Use: const result = await fetchData();"
+      "code": "async/await",
+      "description": "Syntax for handling promises in a more readable way",
+      "example": "async function fetchData() { try { const data = await fetch(url); } catch (e) { console.error(e); } }"
     },
     {
-      "description": "Run multiple promises in parallel",
-      "code": "Promise.all([p1, p2, p3]).then(values => { ... });",
-      "example": "// Waits for all promises: [result1, result2, result3]"
+      "code": "Promise.all()",
+      "description": "Executes multiple promises in parallel",
+      "example": "Promise.all([p1, p2, p3]).then(values => { /* ... */ });"
     },
     {
-      "description": "Closures",
-      "code": "function outer() { let x = 1; function inner() { return x; } return inner; }",
-      "example": "# Usage example for: function outer() { let x = 1; ..."
+      "code": "Closures",
+      "description": "A function that remembers the scope where it was created",
+      "example": "function outer() { let v = 'a'; return () => console.log(v); }"
     },
     {
-      "description": "Prototypes",
-      "code": "function Person(){}; Person.prototype.sayHi = function() { console.log('Hi'); }",
-      "example": "# Usage example for: function Person(){}; Person.pr..."
+      "code": "Prototypes",
+      "description": "JavaScript's inheritance mechanism",
+      "example": "let obj = {}; let proto = Object.getPrototypeOf(obj);"
     },
     {
-      "description": "Destructuring",
-      "code": "const [a, b] = [1, 2]; const {x, y} = obj;",
-      "example": "# Usage example for: const [a, b] = [1, 2]; const {..."
+      "code": "Destructuring",
+      "description": "Extract data from arrays or objects",
+      "example": "const { a, b } = obj; const [x, y] = arr;"
     },
     {
-      "description": "Spread operator",
-      "code": "const arr2 = [...arr1];",
-      "example": "# Usage example for: const arr2 = [...arr1];..."
+      "code": "Spread Operator (...)",
+      "description": "Expand elements of an iterable",
+      "example": "const arr2 = [...arr1]; const obj2 = { ...obj1 };"
     },
     {
+      "code": "Map, Set, WeakMap, WeakSet",
       "description": "Advanced data collections",
-      "code": "const map = new Map(); const set = new Set();",
-      "example": "# Usage example for: const map = new Map(); const s..."
+      "example": "let map = new Map(); let set = new Set();"
     },
     {
-      "description": "Concurrency model",
-      "code": "JavaScript uses an event loop for concurrency.",
-      "example": "# Usage example for: JavaScript uses an event loop ..."
+      "code": "Event Loop",
+      "description": "JavaScript's concurrency model",
+      "example": "Concept: Call Stack, Task Queue, Browser APIs"
     }
-  ]
+  ],
+  "created": "2025-09-26",
+  "updated": "2025-10-01"
 }
