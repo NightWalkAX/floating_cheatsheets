@@ -1,0 +1,64 @@
+{
+  "title": "Tree View Settings",
+  "language": "en",
+  "tags": ["javascript", "tree-view", "api"],
+  "items": [
+    {
+      "code": "frappe.treeview_settings['DocType'] = { ... }",
+      "description": "To customize the Tree View for a DocType, create a `{doctype}_tree.js` file and define the settings within this structure.",
+      "example": "frappe.treeview_settings['Account'] = {\n    // tree view settings go here\n};"
+    },
+    {
+      "code": "breadcrumb: 'Accounting'",
+      "description": "Sets the breadcrumb navigation path displayed at the top of the page.",
+      "example": "breadcrumb: 'Accounting'"
+    },
+    {
+      "code": "title: 'Chart of Accounts'",
+      "description": "Sets the main title for the Tree View page.",
+      "example": "title: 'Chart of Accounts'"
+    },
+    {
+      "code": "filters: [ { ... } ]",
+      "description": "An array of objects defining filter fields to be displayed at the top of the tree view.",
+      "example": "filters: [\n    {\n        fieldname: 'company',\n        fieldtype:'Select',\n        options: 'Company 1\\nCompany 2',\n        label: 'Company'\n    }\n]"
+    },
+    {
+      "code": "get_tree_nodes: 'path.to.method'",
+      "description": "The dotted path to a whitelisted Python method that fetches the child nodes for a given parent node.",
+      "example": "get_tree_nodes: 'my_app.utils.get_children'"
+    },
+    {
+      "code": "add_tree_node: 'path.to.method'",
+      "description": "The dotted path to a whitelisted Python method that handles the creation of a new node.",
+      "example": "add_tree_node: 'my_app.utils.add_node'"
+    },
+    {
+      "code": "fields: [ { ... } ]",
+      "description": "An array of field definitions for the dialog that appears when adding a new node.",
+      "example": "fields: [\n    {\n        fieldtype: 'Data', fieldname: 'account_name',\n        label: 'New Account Name', reqd: true\n    },\n    {\n        fieldtype: 'Check', fieldname: 'is_group', label: 'Is Group'\n    }\n]"
+    },
+    {
+      "code": "menu_items: [ { ... } ]",
+      "description": "Adds custom items to the 'Menu' (three-dot) dropdown in the page header.",
+      "example": "menu_items: [\n    {\n        label: 'New Company',\n        action: function() { frappe.new_doc('Company', true) },\n        condition: 'frappe.boot.user.can_create.indexOf(\"Company\") !== -1'\n    }\n]"
+    },
+    {
+      "code": "toolbar: [ { ... } ]",
+      "description": "Adds custom buttons next to each node in the tree. Requires `extend_toolbar: true`.",
+      "example": "extend_toolbar: true,\ntoolbar: [\n    {\n        label: 'Add Child',\n        condition: function(node) { return node.is_group; },\n        click: function(node) { /* ... */ },\n        btnClass: 'hidden-xs'\n    }\n]"
+    },
+    {
+      "code": "onload: function(treeview) { ... }",
+      "description": "A function that is triggered once when the tree view is first instantiated.",
+      "example": "onload: function(treeview) {\n    console.log('Tree view loaded');\n}"
+    },
+    {
+      "code": "onrender: function(node) { ... }",
+      "description": "A function that is triggered every time a node is rendered in the tree.",
+      "example": "onrender: function(node) {\n    if(node.data.is_group) {\n        $(node.parent).find('.tree-label').css('font-weight', 'bold');\n    }\n}"
+    }
+  ],
+  "created": "2024-01-01",
+  "updated": "2024-01-01"
+}

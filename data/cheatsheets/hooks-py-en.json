@@ -1,0 +1,69 @@
+{
+  "title": "Frappe Hooks (Python)",
+  "language": "en",
+  "tags": ["python", "hooks", "backend", "customization"],
+  "items": [
+    {
+      "code": "doc_events = { ... }",
+      "description": "Hooks into document CRUD (Create, Read, Update, Delete) events. Allows running custom code before or after actions like `validate`, `on_submit`, `on_cancel`, etc.",
+      "example": "doc_events = {\n    \"Task\": {\n        \"on_update\": \"my_app.tasks.on_task_update\"\n    },\n    \"*\": {\n        \"after_insert\": \"my_app.utils.log_all_inserts\"\n    }\n}"
+    },
+    {
+      "code": "scheduler_events = { ... }",
+      "description": "Schedules Python functions to run periodically in the background. Supports cron syntax and presets like `hourly`, `daily`, `weekly`, `monthly`.",
+      "example": "scheduler_events = {\n    \"daily\": [\n        \"my_app.tasks.cleanup_old_logs\"\n    ],\n    \"cron\": {\n        \"*/15 * * * *\": [\n            \"my_app.tasks.check_system_health\"\n        ]\n    }\n}"
+    },
+    {
+      "code": "override_whitelisted_methods = { ... }",
+      "description": "Replaces a standard whitelisted method with your own custom implementation. Useful for changing core API behavior.",
+      "example": "override_whitelisted_methods = {\n    \"frappe.client.get_count\": \"my_app.overrides.custom_get_count\"\n}"
+    },
+    {
+      "code": "permission_query_conditions = { ... }",
+      "description": "Applies additional SQL `WHERE` conditions to list queries (`frappe.db.get_list`), allowing for fine-grained record-level security based on the user.",
+      "example": "permission_query_conditions = {\n    \"Project\": \"my_app.permissions.project_query\"\n}"
+    },
+    {
+      "code": "has_permission = { ... }",
+      "description": "Defines a custom permission checking logic for a DocType, overriding the standard role-based permissions.",
+      "example": "has_permission = {\n    \"Event\": \"my_app.permissions.event_has_permission\"\n}"
+    },
+    {
+      "code": "app_include_js = 'path' or ['path1', ...]",
+      "description": "Includes custom JavaScript files in the Desk UI.",
+      "example": "app_include_js = \"/assets/my_app/js/custom_script.js\""
+    },
+    {
+      "code": "app_include_css = 'path' or ['path1', ...]",
+      "description": "Includes custom CSS files in the Desk UI.",
+      "example": "app_include_css = \"/assets/my_app/css/custom_styles.css\""
+    },
+    {
+      "code": "fixtures = [ ... ]",
+      "description": "Specifies data records (as JSON files) to be synced to the database during app installation and migration. Useful for seeding default data.",
+      "example": "fixtures = [\n    \"Custom Field\",\n    \"Property Setter\",\n    {\"dt\": \"Role\", \"filters\": [[\"name\", \"in\", [\"Sales Manager\", \"Purchase Manager\"]]]}\n]"
+    },
+    {
+      "code": "override_doctype_class = { ... }",
+      "description": "Extends or overrides the Python controller class of a standard DocType, allowing you to add or modify its methods.",
+      "example": "override_doctype_class = {\n    \"ToDo\": \"my_app.overrides.todo.CustomToDo\"\n}"
+    },
+    {
+      "code": "website_route_rules = [ ... ]",
+      "description": "Maps custom URL routes to specific controller files, enabling clean, dynamic web pages.",
+      "example": "website_route_rules = [\n    {\"from_route\": \"/projects/<project_name>\", \"to_route\": \"my_app.www.project\"}\n]"
+    },
+    {
+      "code": "on_session_creation = 'path.to.method'",
+      "description": "Runs a function every time a new user session is created (i.e., after a successful login).",
+      "example": "on_session_creation = \"my_app.auth.setup_user_session\""
+    },
+    {
+      "code": "user_data_fields = [ ... ]",
+      "description": "Defines which DocTypes and fields contain personal user data, for use with data privacy features like data deletion and export.",
+      "example": "user_data_fields = [\n    {\"doctype\": \"Contact\", \"filter_by\": \"email_id\", \"rename\": True},\n    {\"doctype\": \"User\", \"redact_fields\": [\"first_name\", \"last_name\"]}\n]"
+    }
+  ],
+  "created": "2024-01-01",
+  "updated": "2024-01-01"
+}

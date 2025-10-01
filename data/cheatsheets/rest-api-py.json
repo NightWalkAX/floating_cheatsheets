@@ -1,0 +1,54 @@
+{
+  "title": "API REST (Backend de Python)",
+  "language": "es",
+  "tags": ["python", "rest", "api", "http", "backend"],
+  "items": [
+    {
+      "code": "Autenticación: Token",
+      "description": "Autenticar pasando un token en la cabecera de Autorización. El token es `api_key:api_secret` para un usuario específico.",
+      "example": "headers = {\n    'Authorization': 'token mi_api_key:mi_api_secret'\n}"
+    },
+    {
+      "code": "Autenticación: Contraseña",
+      "description": "Autenticar haciendo una solicitud POST a `/api/method/login` con las credenciales del usuario. Las solicitudes posteriores usarán la cookie de sesión.",
+      "example": "body = {\n    'usr': 'test@example.com',\n    'pwd': 'password123'\n}\n# POST a /api/method/login"
+    },
+    {
+      "code": "Listar Documentos: GET /api/resource/:doctype",
+      "description": "Obtiene una lista paginada de documentos. Admite filtrado, ordenación y selección de campos.",
+      "example": "# Obtener tareas abiertas, traer asunto y prioridad, ordenar por fecha de creación\nGET /api/resource/Task?fields=[\"subject\",\"priority\"]&filters=[[\"status\",\"=\",\"Open\"]]&order_by=creation%20desc"
+    },
+    {
+      "code": "Crear Documento: POST /api/resource/:doctype",
+      "description": "Crea un nuevo documento. El cuerpo de la solicitud debe ser un objeto JSON que represente el documento.",
+      "example": "# Cuerpo de la solicitud para POST /api/resource/ToDo\n{\n    \"description\": \"Mi nuevo ToDo desde la API REST\"\n}"
+    },
+    {
+      "code": "Leer Documento: GET /api/resource/:doctype/:name",
+      "description": "Obtiene un único documento por su nombre único.",
+      "example": "GET /api/resource/ToDo/bf2e760e13"
+    },
+    {
+      "code": "Actualizar Documento: PUT /api/resource/:doctype/:name",
+      "description": "Actualiza uno o más campos en un documento existente. El cuerpo de la solicitud debe ser un objeto JSON con los campos a actualizar.",
+      "example": "# Cuerpo de la solicitud para PUT /api/resource/ToDo/bf2e760e13\n{\n    \"status\": \"Closed\",\n    \"description\": \"Esta tarea ya está completa.\"\n}"
+    },
+    {
+      "code": "Eliminar Documento: DELETE /api/resource/:doctype/:name",
+      "description": "Elimina un documento por su nombre único.",
+      "example": "DELETE /api/resource/ToDo/bf2e760e13"
+    },
+    {
+      "code": "Llamada a Método Remoto: /api/method/:ruta.punteada",
+      "description": "Ejecuta cualquier método de Python en la lista blanca del servidor. Usa GET para métodos de solo lectura y POST para métodos que modifican datos.",
+      "example": "# Obtener el usuario actualmente autenticado\nGET /api/method/frappe.auth.get_logged_user\n\n# Llamar a un método personalizado con argumentos\nPOST /api/method/my_app.utils.process_data\nCuerpo: {\"customer_id\": \"CUST-001\"}"
+    },
+    {
+      "code": "Subida de Archivo: POST /api/method/upload_file",
+      "description": "Sube un archivo binario. La solicitud debe enviarse como `multipart/form-data` con el archivo adjunto.",
+      "example": "curl -X POST \\\n  http://<base-url>/api/method/upload_file \\\n  -H 'Authorization: token key:secret' \\\n  -F file=@/ruta/a/mi_archivo.png"
+    }
+  ],
+  "created": "2024-01-01",
+  "updated": "2024-01-01"
+}

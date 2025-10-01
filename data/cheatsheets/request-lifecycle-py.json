@@ -1,0 +1,34 @@
+{
+  "title": "Ciclo de Vida de la Solicitud (Python)",
+  "language": "es",
+  "tags": ["python", "web", "enrutamiento", "backend"],
+  "items": [
+    {
+      "code": "Orden de Manejo de Solicitudes",
+      "description": "Frappe maneja las solicitudes web entrantes en un orden específico: solicitudes de API (`/api/...`), descargas de archivos (`/files/...`), y finalmente, solicitudes de páginas web que se pasan al enrutador del sitio web.",
+      "example": "1. Solicitud de API (`/api/resource/Task`)\n2. Descarga de Archivo (`/private/files/backup.zip`)\n3. Página Web (`/about`)"
+    },
+    {
+      "code": "Resolvedor de Rutas (Path Resolver)",
+      "description": "Antes de renderizar, el resolvedor de rutas determina el punto final. Primero verifica si hay redirecciones (del hook `website_redirects`) y luego resuelve la ruta usando reglas (del hook `website_route_rules` o de DocTypes con 'Tiene Vista Web' habilitado).",
+      "example": "// Una solicitud a '/p/mi-producto' podría ser resuelta por una `website_route_rule` a la plantilla 'mi_app.www.producto.html'."
+    },
+    {
+      "code": "Selección del Renderizador de Página",
+      "description": "Después de resolver la ruta, Frappe selecciona un renderizador para generar el HTML. Comprueba el método `.can_render()` de cada renderizador disponible y usa el primero que devuelve `True`.",
+      "example": "// Una solicitud para '/about.html' sería manejada por el renderizador TemplatePage."
+    },
+    {
+      "code": "Renderizadores de Página Estándar",
+      "description": "Frappe incluye varios renderizadores estándar para tipos de página comunes.",
+      "example": "/*\n- StaticPage: Sirve archivos que no son plantillas, como imágenes o PDFs, desde una carpeta `www`.\n- TemplatePage: Renderiza archivos `.html` o `.md` desde una carpeta `www`.\n- WebformPage: Renderiza Formularios Web estándar.\n- DocumentPage: Renderiza una plantilla específica para la vista de un solo documento (ej. `templates/user.html`).\n- ListPage: Renderiza una plantilla para una vista de lista de documentos.\n- NotFoundPage: Renderiza la página 404.\n*/"
+    },
+    {
+      "code": "Renderizador de Página Personalizado",
+      "description": "Puedes crear un renderizador de página personalizado definiendo una clase con los métodos `can_render()` y `render()` y agregándola al hook `page_renderer` en tu aplicación.",
+      "example": "# hooks.py\npage_renderer = \"mi_app.renderers.CustomRenderer\"\n\n# mi_app/renderers.py\nclass CustomRenderer(BaseRenderer):\n    def can_render(self):\n        return self.path == '/mi-ruta-personalizada'\n    def render(self):\n        return self.build_response('<h1>Página Personalizada</h1>')"
+    }
+  ],
+  "created": "2024-01-01",
+  "updated": "2024-01-01"
+}

@@ -1,0 +1,54 @@
+{
+  "title": "REST API (Python Backend)",
+  "language": "en",
+  "tags": ["python", "rest", "api", "http", "backend"],
+  "items": [
+    {
+      "code": "Authentication: Token",
+      "description": "Authenticate by passing a token in the Authorization header. The token is `api_key:api_secret` for a specific user.",
+      "example": "headers = {\n    'Authorization': 'token my_api_key:my_api_secret'\n}"
+    },
+    {
+      "code": "Authentication: Password",
+      "description": "Authenticate by making a POST request to `/api/method/login` with user credentials. Subsequent requests will use the session cookie.",
+      "example": "body = {\n    'usr': 'test@example.com',\n    'pwd': 'password123'\n}\n# POST to /api/method/login"
+    },
+    {
+      "code": "List Documents: GET /api/resource/:doctype",
+      "description": "Fetches a paginated list of documents. Supports filtering, sorting, and field selection.",
+      "example": "# Get open tasks, fetch subject and priority, order by creation date\nGET /api/resource/Task?fields=[\"subject\",\"priority\"]&filters=[[\"status\",\"=\",\"Open\"]]&order_by=creation%20desc"
+    },
+    {
+      "code": "Create Document: POST /api/resource/:doctype",
+      "description": "Creates a new document. The request body should be a JSON object representing the document.",
+      "example": "# Request Body for POST /api/resource/ToDo\n{\n    \"description\": \"My new ToDo from REST API\"\n}"
+    },
+    {
+      "code": "Read Document: GET /api/resource/:doctype/:name",
+      "description": "Fetches a single document by its unique name.",
+      "example": "GET /api/resource/ToDo/bf2e760e13"
+    },
+    {
+      "code": "Update Document: PUT /api/resource/:doctype/:name",
+      "description": "Updates one or more fields in an existing document. The request body should be a JSON object with the fields to update.",
+      "example": "# Request Body for PUT /api/resource/ToDo/bf2e760e13\n{\n    \"status\": \"Closed\",\n    \"description\": \"This task is now complete.\"\n}"
+    },
+    {
+      "code": "Delete Document: DELETE /api/resource/:doctype/:name",
+      "description": "Deletes a document by its unique name.",
+      "example": "DELETE /api/resource/ToDo/bf2e760e13"
+    },
+    {
+      "code": "Remote Method Call: /api/method/:dotted.path",
+      "description": "Executes any whitelisted Python method on the server. Use GET for read-only methods and POST for methods that modify data.",
+      "example": "# Get the currently logged-in user\nGET /api/method/frappe.auth.get_logged_user\n\n# Call a custom method with arguments\nPOST /api/method/my_app.utils.process_data\nBody: {\"customer_id\": \"CUST-001\"}"
+    },
+    {
+      "code": "File Upload: POST /api/method/upload_file",
+      "description": "Uploads a binary file. The request must be sent as `multipart/form-data` with the file attached.",
+      "example": "curl -X POST \\\n  http://<base-url>/api/method/upload_file \\\n  -H 'Authorization: token key:secret' \\\n  -F file=@/path/to/my_file.png"
+    }
+  ],
+  "created": "2024-01-01",
+  "updated": "2024-01-01"
+}

@@ -1,0 +1,69 @@
+{
+  "title": "API de Página",
+  "language": "es",
+  "tags": ["javascript", "ui", "página", "api"],
+  "items": [
+    {
+      "code": "frappe.ui.make_app_page({ title, parent, single_column })",
+      "description": "Crea un nuevo objeto Página y lo adjunta a un elemento DOM padre.",
+      "example": "let page = frappe.ui.make_app_page({\n    title: 'Mi Página',\n    parent: wrapper,\n    single_column: true\n});"
+    },
+    {
+      "code": "page.set_title(title)",
+      "description": "Establece el título principal de la página, que también se refleja en la pestaña del navegador.",
+      "example": "page.set_title('Mi Página Increíble');"
+    },
+    {
+      "code": "page.set_title_sub(subtitle)",
+      "description": "Establece el título secundario (subtítulo) de la página, que se muestra en el lado derecho del encabezado.",
+      "example": "page.set_title_sub('Subtítulo');"
+    },
+    {
+      "code": "page.set_indicator(label, color)",
+      "description": "Establece un indicador de estado con una etiqueta y color específicos (p. ej., 'orange', 'green', 'red').",
+      "example": "page.set_indicator('Pendiente', 'orange');"
+    },
+    {
+      "code": "page.set_primary_action(label, handler, icon)",
+      "description": "Establece el botón de acción principal (el botón azul principal) con una etiqueta, una función de manejador y un ícono opcional.",
+      "example": "page.set_primary_action('Nuevo', () => create_new(), 'octicon octicon-plus');"
+    },
+    {
+      "code": "page.set_secondary_action(label, handler, icon)",
+      "description": "Establece el botón de acción secundario (el botón gris) con una etiqueta, un manejador y un ícono opcional.",
+      "example": "page.set_secondary_action('Refrescar', () => refresh(), 'octicon octicon-sync');"
+    },
+    {
+      "code": "page.add_menu_item(label, handler, is_standard)",
+      "description": "Agrega un elemento al menú desplegable 'Menú' en el encabezado de la página.",
+      "example": "page.add_menu_item('Enviar Correo', () => open_email_dialog());"
+    },
+    {
+      "code": "page.add_action_item(label, handler)",
+      "description": "Agrega un elemento al menú desplegable 'Acciones' en el encabezado de la página.",
+      "example": "page.add_action_item('Eliminar', () => delete_items());"
+    },
+    {
+      "code": "page.add_inner_button(label, handler, group)",
+      "description": "Agrega un botón a la barra de herramientas interna de la página. Se puede agrupar en un menú desplegable.",
+      "example": "// Agregar un botón independiente\npage.add_inner_button('Actualizar Posts', () => update_posts());\n\n// Agregar un botón dentro de un grupo\npage.add_inner_button('Nuevo Post', () => new_post(), 'Crear');"
+    },
+    {
+      "code": "page.add_field({ label, fieldtype, ... })",
+      "description": "Agrega un control de formulario (campo) a la barra de herramientas del encabezado de la página.",
+      "example": "let field = page.add_field({\n    label: 'Estado',\n    fieldtype: 'Select',\n    fieldname: 'status',\n    options: ['Abierto', 'Cerrado'],\n    change() {\n        console.log(field.get_value());\n    }\n});"
+    },
+    {
+      "code": "page.get_form_values()",
+      "description": "Devuelve un objeto que contiene los valores actuales de todos los campos en la barra de herramientas del encabezado de la página.",
+      "example": "let values = page.get_form_values();\n// { status: 'Abierto' }"
+    },
+    {
+      "code": "page.clear_fields()",
+      "description": "Elimina todos los campos de la barra de herramientas del encabezado de la página.",
+      "example": "page.clear_fields();"
+    }
+  ],
+  "created": "2024-01-01",
+  "updated": "2024-01-01"
+}

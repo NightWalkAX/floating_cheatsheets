@@ -1,0 +1,39 @@
+{
+  "title": "Construcción de Respuestas (Python)",
+  "language": "es",
+  "tags": ["python", "response", "http", "backend"],
+  "items": [
+    {
+      "code": "El Diccionario `frappe.response`",
+      "description": "Dentro de un método en la lista blanca (whitelist), puedes construir una respuesta HTTP personalizada estableciendo valores en el diccionario global `frappe.response`. La clave `type` determina cómo se construye la respuesta.",
+      "example": "# En un método @frappe.whitelist():\nfrappe.response['type'] = 'download'\nfrappe.response['filename'] = 'reporte.csv'\n# ... y otras claves"
+    },
+    {
+      "code": "Descarga de Archivo (`type: 'download'`)",
+      "description": "Para enviar un archivo que el usuario pueda descargar, establece el tipo de respuesta a 'download' y proporciona el nombre del archivo y el contenido.",
+      "example": "@frappe.whitelist()\ndef generate_and_download_file():\n    file_content = 'esto,es,un,csv\\n1,2,3,4'\n    frappe.response.type = 'download'\n    frappe.response.filename = 'mi_reporte.csv'\n    frappe.response.filecontent = file_content\n    # Usa 'attachment' para forzar la descarga, 'inline' para mostrar en el navegador si es posible.\n    frappe.response.display_content_as = 'attachment'"
+    },
+    {
+      "code": "Respuesta JSON (Predeterminada)",
+      "description": "Por defecto, el diccionario `frappe.response` se envía como una respuesta JSON. Este es el estándar para la mayoría de las llamadas a la API realizadas a través de `frappe.call`.",
+      "example": "@frappe.whitelist()\ndef get_user_data(user_id):\n    user = frappe.get_doc('User', user_id)\n    # Estas claves estarán en la respuesta JSON final\n    frappe.response['full_name'] = user.full_name\n    frappe.response['email'] = user.email"
+    },
+    {
+      "code": "Respuesta PDF (`type: 'pdf'`)",
+      "description": "Para enviar un archivo PDF generado. Debes proporcionar el contenido del archivo PDF.",
+      "example": "@frappe.whitelist()\ndef get_invoice_pdf(invoice_id):\n    pdf_content = get_pdf_from_html(...)\n    frappe.response.type = 'pdf'\n    frappe.response.filename = f'{invoice_id}.pdf'\n    frappe.response.filecontent = pdf_content"
+    },
+    {
+      "code": "Redirección (`type: 'redirect'`)",
+      "description": "Para realizar una redirección del lado del servidor, establece el tipo a 'redirect' y proporciona la ubicación de destino.",
+      "example": "@frappe.whitelist()\ndef old_url_handler():\n    frappe.response.type = 'redirect'\n    frappe.response.location = '/nueva-pagina'"
+    },
+    {
+      "code": "Texto Plano (`type: 'txt'`)",
+      "description": "Para enviar una respuesta de texto plano sin formato.",
+      "example": "@frappe.whitelist()\ndef get_raw_log():\n    # Este es un ejemplo simplificado\n    frappe.response.type = 'txt'\n    frappe.response.data = 'LOG: Sistema iniciado correctamente.'"
+    }
+  ],
+  "created": "2024-01-01",
+  "updated": "2024-01-01"
+}

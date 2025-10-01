@@ -1,0 +1,129 @@
+{
+  "title": "Scripts de Formulario",
+  "language": "es",
+  "tags": ["javascript", "formulario", "api"],
+  "items": [
+    {
+      "code": "frappe.ui.form.on(doctype, { ... })",
+      "description": "Sintaxis estándar para crear Scripts de Formulario. Puedes definir múltiples manejadores de eventos dentro del objeto.",
+      "example": "frappe.ui.form.on('ToDo', {\n    refresh(frm) {\n        if (frm.doc.reference_type && frm.doc.reference_name) {\n            frm.add_custom_button(__(frm.doc.reference_name), () => {\n                frappe.set_route(\"Form\", frm.doc.reference_type, frm.doc.reference_name);\n            });\n        }\n    }\n})"
+    },
+    {
+      "code": "frappe.ui.form.on('Child DocType', { ... })",
+      "description": "Sintaxis para crear Scripts de Tabla Hija. Estos deben escribirse en el mismo archivo que su padre.",
+      "example": "frappe.ui.form.on('Quotation Item', {\n    item_code(frm, cdt, cdn) {\n        let row = frappe.get_doc(cdt, cdn);\n        // lógica aquí\n    }\n})"
+    },
+    {
+      "code": "frm.set_value(fieldname, value)",
+      "description": "Establece el valor de un solo campo. Esto dispara el evento de cambio del campo.",
+      "example": "frm.set_value('description', 'Nueva descripción');"
+    },
+    {
+      "code": "frm.set_value({ fieldname: value, ... })",
+      "description": "Establece los valores de múltiples campos a la vez.",
+      "example": "frm.set_value({\n    status: 'Abierto',\n    description: 'Nueva descripción'\n});"
+    },
+    {
+      "code": "frm.refresh()",
+      "description": "Refresca el formulario con los últimos valores del servidor.",
+      "example": "frm.refresh();"
+    },
+    {
+      "code": "frm.save()",
+      "description": "Dispara el guardado del formulario. También se puede usar para las acciones Enviar, Cancelar y Actualizar.",
+      "example": "// guardar formulario\nfrm.save();\n\n// enviar formulario\nfrm.save('Submit');"
+    },
+    {
+      "code": "frm.enable_save() / frm.disable_save()",
+      "description": "Habilita o deshabilita el botón Guardar en el formulario.",
+      "example": "if (frappe.user_roles.includes('Rol Personalizado')) {\n    frm.enable_save();\n} else {\n    frm.disable_save();\n}"
+    },
+    {
+      "code": "frm.email_doc(message)",
+      "description": "Abre el diálogo de Correo Electrónico para el formulario actual, opcionalmente con un mensaje pre-rellenado.",
+      "example": "frm.email_doc(`Hola ${frm.doc.customer_name}`);"
+    },
+    {
+      "code": "frm.reload_doc()",
+      "description": "Recarga el documento con los últimos valores y refresca el formulario.",
+      "example": "frm.reload_doc();"
+    },
+    {
+      "code": "frm.refresh_field(fieldname)",
+      "description": "Refresca un campo específico y sus dependencias.",
+      "example": "frm.refresh_field('description');"
+    },
+    {
+      "code": "frm.is_dirty()",
+      "description": "Verifica si los valores del formulario han cambiado y aún no se han guardado.",
+      "example": "if (frm.is_dirty()) {\n    frappe.show_alert('Por favor, guarde el formulario antes de adjuntar un archivo')\n}"
+    },
+    {
+      "code": "frm.dirty()",
+      "description": "Establece manualmente el formulario como 'sucio' para indicar cambios no guardados.",
+      "example": "frm.doc.browser_data = navigator.appVersion;\nfrm.dirty();"
+    },
+    {
+      "code": "frm.is_new()",
+      "description": "Verifica si el formulario es para un documento nuevo que aún no se ha guardado.",
+      "example": "if (!frm.is_new()) {\n    frm.add_custom_button('Haz clic', () => console.log('Clickeado'));\n}"
+    },
+    {
+      "code": "frm.set_intro(message, color)",
+      "description": "Establece un texto introductorio en la parte superior del formulario.",
+      "example": "frm.set_intro('Por favor, establezca el valor de la descripción', 'blue');"
+    },
+    {
+      "code": "frm.add_custom_button(label, action, group)",
+      "description": "Agrega un botón personalizado a la barra de herramientas interna del formulario.",
+      "example": "frm.add_custom_button('Abrir Referencia', () => {\n    frappe.set_route('Form', frm.doc.reference_type, frm.doc.reference_name);\n});"
+    },
+    {
+      "code": "frm.set_df_property(fieldname, property, value)",
+      "description": "Cambia una propiedad del DocField de un campo y lo refresca.",
+      "example": "// establecer un campo como obligatorio\nfrm.set_df_property('title', 'reqd', 1);\n\n// establecer un campo como solo lectura\nfrm.set_df_property('status', 'read_only', 1);"
+    },
+    {
+      "code": "frm.toggle_enable(fields, condition)",
+      "description": "Activa o desactiva el estado de solo lectura de los campos según una condición.",
+      "example": "let is_allowed = frappe.user_roles.includes('System Manager');\nfrm.toggle_enable(['status', 'priority'], is_allowed);"
+    },
+    {
+      "code": "frm.toggle_reqd(fields, condition)",
+      "description": "Activa o desactiva el estado de obligatorio de los campos según una condición.",
+      "example": "frm.toggle_reqd('priority', frm.doc.status === 'Abierto');"
+    },
+    {
+      "code": "frm.toggle_display(fields, condition)",
+      "description": "Muestra u oculta campos según una condición.",
+      "example": "frm.toggle_display(['priority', 'due_date'], frm.doc.status === 'Abierto');"
+    },
+    {
+      "code": "frm.set_query(fieldname, [table_fieldname], () => { ... })",
+      "description": "Aplica filtros a un campo de tipo Link para limitar los registros seleccionables.",
+      "example": "// Filtrar clientes por territorio\nfrm.set_query('customer', () => {\n    return {\n        filters: {\n            territory: 'India'\n        }\n    }\n});\n\n// Filtrar artículos en una tabla hija\nfrm.set_query('item_code', 'items', () => {\n    return {\n        filters: {\n            item_group: 'Productos'\n        }\n    }\n});"
+    },
+    {
+      "code": "frm.add_child(table_fieldname, { ... })",
+      "description": "Agrega una nueva fila a una tabla hija con los valores especificados.",
+      "example": "let row = frm.add_child('items', {\n    item_code: 'Raqueta de Tenis',\n    qty: 2\n});\nfrm.refresh_field('items');"
+    },
+    {
+      "code": "frm.call(method, args)",
+      "description": "Llama a un método de controlador del lado del servidor en la lista blanca con argumentos.",
+      "example": "frm.call('get_linked_doc', { throw_if_missing: true })\n .then(r => {\n     if (r.message) {\n         let linked_doc = r.message;\n         // hacer algo con linked_doc\n     }\n })"
+    },
+    {
+      "code": "frm.trigger(event_name)",
+      "description": "Dispara un evento de formulario explícitamente.",
+      "example": "frm.trigger('set_mandatory_fields');"
+    },
+    {
+      "code": "frm.get_selected()",
+      "description": "Obtiene las filas seleccionadas en todas las tablas hijas.",
+      "example": "let selected = frm.get_selected();\n// { items: [\"bbfcb8da6a\"], taxes: [\"036ab9452a\"] }"
+    }
+  ],
+  "created": "2024-01-01",
+  "updated": "2024-01-01"
+}

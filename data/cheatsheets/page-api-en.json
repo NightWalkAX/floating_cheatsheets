@@ -1,0 +1,69 @@
+{
+  "title": "Page API",
+  "language": "en",
+  "tags": ["javascript", "ui", "page", "api"],
+  "items": [
+    {
+      "code": "frappe.ui.make_app_page({ title, parent, single_column })",
+      "description": "Creates a new Page object and attaches it to a parent DOM element.",
+      "example": "let page = frappe.ui.make_app_page({\n    title: 'My Page',\n    parent: wrapper,\n    single_column: true\n});"
+    },
+    {
+      "code": "page.set_title(title)",
+      "description": "Sets the main title of the page, which is also reflected in the browser tab.",
+      "example": "page.set_title('My Awesome Page');"
+    },
+    {
+      "code": "page.set_title_sub(subtitle)",
+      "description": "Sets the secondary title (subtitle) of the page, shown on the right side of the header.",
+      "example": "page.set_title_sub('Subtitle');"
+    },
+    {
+      "code": "page.set_indicator(label, color)",
+      "description": "Sets a status indicator with a specific label and color (e.g., 'orange', 'green', 'red').",
+      "example": "page.set_indicator('Pending', 'orange');"
+    },
+    {
+      "code": "page.set_primary_action(label, handler, icon)",
+      "description": "Sets the primary action button (the main blue button) with a label, handler function, and an optional icon.",
+      "example": "page.set_primary_action('New', () => create_new(), 'octicon octicon-plus');"
+    },
+    {
+      "code": "page.set_secondary_action(label, handler, icon)",
+      "description": "Sets the secondary action button (the grey button) with a label, handler, and optional icon.",
+      "example": "page.set_secondary_action('Refresh', () => refresh(), 'octicon octicon-sync');"
+    },
+    {
+      "code": "page.add_menu_item(label, handler, is_standard)",
+      "description": "Adds an item to the 'Menu' dropdown in the page header.",
+      "example": "page.add_menu_item('Send Email', () => open_email_dialog());"
+    },
+    {
+      "code": "page.add_action_item(label, handler)",
+      "description": "Adds an item to the 'Actions' dropdown in the page header.",
+      "example": "page.add_action_item('Delete', () => delete_items());"
+    },
+    {
+      "code": "page.add_inner_button(label, handler, group)",
+      "description": "Adds a button to the inner toolbar of the page. Can be grouped into a dropdown.",
+      "example": "// Add a standalone button\npage.add_inner_button('Update Posts', () => update_posts());\n\n// Add a button within a group\npage.add_inner_button('New Post', () => new_post(), 'Make');"
+    },
+    {
+      "code": "page.add_field({ label, fieldtype, ... })",
+      "description": "Adds a form control (field) to the page's header toolbar.",
+      "example": "let field = page.add_field({\n    label: 'Status',\n    fieldtype: 'Select',\n    fieldname: 'status',\n    options: ['Open', 'Closed'],\n    change() {\n        console.log(field.get_value());\n    }\n});"
+    },
+    {
+      "code": "page.get_form_values()",
+      "description": "Returns an object containing the current values of all fields in the page's header toolbar.",
+      "example": "let values = page.get_form_values();\n// { status: 'Open' }"
+    },
+    {
+      "code": "page.clear_fields()",
+      "description": "Removes all fields from the page's header toolbar.",
+      "example": "page.clear_fields();"
+    }
+  ],
+  "created": "2024-01-01",
+  "updated": "2024-01-01"
+}

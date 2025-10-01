@@ -1,0 +1,64 @@
+{
+  "title": "Jinja API (Python)",
+  "language": "en",
+  "tags": ["python", "jinja", "templating", "backend"],
+  "items": [
+    {
+      "code": "frappe.get_doc(doctype, name)",
+      "description": "Fetches a full document object, which can then be used to access its fields.",
+      "example": "{% set task = frappe.get_doc('Task', 'TASK00001') %}\n<h3>{{ task.subject }}</h3>\n<p>Status: {{ task.status }}</p>"
+    },
+    {
+      "code": "frappe.get_list(doctype, filters, fields)",
+      "description": "Fetches a list of documents, applying user permissions. Similar to `frappe.get_all` but respects permissions.",
+      "example": "{% set open_tasks = frappe.get_list('Task', filters={'status': 'Open'}, fields=['subject']) %}\n<ul>\n    {% for task in open_tasks %}\n        <li>{{ task.subject }}</li>\n    {% endfor %}\n</ul>"
+    },
+    {
+      "code": "frappe.db.get_value(doctype, name, fieldname)",
+      "description": "A more efficient way to fetch one or more specific field values from a document without loading the entire object.",
+      "example": "Company Abbreviation: {{ frappe.db.get_value('Company', 'Frappe Inc', 'abbr') }}"
+    },
+    {
+      "code": "frappe.db.get_single_value(doctype, fieldname)",
+      "description": "Fetches a value from a Single DocType, like System Settings.",
+      "example": "The system timezone is {{ frappe.db.get_single_value('System Settings', 'time_zone') }}."
+    },
+    {
+      "code": "frappe.format(value, df)",
+      "description": "Formats a raw database value into a user-friendly format based on DocField properties (e.g., formatting dates, currencies).",
+      "example": "Formatted Date: {{ frappe.format('2023-10-26', {'fieldtype': 'Date'}) }}"
+    },
+    {
+      "code": "frappe.format_date(date_string)",
+      "description": "Formats a date string into a long, human-readable format (e.g., 'October 26, 2023').",
+      "example": "{{ frappe.format_date(doc.posting_date) }}"
+    },
+    {
+      "code": "_(text) or frappe._(text)",
+      "description": "Translates a string into the current user's language.",
+      "example": "<h1>{{ _('Hello World') }}</h1>"
+    },
+    {
+      "code": "frappe.render_template(template_path, context)",
+      "description": "Renders another Jinja template from a file and includes it in the current template.",
+      "example": "{{ frappe.render_template('templates/includes/my_partial.html', {'my_variable': 'value'}) }}"
+    },
+    {
+      "code": "frappe.session.user",
+      "description": "Returns the email/ID of the currently logged-in user.",
+      "example": "Welcome, {{ frappe.session.user }}!"
+    },
+    {
+      "code": "frappe.form_dict",
+      "description": "A dictionary containing the query parameters of the current web request.",
+      "example": "{% set user_id = frappe.form_dict.get('user') %}"
+    },
+    {
+      "code": "frappe.get_meta(doctype)",
+      "description": "Returns the meta object for a DocType, containing information about its fields, permissions, and properties.",
+      "example": "{% set task_meta = frappe.get_meta('Task') %}\n<p>The Task DocType has {{ task_meta.fields | len }} fields.</p>"
+    }
+  ],
+  "created": "2024-01-01",
+  "updated": "2024-01-01"
+}

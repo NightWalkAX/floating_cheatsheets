@@ -1,0 +1,69 @@
+{
+  "title": "API de Base de Datos (Python)",
+  "language": "es",
+  "tags": ["python", "database", "orm", "backend"],
+  "items": [
+    {
+      "code": "frappe.db.get_list(doctype, filters, fields, ...)",
+      "description": "Devuelve una lista de registros de un DocType, aplicando permisos de usuario. Puede especificar filtros, campos, orden y paginación.",
+      "example": "tasks = frappe.db.get_list('Task',\n    filters={'status': 'Abierto'},\n    fields=['subject', 'date'],\n    order_by='date desc'\n)"
+    },
+    {
+      "code": "frappe.db.get_all(doctype, filters, fields, ...)",
+      "description": "Similar a `get_list`, pero obtiene todos los registros sin aplicar permisos de usuario.",
+      "example": "all_users = frappe.db.get_all('User', fields=['name', 'full_name'])"
+    },
+    {
+      "code": "frappe.db.get_value(doctype, name | filters, fieldname | [fieldnames])",
+      "description": "Devuelve el valor de un solo campo o una lista/diccionario de valores de campo para un documento específico.",
+      "example": "# Obtener un solo valor\nsubject = frappe.db.get_value('Task', 'TASK00002', 'subject')\n\n# Obtener múltiples valores como un diccionario\ntask_dict = frappe.db.get_value('Task', 'TASK00002', ['subject', 'description'], as_dict=True)"
+    },
+    {
+      "code": "frappe.db.get_single_value(doctype, fieldname)",
+      "description": "Devuelve el valor de un campo de un DocType Single.",
+      "example": "timezone = frappe.db.get_single_value('System Settings', 'language')"
+    },
+    {
+      "code": "frappe.db.set_value(doctype, name, fieldname, value)",
+      "description": "Establece el valor de un campo directamente en la base de datos. No llama a los disparadores del ORM como `validate` o `on_update`.",
+      "example": "# Actualizar un solo campo\nfrappe.db.set_value('Task', 'TASK00002', 'status', 'Completado')\n\n# Actualizar múltiples campos\nfrappe.db.set_value('Task', 'TASK00002', {\n    'status': 'Completado',\n    'priority': 'Alto'\n})"
+    },
+    {
+      "code": "frappe.db.exists(doctype, name | filters)",
+      "description": "Devuelve `True` si existe un registro de documento, identificado por nombre o filtros.",
+      "example": "if frappe.db.exists('User', 'jane@example.com'):\n    # El usuario existe"
+    },
+    {
+      "code": "frappe.db.count(doctype, filters)",
+      "description": "Devuelve el número de registros para un DocType dado y filtros opcionales.",
+      "example": "open_tasks_count = frappe.db.count('Task', {'status': 'Abierto'})"
+    },
+    {
+      "code": "frappe.db.delete(doctype, filters)",
+      "description": "Elimina los registros que coinciden con los filtros dados. Este es un comando DML reversible.",
+      "example": "frappe.db.delete('Error Log', {'modified': ('<', '2023-01-01')})"
+    },
+    {
+      "code": "frappe.db.truncate(doctype)",
+      "description": "Trunca una tabla, eliminando todos sus registros. Este es un comando DDL irreversible.",
+      "example": "frappe.db.truncate('Error Log')"
+    },
+    {
+      "code": "frappe.db.sql(query, values, as_dict)",
+      "description": "Ejecuta una consulta SQL arbitraria. Debe usarse con precaución ya que omite el ORM.",
+      "example": "data = frappe.db.sql('''SELECT name, status FROM `tabTask` WHERE priority=%(priority)s''',\n    values={'priority': 'Alto'},\n    as_dict=True\n)"
+    },
+    {
+      "code": "frappe.db.commit()",
+      "description": "Confirma la transacción actual de la base de datos.",
+      "example": "frappe.db.commit()"
+    },
+    {
+      "code": "frappe.db.rollback()",
+      "description": "Revierte la transacción actual de la base de datos.",
+      "example": "frappe.db.rollback()"
+    }
+  ],
+  "created": "2024-01-01",
+  "updated": "2024-01-01"
+}

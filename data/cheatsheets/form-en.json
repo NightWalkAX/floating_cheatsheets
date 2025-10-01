@@ -1,0 +1,129 @@
+{
+  "title": "Form Scripts",
+  "language": "en",
+  "tags": ["javascript", "form", "api"],
+  "items": [
+    {
+      "code": "frappe.ui.form.on(doctype, { ... })",
+      "description": "Standard syntax for creating Form Scripts. You can define multiple event handlers within the object.",
+      "example": "frappe.ui.form.on('ToDo', {\n    refresh(frm) {\n        if (frm.doc.reference_type && frm.doc.reference_name) {\n            frm.add_custom_button(__(frm.doc.reference_name), () => {\n                frappe.set_route(\"Form\", frm.doc.reference_type, frm.doc.reference_name);\n            });\n        }\n    }\n})"
+    },
+    {
+      "code": "frappe.ui.form.on('Child DocType', { ... })",
+      "description": "Syntax for creating Child Table Scripts. These should be written in the same file as their parent.",
+      "example": "frappe.ui.form.on('Quotation Item', {\n    item_code(frm, cdt, cdn) {\n        let row = frappe.get_doc(cdt, cdn);\n        // logic here\n    }\n})"
+    },
+    {
+      "code": "frm.set_value(fieldname, value)",
+      "description": "Set the value of a single field. This triggers the field's change event.",
+      "example": "frm.set_value('description', 'New description');"
+    },
+    {
+      "code": "frm.set_value({ fieldname: value, ... })",
+      "description": "Set the values of multiple fields at once.",
+      "example": "frm.set_value({\n    status: 'Open',\n    description: 'New description'\n});"
+    },
+    {
+      "code": "frm.refresh()",
+      "description": "Refresh the form with the latest values from the server.",
+      "example": "frm.refresh();"
+    },
+    {
+      "code": "frm.save()",
+      "description": "Trigger a form save. Can also be used for Submit, Cancel, and Update actions.",
+      "example": "// save form\nfrm.save();\n\n// submit form\nfrm.save('Submit');"
+    },
+    {
+      "code": "frm.enable_save() / frm.disable_save()",
+      "description": "Enable or disable the Save button in the form.",
+      "example": "if (frappe.user_roles.includes('Custom Role')) {\n    frm.enable_save();\n} else {\n    frm.disable_save();\n}"
+    },
+    {
+      "code": "frm.email_doc(message)",
+      "description": "Open the Email dialog for the current form, optionally with a pre-filled message.",
+      "example": "frm.email_doc(`Hello ${frm.doc.customer_name}`);"
+    },
+    {
+      "code": "frm.reload_doc()",
+      "description": "Reload the document with the latest values and refresh the form.",
+      "example": "frm.reload_doc();"
+    },
+    {
+      "code": "frm.refresh_field(fieldname)",
+      "description": "Refresh a specific field and its dependencies.",
+      "example": "frm.refresh_field('description');"
+    },
+    {
+      "code": "frm.is_dirty()",
+      "description": "Check if form values have been changed and are not saved yet.",
+      "example": "if (frm.is_dirty()) {\n    frappe.show_alert('Please save form before attaching a file')\n}"
+    },
+    {
+      "code": "frm.dirty()",
+      "description": "Manually set the form as 'dirty' to indicate unsaved changes.",
+      "example": "frm.doc.browser_data = navigator.appVersion;\nfrm.dirty();"
+    },
+    {
+      "code": "frm.is_new()",
+      "description": "Check if the form is for a new document that has not been saved yet.",
+      "example": "if (!frm.is_new()) {\n    frm.add_custom_button('Click me', () => console.log('Clicked'));\n}"
+    },
+    {
+      "code": "frm.set_intro(message, color)",
+      "description": "Set an introductory text at the top of the form.",
+      "example": "frm.set_intro('Please set the value of description', 'blue');"
+    },
+    {
+      "code": "frm.add_custom_button(label, action, group)",
+      "description": "Add a custom button to the form's inner toolbar.",
+      "example": "frm.add_custom_button('Open Reference', () => {\n    frappe.set_route('Form', frm.doc.reference_type, frm.doc.reference_name);\n});"
+    },
+    {
+      "code": "frm.set_df_property(fieldname, property, value)",
+      "description": "Change a property of a field's DocField and refresh it.",
+      "example": "// set a field as mandatory\nfrm.set_df_property('title', 'reqd', 1);\n\n// set a field as read only\nfrm.set_df_property('status', 'read_only', 1);"
+    },
+    {
+      "code": "frm.toggle_enable(fields, condition)",
+      "description": "Toggle the read-only state of fields based on a condition.",
+      "example": "let is_allowed = frappe.user_roles.includes('System Manager');\nfrm.toggle_enable(['status', 'priority'], is_allowed);"
+    },
+    {
+      "code": "frm.toggle_reqd(fields, condition)",
+      "description": "Toggle the mandatory state of fields based on a condition.",
+      "example": "frm.toggle_reqd('priority', frm.doc.status === 'Open');"
+    },
+    {
+      "code": "frm.toggle_display(fields, condition)",
+      "description": "Show or hide fields based on a condition.",
+      "example": "frm.toggle_display(['priority', 'due_date'], frm.doc.status === 'Open');"
+    },
+    {
+      "code": "frm.set_query(fieldname, [table_fieldname], () => { ... })",
+      "description": "Apply filters to a Link field to limit the selectable records.",
+      "example": "// Filter customers by territory\nfrm.set_query('customer', () => {\n    return {\n        filters: {\n            territory: 'India'\n        }\n    }\n});\n\n// Filter items in a child table\nfrm.set_query('item_code', 'items', () => {\n    return {\n        filters: {\n            item_group: 'Products'\n        }\n    }\n});"
+    },
+    {
+      "code": "frm.add_child(table_fieldname, { ... })",
+      "description": "Add a new row to a child table with the specified values.",
+      "example": "let row = frm.add_child('items', {\n    item_code: 'Tennis Racket',\n    qty: 2\n});\nfrm.refresh_field('items');"
+    },
+    {
+      "code": "frm.call(method, args)",
+      "description": "Call a whitelisted server-side controller method with arguments.",
+      "example": "frm.call('get_linked_doc', { throw_if_missing: true })\n .then(r => {\n     if (r.message) {\n         let linked_doc = r.message;\n         // do something with linked_doc\n     }\n })"
+    },
+    {
+      "code": "frm.trigger(event_name)",
+      "description": "Trigger a form event explicitly.",
+      "example": "frm.trigger('set_mandatory_fields');"
+    },
+    {
+      "code": "frm.get_selected()",
+      "description": "Get the selected rows in all child tables.",
+      "example": "let selected = frm.get_selected();\n// { items: [\"bbfcb8da6a\"], taxes: [\"036ab9452a\"] }"
+    }
+  ],
+  "created": "2024-01-01",
+  "updated": "2024-01-01"
+}

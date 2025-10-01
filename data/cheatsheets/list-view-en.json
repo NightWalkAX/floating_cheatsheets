@@ -1,0 +1,54 @@
+{
+  "title": "List View Settings",
+  "language": "en",
+  "tags": ["javascript", "list-view", "api"],
+  "items": [
+    {
+      "code": "frappe.listview_settings['DocType'] = { ... }",
+      "description": "To customize the List View for a DocType, you create a `{doctype}_list.js` file and define the settings within this structure.",
+      "example": "frappe.listview_settings['Note'] = {\n    // settings go here\n};"
+    },
+    {
+      "code": "add_fields: ['field1', 'field2']",
+      "description": "An array of field names to be fetched in addition to the standard list fields. These can be used in formatters or other custom logic.",
+      "example": "add_fields: ['title', 'public']"
+    },
+    {
+      "code": "filters: [['field', 'operator', 'value']]",
+      "description": "An array of filters to be applied by default when the list view is loaded.",
+      "example": "filters: [\n    ['public', '=', 1]\n]"
+    },
+    {
+      "code": "hide_name_column: true",
+      "description": "A boolean to hide the last column in the list view, which typically shows the document's unique name.",
+      "example": "hide_name_column: true"
+    },
+    {
+      "code": "onload(listview) { ... }",
+      "description": "A function that is triggered once, just before the list view is loaded for the first time.",
+      "example": "onload(listview) {\n    console.log('List view is loading.');\n}"
+    },
+    {
+      "code": "get_indicator(doc) { ... }",
+      "description": "A function that returns an array to display a colored indicator for each row. The array format is [Label, Color, Filter_Condition].",
+      "example": "get_indicator(doc) {\n    if (doc.public) {\n        return [__(\"Public\"), \"green\", \"public,=,Yes\"];\n    } else {\n        return [__(\"Private\"), \"darkgrey\", \"public,=,No\"];\n    }\n}"
+    },
+    {
+      "code": "primary_action() { ... }",
+      "description": "A function that is triggered when the primary action button (usually 'New') is clicked.",
+      "example": "primary_action() {\n    frappe.new_doc('Note');\n}"
+    },
+    {
+      "code": "button: { show(doc), get_label(), get_description(doc), action(doc) }",
+      "description": "An object that defines a custom button to be displayed on each row of the list view.",
+      "example": "button: {\n    show(doc) {\n        return doc.reference_name;\n    },\n    get_label() {\n        return 'View Reference';\n    },\n    action(doc) {\n        frappe.set_route('Form', doc.reference_type, doc.reference_name);\n    }\n}"
+    },
+    {
+      "code": "formatters: { fieldname(val) { ... } }",
+      "description": "An object containing functions to format the display of specific field values in the list view.",
+      "example": "formatters: {\n    title(val) {\n        return val.bold();\n    },\n    public(val) {\n        return val ? 'Yes' : 'No';\n    }\n}"
+    }
+  ],
+  "created": "2024-01-01",
+  "updated": "2024-01-01"
+}

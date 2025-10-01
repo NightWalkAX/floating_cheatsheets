@@ -1,0 +1,54 @@
+{
+  "title": "Configuración de Vista de Lista",
+  "language": "es",
+  "tags": ["javascript", "vista-de-lista", "api"],
+  "items": [
+    {
+      "code": "frappe.listview_settings['DocType'] = { ... }",
+      "description": "Para personalizar la Vista de Lista para un DocType, creas un archivo `{doctype}_list.js` y defines la configuración dentro de esta estructura.",
+      "example": "frappe.listview_settings['Note'] = {\n    // la configuración va aquí\n};"
+    },
+    {
+      "code": "add_fields: ['campo1', 'campo2']",
+      "description": "Un array de nombres de campos a obtener además de los campos de lista estándar. Estos pueden ser usados en formateadores u otra lógica personalizada.",
+      "example": "add_fields: ['title', 'public']"
+    },
+    {
+      "code": "filters: [['campo', 'operador', 'valor']]",
+      "description": "Un array de filtros que se aplicarán por defecto cuando se cargue la vista de lista.",
+      "example": "filters: [\n    ['public', '=', 1]\n]"
+    },
+    {
+      "code": "hide_name_column: true",
+      "description": "Un booleano para ocultar la última columna en la vista de lista, que típicamente muestra el nombre único del documento.",
+      "example": "hide_name_column: true"
+    },
+    {
+      "code": "onload(listview) { ... }",
+      "description": "Una función que se dispara una vez, justo antes de que la vista de lista se cargue por primera vez.",
+      "example": "onload(listview) {\n    console.log('La vista de lista se está cargando.');\n}"
+    },
+    {
+      "code": "get_indicator(doc) { ... }",
+      "description": "Una función que devuelve un array para mostrar un indicador de color para cada fila. El formato del array es [Etiqueta, Color, Condición_Filtro].",
+      "example": "get_indicator(doc) {\n    if (doc.public) {\n        return [__(\"Público\"), \"green\", \"public,=,Yes\"];\n    } else {\n        return [__(\"Privado\"), \"darkgrey\", \"public,=,No\"];\n    }\n}"
+    },
+    {
+      "code": "primary_action() { ... }",
+      "description": "Una función que se dispara cuando se hace clic en el botón de acción principal (generalmente 'Nuevo').",
+      "example": "primary_action() {\n    frappe.new_doc('Note');\n}"
+    },
+    {
+      "code": "button: { show(doc), get_label(), get_description(doc), action(doc) }",
+      "description": "Un objeto que define un botón personalizado que se mostrará en cada fila de la vista de lista.",
+      "example": "button: {\n    show(doc) {\n        return doc.reference_name;\n    },\n    get_label() {\n        return 'Ver Referencia';\n    },\n    action(doc) {\n        frappe.set_route('Form', doc.reference_type, doc.reference_name);\n    }\n}"
+    },
+    {
+      "code": "formatters: { fieldname(val) { ... } }",
+      "description": "Un objeto que contiene funciones para formatear la visualización de valores de campos específicos en la vista de lista.",
+      "example": "formatters: {\n    title(val) {\n        return val.bold();\n    },\n    public(val) {\n        return val ? 'Sí' : 'No';\n    }\n}"
+    }
+  ],
+  "created": "2024-01-01",
+  "updated": "2024-01-01"
+}

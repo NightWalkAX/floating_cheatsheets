@@ -1,0 +1,34 @@
+{
+  "title": "Request Lifecycle (Python)",
+  "language": "en",
+  "tags": ["python", "web", "routing", "backend"],
+  "items": [
+    {
+      "code": "Request Handling Order",
+      "description": "Frappe handles incoming web requests in a specific order: API requests (`/api/...`), file downloads (`/files/...`), and finally, web page requests which are passed to the website router.",
+      "example": "1. API Request (`/api/resource/Task`)\n2. File Download (`/private/files/backup.zip`)\n3. Web Page (`/about`)"
+    },
+    {
+      "code": "Path Resolver",
+      "description": "Before rendering, the path resolver determines the final endpoint. It first checks for redirects (from `website_redirects` hook) and then resolves the route using rules (from `website_route_rules` hook or DocTypes with 'Has Web View').",
+      "example": "// A request to '/p/my-product' might be resolved by a website_route_rule to the template 'my_app.www.product.html'."
+    },
+    {
+      "code": "Page Renderer Selection",
+      "description": "After the path is resolved, Frappe selects a renderer to generate the HTML. It checks each available renderer's `.can_render()` method and uses the first one that returns `True`.",
+      "example": "// A request for '/about.html' would be handled by the TemplatePage renderer."
+    },
+    {
+      "code": "Standard Page Renderers",
+      "description": "Frappe includes several standard renderers for common page types.",
+      "example": "/*\n- StaticPage: Serves non-template files like images or PDFs from a `www` folder.\n- TemplatePage: Renders `.html` or `.md` files from a `www` folder.\n- WebformPage: Renders standard Web Forms.\n- DocumentPage: Renders a specific template for a single document view (e.g., `templates/user.html`).\n- ListPage: Renders a template for a document list view.\n- NotFoundPage: Renders the 404 page.\n*/"
+    },
+    {
+      "code": "Custom Page Renderer",
+      "description": "You can create a custom page renderer by defining a class with `can_render()` and `render()` methods and adding it to the `page_renderer` hook in your app.",
+      "example": "# hooks.py\npage_renderer = \"my_app.renderers.CustomRenderer\"\n\n# my_app/renderers.py\nclass CustomRenderer(BaseRenderer):\n    def can_render(self):\n        return self.path == '/my-custom-route'\n    def render(self):\n        return self.build_response('<h1>Custom Page</h1>')"
+    }
+  ],
+  "created": "2024-01-01",
+  "updated": "2024-01-01"
+}
